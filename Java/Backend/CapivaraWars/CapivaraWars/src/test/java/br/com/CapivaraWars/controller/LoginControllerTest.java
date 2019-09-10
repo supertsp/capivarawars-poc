@@ -28,6 +28,5 @@ public class LoginControllerTest {
 		ResponseEntity<String> response = controller.validateLogin(new Credenciais("login", "senha"));
 		
 		assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-		assertEquals("Error", response.getBody());
 	}
 }
