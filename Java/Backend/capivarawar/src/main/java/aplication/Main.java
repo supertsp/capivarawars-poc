@@ -2,15 +2,19 @@ package aplication;
 
 import java.sql.SQLException;
 
-import dao.Conexao;
+
+
+import dao.LogUsuarioDAO;
 
 public class Main {
 
 	public static void main(String[] args) throws SQLException {
 
-		Conexao con = new Conexao();
+		LogUsuarioDAO con = new LogUsuarioDAO();
 		
-		con.getConnection();
+//		con.getConnection();
+		con.LogUsuario();
+		
 		
 	}
 
