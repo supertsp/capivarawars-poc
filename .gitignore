@@ -1,0 +1,17 @@
+# Folders that should NOT be included.
+target/
+build/
+bin/
+.metadata/
+
+# Extensions that should NOT be included.
+
+
+# Files that should NOT be included.
+.DS_Store
+
+# Files that should BE included.
+!*.jar
+
+
+
