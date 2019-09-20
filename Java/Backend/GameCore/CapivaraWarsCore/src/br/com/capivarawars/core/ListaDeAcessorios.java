@@ -3,25 +3,25 @@ package br.com.capivarawars.core;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaDeAcessorios7 {
+public class ListaDeAcessorios {
 
-    private List<TipoAcessorio7> lista;
+    private List<TipoAcessorio> lista;
 
-    public ListaDeAcessorios7() {
+    public ListaDeAcessorios() {
         lista = new ArrayList<>();
     }
 
-    public void adicionar(TipoAcessorio7 novoAcessorio) {
+    public void adicionar(TipoAcessorio novoAcessorio) {
         lista.add(novoAcessorio);
     }
 
-    public void adicionar(TipoAcessorio7... variosAcessorios) {
-        for (TipoAcessorio7 acessorio : variosAcessorios) {
+    public void adicionar(TipoAcessorio... variosAcessorios) {
+        for (TipoAcessorio acessorio : variosAcessorios) {
             lista.add(acessorio);
         }
     }
 
-    public TipoAcessorio7 get(int indiceProcurado) {
+    public TipoAcessorio get(int indiceProcurado) {
         return lista.get(indiceProcurado);
     }
 
@@ -29,7 +29,7 @@ public class ListaDeAcessorios7 {
         lista.remove(indiceProcurado);
     }
 
-    public void remover(TipoAcessorio7 acessorioProcurado) {
+    public void remover(TipoAcessorio acessorioProcurado) {
         lista.remove(acessorioProcurado);
     }
 

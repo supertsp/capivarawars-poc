@@ -1,6 +1,6 @@
 package br.com.capivarawars.core;
 
-public enum CorPadrao7 {
+public enum CorPadrao {
 
     MARROM("803300ff"),
     BRANCO("ffffffff"),
@@ -13,7 +13,7 @@ public enum CorPadrao7 {
 
     private String codigoHexa;
 
-    private CorPadrao7(String codigoHexa) {
+    private CorPadrao(String codigoHexa) {
         this.codigoHexa = codigoHexa;
     }
 

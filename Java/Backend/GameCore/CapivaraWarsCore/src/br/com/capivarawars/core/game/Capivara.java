@@ -1,32 +1,32 @@
 package br.com.capivarawars.core.game;
 
-import br.com.capivarawars.core.CorPadrao7;
-import br.com.capivarawars.core.ListaDeAcessorios7;
-import br.com.capivarawars.core.game.BarraEnergia7;
+import br.com.capivarawars.core.CorPadrao;
+import br.com.capivarawars.core.ListaDeAcessorios;
+import br.com.capivarawars.core.game.BarraEnergia;
 import br.com.capivarawars.core.game.Posicao;
 
-public class Capivara7 {
+public class Capivara {
 
     private Posicao posicao;
     private String nome;
-    private CorPadrao7 corPadrao;
-    private ListaDeAcessorios7 listaDeAcessorios;
-    private BarraEnergia7<Integer> barraEnergia;
+    private CorPadrao corPadrao;
+    private ListaDeAcessorios listaDeAcessorios;
+    private BarraEnergia<Integer> barraEnergia;
 
     public static final int BARRA_ENERGIA_MIN_VALOR = 0;
     public static final int BARRA_ENERGIA_MAX_VALOR = 7;
     public static final int BARRA_ENERGIA_TEMPO_RECUPERACAO = 60;
 
-    public Capivara7(String nome, CorPadrao7 corPadrao) {
+    public Capivara(String nome, CorPadrao corPadrao) {
         this(0, 0, nome, corPadrao);
     }
 
-    public Capivara7(int x, int y, String nome, CorPadrao7 corPadrao) {
+    public Capivara(int x, int y, String nome, CorPadrao corPadrao) {
         posicao = new Posicao(x, y);
         setNome(nome);
         setCorPadrao(corPadrao);
-        listaDeAcessorios = new ListaDeAcessorios7();
-        barraEnergia = new BarraEnergia7<Integer>(BARRA_ENERGIA_MIN_VALOR, BARRA_ENERGIA_MAX_VALOR, BARRA_ENERGIA_TEMPO_RECUPERACAO);
+        listaDeAcessorios = new ListaDeAcessorios();
+        barraEnergia = new BarraEnergia<Integer>(BARRA_ENERGIA_MIN_VALOR, BARRA_ENERGIA_MAX_VALOR, BARRA_ENERGIA_TEMPO_RECUPERACAO);
     }
 
     public Posicao getPosicao() {
@@ -41,19 +41,19 @@ public class Capivara7 {
         this.nome = nome;
     }
 
-    public CorPadrao7 getCorPadrao() {
+    public CorPadrao getCorPadrao() {
         return corPadrao;
     }
 
-    public void setCorPadrao(CorPadrao7 corPadrao) {
+    public void setCorPadrao(CorPadrao corPadrao) {
         this.corPadrao = corPadrao;
     }
 
-    public ListaDeAcessorios7 getListaDeAcessorios() {
+    public ListaDeAcessorios getListaDeAcessorios() {
         return listaDeAcessorios;
     }
 
-    public BarraEnergia7<Integer> getBarraEnergia() {
+    public BarraEnergia<Integer> getBarraEnergia() {
         return barraEnergia;
     }
 

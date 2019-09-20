@@ -1,6 +1,6 @@
 package br.com.capivarawars.core.game;
 
-public class Posicao7 {
+public class Posicao {
 	
 	private float x, y;
 	
@@ -11,11 +11,11 @@ public class Posicao7 {
 	public static final Posicao ESQUERDA = new Posicao(-1, 0); 
 	
 	
-	public Posicao7() {
+	public Posicao() {
 		
 	}
 	
-	public Posicao7(float x, float y) {
+	public Posicao(float x, float y) {
 		this();
 		set(x, y);
 	}

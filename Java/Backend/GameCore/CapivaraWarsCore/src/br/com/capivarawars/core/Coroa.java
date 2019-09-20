@@ -1,12 +1,12 @@
 package br.com.capivarawars.core;
 
-public class Coroa7 {
+public class Coroa {
 
     protected String nome;
-    protected TipoCoroa7 tipoCoroa;
+    protected TipoCoroa tipoCoroa;
     protected int xp;
 
-    public Coroa7(String nome, TipoCoroa7 tipoCoroa, int xp) {
+    public Coroa(String nome, TipoCoroa tipoCoroa, int xp) {
         this.nome = nome;
         this.tipoCoroa = tipoCoroa;
         this.xp = xp;
@@ -16,7 +16,7 @@ public class Coroa7 {
         return nome;
     }
 
-    public TipoCoroa7 getTipoCoroa() {
+    public TipoCoroa getTipoCoroa() {
         return tipoCoroa;
     }
 

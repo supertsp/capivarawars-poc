@@ -2,14 +2,14 @@ package br.com.capivarawars.core.game;
 
 import br.com.capivarawars.core.game.MarcadorDeTempo;
 
-public class BarraEnergia7<T> {
+public class BarraEnergia<T> {
 
     private T valorAtual;
     private T valorMinimoPermitido;
     private T valorMaximoPermitido;
     private MarcadorDeTempo marcadorDeTempo;
 
-    public BarraEnergia7(T valorMinimoPermitido, T valorMaximoPermitido, float tempoDeEsperaParaRegenerar) {
+    public BarraEnergia(T valorMinimoPermitido, T valorMaximoPermitido, float tempoDeEsperaParaRegenerar) {
         setValoresPermitidos(valorMinimoPermitido, valorMaximoPermitido);
         setValorAtual(valorMaximoPermitido);
         marcadorDeTempo = new MarcadorDeTempo(tempoDeEsperaParaRegenerar);

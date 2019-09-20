@@ -1,14 +1,13 @@
 package br.com.capivarawars.core.game;
 
 //import com.fasterxml.jackson.annotation.JsonProperty;
-import br.com.capivarawars.core.Coroa7;
-import br.com.capivarawars.core.Credencial7;
+import br.com.capivarawars.core.Coroa;
 import java.util.List;
 
 //import br.com.CapivaraWars.controller.Credencial7;
 
 
-public class Jogador7 {
+public class Jogador {
 
 //	@JsonProperty
     private String nome;
@@ -17,27 +16,27 @@ public class Jogador7 {
     private String nick;
 
 //	@JsonProperty
-    private Credencial7 credencial;
+    private Credencial credencial;
 
 //	@JsonProperty
     private boolean online;
 
-    protected List<Coroa7> coroas;
+    protected List<Coroa> coroas;
     protected int vitorias;
     protected int derrotas;
     protected int empates;
 
-    public Jogador7() {
+    public Jogador() {
 
     }
 
-    public Jogador7(String nome, String nick, String usuario, String senha) {
+    public Jogador(String nome, String nick, String usuario, String senha) {
         this.nome = nome;
         this.nick = nick;
-        credencial = new Credencial7(usuario, senha);
+        credencial = new Credencial(usuario, senha);
     }
 
-    public Jogador7(String nome, String nick, Credencial7 credencial) {
+    public Jogador(String nome, String nick, Credencial credencial) {
         this.nome = nome;
         this.nick = nick;
         this.credencial = credencial;
@@ -59,11 +58,11 @@ public class Jogador7 {
         this.nick = nick;
     }
 
-    public Credencial7 getCredencial() {
+    public Credencial getCredencial() {
         return credencial;
     }
 
-    public void setCredencial(Credencial7 credencial) {
+    public void setCredencial(Credencial credencial) {
         this.credencial = credencial;
     }
 
@@ -84,10 +83,10 @@ public class Jogador7 {
     }
 
     public boolean equals(Object outroJogador) {
-        return outroJogador instanceof Jogador7
-                && ((Jogador7) outroJogador).nick.equals(nick)
-                && ((Jogador7) outroJogador).getUsuario().equals(getUsuario())
-                && ((Jogador7) outroJogador).getSenha().equals(getSenha());
+        return outroJogador instanceof Jogador
+                && ((Jogador) outroJogador).nick.equals(nick)
+                && ((Jogador) outroJogador).getUsuario().equals(getUsuario())
+                && ((Jogador) outroJogador).getSenha().equals(getSenha());
     }
 
 }

@@ -1,6 +1,6 @@
 package br.com.capivarawars.core.game;
 
-public class MarcadorDeTempo7 {
+public class MarcadorDeTempo {
 
     private float tempoLimite;
 
@@ -12,11 +12,11 @@ public class MarcadorDeTempo7 {
     private boolean exibirToStringBasico;
     private float tempoAuxiliar;
 
-    public MarcadorDeTempo7(float tempoLimiteEmSegundos) {
+    public MarcadorDeTempo(float tempoLimiteEmSegundos) {
         setTempoLimite(tempoLimiteEmSegundos);
     }
 
-    public MarcadorDeTempo7(float tempoLimiteEmSegundos, boolean exibirToStringBasico) {
+    public MarcadorDeTempo(float tempoLimiteEmSegundos, boolean exibirToStringBasico) {
         setTempoLimite(tempoLimiteEmSegundos);
         setExibirToStringBasico(exibirToStringBasico);
     }

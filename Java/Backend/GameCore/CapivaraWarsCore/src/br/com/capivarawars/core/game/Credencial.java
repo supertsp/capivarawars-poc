@@ -1,10 +1,10 @@
-package br.com.capivarawars.core;
+package br.com.capivarawars.core.game;
 
 //import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 //import br.com.capivarawars.core.Jogador;
-public class Credencial7 {
+public class Credencial {
 
 //	@JsonProperty
     private String usuario;
@@ -12,11 +12,11 @@ public class Credencial7 {
 //	@JsonProperty
     private String senha;
 
-    public Credencial7() {
+    public Credencial() {
 
     }
 
-    public Credencial7(String usuario, String senha) {
+    public Credencial(String usuario, String senha) {
         this.usuario = usuario;
         this.senha = senha;
     }
@@ -37,6 +37,7 @@ public class Credencial7 {
         this.senha = senha;
     }
 
+    @Override
     public boolean equals(Object outraCredendial) {
         return outraCredendial instanceof Jogador
                 && ((Jogador) outraCredendial).getUsuario().equals(getUsuario())

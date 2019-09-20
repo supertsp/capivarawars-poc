@@ -1,6 +1,6 @@
 package br.com.capivarawars.core;
 
-public enum TipoCoroa7 {
+public enum TipoCoroa {
 
     REGIONAL("Regional"),
     ESTADUAL("Estadual"),
@@ -13,7 +13,7 @@ public enum TipoCoroa7 {
 
     private String texto;
 
-    private TipoCoroa7(String textoEnum) {
+    private TipoCoroa(String textoEnum) {
         texto = textoEnum;
     }
 
