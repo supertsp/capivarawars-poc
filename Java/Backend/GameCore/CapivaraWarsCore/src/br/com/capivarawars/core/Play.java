@@ -1,7 +1,11 @@
 package br.com.capivarawars.core;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.core.game.BarraDeEnergia;
+import br.com.capivarawars.core.game.Capivara;
+import br.com.capivarawars.core.game.Coroa;
 import br.com.capivarawars.core.game.Jogador;
+import br.com.capivarawars.core.game.Posicao;
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
@@ -25,14 +29,68 @@ public class Play {
 
     //<editor-fold defaultstate="collapsed" desc="static attributes...">
     public static Scanner scanner = new Scanner(System.in);
+    public static Capivara capivara;
     //</editor-fold>
 
     //<editor-fold desc="executable method...">
     public static void main(String[] args) {
         
-        Jogador jogador = new Jogador();
-        System.out.println(jogador);
-        System.out.println("oi");
+        //<editor-fold defaultstate="collapsed" desc="TESTES: BARRA DE ENERGIA">
+//        System.out.println("\n>>> Iniciando Capivara"); //7
+//        capivara = new Capivara("Tidinha", CorPadrao.BRANCO);
+//        System.out.println(capivara);
+//        
+//        System.out.println("\n>>> Recebendo -1 de dado"); //6
+//        capivara.receberDano();
+//        System.out.println(capivara);
+//        
+//        System.out.println("\n>>> Recebendo -1 de dado"); //5
+//        capivara.receberDano();
+//        System.out.println(capivara);
+//        
+//        System.out.println("\n>>> Recebendo -1 de dado"); //4
+//        capivara.receberDano();
+//        System.out.println(capivara);
+//        
+//        System.out.println("\n>>> Recebendo -1 de dado"); //3
+//        capivara.receberDano();
+//        System.out.println(capivara);
+//        
+//        System.out.println("\n>>> Recebendo -1 de dado"); //2
+//        capivara.receberDano();
+//        System.out.println(capivara);
+//        
+//        System.out.println("\n>>> Recebendo -1 de dado"); //1
+//        capivara.receberDano();
+//        System.out.println(capivara);
+//        
+//        System.out.println("\n>>> Recebendo -1 de dado"); //0
+//        capivara.receberDano();
+//        System.out.println(capivara);
+//        
+//        System.out.println("\n>>> Recebendo -1 de dado"); //0
+//        capivara.receberDano();
+//        System.out.println(capivara);
+//        
+//        System.out.println("\n>>> Recebendo -1 de dado"); //0
+//        capivara.receberDano();
+//        System.out.println(capivara);
+        //</editor-fold>
+        
+//        iniciarTimerRegenercao();
+        
+        Capivara capis = new Capivara("capis", CorPadrao.BRANCO);
+        capis.addComponent(new Posicao(10, 10));
+        capis.addComponent(new BarraDeEnergia(new Integer(0), new Integer(10), 3));
+        capis.addComponent(new Coroa("Coroa Azul", TipoCoroa.NACIONAL, 10));
+        
+        System.out.println(capis);
+        
+        System.out.println("-------------");
+//        BarraDeEnergia teste = capis.getComponent(BarraDeEnergia.class, 2);;
+        BarraDeEnergia teste = (BarraDeEnergia) capis.getComponent(1);
+        System.out.println(teste);
+
 
     }//main
     //</editor-fold>
@@ -68,6 +126,21 @@ public class Play {
         } catch (Exception e) {
         }
         return readValue;
+    }
+    
+    public static void iniciarTimerRegenercao(){
+        int tempoEsperaAtualizaEmMili = 500;
+        
+        new Thread(()->{
+            while (true) {                
+                
+                System.out.println("\n" + capivara);
+                
+                try {
+                    Thread.sleep(tempoEsperaAtualizaEmMili);
+                } catch (Exception e) {}
+            }
+        }).start();
     }
     //</editor-fold>
 

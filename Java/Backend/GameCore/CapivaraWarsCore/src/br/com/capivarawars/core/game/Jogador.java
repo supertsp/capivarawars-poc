@@ -1,30 +1,84 @@
 package br.com.capivarawars.core.game;
 
-//import com.fasterxml.jackson.annotation.JsonProperty;
-import br.com.capivarawars.core.Coroa;
+
+//<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.core.Credencial;
 import java.util.List;
+import java.util.ArrayList;
+//</editor-fold>
 
-//import br.com.CapivaraWars.controller.Credencial7;
-
-
+//<editor-fold defaultstate="collapsed" desc="documentation...">
+/**
+ * Objective: ...
+ * 
+ * Description: ...
+ * 
+ * @version 1.0.0
+ * @author Tiago Penha Pedroso, 23 de set de 2019, 09:14:26
+ * Last update: -
+ *///</editor-fold>
 public class Jogador {
-
-//	@JsonProperty
+    
+    //<editor-fold defaultstate="collapsed" desc="attributes...">
+    
+    //<editor-fold defaultstate="collapsed" desc="main attributes...">
     private String nome;
-
-//	@JsonProperty
     private String nick;
-
-//	@JsonProperty
     private Credencial credencial;
-
-//	@JsonProperty
     private boolean online;
-
-    protected List<Coroa> coroas;
-    protected int vitorias;
-    protected int derrotas;
-    protected int empates;
+    private List<Coroa> coroas;
+    private int vitorias;
+    private int derrotas;
+    private int empates;
+    private int qtdTirosCerteiros;
+    private int qtdTirosRuins;
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="constants attributes...">
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="static attributes...">
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
+    
+    //</editor-fold>
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="constructors...">
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="methods...">
+    
+    //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="override methods...">
+    
+    //</editor-fold>    
+    
+    //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="static methods...">
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="main methods...">
+    
+    //</editor-fold>
+    
+    //</editor-fold>
+        
+    
+    
+    
 
     public Jogador() {
 

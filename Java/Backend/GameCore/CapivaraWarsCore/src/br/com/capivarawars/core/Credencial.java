@@ -1,6 +1,9 @@
-package br.com.capivarawars.core.game;
+package br.com.capivarawars.core;
 
 //import com.fasterxml.jackson.annotation.JsonProperty;
+
+import br.com.capivarawars.core.game.Jogador;
+
 
 
 //import br.com.capivarawars.core.Jogador;

@@ -1,6 +1,8 @@
-package br.com.capivarawars.core;
+package br.com.capivarawars.core.game;
 
-public class Coroa {
+import br.com.capivarawars.core.TipoCoroa;
+
+public class Coroa extends Component{
 
     protected String nome;
     protected TipoCoroa tipoCoroa;
