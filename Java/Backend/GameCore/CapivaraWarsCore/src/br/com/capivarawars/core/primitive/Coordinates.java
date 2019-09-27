@@ -1,4 +1,4 @@
-package br.com.capivarawars.core.game.component;
+package br.com.capivarawars.core.primitive;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
 import br.com.capivarawars.core.primitive.Component;
@@ -15,13 +15,13 @@ import java.util.ArrayList;
  * @version 1.0.0
  * @author Tiago Penha Pedroso, 23 de set de 2019, 09:14:26 Last update: -
  *///</editor-fold>
-public class Posicao extends Component{
+public class Coordinates extends Component{
     
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     private float x, y;
-    private boolean exibirToStringBasico;
+    private boolean showSimpleToString;
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -29,11 +29,11 @@ public class Posicao extends Component{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="static attributes...">
-    public static final Posicao ZERO = new Posicao();
-    public static final Posicao CIMA = new Posicao(0, 1);
-    public static final Posicao BAIXO = new Posicao(0, -1);
-    public static final Posicao DIREITA = new Posicao(1, 0);
-    public static final Posicao ESQUERDA = new Posicao(-1, 0);
+    public static final Coordinates ZERO = new Coordinates();
+    public static final Coordinates UP = new Coordinates(0, 1);
+    public static final Coordinates DOWN = new Coordinates(0, -1);
+    public static final Coordinates RIGHT = new Coordinates(1, 0);
+    public static final Coordinates LEFT = new Coordinates(-1, 0);
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
@@ -43,23 +43,23 @@ public class Posicao extends Component{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public Posicao() {
+    public Coordinates() {
         super();
     }
     
-    public Posicao(boolean exibirToStringBasico){
+    public Coordinates(boolean showSimpleToString){
         this();
-        this.exibirToStringBasico = exibirToStringBasico;
+        this.showSimpleToString = showSimpleToString;
     }
     
-    public Posicao(float x, float y) {
+    public Coordinates(float x, float y) {
         this();
         set(x, y);
     }
     
-    public Posicao(boolean exibirToStringBasico, float x, float y){
+    public Coordinates(boolean showSimpleToString, float x, float y){
         this(x, y);
-        this.exibirToStringBasico = exibirToStringBasico;
+        this.showSimpleToString = showSimpleToString;
     }
     //</editor-fold>
     
@@ -95,28 +95,28 @@ public class Posicao extends Component{
         setY(y);
     }
 
-    public void incrementarX(float x) {
+    public void incrementX(float x) {
         setX(getX() + x);
     }
 
-    public void incrementarY(float y) {
+    public void incrementY(float y) {
         setY(getY() + y);
     }
 
-    public void incrementar(float x, float y) {
-        incrementarX(x);
-        incrementarY(y);
+    public void increment(float x, float y) {
+        incrementX(x);
+        incrementY(y);
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
     @Override
     public String toString() {
-        if (exibirToStringBasico) {
+        if (showSimpleToString) {
             return String.valueOf(x) + ", " + String.valueOf(y);
         }
         
-        return "Posicao{ " + x + ", " + y + " }";
+        return Coordinates.class.getSimpleName() + " { " + x + ", " + y + " }";
     }
     //</editor-fold>    
     

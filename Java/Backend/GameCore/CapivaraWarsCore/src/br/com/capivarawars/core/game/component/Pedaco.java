@@ -1,28 +1,30 @@
 package br.com.capivarawars.core.game.component;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
-import br.com.capivarawars.core.game.component.patterns.TipoAcessorio;
+import br.com.capivarawars.core.CorPadrao;
 import br.com.capivarawars.core.primitive.Component;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
- *
+ * 
  * Description: ...
- *
+ * 
  * @version 1.0.0
- * @author Tiago Penha Pedroso, 23 de set de 2019, 09:14:26 Last update: -
+ * @author TPEDROSO, 27/09/2019, 12:50:44
+ * Last update: -
  *///</editor-fold>
-public class Acessorios extends Component {
+public class Pedaco extends Component{
     
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
-     private List<TipoAcessorio> lista;
+    private boolean destruida;
+    private CorPadrao cor;
+    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -40,58 +42,30 @@ public class Acessorios extends Component {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public Acessorios() {
-        lista = new ArrayList<>();
+    public Pedaco(CorPadrao cor){
+        super();
+        setCor(cor);
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
+    public boolean isDestruida() {
+        return destruida;
+    }
     
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Acessorios ArrayList  methods...">
-    public void adicionar(TipoAcessorio novoAcessorio) {
-        lista.add(novoAcessorio);
+    public CorPadrao getCor() {
+        return cor;
     }
 
-    public void adicionar(TipoAcessorio... variosAcessorios) {
-        lista.addAll(Arrays.asList(variosAcessorios));
-    }
-
-    public TipoAcessorio get(int indiceProcurado) {
-        return lista.get(indiceProcurado);
-    }
-
-    public void remover(int indiceProcurado) {
-        lista.remove(indiceProcurado);
-    }
-
-    public void remover(TipoAcessorio acessorioProcurado) {
-        lista.remove(acessorioProcurado);
-    }
-
-    public int length() {
-        return lista.size();
+    public void setCor(CorPadrao cor) {
+        this.cor = cor;
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
-    @Override
-    public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();        
-
-        for (int cont = 0; cont < length(); cont++) {
-            if ((cont + 1) >= length()) {
-                stringBuffer.append(get(cont).getNomeAcessorio());
-            } else {
-                stringBuffer.append(get(cont).getNomeAcessorio() + ", ");
-            }
-        }
-
-        return stringBuffer.toString();
-    }
+    
     //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
@@ -103,9 +77,17 @@ public class Acessorios extends Component {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
+    public void destruir(){
+        destruida = false;
+    }
     
+    public void construir(){
+        destruida = true;
+    }
     //</editor-fold>
     
     //</editor-fold>
+
     
+        
 }//class

@@ -20,7 +20,7 @@ public abstract class Component {
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
-    private boolean componentStatus;
+    private boolean componentActive;
     private GameObject parentGameObject;
     //</editor-fold>
     
@@ -40,19 +40,19 @@ public abstract class Component {
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
     public Component(){
-        componentStatus = true;
+        componentActive = true;
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    public boolean isComponentStatus() {
-        return componentStatus;
+    public boolean isComponentActive() {
+        return componentActive;
     }
 
-    public void setComponentStatus(boolean componentStatus) {
-        this.componentStatus = componentStatus;
+    public void setComponentActive(boolean newStatus) {
+        this.componentActive = newStatus;
     }
 
     public GameObject getParentGameObject() {
@@ -85,7 +85,9 @@ public abstract class Component {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
-    
+    public Coordinates getGameObjectCoordinates(){
+        return parentGameObject.getCoordinates();
+    }
     //</editor-fold>
     
     //</editor-fold>

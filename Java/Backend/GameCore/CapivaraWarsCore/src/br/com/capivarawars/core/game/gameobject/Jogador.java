@@ -4,6 +4,7 @@ package br.com.capivarawars.core.game.gameobject;
 //<editor-fold defaultstate="collapsed" desc="imports...">
 import br.com.capivarawars.core.game.component.Coroa;
 import br.com.capivarawars.core.Credencial;
+import br.com.capivarawars.core.primitive.GameObject;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * @author Tiago Penha Pedroso, 23 de set de 2019, 09:14:26
  * Last update: -
  *///</editor-fold>
-public class Jogador {
+public class Jogador extends GameObject{
     
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
@@ -50,37 +51,6 @@ public class Jogador {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="methods...">
-    
-    //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="override methods...">
-    
-    //</editor-fold>    
-    
-    //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
-    
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="static methods...">
-    
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="main methods...">
-    
-    //</editor-fold>
-    
-    //</editor-fold>
-        
-    
-    
-    
-
     public Jogador() {
 
     }
@@ -96,7 +66,11 @@ public class Jogador {
         this.nick = nick;
         this.credencial = credencial;
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="methods...">
+    
+    //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
     public String getNome() {
         return nome;
     }
@@ -136,12 +110,29 @@ public class Jogador {
     public boolean isOnline() {
         return online;
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="override methods...">
     public boolean equals(Object outroJogador) {
         return outroJogador instanceof Jogador
                 && ((Jogador) outroJogador).nick.equals(nick)
                 && ((Jogador) outroJogador).getUsuario().equals(getUsuario())
                 && ((Jogador) outroJogador).getSenha().equals(getSenha());
     }
+    //</editor-fold>    
+    
+    //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="static methods...">
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="main methods...">
+    
+    //</editor-fold>
+    
+    //</editor-fold>    
 
-}
+}//class

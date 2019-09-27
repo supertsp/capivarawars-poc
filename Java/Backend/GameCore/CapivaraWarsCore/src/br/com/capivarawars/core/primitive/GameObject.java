@@ -1,7 +1,6 @@
 package br.com.capivarawars.core.primitive;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
-import br.com.capivarawars.core.game.component.Posicao;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -21,7 +20,9 @@ public abstract class GameObject {
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
+    private boolean gameObjectActive;
     private List<Component> components;
+    private Coordinates coordinates;
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -41,15 +42,25 @@ public abstract class GameObject {
     //<editor-fold defaultstate="collapsed" desc="constructors...">
     public GameObject(){
         components = new ArrayList<>(10);
-        Posicao posicao = new Posicao(true);
-        addComponent(posicao);
+        coordinates = new Coordinates(true);
+        addComponent(coordinates);
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
+    public boolean isGameObjectActive(){
+        return gameObjectActive;
+    }
     
+    public void setGameObjectActive(boolean newStatus){
+        this.gameObjectActive = newStatus;
+    }
+    
+    public Coordinates getCoordinates(){
+        return coordinates;
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Component ArrayList  methods...">
@@ -168,6 +179,7 @@ public abstract class GameObject {
         }
         return finalText.toString();
     }
+    
     //</editor-fold>
     
     //</editor-fold>

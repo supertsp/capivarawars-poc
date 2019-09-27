@@ -5,7 +5,7 @@ import br.com.capivarawars.core.game.component.BarraDeEnergia;
 import br.com.capivarawars.core.game.gameobject.Capivara;
 import br.com.capivarawars.core.game.component.Coroa;
 import br.com.capivarawars.core.game.gameobject.Jogador;
-import br.com.capivarawars.core.game.component.Posicao;
+import br.com.capivarawars.core.primitive.Coordinates;
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
@@ -84,9 +84,9 @@ public class Play {
 //        capis.addComponent(new BarraDeEnergia(new Integer(100), new Integer(1000), 50));
 //        capis.addComponent(new Coroa("Coroa Azul", TipoCoroa.NACIONAL, 10));
         
-        System.out.println(capis);
-        
-        System.out.println("-------------");
+        System.out.println(capis.getCoordinates());
+//        
+//        System.out.println("-------------");
 //        BarraDeEnergia teste = capis.getComponent(BarraDeEnergia.class, 1);
 //        BarraDeEnergia teste = (BarraDeEnergia) capis.getComponent(1);
 //        System.out.println(teste);

@@ -2,7 +2,7 @@ package br.com.capivarawars.core.game.gameobject;
 
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
-import br.com.capivarawars.core.game.component.Posicao;
+import br.com.capivarawars.core.primitive.Coordinates;
 import br.com.capivarawars.core.game.component.BarraDeEnergia;
 import br.com.capivarawars.core.primitive.GameObject;
 import br.com.capivarawars.core.CorPadrao;
@@ -64,7 +64,7 @@ public class Capivara extends GameObject{
         super();
         
         //Component 0 = default
-        super.getComponent(Posicao.class).set(x, y);
+        super.getComponent(Coordinates.class).set(x, y);
         setNome(nome);
         setCorPadrao(corPadrao);
         
@@ -85,8 +85,8 @@ public class Capivara extends GameObject{
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    public Posicao getPosicao() {
-        return super.getComponent(Posicao.class);
+    public Coordinates getPosicao() {
+        return super.getComponent(Coordinates.class);
     }
 
     public String getNome() {
@@ -119,7 +119,9 @@ public class Capivara extends GameObject{
     public String toString() {
         StringBuffer textoFinal = new StringBuffer();
         
-        textoFinal.append("Capivara { ");
+        textoFinal
+                .append(Capivara.class.getSimpleName())
+                .append(" { ");
         textoFinal.append("\n  Posicao: ").append(getPosicao());
         textoFinal.append("\n  nome: ").append(nome);
         textoFinal.append("\n  corPadrao: ").append(corPadrao);
@@ -129,7 +131,8 @@ public class Capivara extends GameObject{
                 .append("/")
                 .append(BARRA_ENERGIA_MAX_VALOR)
                 .append("  Regenerando? ")
-                .append(barraDeEnergiaIniciouTempoRegeneracao());
+                .append(barraDeEnergiaIniciouTempoRegeneracao())
+                .append("  ");
         
         if (barraDeEnergiaIniciouTempoRegeneracao()) {
             textoFinal.append(getTempoEsperaAtualParaRegenerar())
