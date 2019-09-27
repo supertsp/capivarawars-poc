@@ -1,6 +1,7 @@
-package br.com.capivarawars.core.game;
+package br.com.capivarawars.core.game.component;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.core.primitive.Component;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -20,6 +21,7 @@ public class Posicao extends Component{
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     private float x, y;
+    private boolean exibirToStringBasico;
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -42,12 +44,22 @@ public class Posicao extends Component{
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
     public Posicao() {
-
+        super();
     }
-
+    
+    public Posicao(boolean exibirToStringBasico){
+        this();
+        this.exibirToStringBasico = exibirToStringBasico;
+    }
+    
     public Posicao(float x, float y) {
         this();
         set(x, y);
+    }
+    
+    public Posicao(boolean exibirToStringBasico, float x, float y){
+        this(x, y);
+        this.exibirToStringBasico = exibirToStringBasico;
     }
     //</editor-fold>
     
@@ -100,6 +112,10 @@ public class Posicao extends Component{
     //<editor-fold defaultstate="collapsed" desc="override methods...">
     @Override
     public String toString() {
+        if (exibirToStringBasico) {
+            return String.valueOf(x) + ", " + String.valueOf(y);
+        }
+        
         return "Posicao{ " + x + ", " + y + " }";
     }
     //</editor-fold>    

@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/BarraDeEnergia.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/Capivara.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/MarcadorDeTempo.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/Play.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/AClasseModelo.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/tests/TestaMarcadorTempo.java</file>
+            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/primitive/Component.java</file>
+            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/component/BarraDeEnergia.java</file>
+            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/component/Acessorios.java</file>
+            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/primitive/GameObject.java</file>
+            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/Play.java</file>
+            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/gameobject/Capivara.java</file>
+            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/AClasseModelo.java</file>
         </group>
     </open-files>
 </project-private>

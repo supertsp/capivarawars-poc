@@ -1,6 +1,7 @@
 package br.com.capivarawars.core;
 
-import br.com.capivarawars.core.game.Posicao;
+import br.com.capivarawars.core.game.component.TipoAcessorio;
+import br.com.capivarawars.core.game.component.Posicao;
 
 public class AcessorioChapeu implements TipoAcessorio {
 

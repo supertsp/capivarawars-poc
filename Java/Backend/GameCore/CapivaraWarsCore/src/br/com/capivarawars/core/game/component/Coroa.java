@@ -1,5 +1,6 @@
-package br.com.capivarawars.core.game;
+package br.com.capivarawars.core.game.component;
 
+import br.com.capivarawars.core.primitive.Component;
 import br.com.capivarawars.core.TipoCoroa;
 
 public class Coroa extends Component{

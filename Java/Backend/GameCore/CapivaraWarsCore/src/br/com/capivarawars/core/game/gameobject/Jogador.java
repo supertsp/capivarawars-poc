@@ -1,7 +1,8 @@
-package br.com.capivarawars.core.game;
+package br.com.capivarawars.core.game.gameobject;
 
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.core.game.component.Coroa;
 import br.com.capivarawars.core.Credencial;
 import java.util.List;
 import java.util.ArrayList;

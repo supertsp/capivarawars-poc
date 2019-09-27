@@ -1,6 +1,8 @@
-package br.com.capivarawars.core.game;
+package br.com.capivarawars.core.game.component;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.core.game.MarcadorDeTempo;
+import br.com.capivarawars.core.primitive.Component;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -43,14 +45,15 @@ public class BarraDeEnergia<T> extends Component{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public BarraDeEnergia(T valorMinimoPermitido, T valorMaximoPermitido, float tempoDeEsperaParaRegenerar) {
+    public BarraDeEnergia(T valorMinimoPermitido, T valorMaximoPermitido, 
+            float tempoDeEsperaParaRegenerar) {
         setValoresPermitidos(valorMinimoPermitido, valorMaximoPermitido);
         setValorAtual(valorMaximoPermitido);
         marcadorDeTempo = new MarcadorDeTempo(tempoDeEsperaParaRegenerar);
     }
     
     public BarraDeEnergia(T valorMinimoPermitido, T valorMaximoPermitido, 
-            float tempoDeEsperaParaRegenerar, boolean regeneracaoAutomatica) {
+            float tempoDeEsperaParaRegenerar, boolean regeneracaoAutomatica) {        
         this(valorMinimoPermitido, valorMaximoPermitido, tempoDeEsperaParaRegenerar);
         this.regeneracaoAutomatica = regeneracaoAutomatica;
     }

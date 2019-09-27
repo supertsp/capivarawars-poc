@@ -1,9 +1,12 @@
-package br.com.capivarawars.core.game;
+package br.com.capivarawars.core.game.gameobject;
 
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.core.game.component.Posicao;
+import br.com.capivarawars.core.game.component.BarraDeEnergia;
+import br.com.capivarawars.core.primitive.GameObject;
 import br.com.capivarawars.core.CorPadrao;
-import br.com.capivarawars.core.ListaDeAcessorios;
+import br.com.capivarawars.core.game.component.Acessorios;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -23,11 +26,9 @@ public class Capivara extends GameObject{
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
-    private Posicao posicao;
     private String nome;
     private CorPadrao corPadrao;
-    private ListaDeAcessorios listaDeAcessorios;
-    private BarraDeEnergia<Integer> barraDeEnergia;
+    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -60,15 +61,24 @@ public class Capivara extends GameObject{
     }
     
     public Capivara(int x, int y, String nome, CorPadrao corPadrao, boolean regeneracaoAutomatica) {
-        posicao = new Posicao(x, y);
+        super();
+        
+        //Component 0 = default
+        super.getComponent(Posicao.class).set(x, y);
         setNome(nome);
         setCorPadrao(corPadrao);
-        listaDeAcessorios = new ListaDeAcessorios();
-        barraDeEnergia = new BarraDeEnergia<Integer>(
-                BARRA_ENERGIA_MIN_VALOR, BARRA_ENERGIA_MAX_VALOR, 
-                BARRA_ENERGIA_TEMPO_RECUPERACAO, regeneracaoAutomatica
-        );
-        barraDeEnergia.setRegeneracaoAutomatica(regeneracaoAutomatica);
+        
+        //Component 1 = Acessorios
+        super.addComponent(new Acessorios());
+        
+        //Component 2 = BarraDeEnergia
+        super.addComponent( new BarraDeEnergia<Integer>(
+                    BARRA_ENERGIA_MIN_VALOR, 
+                    BARRA_ENERGIA_MAX_VALOR, 
+                    BARRA_ENERGIA_TEMPO_RECUPERACAO, 
+                    regeneracaoAutomatica
+                )                
+        );        
     }
     //</editor-fold>
     
@@ -76,7 +86,7 @@ public class Capivara extends GameObject{
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
     public Posicao getPosicao() {
-        return posicao;
+        return super.getComponent(Posicao.class);
     }
 
     public String getNome() {
@@ -95,28 +105,43 @@ public class Capivara extends GameObject{
         this.corPadrao = corPadrao;
     }
 
-    public ListaDeAcessorios getListaDeAcessorios() {
-        return listaDeAcessorios;
+    public Acessorios getAcessorios() {
+        return super.getComponent(Acessorios.class);
     }
 
     public BarraDeEnergia<Integer> getBarraDeEnergia() {
-        return barraDeEnergia;
+        return super.getComponent(BarraDeEnergia.class);
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
     @Override
     public String toString() {
-        return "Capivara { "
-                + "\n posicao = " + posicao
-                + "\n nome = " + nome
-                + "\n corPadrao = " + corPadrao
-                + "\n listaDeAcessorios = " + listaDeAcessorios
-                + "\n barraEnergia (valor) = " + getValorAtualBarraEnergia()
-                + "\n barraEnergia (regenerando) = " + barraDeEnergiaIniciouTempoRegeneracao()
-                + "\n barraEnergia (tempo regeneracao) = " + getTempoEsperaAtualParaRegenerar()
-                + "\n components = " + super.componentsToString()
-                + "\n}";
+        StringBuffer textoFinal = new StringBuffer();
+        
+        textoFinal.append("Capivara { ");
+        textoFinal.append("\n  Posicao: ").append(getPosicao());
+        textoFinal.append("\n  nome: ").append(nome);
+        textoFinal.append("\n  corPadrao: ").append(corPadrao);
+        textoFinal.append("\n  Acessorios: ").append(getAcessorios());
+        textoFinal.append("\n  BarraDeEnergia: ")
+                .append(getValorAtualBarraDeEnergia())
+                .append("/")
+                .append(BARRA_ENERGIA_MAX_VALOR)
+                .append("  Regenerando? ")
+                .append(barraDeEnergiaIniciouTempoRegeneracao());
+        
+        if (barraDeEnergiaIniciouTempoRegeneracao()) {
+            textoFinal.append(getTempoEsperaAtualParaRegenerar())
+                    .append("s/")
+                    .append(BARRA_ENERGIA_TEMPO_RECUPERACAO)
+                    .append("s");
+        }
+        
+        textoFinal.append(super.toString());
+        textoFinal.append("\n}");
+        
+        return textoFinal.toString();
     }
     //</editor-fold>    
     
@@ -129,24 +154,24 @@ public class Capivara extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
-    public Integer getValorAtualBarraEnergia(){
-        return barraDeEnergia.getValorAtual();
+    public Integer getValorAtualBarraDeEnergia(){
+        return getBarraDeEnergia().getValorAtual();
     }
     
     public void receberDano(){
-        barraDeEnergia.incrementarValorAtual(-1);
+        getBarraDeEnergia().incrementarValorAtual(-1);
     }
     
     public boolean barraDeEnergiaIniciouTempoRegeneracao(){
-        return barraDeEnergia.iniciouTempoRegeneracao();
+        return getBarraDeEnergia().iniciouTempoRegeneracao();
     }
     
     public boolean barraDeEnergiaTerminouTempoRegeneracao(){
-        return barraDeEnergia.terminouTempoRegeneracao();
+        return getBarraDeEnergia().terminouTempoRegeneracao();
     }
     
     public Integer getTempoEsperaAtualParaRegenerar(){
-        return barraDeEnergia.getTempoDecorridoParaRegeneracaoComoInteger();
+        return getBarraDeEnergia().getTempoDecorridoParaRegeneracaoComoInteger();
     }
     //</editor-fold>
     
