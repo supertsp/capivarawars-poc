@@ -85,10 +85,6 @@ public class Capivara extends GameObject{
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    public Coordinates getPosicao() {
-        return super.getComponent(Coordinates.class);
-    }
-
     public String getNome() {
         return nome;
     }
@@ -121,12 +117,13 @@ public class Capivara extends GameObject{
         
         textoFinal
                 .append(Capivara.class.getSimpleName())
-                .append(" { ");
-        textoFinal.append("\n  Posicao: ").append(getPosicao());
-        textoFinal.append("\n  nome: ").append(nome);
-        textoFinal.append("\n  corPadrao: ").append(corPadrao);
-        textoFinal.append("\n  Acessorios: ").append(getAcessorios());
-        textoFinal.append("\n  BarraDeEnergia: ")
+                .append(" [\n  isGameObjectActive: ")
+                .append(super.isGameObjectActive())
+                .append("\n  Coordinates: ").append(getCoordinates())
+                .append("\n  nome: ").append(nome)
+                .append("\n  corPadrao: ").append(corPadrao)
+                .append("\n  Acessorios: ").append(getAcessorios())
+                .append("\n  BarraDeEnergia: ")
                 .append(getValorAtualBarraDeEnergia())
                 .append("/")
                 .append(BARRA_ENERGIA_MAX_VALOR)
@@ -142,9 +139,15 @@ public class Capivara extends GameObject{
         }
         
         textoFinal.append(super.toString());
-        textoFinal.append("\n}");
+        textoFinal.append("\n]");
         
         return textoFinal.toString();
+    }
+    
+    
+    @Override
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+        return null;
     }
     //</editor-fold>    
     

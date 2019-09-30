@@ -113,11 +113,18 @@ public class Jogador extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
+    @Override
     public boolean equals(Object outroJogador) {
         return outroJogador instanceof Jogador
                 && ((Jogador) outroJogador).nick.equals(nick)
                 && ((Jogador) outroJogador).getUsuario().equals(getUsuario())
                 && ((Jogador) outroJogador).getSenha().equals(getSenha());
+    }
+    
+    
+    @Override
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+        return null;
     }
     //</editor-fold>    
     

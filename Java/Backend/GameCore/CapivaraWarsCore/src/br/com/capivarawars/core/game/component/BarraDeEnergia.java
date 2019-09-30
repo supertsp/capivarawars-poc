@@ -123,6 +123,11 @@ public class BarraDeEnergia<T> extends Component{
                 + "\n terminouTempoRegeneracao = " + terminouTempoRegeneracao()
                 + "\n}";
     }
+    
+    @Override
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+        return null;
+    }
     //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">

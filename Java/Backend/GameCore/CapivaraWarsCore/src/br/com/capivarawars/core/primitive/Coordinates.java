@@ -116,7 +116,12 @@ public class Coordinates extends Component{
             return String.valueOf(x) + ", " + String.valueOf(y);
         }
         
-        return Coordinates.class.getSimpleName() + " { " + x + ", " + y + " }";
+        return Coordinates.class.getSimpleName() + " [ " + x + ", " + y + " ]";
+    }
+    
+    @Override
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+        return null;
     }
     //</editor-fold>    
     

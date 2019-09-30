@@ -65,7 +65,10 @@ public class Pedaco extends Component{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
-    
+    @Override
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+        return null;
+    }
     //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">

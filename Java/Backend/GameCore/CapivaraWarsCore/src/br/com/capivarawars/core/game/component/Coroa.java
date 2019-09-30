@@ -74,6 +74,11 @@ public class Coroa extends Component {
                 + ", xp=" + xp
                 + "}";
     }
+    
+    @Override
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+        return null;
+    }
     //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
@@ -89,13 +94,5 @@ public class Coroa extends Component {
     //</editor-fold>
     
     //</editor-fold>
-    
-    
-    
 
-    
-
-    
-    
-
-}
+}//class

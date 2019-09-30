@@ -65,7 +65,37 @@ public class Canoa extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
-    
+//    @Override
+//    public String toString() {
+//        StringBuffer textoFinal = new StringBuffer();
+//        
+//        textoFinal
+//                .append(Canoa.class.getSimpleName())
+//                .append(" [ isGameObjectActive: ")
+//                .append(super.isGameObjectActive())
+//                .append(" [ pedacos: ");
+//        
+//        for (int cont = 0; cont < lengthOfPedacos(); cont++) {
+//            if (getPedaco(cont).isDestruido()) {
+//                textoFinal.append("[-]");
+//            }
+//            else{
+//                textoFinal.append("[O]");
+//            }
+//        }
+//        
+//        textoFinal
+//                .append("\n]");
+//        
+//        
+//        
+//        return textoFinal.toString();
+//    }
+//    
+    @Override
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+        return null;
+    }
     //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
@@ -126,5 +156,6 @@ public class Canoa extends GameObject{
     //</editor-fold>
     
     //</editor-fold>
+
         
 }//class

@@ -92,6 +92,11 @@ public class Acessorios extends Component {
 
         return stringBuffer.toString();
     }
+    
+    @Override
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+        return null;
+    }
     //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">

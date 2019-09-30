@@ -84,7 +84,7 @@ public class Play {
 //        capis.addComponent(new BarraDeEnergia(new Integer(100), new Integer(1000), 50));
 //        capis.addComponent(new Coroa("Coroa Azul", TipoCoroa.NACIONAL, 10));
         
-        System.out.println(capis.getCoordinates());
+        System.out.println(capis);
 //        
 //        System.out.println("-------------");
 //        BarraDeEnergia teste = capis.getComponent(BarraDeEnergia.class, 1);

@@ -1,6 +1,7 @@
 package br.com.capivarawars.core.primitive;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.core.primitive.patterns.ImprovableToString;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * @author TPEDROSO, 26/09/2019, 11:04:29
  * Last update: -
  *///</editor-fold>
-public abstract class Component {
+public abstract class Component implements ImprovableToString{
     
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
@@ -73,11 +74,49 @@ public abstract class Component {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
-    
+    @Override
+    public String toString() {
+        StringBuffer finalText = new StringBuffer();
+        
+        finalText
+                .append(Component.class.getSimpleName())
+                .append(" ")
+                .append(ImprovableToString.CLASS_OPENING_CHAR)
+                .append(toStringWithAttibutesOnly_ComponentDemo(ImprovableToString.TAB_SIZE))
+                .append('\n')
+                .append(ImprovableToString.CLASS_CLOSING_CHAR);
+        
+        return finalText.toString();
+    }
     //</editor-fold>    
     
-    //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
+    //<editor-fold defaultstate="collapsed" desc="abstract methods...">    
     
+    //</editor-fold>
+        
+    
+    //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
+    protected String toStringWithAttibutesOnly_ComponentDemo(int tabSizeForEachAttribute){
+        StringBuffer finalText = new StringBuffer(200);
+        
+        StringBuffer tabSpace = new StringBuffer();        
+        for (int count = 0; count < tabSizeForEachAttribute; count++) {
+            tabSpace.append(' ');
+        }
+        
+        finalText
+                .append('\n')
+                .append(tabSpace)
+                .append("isComponentActive: ")
+                .append(isComponentActive())
+                
+                .append('\n')
+                .append(tabSpace)
+                .append("parentGameObject: ")
+                .append(getParentGameObject().getClass().getSimpleName());
+        
+        return finalText.toString();
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="static methods...">
