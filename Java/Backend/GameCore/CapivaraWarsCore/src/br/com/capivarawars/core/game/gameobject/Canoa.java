@@ -24,7 +24,7 @@ public class Canoa extends GameObject{
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     private List<Pedaco> pedacos;
-    
+    private CorPadrao cor;
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -37,7 +37,7 @@ public class Canoa extends GameObject{
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
     private int quantidadePedadosInicial;
-    private CorPadrao corInicial;
+    
     //</editor-fold>
     
     //</editor-fold>
@@ -46,7 +46,7 @@ public class Canoa extends GameObject{
     public Canoa(int quantidadePedacos, CorPadrao cor){
         super();
         this.quantidadePedadosInicial = quantidadePedacos;
-        this.corInicial = cor;
+        this.cor = cor;
         pedacos = new ArrayList<>(quantidadePedacos);
         criarPedacos();
     }
@@ -71,9 +71,11 @@ public class Canoa extends GameObject{
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
     private void criarPedacos(){
         for (int cont = 0; cont < quantidadePedadosInicial; cont++) {
-            pedacos.add(cont, new Pedaco(corInicial));
+            pedacos.add(cont, new Pedaco(cor));
         }
     }
+    
+    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="static methods...">
@@ -86,23 +88,40 @@ public class Canoa extends GameObject{
     }
     
     public boolean destruirPedaco(int indicePedaco){
-        if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()) {
-            
+        if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()
+                && !pedacos.get(indicePedaco).isDestruido()) {
+            pedacos.get(indicePedaco).destruir();
+            Pedaco pedacoTemp = pedacos.remove(indicePedaco);
+            pedacos.add(pedacoTemp);
+            return true;
         }
         
         return false;
     }
     
-    public void destruirPedacos(){
+    public void destruirTodosPedacos(){
+        Pedaco pedacoTemp;
         for (int cont = 0; cont < lengthOfPedacos(); cont++) {
             pedacos.get(cont).destruir();
         }
     }
     
-    public void reiniciarPedacos(){
+    public void reconstruirTodosPedacos(){
         for (int cont = 0; cont < lengthOfPedacos(); cont++) {
             pedacos.get(cont).construir();
         }
+    }
+    
+    public boolean reconstruirPedaco(int indicePedaco){
+        if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()
+                && pedacos.get(indicePedaco).isDestruido()) {
+            pedacos.get(indicePedaco).construir();
+            Pedaco pedacoTemp = pedacos.remove(indicePedaco);
+            pedacos.add(0, pedacoTemp);
+            return true;
+        }
+        
+        return false;
     }
     //</editor-fold>
     

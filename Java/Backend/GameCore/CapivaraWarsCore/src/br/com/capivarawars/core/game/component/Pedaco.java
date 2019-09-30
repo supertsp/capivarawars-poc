@@ -22,7 +22,7 @@ public class Pedaco extends Component{
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
-    private boolean destruida;
+    private boolean destruido;
     private CorPadrao cor;
     
     //</editor-fold>
@@ -51,8 +51,8 @@ public class Pedaco extends Component{
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    public boolean isDestruida() {
-        return destruida;
+    public boolean isDestruido() {
+        return destruido;
     }
     
     public CorPadrao getCor() {
@@ -78,16 +78,14 @@ public class Pedaco extends Component{
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
     public void destruir(){
-        destruida = false;
+        destruido = false;
     }
     
     public void construir(){
-        destruida = true;
+        destruido = true;
     }
     //</editor-fold>
     
     //</editor-fold>
-
-    
         
 }//class
