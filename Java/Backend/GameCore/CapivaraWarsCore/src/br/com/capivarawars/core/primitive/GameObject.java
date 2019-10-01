@@ -68,13 +68,13 @@ public abstract class GameObject implements ImprovableToString{
     //<editor-fold defaultstate="collapsed" desc="Component ArrayList  methods...">
     public void addComponent(Component newComponent){
         components.add(newComponent);
-        newComponent.setParentGameObject(this);
+        newComponent.setGameObjectOwner(this);
     }
     
     public void addComponent(Component... newComponents){
         for (Component singleComponent : newComponents) {
             addComponent(singleComponent);
-            singleComponent.setParentGameObject(this);
+            singleComponent.setGameObjectOwner(this);
         }
     }
     
@@ -192,7 +192,7 @@ public abstract class GameObject implements ImprovableToString{
                 .append("AttachedComponents(")
                 .append(lengthOfComponents())
                 .append("): ")
-                .append(componentsToString());
+                .append(toStringWithComponentsOnly());
         
         return finalText.toString();
     }
@@ -203,7 +203,7 @@ public abstract class GameObject implements ImprovableToString{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
-    public String componentsToString(){
+    public String toStringWithComponentsOnly(){
         StringBuffer finalText = new StringBuffer(lengthOfComponents() * 10);
         
         for (int count = 0; count < lengthOfComponents(); count++) {

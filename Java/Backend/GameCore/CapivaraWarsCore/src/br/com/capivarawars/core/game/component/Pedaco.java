@@ -24,7 +24,8 @@ public class Pedaco extends Component{
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     private boolean destruido;
-    private CorPadrao cor;    
+    private CorPadrao cor;
+    private boolean marcado;
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -42,6 +43,11 @@ public class Pedaco extends Component{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
+    public Pedaco(){
+        super();
+        setCor(CorPadrao.NENHUMA);
+    }
+    
     public Pedaco(CorPadrao cor){
         super();
         setCor(cor);
@@ -62,6 +68,10 @@ public class Pedaco extends Component{
     public void setCor(CorPadrao cor) {
         this.cor = cor;
     }
+
+    public boolean isMarcado() {
+        return marcado;
+    }    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
@@ -99,7 +109,12 @@ public class Pedaco extends Component{
                 .append('\n')
                 .append(tabSpace)
                 .append("cor: ")
-                .append(cor);
+                .append(cor)
+                
+                .append('\n')
+                .append(tabSpace)
+                .append("isMarcado: ")
+                .append(isMarcado());
         
         return finalText.toString();
     }
@@ -120,6 +135,14 @@ public class Pedaco extends Component{
     
     public void construir(){
         destruido = false;
+    }
+    
+    public void marcar(){
+        marcado = true;
+    }
+    
+    public void desmarcar(){
+        marcado = false;
     }
     //</editor-fold>
     

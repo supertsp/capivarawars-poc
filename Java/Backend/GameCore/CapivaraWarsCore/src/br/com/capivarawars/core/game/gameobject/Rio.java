@@ -16,17 +16,16 @@ import java.util.ArrayList;
  * Description: ...
  * 
  * @version 1.0.0
- * @author TPEDROSO, 27/09/2019, 12:22:57
+ * @author TPEDROSO, 01/10/2019, 08:59:19
  * Last update: -
  *///</editor-fold>
-public class Canoa extends GameObject{
+public class Rio extends GameObject{
     
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
-    private String nome;
-    private CorPadrao cor;
-    private List<Pedaco> pedacos;    
+    private List<Pedaco> pedacos;
+    private Canoa canoa;
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -38,54 +37,43 @@ public class Canoa extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
-   
+    private int ultimaPosicaoCanoa;
     //</editor-fold>
     
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public Canoa(String nome, CorPadrao cor, int quantidadePedacos){
+    public Rio(int quantidadePedacos, Canoa canoa){
         super();
-        this.nome = nome;
         
         pedacos = new ArrayList<>(quantidadePedacos);        
         for (int cont = 0; cont < quantidadePedacos; cont++) {
-            pedacos.add(cont, new Pedaco(cor));
+            pedacos.add(cont, new Pedaco());
         }
-                
-        this.cor = cor;
+        
+        setCanoa(canoa);
+        
+        movimentarCanoa(0);
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }    
-    
-    public CorPadrao getCor(){
-        return cor;
-    }
-    
-    public void setCor(CorPadrao novaCor){
-        cor = novaCor;
-        
-        for (int cont = 0; cont < lengthOfPedacos(); cont++) {
-            getPedaco(cont).setCor(novaCor);
-        }
-    }
-    
-    public Pedaco getPedaco(int indicePedaco){
+    private Pedaco getPedaco(int indicePedaco){
         if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()) {
             return pedacos.get(indicePedaco);
         }
         
         return null;
+    }
+    
+    public Canoa getCanoa(){
+        return canoa;
+    }
+    
+    public void setCanoa(Canoa novaCanoa){
+        canoa = novaCanoa;
     }
     //</editor-fold>
     
@@ -95,7 +83,7 @@ public class Canoa extends GameObject{
         StringBuilder finalText = new StringBuilder();
         
         finalText
-                .append(Canoa.class.getSimpleName())
+                .append(Rio.class.getSimpleName())
                 .append(' ')
                 .append(ImprovableToString.CLASS_OPENING_CHAR)
                 .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE))
@@ -118,42 +106,41 @@ public class Canoa extends GameObject{
         finalText
                 .append('\n')
                 .append(tabSpace)
-                .append("nome: ")
-                .append(getNome())
-                
-                .append('\n')
-                .append(tabSpace)
-                .append("cor: ")
-                .append(getCor())
-                
-                .append('\n')
-                .append(tabSpace)
                 .append("Pedacos(")
                 .append(lengthOfPedacos())
                 .append("): ");
         
         for (int count = 0; count < lengthOfPedacos(); count++) {
-            if (getPedaco(count).isDestruido()) {
-                finalText.append("[-]");
+            if (getPedaco(count).isMarcado()) {
+                finalText.append("[X]");
             }
             else{
-                finalText.append("[O]");
+                finalText.append("[~]");
             }
         }
-        
-        finalText
-                .append('\n')
-                .append(tabSpace)
-                .append("isDestruida: ")
-                .append(isDestruida());
-        
+     
         return finalText.toString();
     }
     //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
-    
-    
+    private void copiarCanoaParaRio(){
+        int contCanoa = 0;
+        for (int contRio = 0; contRio < lengthOfPedacos(); contRio++) {
+            if (contRio >= ultimaPosicaoCanoa && contRio < (ultimaPosicaoCanoa + canoa.lengthOfPedacos())) {
+                if (canoa.getPedaco(contCanoa).isDestruido()) {
+                    getPedaco(contRio).desmarcar();
+                }
+                else{
+                    getPedaco(contRio).marcar();
+                }
+                contCanoa++;
+            }
+            else{
+                getPedaco(contRio).desmarcar();
+            }
+        }
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="static methods...">
@@ -165,46 +152,22 @@ public class Canoa extends GameObject{
         return pedacos.size();
     }
     
-    public boolean isDestruida(){
-        boolean destruida = true;
+    public void movimentarCanoa(int indiceNoRio){
+        ultimaPosicaoCanoa = 
+                indiceNoRio >= 0 &&
+                indiceNoRio <= (lengthOfPedacos() - canoa.lengthOfPedacos()) ?
+                indiceNoRio :
+                    indiceNoRio < 0 ?
+                    0 : (lengthOfPedacos() - canoa.lengthOfPedacos());
         
-        for (int cont = 0; cont < lengthOfPedacos(); cont++) {
-            destruida &= getPedaco(cont).isDestruido();
-        }
-        
-        return destruida;
+        copiarCanoaParaRio();
     }
     
-    public boolean destruirPedaco(int indicePedaco){
-        if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()
-                && !getPedaco(indicePedaco).isDestruido()) {
-            getPedaco(indicePedaco).destruir();
-            Pedaco pedacoTemp = pedacos.remove(indicePedaco);
-            pedacos.add(pedacoTemp);
-            return true;
-        }
-        
-        return false;
-    }
-    
-    public void destruirTodosPedacos(){
-        for (int cont = 0; cont < lengthOfPedacos(); cont++) {
-            pedacos.get(cont).destruir();
-        }
-    }
-    
-    public void reconstruirTodosPedacos(){
-        for (int cont = 0; cont < lengthOfPedacos(); cont++) {
-            pedacos.get(cont).construir();
-        }
-    }
-    
-    public boolean reconstruirPedaco(int indicePedaco){
-        if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()
-                && pedacos.get(indicePedaco).isDestruido()) {
-            pedacos.get(indicePedaco).construir();
-            Pedaco pedacoTemp = pedacos.remove(indicePedaco);
-            pedacos.add(0, pedacoTemp);
+    public boolean receberTiro(int indiceNoRio){
+        if (indiceNoRio >= 0 && indiceNoRio < lengthOfPedacos() && getPedaco(indiceNoRio).isMarcado()) {
+            getPedaco(indiceNoRio).desmarcar();
+            canoa.destruirPedaco(indiceNoRio - ultimaPosicaoCanoa);
+            copiarCanoaParaRio();
             return true;
         }
         
@@ -213,5 +176,5 @@ public class Canoa extends GameObject{
     //</editor-fold>
     
     //</editor-fold>
-    
+        
 }//class

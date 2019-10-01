@@ -22,7 +22,7 @@ public abstract class Component implements ImprovableToString{
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     private boolean componentActive;
-    private GameObject parentGameObject;
+    private GameObject gameObjectOwner;
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -56,20 +56,20 @@ public abstract class Component implements ImprovableToString{
         this.componentActive = newStatus;
     }
 
-    public GameObject getParentGameObject() {
-        return parentGameObject;
+    public GameObject getGameObjectOwner() {
+        return gameObjectOwner;
     }
     
-    public <T> T getParentGameObject(Class<T> classType) {
+    public <T> T getGameObjectOwner(Class<T> classType) {
         try {
-            return classType.cast(getParentGameObject());
+            return classType.cast(Component.this.getGameObjectOwner());
         } catch (Exception e) {
             return null;
         }
     }
 
-    void setParentGameObject(GameObject parentGameObject) {
-        this.parentGameObject = parentGameObject;
+    void setGameObjectOwner(GameObject gameObjectOwner) {
+        this.gameObjectOwner = gameObjectOwner;
     }
     //</editor-fold>
     
@@ -111,10 +111,10 @@ public abstract class Component implements ImprovableToString{
                 
                 .append('\n')
                 .append(tabSpace)
-                .append("parentGameObject: ");
+                .append("gameObjectOwner: ");
         
-        if (parentGameObject != null) {
-            finalText.append(getParentGameObject().getClass().getSimpleName());
+        if (gameObjectOwner != null) {
+            finalText.append(Component.this.getGameObjectOwner().getClass().getSimpleName());
         }
         else{
             finalText.append("null");
@@ -130,7 +130,7 @@ public abstract class Component implements ImprovableToString{
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
     public Coordinates getGameObjectCoordinates(){
-        return parentGameObject.getCoordinates();
+        return gameObjectOwner.getCoordinates();
     }
     //</editor-fold>
     

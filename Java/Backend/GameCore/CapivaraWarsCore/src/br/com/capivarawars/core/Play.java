@@ -4,8 +4,10 @@ package br.com.capivarawars.core;
 import br.com.capivarawars.core.game.component.BarraDeEnergia;
 import br.com.capivarawars.core.game.gameobject.Capivara;
 import br.com.capivarawars.core.game.component.Coroa;
+import br.com.capivarawars.core.game.component.Pedaco;
 import br.com.capivarawars.core.game.gameobject.Canoa;
 import br.com.capivarawars.core.game.gameobject.Jogador;
+import br.com.capivarawars.core.game.gameobject.Rio;
 import br.com.capivarawars.core.primitive.Coordinates;
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
@@ -87,32 +89,35 @@ public class Play {
         
 //        System.out.println(capis);
         
-//        Coordinates coor =  new Coordinates(10, 5);
-//        System.out.println(coor);
+        Coordinates coor =  new Coordinates(10, 5);
+        System.out.println(coor);
         
+        
+
         Canoa canoa = new Canoa("Banana", CorPadrao.ROXO, 4);
-        System.out.println(canoa);
+        Rio rio = new Rio(10, canoa);
+        int posicaoCanoa = 0;
+        int posicaoTiro = 0;
+        System.out.println("iniciando: Rio e Canoa...");
+        System.out.println(rio + "\n");
         
-        canoa.destruirPedaco(3);
-        System.out.println(canoa);
         
-        canoa.destruirPedaco(2);
-        System.out.println(canoa);
+        posicaoCanoa = 10;
+        posicaoTiro = 2;
+        System.out.println("  >>>> movendo para " + posicaoCanoa);
+        rio.movimentarCanoa(posicaoCanoa);        
+        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+        System.out.println(rio + "\n");
+       
         
-        canoa.destruirPedaco(2);
-        System.out.println(canoa);
+        posicaoCanoa = 10;
+        posicaoTiro = 8;
+        System.out.println("  >>>> movendo para " + posicaoCanoa);
+        rio.movimentarCanoa(posicaoCanoa);        
+        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+        System.out.println(rio + "\n");
+       
         
-        canoa.destruirPedaco(1);
-        System.out.println(canoa);
-        
-        canoa.destruirPedaco(0);
-        System.out.println(canoa);
-        
-        canoa.reconstruirPedaco(1);
-        System.out.println(canoa);
-        
-        canoa.reconstruirTodosPedacos();
-        System.out.println(canoa);
         
         
 //        

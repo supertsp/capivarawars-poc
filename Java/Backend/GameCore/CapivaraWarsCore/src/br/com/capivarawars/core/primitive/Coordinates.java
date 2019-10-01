@@ -161,7 +161,12 @@ public class Coordinates extends Component{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
-    
+    public float calculateDistance(Coordinates otherCoordinates){
+        return (float)Math.sqrt(
+                Math.pow(otherCoordinates.x - this.x, 2) + 
+                Math.pow(otherCoordinates.y - this.y, 2)
+        );
+    }
     //</editor-fold>
     
     //</editor-fold>
