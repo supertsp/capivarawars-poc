@@ -76,7 +76,7 @@ public abstract class Component implements ImprovableToString{
     //<editor-fold defaultstate="collapsed" desc="override methods...">
     @Override
     public String toString() {
-        StringBuffer finalText = new StringBuffer();
+        StringBuilder finalText = new StringBuilder();
         
         finalText
                 .append(Component.class.getSimpleName())
@@ -92,14 +92,13 @@ public abstract class Component implements ImprovableToString{
     
     //<editor-fold defaultstate="collapsed" desc="abstract methods...">    
     
-    //</editor-fold>
-        
+    //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
     protected String toStringWithAttibutesOnly_ComponentDemo(int tabSizeForEachAttribute){
-        StringBuffer finalText = new StringBuffer(200);
+        StringBuilder finalText = new StringBuilder(200);
         
-        StringBuffer tabSpace = new StringBuffer();        
+        StringBuilder tabSpace = new StringBuilder();        
         for (int count = 0; count < tabSizeForEachAttribute; count++) {
             tabSpace.append(' ');
         }
@@ -112,8 +111,14 @@ public abstract class Component implements ImprovableToString{
                 
                 .append('\n')
                 .append(tabSpace)
-                .append("parentGameObject: ")
-                .append(getParentGameObject().getClass().getSimpleName());
+                .append("parentGameObject: ");
+        
+        if (parentGameObject != null) {
+            finalText.append(getParentGameObject().getClass().getSimpleName());
+        }
+        else{
+            finalText.append("null");
+        }
         
         return finalText.toString();
     }

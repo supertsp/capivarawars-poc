@@ -58,7 +58,7 @@ public class TestaCanoa extends javax.swing.JFrame {
         //your code below
         
           
-        canoa =  new Canoa(tamanhoCanoa, CorPadrao.ROXO);
+        canoa =  new Canoa("Teste", CorPadrao.ROXO, tamanhoCanoa);
         pedacosButton =  new ArrayList<>(tamanhoCanoa);
         for (int cont = 0; cont < tamanhoCanoa; cont++) {
             adicionarNovoButtonPedaco(cont, true);
@@ -99,17 +99,12 @@ public class TestaCanoa extends javax.swing.JFrame {
         areaPedacoCanoa.add(jtButton);
         
         jtButton.addActionListener((java.awt.event.ActionEvent evt) -> {
-            if (jtButton.isSelected()) {
-                jtButton.setBackground(COR_PEDACO_INATIVO_BACKGROUND);
-                jtButton.setForeground(COR_PEDACO_INATIVO_FOREGROUND);
-                canoa.getPedaco(indiceNovoPedaco).destruir();
+            if (!canoa.destruirPedaco(indiceNovoPedaco)) {
+                canoa.reconstruirPedaco(indiceNovoPedaco);                
             }
-            else{
-                jtButton.setBackground(COR_PEDACO_ATIVO_BACKGROUND);
-                jtButton.setForeground(COR_PEDACO_ATIVO_FOREGROUND);
-                canoa.getPedaco(indiceNovoPedaco).destruir();
-            }
-            
+            System.out.println("selected: " + jtButton.isSelected());
+            atualizarPedacosNaTela();
+            System.out.println("indicePedaco: " + indiceNovoPedaco);
             System.out.println(canoa);
         });
     }
@@ -128,8 +123,17 @@ public class TestaCanoa extends javax.swing.JFrame {
     }
     
     private void atualizarPedacosNaTela(){
-        for (int i = 0; i < 10; i++) {
+        for (int cont = 0; cont < canoa.lengthOfPedacos(); cont++) {
+            pedacosButton.get(cont).setSelected(canoa.getPedaco(cont).isDestruido());
             
+            if (pedacosButton.get(cont).isSelected()) {                
+                pedacosButton.get(cont).setBackground(COR_PEDACO_INATIVO_BACKGROUND);
+                pedacosButton.get(cont).setForeground(COR_PEDACO_INATIVO_FOREGROUND); 
+            }
+            else{
+                pedacosButton.get(cont).setBackground(COR_PEDACO_ATIVO_BACKGROUND);
+                pedacosButton.get(cont).setForeground(COR_PEDACO_ATIVO_FOREGROUND);
+            }
         }
     }
     //</editor-fold>

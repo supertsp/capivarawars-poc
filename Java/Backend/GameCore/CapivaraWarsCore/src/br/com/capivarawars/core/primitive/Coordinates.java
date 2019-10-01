@@ -2,6 +2,7 @@ package br.com.capivarawars.core.primitive;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
 import br.com.capivarawars.core.primitive.Component;
+import br.com.capivarawars.core.primitive.patterns.ImprovableToString;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -20,8 +21,7 @@ public class Coordinates extends Component{
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
-    private float x, y;
-    private boolean showSimpleToString;
+    private float x, y;    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -37,7 +37,7 @@ public class Coordinates extends Component{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
-    
+    private boolean showSimpleToString;
     //</editor-fold>
     
     //</editor-fold>
@@ -116,12 +116,39 @@ public class Coordinates extends Component{
             return String.valueOf(x) + ", " + String.valueOf(y);
         }
         
-        return Coordinates.class.getSimpleName() + " [ " + x + ", " + y + " ]";
+        StringBuilder finalText = new StringBuilder();
+        
+        finalText
+                .append(Coordinates.class.getSimpleName())
+                .append(" ")
+                .append(ImprovableToString.CLASS_OPENING_CHAR)
+                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE))
+                .append('\n')
+                .append(ImprovableToString.CLASS_CLOSING_CHAR);
+        
+        return finalText.toString();        
     }
     
     @Override
     public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
-        return null;
+        StringBuilder finalText = new StringBuilder(200);
+        finalText.append(super.toStringWithAttibutesOnly_ComponentDemo(tabSizeForEachAttribute));
+        
+        StringBuilder tabSpace = new StringBuilder();        
+        for (int count = 0; count < tabSizeForEachAttribute; count++) {
+            tabSpace.append(' ');
+        }
+        
+        finalText
+                .append('\n')
+                .append(tabSpace)
+                .append("x: ")
+                .append(getX())
+                               
+                .append("   y: ")
+                .append(getY());
+        
+        return finalText.toString();
     }
     //</editor-fold>    
     

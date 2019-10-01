@@ -4,6 +4,7 @@ package br.com.capivarawars.core.game.gameobject;
 import br.com.capivarawars.core.CorPadrao;
 import br.com.capivarawars.core.game.component.Pedaco;
 import br.com.capivarawars.core.primitive.GameObject;
+import br.com.capivarawars.core.primitive.patterns.ImprovableToString;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -23,8 +24,9 @@ public class Canoa extends GameObject{
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
-    private List<Pedaco> pedacos;
+    private String nome;
     private CorPadrao cor;
+    private List<Pedaco> pedacos;    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -43,18 +45,43 @@ public class Canoa extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public Canoa(int quantidadePedacos, CorPadrao cor){
+    public Canoa(String nome, CorPadrao cor, int quantidadePedacos){
         super();
+        this.nome = nome;
         this.quantidadePedadosInicial = quantidadePedacos;
-        this.cor = cor;
         pedacos = new ArrayList<>(quantidadePedacos);
-        criarPedacos();
+        
+        for (int cont = 0; cont < quantidadePedadosInicial; cont++) {
+            pedacos.add(cont, new Pedaco(cor));
+        }
+                
+        setCor(cor);
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }    
+    
+    public CorPadrao getCor(){
+        return cor;
+    }
+    
+    public void setCor(CorPadrao novaCor){
+        cor = novaCor;
+        
+        for (int cont = 0; cont < lengthOfPedacos(); cont++) {
+            getPedaco(cont).setCor(novaCor);
+        }
+    }
+    
     public Pedaco getPedaco(int indicePedaco){
         if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()) {
             return pedacos.get(indicePedaco);
@@ -65,45 +92,73 @@ public class Canoa extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
-//    @Override
-//    public String toString() {
-//        StringBuffer textoFinal = new StringBuffer();
-//        
-//        textoFinal
-//                .append(Canoa.class.getSimpleName())
-//                .append(" [ isGameObjectActive: ")
-//                .append(super.isGameObjectActive())
-//                .append(" [ pedacos: ");
-//        
-//        for (int cont = 0; cont < lengthOfPedacos(); cont++) {
-//            if (getPedaco(cont).isDestruido()) {
-//                textoFinal.append("[-]");
-//            }
-//            else{
-//                textoFinal.append("[O]");
-//            }
-//        }
-//        
-//        textoFinal
-//                .append("\n]");
-//        
-//        
-//        
-//        return textoFinal.toString();
-//    }
-//    
+    @Override
+    public String toString() {
+        StringBuilder finalText = new StringBuilder();
+        
+        finalText
+                .append(Canoa.class.getSimpleName())
+                .append(" ")
+                .append(ImprovableToString.CLASS_OPENING_CHAR)
+                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE))
+                .append('\n')
+                .append(ImprovableToString.CLASS_CLOSING_CHAR);
+        
+        return finalText.toString();
+    }
+    
     @Override
     public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
-        return null;
+        StringBuilder finalText = new StringBuilder(200);
+        finalText.append(super.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute));
+        
+        StringBuilder tabSpace = new StringBuilder();        
+        for (int count = 0; count < tabSizeForEachAttribute; count++) {
+            tabSpace.append(' ');
+        }
+        
+        finalText
+                .append('\n')
+                .append(tabSpace)
+                .append("nome: ")
+                .append(getNome())
+                
+                .append('\n')
+                .append(tabSpace)
+                .append("cor: ")
+                .append(getCor())
+                
+                .append('\n')
+                .append(tabSpace)
+                .append("Pedacos(")
+                .append(lengthOfPedacos())
+                .append("): ");
+        
+        for (int count = 0; count < lengthOfPedacos(); count++) {
+            if (getPedaco(count).isDestruido()) {
+                finalText.append("[-]");
+            }
+            else{
+                finalText.append("[O]");
+            }
+        }
+        
+        finalText
+                .append('\n')
+                .append(tabSpace)
+                .append("isDestruida: ")
+                .append(isDestruida());
+        
+        return finalText.toString();
     }
     //</editor-fold>    
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
-    private void criarPedacos(){
-        for (int cont = 0; cont < quantidadePedadosInicial; cont++) {
-            pedacos.add(cont, new Pedaco(cor));
-        }
-    }
+//    private void criarPedacos(){
+//        for (int cont = 0; cont < quantidadePedadosInicial; cont++) {
+//            pedacos.add(cont, new Pedaco(cor));
+//        }
+//    }
     
     
     //</editor-fold>
@@ -117,10 +172,20 @@ public class Canoa extends GameObject{
         return pedacos.size();
     }
     
+    public boolean isDestruida(){
+        boolean destruida = true;
+        
+        for (int cont = 0; cont < lengthOfPedacos(); cont++) {
+            destruida &= getPedaco(cont).isDestruido();
+        }
+        
+        return destruida;
+    }
+    
     public boolean destruirPedaco(int indicePedaco){
         if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()
-                && !pedacos.get(indicePedaco).isDestruido()) {
-            pedacos.get(indicePedaco).destruir();
+                && !getPedaco(indicePedaco).isDestruido()) {
+            getPedaco(indicePedaco).destruir();
             Pedaco pedacoTemp = pedacos.remove(indicePedaco);
             pedacos.add(pedacoTemp);
             return true;
@@ -130,7 +195,6 @@ public class Canoa extends GameObject{
     }
     
     public void destruirTodosPedacos(){
-        Pedaco pedacoTemp;
         for (int cont = 0; cont < lengthOfPedacos(); cont++) {
             pedacos.get(cont).destruir();
         }
@@ -156,6 +220,5 @@ public class Canoa extends GameObject{
     //</editor-fold>
     
     //</editor-fold>
-
-        
+    
 }//class

@@ -42,6 +42,7 @@ public abstract class GameObject implements ImprovableToString{
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
     public GameObject(){
+        gameObjectActive = true;
         components = new ArrayList<>(10);
         coordinates = new Coordinates(true);
         addComponent(coordinates);
@@ -147,7 +148,7 @@ public abstract class GameObject implements ImprovableToString{
     //<editor-fold defaultstate="collapsed" desc="override methods...">
     @Override
     public String toString() {
-        StringBuffer finalText = new StringBuffer(200);
+        StringBuilder finalText = new StringBuilder(200);
         finalText
                 .append(GameObject.class.getSimpleName())
                 .append(" ")
@@ -166,9 +167,9 @@ public abstract class GameObject implements ImprovableToString{
         
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
     protected String toStringWithAttibutesOnly_GameObjectDemo(int tabSizeForEachAttribute){
-        StringBuffer finalText = new StringBuffer(200);
+        StringBuilder finalText = new StringBuilder(200);
         
-        StringBuffer tabSpace = new StringBuffer();        
+        StringBuilder tabSpace = new StringBuilder();        
         for (int count = 0; count < tabSizeForEachAttribute; count++) {
             tabSpace.append(' ');
         }

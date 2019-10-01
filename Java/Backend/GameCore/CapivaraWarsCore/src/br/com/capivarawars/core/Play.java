@@ -4,6 +4,7 @@ package br.com.capivarawars.core;
 import br.com.capivarawars.core.game.component.BarraDeEnergia;
 import br.com.capivarawars.core.game.gameobject.Capivara;
 import br.com.capivarawars.core.game.component.Coroa;
+import br.com.capivarawars.core.game.gameobject.Canoa;
 import br.com.capivarawars.core.game.gameobject.Jogador;
 import br.com.capivarawars.core.primitive.Coordinates;
 import static java.lang.Double.parseDouble;
@@ -79,12 +80,41 @@ public class Play {
         
 //        iniciarTimerRegenercao();
         
-        Capivara capis = new Capivara("capis", CorPadrao.BRANCO);
+//        Capivara capis = new Capivara("capis", CorPadrao.BRANCO);
 //        capis.addComponent(new BarraDeEnergia(new Integer(0), new Integer(10), 3));
 //        capis.addComponent(new BarraDeEnergia(new Integer(100), new Integer(1000), 50));
 //        capis.addComponent(new Coroa("Coroa Azul", TipoCoroa.NACIONAL, 10));
         
-        System.out.println(capis);
+//        System.out.println(capis);
+        
+//        Coordinates coor =  new Coordinates(10, 5);
+//        System.out.println(coor);
+        
+        Canoa canoa = new Canoa("Banana", CorPadrao.ROXO, 4);
+        System.out.println(canoa);
+        
+        canoa.destruirPedaco(3);
+        System.out.println(canoa);
+        
+        canoa.destruirPedaco(2);
+        System.out.println(canoa);
+        
+        canoa.destruirPedaco(2);
+        System.out.println(canoa);
+        
+        canoa.destruirPedaco(1);
+        System.out.println(canoa);
+        
+        canoa.destruirPedaco(0);
+        System.out.println(canoa);
+        
+        canoa.reconstruirPedaco(1);
+        System.out.println(canoa);
+        
+        canoa.reconstruirTodosPedacos();
+        System.out.println(canoa);
+        
+        
 //        
 //        System.out.println("-------------");
 //        BarraDeEnergia teste = capis.getComponent(BarraDeEnergia.class, 1);
