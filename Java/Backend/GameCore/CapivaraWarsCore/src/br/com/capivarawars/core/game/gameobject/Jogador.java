@@ -51,17 +51,15 @@ public class Jogador extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public Jogador() {
-
-    }
-
     public Jogador(String nome, String nick, String usuario, String senha) {
+        super(Jogador.class);
         this.nome = nome;
         this.nick = nick;
         credencial = new Credencial(usuario, senha);
     }
 
     public Jogador(String nome, String nick, Credencial credencial) {
+        super(Jogador.class);
         this.nome = nome;
         this.nick = nick;
         this.credencial = credencial;

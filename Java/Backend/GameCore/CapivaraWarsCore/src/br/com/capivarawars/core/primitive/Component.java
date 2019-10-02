@@ -109,6 +109,7 @@ public abstract class Component implements ImprovableToString{
                 .append("isComponentActive: ")
                 .append(isComponentActive())
                 
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
                 .append('\n')
                 .append(tabSpace)
                 .append("gameObjectOwner: ");
@@ -119,7 +120,7 @@ public abstract class Component implements ImprovableToString{
         else{
             finalText.append("null");
         }
-        
+                
         return finalText.toString();
     }
     //</editor-fold>

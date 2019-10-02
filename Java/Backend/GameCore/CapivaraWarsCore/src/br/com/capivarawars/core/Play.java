@@ -1,6 +1,7 @@
 package br.com.capivarawars.core;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.core.game.component.Acessorios;
 import br.com.capivarawars.core.game.component.BarraDeEnergia;
 import br.com.capivarawars.core.game.gameobject.Capivara;
 import br.com.capivarawars.core.game.component.Coroa;
@@ -8,7 +9,7 @@ import br.com.capivarawars.core.game.component.Pedaco;
 import br.com.capivarawars.core.game.gameobject.Canoa;
 import br.com.capivarawars.core.game.gameobject.Jogador;
 import br.com.capivarawars.core.game.gameobject.Rio;
-import br.com.capivarawars.core.primitive.Coordinates;
+import br.com.capivarawars.core.primitive.*;
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
@@ -172,7 +173,22 @@ public class Play {
 //        System.out.println(canoa);
         //</editor-fold>
         
-       
+        //<editor-fold defaultstate="collapsed" desc="TESTES: ADD CHILD & ADD COMPONENTS">
+        GameObject gameObject = GameObject.getInstance();
+        System.out.println(gameObject);
+        
+        Canoa canoa = new Canoa("Popye", CorPadrao.ROXO, 4);
+//        System.out.println(canoa);
+        
+        Capivara capivara = new Capivara("capis", CorPadrao.BRANCO);
+        System.out.println(capivara);
+
+        Rio rio = new Rio(10, canoa);
+        System.out.println(rio);
+        
+        Acessorios acessorios = new Acessorios();
+        System.out.println(acessorios);
+        //</editor-fold>
     }//main
     //</editor-fold>
 

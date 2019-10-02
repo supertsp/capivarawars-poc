@@ -45,7 +45,7 @@ public class Canoa extends GameObject{
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
     public Canoa(String nome, CorPadrao cor, int quantidadePedacos){
-        super();
+        super(Canoa.class);
         this.nome = nome;
         
         pedacos = new ArrayList<>(quantidadePedacos);        
@@ -116,16 +116,19 @@ public class Canoa extends GameObject{
         }
         
         finalText
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
                 .append('\n')
                 .append(tabSpace)
                 .append("nome: ")
                 .append(getNome())
                 
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
                 .append('\n')
                 .append(tabSpace)
                 .append("cor: ")
                 .append(getCor())
                 
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
                 .append('\n')
                 .append(tabSpace)
                 .append("Pedacos(")
@@ -142,6 +145,7 @@ public class Canoa extends GameObject{
         }
         
         finalText
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
                 .append('\n')
                 .append(tabSpace)
                 .append("isDestruida: ")

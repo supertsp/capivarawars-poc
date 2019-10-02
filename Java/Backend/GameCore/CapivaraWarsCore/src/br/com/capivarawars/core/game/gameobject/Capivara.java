@@ -7,6 +7,7 @@ import br.com.capivarawars.core.game.component.BarraDeEnergia;
 import br.com.capivarawars.core.primitive.GameObject;
 import br.com.capivarawars.core.CorPadrao;
 import br.com.capivarawars.core.game.component.Acessorios;
+import br.com.capivarawars.core.primitive.patterns.ImprovableToString;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -27,7 +28,7 @@ public class Capivara extends GameObject{
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     private String nome;
-    private CorPadrao corPadrao;
+    private CorPadrao cor;
     
     //</editor-fold>
     
@@ -48,25 +49,25 @@ public class Capivara extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public Capivara(String nome, CorPadrao corPadrao) {
-        this(0, 0, nome, corPadrao, true);
+    public Capivara(String nome, CorPadrao cor) {
+        this(0, 0, nome, cor, true);
     }
     
-    public Capivara(String nome, CorPadrao corPadrao, boolean regeneracaoAutomatica) {
-        this(0, 0, nome, corPadrao, regeneracaoAutomatica);
+    public Capivara(String nome, CorPadrao cor, boolean regeneracaoAutomatica) {
+        this(0, 0, nome, cor, regeneracaoAutomatica);
     }
     
-    public Capivara(int x, int y, String nome, CorPadrao corPadrao){
-        this(x, y, nome, corPadrao, true);
+    public Capivara(int x, int y, String nome, CorPadrao cor){
+        this(x, y, nome, cor, true);
     }
     
-    public Capivara(int x, int y, String nome, CorPadrao corPadrao, boolean regeneracaoAutomatica) {
-        super();
+    public Capivara(int x, int y, String nome, CorPadrao cor, boolean regeneracaoAutomatica) {
+        super(Capivara.class);
         
         //Component 0 = default
         super.getComponent(Coordinates.class).set(x, y);
         setNome(nome);
-        setCorPadrao(corPadrao);
+        setCor(cor);
         
         //Component 1 = Acessorios
         super.addComponent(new Acessorios());
@@ -93,12 +94,12 @@ public class Capivara extends GameObject{
         this.nome = nome;
     }
 
-    public CorPadrao getCorPadrao() {
-        return corPadrao;
+    public CorPadrao getCor() {
+        return cor;
     }
 
-    public void setCorPadrao(CorPadrao corPadrao) {
-        this.corPadrao = corPadrao;
+    public void setCor(CorPadrao novaCor) {
+        this.cor = novaCor;
     }
 
     public Acessorios getAcessorios() {
@@ -113,41 +114,65 @@ public class Capivara extends GameObject{
     //<editor-fold defaultstate="collapsed" desc="override methods...">
     @Override
     public String toString() {
-        StringBuffer textoFinal = new StringBuffer();
+        StringBuilder finalText = new StringBuilder();
         
-        textoFinal
+        finalText
                 .append(Capivara.class.getSimpleName())
-                .append(" [\n  isGameObjectActive: ")
-                .append(super.isGameObjectActive())
-                .append("\n  Coordinates: ").append(getCoordinates())
-                .append("\n  nome: ").append(nome)
-                .append("\n  corPadrao: ").append(corPadrao)
-                .append("\n  Acessorios: ").append(getAcessorios())
-                .append("\n  BarraDeEnergia: ")
+                .append(' ')
+                .append(ImprovableToString.CLASS_OPENING_CHAR)
+                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE))
+                .append('\n')
+                .append(ImprovableToString.CLASS_CLOSING_CHAR);
+        
+        return finalText.toString();
+    }
+    
+    
+    @Override
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {        
+        StringBuilder finalText = new StringBuilder(200);
+        finalText.append(super.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute));
+        
+        StringBuilder tabSpace = new StringBuilder();        
+        for (int count = 0; count < tabSizeForEachAttribute; count++) {
+            tabSpace.append(' ');
+        }
+        
+        finalText
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
+                .append('\n')
+                .append(tabSpace)
+                .append("nome: ")
+                .append(getNome())
+                
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
+                .append('\n')
+                .append(tabSpace)
+                .append("cor: ")
+                .append(getCor())
+                
+                .append(getComponent(Acessorios.class).toStringWithAttibutesOnly(tabSizeForEachAttribute))                
+                
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
+                .append('\n')
+                .append(tabSpace)
+                .append("BarraDeEnergia: ")
                 .append(getValorAtualBarraDeEnergia())
                 .append("/")
                 .append(BARRA_ENERGIA_MAX_VALOR)
                 .append("  Regenerando? ")
                 .append(barraDeEnergiaIniciouTempoRegeneracao())
                 .append("  ");
-        
+                
         if (barraDeEnergiaIniciouTempoRegeneracao()) {
-            textoFinal.append(getTempoEsperaAtualParaRegenerar())
+            finalText
+                    .append(getTempoEsperaAtualParaRegenerar())
                     .append("s/")
                     .append(BARRA_ENERGIA_TEMPO_RECUPERACAO)
                     .append("s");
         }
-        
-        textoFinal.append(super.toString());
-        textoFinal.append("\n]");
-        
-        return textoFinal.toString();
-    }
-    
-    
-    @Override
-    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
-        return null;
+                
+        return finalText.toString();
     }
     //</editor-fold>    
     

@@ -20,6 +20,7 @@ public interface ImprovableToString {
     public static final int TAB_SIZE = 3;
     public static final char CLASS_OPENING_CHAR = '{';
     public static final char CLASS_CLOSING_CHAR = '}';
+    public static final char ATTRIBUTE_SEPARATOR = ' ';
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="abstract methods...">

@@ -44,7 +44,7 @@ public class Rio extends GameObject{
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
     public Rio(int quantidadePedacos, Canoa canoa){
-        super();
+        super(Rio.class);
         
         pedacos = new ArrayList<>(quantidadePedacos);        
         for (int cont = 0; cont < quantidadePedacos; cont++) {
