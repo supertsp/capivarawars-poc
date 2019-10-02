@@ -134,7 +134,7 @@ public class Canoa extends GameObject{
         
         for (int count = 0; count < lengthOfPedacos(); count++) {
             if (getPedaco(count).isDestruido()) {
-                finalText.append("[-]");
+                finalText.append("[~]");
             }
             else{
                 finalText.append("[O]");
@@ -163,6 +163,17 @@ public class Canoa extends GameObject{
     //<editor-fold defaultstate="collapsed" desc="main methods...">
     public int lengthOfPedacos(){
         return pedacos.size();
+    }
+    
+    public int lengthOfPedacosInteiros(){
+        int contPedacosInteiros = 0;
+        for (int cont = 0; cont < lengthOfPedacos(); cont++) {
+            if (!getPedaco(cont).isDestruido()) {
+                contPedacosInteiros++;
+            }
+        }
+        
+        return contPedacosInteiros;
     }
     
     public boolean isDestruida(){

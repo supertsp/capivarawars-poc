@@ -82,6 +82,7 @@ public class Play {
         
 //        iniciarTimerRegenercao();
         
+        //<editor-fold defaultstate="collapsed" desc="TESTES: CAPIVARA">
 //        Capivara capis = new Capivara("capis", CorPadrao.BRANCO);
 //        capis.addComponent(new BarraDeEnergia(new Integer(0), new Integer(10), 3));
 //        capis.addComponent(new BarraDeEnergia(new Integer(100), new Integer(1000), 50));
@@ -89,47 +90,89 @@ public class Play {
         
 //        System.out.println(capis);
         
-        Coordinates coor =  new Coordinates(10, 5);
-        System.out.println(coor);
+//        Coordinates coor =  new Coordinates(10, 5);
+//        System.out.println(coor);
+        //</editor-fold>
         
-        
-
-        Canoa canoa = new Canoa("Banana", CorPadrao.ROXO, 4);
-        Rio rio = new Rio(10, canoa);
-        int posicaoCanoa = 0;
-        int posicaoTiro = 0;
-        System.out.println("iniciando: Rio e Canoa...");
-        System.out.println(rio + "\n");
-        
-        
-        posicaoCanoa = 10;
-        posicaoTiro = 2;
-        System.out.println("  >>>> movendo para " + posicaoCanoa);
-        rio.movimentarCanoa(posicaoCanoa);        
-        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
-        System.out.println(rio + "\n");
-       
-        
-        posicaoCanoa = 10;
-        posicaoTiro = 8;
-        System.out.println("  >>>> movendo para " + posicaoCanoa);
-        rio.movimentarCanoa(posicaoCanoa);        
-        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
-        System.out.println(rio + "\n");
-       
-        
-        
-        
+        //<editor-fold defaultstate="collapsed" desc="TESTES: CANOA E RIO">
+//        Canoa canoa = new Canoa("Banana", CorPadrao.ROXO, 4);
+//        Rio rio = new Rio(10, canoa);
 //        
-//        System.out.println("-------------");
-//        BarraDeEnergia teste = capis.getComponent(BarraDeEnergia.class, 1);
-//        BarraDeEnergia teste = (BarraDeEnergia) capis.getComponent(1);
-//        System.out.println(teste);
-//        System.out.println(capis.getComponents(BarraDeEnergia.class));
+//        int posicaoCanoa = 0;
+//        int posicaoTiro = 0;
+//        System.out.println("iniciando: Rio e Canoa...");
+//        System.out.println(rio + "\n");
+//        
+//        
+//        posicaoCanoa = 10;
+//        posicaoTiro = 2;
+//        System.out.println("  >>>> movendo para " + posicaoCanoa);
+//        rio.moverCanoa(posicaoCanoa);        
+//        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+//        System.out.println(rio + "\n");
+//       
+//        
+//        posicaoCanoa = 10;
+//        posicaoTiro = 8;
+//        System.out.println("  >>>> movendo para " + posicaoCanoa);
+//        rio.moverCanoa(posicaoCanoa);        
+//        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+//        System.out.println(rio + "\n");
+//       
+//        
+//        posicaoCanoa = 8;
+//        posicaoTiro = 8;
+//        System.out.println("  >>>> movendo para " + posicaoCanoa);
+//        rio.moverCanoa(posicaoCanoa);        
+//        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+//        System.out.println(rio + "\n");
+//        
+//        
+//        posicaoCanoa = 8;
+//        posicaoTiro = 6;
+//        System.out.println("  >>>> movendo para " + posicaoCanoa);
+//        rio.moverCanoa(posicaoCanoa);        
+//        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+//        System.out.println(rio + "\n");
+//       
+//        posicaoCanoa = 1;
+//        posicaoTiro = 1;
+//        System.out.println("  >>>> movendo para " + posicaoCanoa);
+//        rio.moverCanoa(posicaoCanoa);        
+//        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+//        System.out.println(rio + "\n");
+//       
+//        posicaoCanoa = 9;
+//        posicaoTiro = 1;
+//        System.out.println("  >>>> movendo para " + posicaoCanoa);
+//        rio.moverCanoa(posicaoCanoa);        
+//        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+//        System.out.println(rio + "\n");
+//       
+//        
+//        posicaoCanoa = 9;
+//        posicaoTiro = 10;
+//        System.out.println("  >>>> movendo para " + posicaoCanoa);
+//        rio.moverCanoa(posicaoCanoa);        
+//        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+//        System.out.println(rio + "\n");
+//               
+//        
+//        posicaoCanoa = 9;
+//        posicaoTiro = 9;
+//        System.out.println("  >>>> movendo para " + posicaoCanoa);
+//        rio.moverCanoa(posicaoCanoa);        
+//        System.out.println("   -> atirando em " + posicaoTiro + ". Acertou? " + rio.receberTiro(posicaoTiro));
+//        System.out.println(rio + "\n");
+//       
+//        System.out.println(canoa);
+//        
+//        rio.reconstruirCanoa();
+//        
+//        System.out.println(canoa);
+        //</editor-fold>
         
-//        System.out.println(capis.getComponent(BarraDeEnergia.class, 1).getParentGameObject().lengthOfComponents());
-//        System.out.println(capis.getComponent(BarraDeEnergia.class, 2).getParentGameObject(Capivara.class));
-//        capis.getComponent(1).setComponentStatus(true);
+       
     }//main
     //</editor-fold>
 
