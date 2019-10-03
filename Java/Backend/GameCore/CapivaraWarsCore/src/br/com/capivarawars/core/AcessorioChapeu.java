@@ -25,7 +25,7 @@ public class AcessorioChapeu extends Component implements TipoAcessorio {
     }
 
     @Override
-    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes) {
         return null;
     }
 

@@ -24,7 +24,7 @@ public interface ImprovableToString {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="abstract methods...">
-    public abstract String toStringWithAttibutesOnly(int tabSizeForEachAttribute);
+    public abstract String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes);
     //</editor-fold>
     
 }//interface

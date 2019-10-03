@@ -31,6 +31,8 @@ public interface Listable<T> {
     
     public void add(T... newItems);
     
+    public void addAt(int index, T newItem);
+    
     public T get(int indexOfItem);
     
     public <I> I get(Class<I> classTypeOfItem);

@@ -83,7 +83,7 @@ public class Pedaco extends Component{
                 .append(Pedaco.class.getSimpleName())
                 .append(" ")
                 .append(ImprovableToString.CLASS_OPENING_CHAR)
-                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE))
+                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE, true))
                 .append('\n')
                 .append(ImprovableToString.CLASS_CLOSING_CHAR);
         
@@ -91,10 +91,13 @@ public class Pedaco extends Component{
     }
     
     @Override
-    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+   public String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes) {
         StringBuilder finalText = new StringBuilder(200);
-        finalText.append(super.toStringWithAttibutesOnly_ComponentDemo(tabSizeForEachAttribute));
         
+        if (includeParentAttributes) {
+            finalText.append(super.toStringWithAttibutesOnly_ComponentDemo(tabSizeForEachAttribute));
+        }
+                
         StringBuilder tabSpace = new StringBuilder();        
         for (int count = 0; count < tabSizeForEachAttribute; count++) {
             tabSpace.append(' ');

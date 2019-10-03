@@ -1,10 +1,10 @@
 package br.com.capivarawars.core.game.gameobject;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
-import br.com.capivarawars.core.CorPadrao;
-import br.com.capivarawars.core.game.component.Pedaco;
-import br.com.capivarawars.core.primitive.GameObject;
-import br.com.capivarawars.core.primitive.patterns.ImprovableToString;
+import br.com.capivarawars.core.*;
+import br.com.capivarawars.core.game.component.*;
+import br.com.capivarawars.core.primitive.*;
+import br.com.capivarawars.core.primitive.patterns.*;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -43,11 +43,11 @@ public class Rio extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public Rio(int quantidadePedacos, Canoa canoa){
+    public Rio(int tamanho, Canoa canoa){
         super(Rio.class);
         
-        pedacos = new ArrayList<>(quantidadePedacos);        
-        for (int cont = 0; cont < quantidadePedacos; cont++) {
+        pedacos = new ArrayList<>(tamanho);        
+        for (int cont = 0; cont < tamanho; cont++) {
             pedacos.add(cont, new Pedaco());
         }
         
@@ -86,7 +86,7 @@ public class Rio extends GameObject{
                 .append(Rio.class.getSimpleName())
                 .append(' ')
                 .append(ImprovableToString.CLASS_OPENING_CHAR)
-                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE))
+                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE, true))
                 .append('\n')
                 .append(ImprovableToString.CLASS_CLOSING_CHAR);
         
@@ -94,9 +94,12 @@ public class Rio extends GameObject{
     }
     
     @Override
-    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes) {
         StringBuilder finalText = new StringBuilder(200);
-        finalText.append(super.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute));
+        
+        if (includeParentAttributes) {
+            finalText.append(super.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute));
+        }
         
         StringBuilder tabSpace = new StringBuilder();        
         for (int count = 0; count < tabSizeForEachAttribute; count++) {

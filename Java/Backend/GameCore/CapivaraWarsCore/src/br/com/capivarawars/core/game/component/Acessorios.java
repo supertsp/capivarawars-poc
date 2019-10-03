@@ -43,7 +43,7 @@ public class Acessorios extends Component implements Listable<TipoAcessorio>{
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
     public Acessorios() {
-        lista = new ArrayList<>();
+        lista = new ArrayList<>(10);
     }
     //</editor-fold>
     
@@ -67,6 +67,11 @@ public class Acessorios extends Component implements Listable<TipoAcessorio>{
     @Override
     public void add(TipoAcessorio... newItems) {
         lista.addAll(Arrays.asList(newItems));
+    }
+    
+    @Override
+    public void addAt(int index, TipoAcessorio newItem) {
+        lista.add(index, newItem);
     }
 
     @Override
@@ -168,7 +173,7 @@ public class Acessorios extends Component implements Listable<TipoAcessorio>{
                 .append(Acessorios.class.getSimpleName())
                 .append(' ')
                 .append(ImprovableToString.CLASS_OPENING_CHAR)
-                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE))
+                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE, true))
                 .append('\n')
                 .append(ImprovableToString.CLASS_CLOSING_CHAR);
         
@@ -176,9 +181,12 @@ public class Acessorios extends Component implements Listable<TipoAcessorio>{
     }
     
     @Override
-    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes) {
         StringBuilder finalText = new StringBuilder(200);
-        finalText.append(super.toStringWithAttibutesOnly_ComponentDemo(tabSizeForEachAttribute));
+        
+        if (includeParentAttributes) {
+            finalText.append(super.toStringWithAttibutesOnly_ComponentDemo(tabSizeForEachAttribute));
+        }
         
         StringBuilder tabSpace = new StringBuilder();        
         for (int count = 0; count < tabSizeForEachAttribute; count++) {
@@ -231,12 +239,5 @@ public class Acessorios extends Component implements Listable<TipoAcessorio>{
     //</editor-fold>
     
     //</editor-fold>
-
-    
-
-    
-    
-
-    
     
 }//class

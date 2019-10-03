@@ -1,10 +1,10 @@
 package br.com.capivarawars.core.game.gameobject;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
-import br.com.capivarawars.core.CorPadrao;
-import br.com.capivarawars.core.game.component.Pedaco;
-import br.com.capivarawars.core.primitive.GameObject;
-import br.com.capivarawars.core.primitive.patterns.ImprovableToString;
+import br.com.capivarawars.core.*;
+import br.com.capivarawars.core.game.component.*;
+import br.com.capivarawars.core.primitive.*;
+import br.com.capivarawars.core.primitive.patterns.*;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -26,7 +26,7 @@ public class Canoa extends GameObject{
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     private String nome;
     private CorPadrao cor;
-    private List<Pedaco> pedacos;    
+    private Pedacos pedacos;    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -44,14 +44,11 @@ public class Canoa extends GameObject{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public Canoa(String nome, CorPadrao cor, int quantidadePedacos){
+    public Canoa(String nome, CorPadrao cor, int tamanho){
         super(Canoa.class);
         this.nome = nome;
         
-        pedacos = new ArrayList<>(quantidadePedacos);        
-        for (int cont = 0; cont < quantidadePedacos; cont++) {
-            pedacos.add(cont, new Pedaco(cor));
-        }
+        pedacos = new Pedacos(tamanho); 
                 
         this.cor = cor;
     }
@@ -98,7 +95,7 @@ public class Canoa extends GameObject{
                 .append(Canoa.class.getSimpleName())
                 .append(' ')
                 .append(ImprovableToString.CLASS_OPENING_CHAR)
-                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE))
+                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE, true))
                 .append('\n')
                 .append(ImprovableToString.CLASS_CLOSING_CHAR);
         
@@ -106,9 +103,13 @@ public class Canoa extends GameObject{
     }
     
     @Override
-    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes) {
         StringBuilder finalText = new StringBuilder(200);
-        finalText.append(super.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute));
+        
+        if (includeParentAttributes) {
+            finalText.append(super.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute));
+        }
+        
         
         StringBuilder tabSpace = new StringBuilder();        
         for (int count = 0; count < tabSizeForEachAttribute; count++) {
@@ -166,7 +167,7 @@ public class Canoa extends GameObject{
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
     public int lengthOfPedacos(){
-        return pedacos.size();
+        return pedacos.length();
     }
     
     public int lengthOfPedacosInteiros(){
@@ -194,7 +195,8 @@ public class Canoa extends GameObject{
         if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()
                 && !getPedaco(indicePedaco).isDestruido()) {
             getPedaco(indicePedaco).destruir();
-            Pedaco pedacoTemp = pedacos.remove(indicePedaco);
+            Pedaco pedacoTemp = pedacos.get(indicePedaco);
+            pedacos.remove(indicePedaco);
             pedacos.add(pedacoTemp);
             return true;
         }
@@ -218,8 +220,9 @@ public class Canoa extends GameObject{
         if (indicePedaco >= 0 && indicePedaco < lengthOfPedacos()
                 && pedacos.get(indicePedaco).isDestruido()) {
             pedacos.get(indicePedaco).construir();
-            Pedaco pedacoTemp = pedacos.remove(indicePedaco);
-            pedacos.add(0, pedacoTemp);
+            Pedaco pedacoTemp = pedacos.get(indicePedaco);
+            pedacos.remove(indicePedaco);
+            pedacos.addAt(0, pedacoTemp);
             return true;
         }
         

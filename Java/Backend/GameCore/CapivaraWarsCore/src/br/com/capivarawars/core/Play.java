@@ -200,15 +200,22 @@ public class Play {
 //        System.out.println(canoa);
         
         Capivara capivara = new Capivara("capis", CorPadrao.BRANCO);
-//        capivara.addAcessorio
+        capivara.getAcessorios().add(chapeu1, chapeu2);
+        
+        Capivara capivaraNova = new Capivara("happy", CorPadrao.AMARELO);
+        
+        
         System.out.println(capivara);
 
         Rio rio = new Rio(10, canoa);
+        rio.setCanoa(canoa);
+        rio.addChild(capivara);
         System.out.println(rio);
         
         //Add testes
         GameObject gameObject = GameObject.instantiate();
-        gameObject.addChildren(canoa, capivara, rio);
+        //                       0       1       2      3
+        gameObject.addChildren(canoa, capivara, rio, capivaraNova);
         gameObject.addComponents(barraDeEnergia, coroa, evolucao, pedacos);
         
         //parent testes
@@ -217,7 +224,13 @@ public class Play {
         
         System.out.println(gameObject);
         
-        System.out.println(gameObject.getChild(Rio.class));
+//        System.out.println(gameObject.getChildren(Capivara.class));
+        
+//        gameObject.removeChild(capivara);
+        gameObject.updateChild(0, capivaraNova);
+        System.out.println(gameObject.getChild(0));
+        System.out.println(gameObject);
+//        System.out.println(gameObject.isExistsChild(capivara));
         
         //</editor-fold>
         

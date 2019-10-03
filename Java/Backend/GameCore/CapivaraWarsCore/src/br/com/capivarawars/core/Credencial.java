@@ -1,10 +1,7 @@
 package br.com.capivarawars.core;
 
 //import com.fasterxml.jackson.annotation.JsonProperty;
-
 import br.com.capivarawars.core.game.gameobject.Jogador;
-
-
 
 //import br.com.capivarawars.core.Jogador;
 public class Credencial {
@@ -40,11 +37,11 @@ public class Credencial {
         this.senha = senha;
     }
 
-    @Override
-    public boolean equals(Object outraCredendial) {
-        return outraCredendial instanceof Jogador
-                && ((Jogador) outraCredendial).getUsuario().equals(getUsuario())
-                && ((Jogador) outraCredendial).getSenha().equals(getSenha());
-    }
+//    @Override
+//    public boolean equals(Object outraCredendial) {
+//        return outraCredendial instanceof Jogador
+//                && ((Jogador) outraCredendial).getUsuario().equals(getUsuario())
+//                && ((Jogador) outraCredendial).getSenha().equals(getSenha());
+//    }
 
 }

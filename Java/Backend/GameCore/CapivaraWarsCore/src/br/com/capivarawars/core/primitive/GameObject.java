@@ -89,7 +89,7 @@ public abstract class GameObject implements ImprovableToString{
     public static GameObject instantiate(){
         return new GameObject(GameObject.class) {
             @Override
-            public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+            public String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes) {
                 return this.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute);
             }
         };

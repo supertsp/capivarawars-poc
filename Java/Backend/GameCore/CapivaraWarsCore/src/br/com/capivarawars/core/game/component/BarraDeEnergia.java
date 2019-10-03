@@ -125,7 +125,13 @@ public class BarraDeEnergia<T> extends Component{
     }
     
     @Override
-    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes) {
+        StringBuilder finalText = new StringBuilder(200);
+        
+        if (includeParentAttributes) {
+            finalText.append(super.toStringWithAttibutesOnly_ComponentDemo(tabSizeForEachAttribute));
+        }
+        
         return null;
     }
     //</editor-fold>    

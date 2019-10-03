@@ -124,6 +124,7 @@ public class TestaCanoa extends javax.swing.JFrame {
     
     private void atualizarPedacosNaTela(){
         for (int cont = 0; cont < canoa.lengthOfPedacos(); cont++) {
+            System.out.println("[atualizarPedaçosTela] cont: " + cont + "  lenghtOfPedacos: " + canoa.lengthOfPedacos());
             pedacosButton.get(cont).setSelected(canoa.getPedaco(cont).isDestruido());
             
             if (pedacosButton.get(cont).isSelected()) {                

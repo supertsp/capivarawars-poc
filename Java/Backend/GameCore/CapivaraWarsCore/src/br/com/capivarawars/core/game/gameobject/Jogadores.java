@@ -1,9 +1,7 @@
-package br.com.capivarawars.core.game.component;
+package br.com.capivarawars.core.game.gameobject;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
-import br.com.capivarawars.core.game.component.patterns.TipoAcessorio;
-import br.com.capivarawars.core.primitive.Component;
-import br.com.capivarawars.core.primitive.patterns.ImprovableToString;
+import br.com.capivarawars.core.primitive.GameObject;
 import br.com.capivarawars.core.primitive.patterns.Listable;
 import java.util.List;
 import java.util.ArrayList;
@@ -17,15 +15,15 @@ import java.util.Arrays;
  * Description: ...
  * 
  * @version 1.0.0
- * @author tiago, 01/10/2019, 21:20:41
+ * @author TPEDROSO, 03/10/2019, 14:08:56
  * Last update: -
  *///</editor-fold>
-public class Pedacos extends Component implements Listable<Pedaco>{
+public class Jogadores extends GameObject implements Listable<Jogador>{
     
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
-    private List<Pedaco> lista;
+    private List<Jogador> lista;
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -43,91 +41,47 @@ public class Pedacos extends Component implements Listable<Pedaco>{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public Pedacos(int quantidadePedacos){
-        super();
-        
-        lista = new ArrayList<>(quantidadePedacos);        
-        for (int cont = 0; cont < quantidadePedacos; cont++) {
-            lista.add(cont, new Pedaco());
-        }
+    public Jogadores() {    
+        super(Jogador.class);
+        lista = new ArrayList<>(10);        
     }
+
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
     @Override
-    public String toString() {
-        StringBuilder finalText = new StringBuilder();
-        
-        finalText
-                .append(Pedacos.class.getSimpleName())
-                .append(' ')
-                .append(ImprovableToString.CLASS_OPENING_CHAR)
-                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE, true))
-                .append('\n')
-                .append(ImprovableToString.CLASS_CLOSING_CHAR);
-        
-        return finalText.toString();
-    }
-    
-    @Override
     public String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes) {
-        StringBuilder finalText = new StringBuilder(200);
-        
-        if (includeParentAttributes) {
-            finalText.append(super.toStringWithAttibutesOnly_ComponentDemo(tabSizeForEachAttribute));
-        }
-                
-        StringBuilder tabSpace = new StringBuilder();        
-        for (int count = 0; count < tabSizeForEachAttribute; count++) {
-            tabSpace.append(' ');
-        }
-        
-        finalText
-                .append('\n')
-                .append(tabSpace)
-                .append("Pedacos: ")
-                .append(length())
-                .append(": ")
-                .append("inteiros")
-        
-                .append('\n')
-                .append(tabSpace)
-                .append("isCanoaDestruida: ")
-                .append(isTodosDestruidos());
-        
-        return finalText.toString();
+        return null;
     }
-    //</editor-fold>    
+    //</editor-fold>
     
-    //<editor-fold defaultstate="collapsed" desc="Pedacos ArrayList  methods...">    
+    //<editor-fold defaultstate="collapsed" desc="Jogadores ArrayList  methods...">    
     @Override
     public int length() {
         return lista.size();
     }
     
     @Override
-    public void add(Pedaco newItem) {
+    public void add(Jogador newItem) {
         lista.add(newItem);
     }
 
     @Override
-    public void add(Pedaco... newItems) {
+    public void add(Jogador... newItems) {
         lista.addAll(Arrays.asList(newItems));
     }
     
     @Override
-    public void addAt(int index, Pedaco newItem) {
+    public void addAt(int index, Jogador newItem) {
         lista.add(index, newItem);
     }
     
     @Override
-    public Pedaco get(int indexOfItem) {
+    public Jogador get(int indexOfItem) {
         if (indexOfItem >= 0 && indexOfItem < length()) {
             return lista.get(indexOfItem);
         }
@@ -137,7 +91,7 @@ public class Pedacos extends Component implements Listable<Pedaco>{
     
     @Override
     public <I> I get(Class<I> classTypeOfItem) {
-        for (Pedaco element : lista) {
+        for (Jogador element : lista) {
             try {
                 return classTypeOfItem.cast(element);
             } catch (Exception e) {}
@@ -156,7 +110,7 @@ public class Pedacos extends Component implements Listable<Pedaco>{
     }
 
     @Override
-    public List<Pedaco> getAll() {
+    public List<Jogador> getAll() {
         return lista;
     }
 
@@ -164,7 +118,7 @@ public class Pedacos extends Component implements Listable<Pedaco>{
     public <I> List<I> getAll(Class<I> classTypeOfItem) {
         List<I> tempList = new ArrayList<>(length());
         
-        for (Pedaco element : lista) {
+        for (Jogador element : lista) {
             try {
                 tempList.add(classTypeOfItem.cast(element));
             } catch (Exception e) {}
@@ -178,12 +132,12 @@ public class Pedacos extends Component implements Listable<Pedaco>{
     }
     
     @Override
-    public boolean isExists(Pedaco searchedItem) {
+    public boolean isExists(Jogador searchedItem) {
         return lista.contains(searchedItem);
     }
 
     @Override
-    public int indexOf(Pedaco searchedItem) {
+    public int indexOf(Jogador searchedItem) {
         return lista.indexOf(searchedItem);
     }
     
@@ -197,7 +151,7 @@ public class Pedacos extends Component implements Listable<Pedaco>{
     }
 
     @Override
-    public boolean remove(Pedaco searchedItem) {
+    public boolean remove(Jogador searchedItem) {
         return lista.remove(searchedItem);
     }
     
@@ -207,7 +161,7 @@ public class Pedacos extends Component implements Listable<Pedaco>{
     }
     
     @Override
-    public boolean update(int indexOfItem, Pedaco newItem) {
+    public boolean update(int indexOfItem, Jogador newItem) {
         if (indexOfItem >= 0 && indexOfItem < length()) {
             return lista.set(indexOfItem, newItem) != null;
         }
@@ -217,65 +171,48 @@ public class Pedacos extends Component implements Listable<Pedaco>{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
-    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="static methods...">
-    
     //</editor-fold>
     
-    //<editor-fold defaultstate="collapsed" desc="main methods...">    
-    public int lengthOfInteiros(){
-        int contPedacosInteiros = 0;
+    //<editor-fold defaultstate="collapsed" desc="main methods...">
+    public boolean alguemGanhou(){
+        int contPerdeu = 0;
         for (int cont = 0; cont < length(); cont++) {
-            if (!get(cont).isDestruido()) {
-                contPedacosInteiros++;
+            if (get(cont).perdeuCanoa()) {
+                contPerdeu++;
             }
         }
         
-        return contPedacosInteiros;
+        return (contPerdeu + 1) == length();
     }
-        
-    public int lengthOfMarcados(){
-        int contPedacosMarcados = 0;
+    
+    public boolean houveEmpate(){
+        int contPerdeu = 0;
         for (int cont = 0; cont < length(); cont++) {
-            if (get(cont).isMarcado()) {
-                contPedacosMarcados++;
+            if (get(cont).perdeuCanoa()) {
+                contPerdeu++;
             }
         }
         
-        return contPedacosMarcados;
+        return contPerdeu == length();
     }
     
-    public boolean isTodosDestruidos(){
-        boolean destruido = true;
-        
-        for (int cont = 0; cont < length(); cont++) {
-            destruido &= get(cont).isDestruido();
+    public Jogador getVencedor(){
+        if (alguemGanhou()) {
+            for (int cont = 0; cont < length(); cont++) {
+                if (!get(cont).perdeuCanoa()) {
+                    get(cont).incrementarVitorias(1);
+                    return get(cont);
+                }
+            }
         }
         
-        return destruido;
+        return null;
     }
-    
-    public boolean isDestruido(int indicePedaco){
-        return get(indicePedaco).isDestruido();
-    }    
-    
-    public boolean isTodosMarcados(){
-        boolean marcado = true;
-        
-        for (int cont = 0; cont < length(); cont++) {
-            marcado &= get(cont).isMarcado();
-        }
-        
-        return marcado;
-    }
-    
-    public boolean isMarcado(int indicePedaco){
-        return get(indicePedaco).isMarcado();
-    }    
     //</editor-fold>
     
     //</editor-fold>
-    
+        
 }//class

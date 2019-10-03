@@ -2,12 +2,10 @@ package br.com.capivarawars.core.game.gameobject;
 
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
-import br.com.capivarawars.core.primitive.Coordinates;
-import br.com.capivarawars.core.game.component.BarraDeEnergia;
-import br.com.capivarawars.core.primitive.GameObject;
-import br.com.capivarawars.core.CorPadrao;
-import br.com.capivarawars.core.game.component.Acessorios;
-import br.com.capivarawars.core.primitive.patterns.ImprovableToString;
+import br.com.capivarawars.core.*;
+import br.com.capivarawars.core.game.component.*;
+import br.com.capivarawars.core.primitive.*;
+import br.com.capivarawars.core.primitive.patterns.*;
 import java.util.List;
 import java.util.ArrayList;
 //</editor-fold>
@@ -120,18 +118,20 @@ public class Capivara extends GameObject{
                 .append(Capivara.class.getSimpleName())
                 .append(' ')
                 .append(ImprovableToString.CLASS_OPENING_CHAR)
-                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE))
+                .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE, true))
                 .append('\n')
                 .append(ImprovableToString.CLASS_CLOSING_CHAR);
         
         return finalText.toString();
     }
-    
-    
+        
     @Override
-    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {        
+    public String toStringWithAttibutesOnly(int tabSizeForEachAttribute, boolean includeParentAttributes) {
         StringBuilder finalText = new StringBuilder(200);
-        finalText.append(super.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute));
+        
+        if (includeParentAttributes) {
+            finalText.append(super.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute));
+        }
         
         StringBuilder tabSpace = new StringBuilder();        
         for (int count = 0; count < tabSizeForEachAttribute; count++) {
@@ -151,7 +151,7 @@ public class Capivara extends GameObject{
                 .append("cor: ")
                 .append(getCor())
                 
-                .append(getComponent(Acessorios.class).toStringWithAttibutesOnly(tabSizeForEachAttribute))                
+                .append(getComponent(Acessorios.class).toStringWithAttibutesOnly(tabSizeForEachAttribute, false))                
                 
                 .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
                 .append('\n')
