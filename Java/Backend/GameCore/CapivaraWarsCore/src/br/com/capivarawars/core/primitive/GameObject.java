@@ -86,11 +86,11 @@ public abstract class GameObject implements ImprovableToString{
         parent = newGameObject;
     }
     
-    public static GameObject getInstance(){
+    public static GameObject instantiate(){
         return new GameObject(GameObject.class) {
             @Override
             public String toStringWithAttibutesOnly(int tabSizeForEachAttribute) {
-                return "";
+                return this.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute);
             }
         };
     }
@@ -106,7 +106,7 @@ public abstract class GameObject implements ImprovableToString{
         newComponent.setGameObjectOwner(this);
     }
     
-    public void addComponent(Component... newComponents){
+    public void addComponents(Component... newComponents){
         for (Component singleComponent : newComponents) {
             addComponent(singleComponent);
             singleComponent.setGameObjectOwner(this);
@@ -195,6 +195,10 @@ public abstract class GameObject implements ImprovableToString{
             return components.remove(searchedComponent);
     }
     
+    public void removeAllComponents(){
+        components.clear();
+    }
+    
     public boolean updateComponent(int indexOfComponent, Component newComponent){
         if (indexOfComponent >= 0 && indexOfComponent < lengthOfComponents()) {
             return components.set(indexOfComponent, newComponent) != null;
@@ -214,7 +218,7 @@ public abstract class GameObject implements ImprovableToString{
         newChild.setParent(this);
     }
     
-    public void addChild(GameObject... newChildren){
+    public void addChildren(GameObject... newChildren){
         for (GameObject singleChild : newChildren) {
             addChild(singleChild);
             singleChild.setParent(this);
@@ -285,6 +289,10 @@ public abstract class GameObject implements ImprovableToString{
     
     public boolean removeChild(GameObject searchedChild){        
         return children.remove(searchedChild);
+    }
+    
+    public void removeAllChildren(){
+        children.clear();
     }
     
     public boolean updateChild(int indexOfChild, GameObject newChild){

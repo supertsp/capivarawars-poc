@@ -5,7 +5,9 @@ import br.com.capivarawars.core.game.component.Acessorios;
 import br.com.capivarawars.core.game.component.BarraDeEnergia;
 import br.com.capivarawars.core.game.gameobject.Capivara;
 import br.com.capivarawars.core.game.component.Coroa;
+import br.com.capivarawars.core.game.component.Evolucao;
 import br.com.capivarawars.core.game.component.Pedaco;
+import br.com.capivarawars.core.game.component.Pedacos;
 import br.com.capivarawars.core.game.gameobject.Canoa;
 import br.com.capivarawars.core.game.gameobject.Jogador;
 import br.com.capivarawars.core.game.gameobject.Rio;
@@ -174,21 +176,52 @@ public class Play {
         //</editor-fold>
         
         //<editor-fold defaultstate="collapsed" desc="TESTES: ADD CHILD & ADD COMPONENTS">
-        GameObject gameObject = GameObject.getInstance();
-        System.out.println(gameObject);
         
+        //Components
+        BarraDeEnergia<Integer> barraDeEnergia = new BarraDeEnergia(0, 10, 5.3f);
+        Coroa coroa = new Coroa("Coroa Mágica", TipoCoroa.CAPRICORNIO, 50);
+        Evolucao evolucao = new Evolucao();
+        Pedacos pedacos = new Pedacos(50);
+        
+        //Component -> Acessorio
+        AcessorioChapeu chapeu1 = new AcessorioChapeu(0, 0, "chapeu magico");
+        AcessorioChapeu chapeu2 = new AcessorioChapeu(0, 0, "chapeu peludo");
+        AcessorioChapeu chapeu3 = new AcessorioChapeu(0, 0, "chapeu azul");
+        AcessorioChapeu chapeu4 = new AcessorioChapeu(0, 0, "chapeu nacional");
+        
+        Acessorios acessorios = new Acessorios();
+        acessorios.add(chapeu1);
+        acessorios.add(chapeu2);
+        acessorios.add(chapeu3);        
+        System.out.println(acessorios);
+        
+        //GameObjects
         Canoa canoa = new Canoa("Popye", CorPadrao.ROXO, 4);
 //        System.out.println(canoa);
         
         Capivara capivara = new Capivara("capis", CorPadrao.BRANCO);
+//        capivara.addAcessorio
         System.out.println(capivara);
 
         Rio rio = new Rio(10, canoa);
         System.out.println(rio);
         
-        Acessorios acessorios = new Acessorios();
-        System.out.println(acessorios);
+        //Add testes
+        GameObject gameObject = GameObject.instantiate();
+        gameObject.addChildren(canoa, capivara, rio);
+        gameObject.addComponents(barraDeEnergia, coroa, evolucao, pedacos);
+        
+        //parent testes
+        gameObject.setParent(rio);
+        
+        
+        System.out.println(gameObject);
+        
+        System.out.println(gameObject.getChild(Rio.class));
+        
         //</editor-fold>
+        
+        
     }//main
     //</editor-fold>
 

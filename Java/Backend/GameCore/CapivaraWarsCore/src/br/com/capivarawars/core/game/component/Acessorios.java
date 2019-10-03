@@ -60,18 +60,22 @@ public class Acessorios extends Component implements Listable<TipoAcessorio>{
     }
     
     @Override
-    public void add(TipoAcessorio novoAcessorio) {
-        lista.add(novoAcessorio);
+    public void add(TipoAcessorio newItem) {
+        lista.add(newItem);
     }
 
     @Override
-    public void add(TipoAcessorio... variosAcessorios) {
-        lista.addAll(Arrays.asList(variosAcessorios));
+    public void add(TipoAcessorio... newItems) {
+        lista.addAll(Arrays.asList(newItems));
     }
 
     @Override
-    public TipoAcessorio get(int indiceProcurado) {
-        return lista.get(indiceProcurado);
+    public TipoAcessorio get(int indexOfItem) {
+        if (indexOfItem >= 0 && indexOfItem < length()) {
+            return lista.get(indexOfItem);
+        }
+        
+        return null;
     }
     
     @Override
@@ -138,6 +142,11 @@ public class Acessorios extends Component implements Listable<TipoAcessorio>{
     @Override
     public boolean remove(TipoAcessorio searchedItem) {
         return lista.remove(searchedItem);
+    }
+    
+    @Override
+    public void removeAll() {
+        lista.clear();
     }
     
     @Override
@@ -222,6 +231,8 @@ public class Acessorios extends Component implements Listable<TipoAcessorio>{
     //</editor-fold>
     
     //</editor-fold>
+
+    
 
     
     

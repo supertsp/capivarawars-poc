@@ -2,6 +2,7 @@ package br.com.capivarawars.core.game.component;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
 import br.com.capivarawars.core.TipoCoroa;
+import br.com.capivarawars.core.game.component.patterns.TipoAcessorio;
 import br.com.capivarawars.core.primitive.Component;
 import java.util.List;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  * @version 1.0.0
  * @author Tiago Penha Pedroso, 23 de set de 2019, 09:14:26 Last update: -
  *///</editor-fold>
-public class Coroa extends Component {
+public class Coroa extends Component{
     
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     

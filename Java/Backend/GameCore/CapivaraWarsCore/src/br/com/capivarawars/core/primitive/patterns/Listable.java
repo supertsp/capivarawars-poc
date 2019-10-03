@@ -11,11 +11,12 @@ import java.util.List;
 /**
  * Objective: ...
  * 
- * Description: ...
+ * Description: ... 
  * 
  * @version 1.0.0
  * @author TPEDROSO, 02/10/2019, 13:53:13
  * Last update: -
+ * @param <T>
  *///</editor-fold>
 public interface Listable<T> {
     
@@ -47,6 +48,8 @@ public interface Listable<T> {
     public boolean remove(int indexOfItem);
     
     public boolean remove(T searchedItem);
+    
+    public void removeAll();
     
     public boolean update(int indexOfItem, T newItem);
     //</editor-fold>
