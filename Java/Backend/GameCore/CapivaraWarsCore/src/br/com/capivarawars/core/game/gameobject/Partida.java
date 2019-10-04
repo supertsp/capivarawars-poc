@@ -84,7 +84,7 @@ public class Partida extends GameObject {
         StringBuilder finalText = new StringBuilder();
         
         finalText
-                .append(Canoa.class.getSimpleName())
+                .append(Partida.class.getSimpleName())
                 .append(' ')
                 .append(ImprovableToString.CLASS_OPENING_CHAR)
                 .append(toStringWithAttibutesOnly(ImprovableToString.TAB_SIZE, true))
@@ -132,7 +132,9 @@ public class Partida extends GameObject {
                 .append('\n')
                 .append(tabSpace)
                 .append("tempoDecorrido: ")
-                .append(getTempoDecorrido());
+                .append(getTempoDecorrido())
+                
+                .append(toStringWithRiverStatusOnly(tabSizeForEachAttribute));
       
         return finalText.toString();
     }
@@ -263,7 +265,11 @@ public class Partida extends GameObject {
             }
 
             indiceJogadorAtual++;
-            indiceJogadorAtual = indiceJogadorAtual < lengthOfJogadores() ? indiceJogadorAtual : 0;
+            
+            if (indiceJogadorAtual >= lengthOfJogadores()) {
+                indiceJogadorAtual = 0;
+                incrementaTurno();
+            }
         }
     }
     
@@ -284,19 +290,36 @@ public class Partida extends GameObject {
     }
     
     
-    public boolean alguemGanhou() {
-        if (iniciou) {
-            int contPerdeu = 0;
+    public Jogador alguemGanhou() {
+        if (iniciou) {            
+            Jogador jogadorVencedor = null;
+            int indiceJogadorVencedor = -1;
+
             for (int cont = 0; cont < lengthOfJogadores(); cont++) {
-                if (getJogador(cont).perdeuCanoa()) {
-                    contPerdeu++;
+                if (!getJogador(cont).perdeuCanoa()) {
+                    jogadorVencedor = getJogador(cont);
+                    indiceJogadorVencedor = cont;
                 }
             }
 
-            return (contPerdeu + 1) == lengthOfJogadores();
+            if (jogadorVencedor != null) {
+                for (int cont = 0; cont < lengthOfJogadores(); cont++) {
+                    if (indiceJogadorVencedor == cont) {
+                        getJogador(cont).incrementarVitorias(1);
+                    }
+                    else{
+                        getJogador(cont).incrementarDerrotas(1);
+                    }
+                }
+
+                terminar();
+                return jogadorVencedor;
+            }
+
+            return null;
         }
 
-        return false;
+        return null;
     }
 
     public boolean houveEmpate() {
@@ -323,40 +346,33 @@ public class Partida extends GameObject {
 
         return false;
     }
-
-    public Jogador getVencedor() {
-        if (iniciou) {
-            if (alguemGanhou()) {
-                
-                Jogador jogadorVencedor = null;
-                int indiceJogadorVencedor = -1;
-                
-                for (int cont = 0; cont < lengthOfJogadores(); cont++) {
-                    if (!getJogador(cont).perdeuCanoa()) {
-                        jogadorVencedor = getJogador(cont);
-                        indiceJogadorVencedor = cont;
-                    }
-                }
-                
-                if (jogadorVencedor != null) {
-                    for (int cont = 0; cont < lengthOfJogadores(); cont++) {
-                        if (indiceJogadorVencedor == cont) {
-                            getJogador(cont).incrementarVitorias(1);
-                        }
-                        else{
-                            getJogador(cont).incrementarDerrotas(1);
-                        }
-                    }
-                    
-                    terminar();
-                    return jogadorVencedor;
-                }
-            }
-
-            return null;
+    
+    public String toStringWithRiverStatusOnly(int tabSizeForEachRiver) {
+        StringBuilder finalText = new StringBuilder(200);
+        
+        StringBuilder tabSpace = new StringBuilder();        
+        for (int count = 0; count < tabSizeForEachRiver; count++) {
+            tabSpace.append(' ');
         }
-
-        return null;
+        
+        finalText
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
+                .append('\n')
+                .append(tabSpace)
+                .append("Rios:");
+        
+        for (int count = 0; count < lengthOfJogadores(); count++) {
+            finalText
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
+                .append('\n')
+                .append(tabSpace)
+                .append(tabSpace)
+                .append(getJogador(count).getRio().toStringWithJustTheDrawing())
+                .append("  -> ")
+                .append(getJogador(count).getNome());
+        }
+        
+        return finalText.toString();
     }
     //</editor-fold>
 

@@ -1,17 +1,8 @@
 package br.com.capivarawars.core;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
-import br.com.capivarawars.core.game.component.Acessorios;
-import br.com.capivarawars.core.game.component.BarraDeEnergia;
-import br.com.capivarawars.core.game.gameobject.Capivara;
-import br.com.capivarawars.core.game.component.Coroa;
-import br.com.capivarawars.core.game.component.Evolucao;
-import br.com.capivarawars.core.game.component.Pedaco;
-import br.com.capivarawars.core.game.component.Pedacos;
-import br.com.capivarawars.core.game.gameobject.Canoa;
-import br.com.capivarawars.core.game.gameobject.Jogador;
-import br.com.capivarawars.core.game.gameobject.Partida;
-import br.com.capivarawars.core.game.gameobject.Rio;
+import br.com.capivarawars.core.game.component.*;
+import br.com.capivarawars.core.game.gameobject.*;
 import br.com.capivarawars.core.primitive.*;
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
@@ -19,6 +10,7 @@ import static java.lang.Integer.parseInt;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import java.util.Scanner;
 //</editor-fold>
@@ -237,7 +229,6 @@ public class Play {
         String nomeCapivara = "";
         Jogador jogTemp = null;
         int posicaoEscolhida = 0;
-        String mensagem = "";
 
         for (int indice = 0; indice < qtdJogadores; indice++) {
             nomeJogador = showInputDialog("JOGADOR " + (indice + 1) + "\n\nQual é o seu nome?");
@@ -279,10 +270,19 @@ public class Play {
             }
             
             //Exibindo Resultados
+            System.out.println(partida);
             
         } while (!partida.terminou());
-
-        System.out.println(partida);
+        
+        if (partida.houveEmpate()) {
+            showMessageDialog("EMPATOU!!!!!");
+        }
+        else{
+            showMessageDialog("PARABÉNS!!! " + partida.alguemGanhou().getNome());
+        }
+        
+        System.out.println(partida);;
+        
         //</editor-fold>
 
     }//main

@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/component/patterns/TipoAcessorio.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/gameobject/Canoa.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/AClasseModelo.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/primitive/Component.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/primitive/GameObject.java</file>
-            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/Play.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/gameobject/Jogador.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/primitive/patterns/Listable.java</file>
             <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/gameobject/Rio.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/Credencial.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/gameobject/Capivara.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/Play.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/component/Pedacos.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/primitive/GameObject.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/primitive/Component.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/gameobject/Canoa.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/gameobject/Jogadores.java</file>
         </group>
     </open-files>
 </project-private>

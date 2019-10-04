@@ -83,16 +83,30 @@ public class Jogadores extends GameObject implements Listable<Jogador> {
             for (int count = 0; count < length(); count++) {
                 if (count + 1 < length()) {
                     finalText
-                            .append(get(count).getName())
-                            .append(" (")
+                            .append(get(count).getNome())
+                            .append(" \"")
                             .append(get(count).getNick())
-                            .append("), ");
+                            .append("\" [")
+                            .append(get(count).getVitorias())
+                            .append("V, ")
+                            .append(get(count).getEmpates())
+                            .append("E, ")
+                            .append(get(count).getDerrotas())
+                            .append("D")
+                            .append("], ");
                 } else {
                     finalText
-                            .append(get(count).getName())
-                            .append(" (")
+                            .append(get(count).getNome())
+                            .append(" \"")
                             .append(get(count).getNick())
-                            .append(")");
+                            .append("\" [")
+                            .append(get(count).getVitorias())
+                            .append("V, ")
+                            .append(get(count).getEmpates())
+                            .append("E, ")
+                            .append(get(count).getDerrotas())
+                            .append("D")
+                            .append("]");
                 }
             }
         } else {
