@@ -20,8 +20,9 @@ public class MarcadorDeTempo {
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
-    private float tempoLimite;
+    private float tempoLimite;    
     private boolean exibirToStringBasico;
+    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -33,6 +34,7 @@ public class MarcadorDeTempo {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
+    private boolean usarTempoLimite;
     private long tempoInicial;
     private long tempoPausa;
     private long tempoSaldoInicial;
@@ -44,11 +46,21 @@ public class MarcadorDeTempo {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
+    public MarcadorDeTempo(){
+        usarTempoLimite = false;
+    }
+    
+    public MarcadorDeTempo(boolean exibirToStringBasico){
+        usarTempoLimite = false;
+        setExibirToStringBasico(exibirToStringBasico);
+    }
+    
     public MarcadorDeTempo(float tempoLimiteEmSegundos) {
         this(tempoLimiteEmSegundos, false);
     }
 
     public MarcadorDeTempo(float tempoLimiteEmSegundos, boolean exibirToStringBasico) {
+        usarTempoLimite = true;
         setTempoLimite(tempoLimiteEmSegundos);
         setExibirToStringBasico(exibirToStringBasico);
     }
@@ -145,7 +157,7 @@ public class MarcadorDeTempo {
         if (iniciouTempo && !pausouTempo) {
             tempoAuxiliar = ((System.currentTimeMillis() - tempoInicial) / 1000f) + tempoSaldoInicial;
 
-            if (tempoAuxiliar >= tempoLimite) {
+            if (usarTempoLimite && tempoAuxiliar >= tempoLimite) {
                 return tempoLimite;
             } else {
                 return tempoAuxiliar;
@@ -155,7 +167,7 @@ public class MarcadorDeTempo {
         if (iniciouTempo && pausouTempo) {
             tempoAuxiliar = ((tempoPausa - tempoInicial) / 1000f) + tempoSaldoInicial;
 
-            if (tempoAuxiliar >= tempoLimite) {
+            if (usarTempoLimite && tempoAuxiliar >= tempoLimite) {
                 return tempoLimite;
             } else {
                 return tempoAuxiliar;
@@ -170,7 +182,7 @@ public class MarcadorDeTempo {
     }
     
     public boolean isAtingiuLimiteTempo() {
-        if (iniciouTempo) {
+        if (usarTempoLimite && iniciouTempo) {
             return getTempoDecorrido() >= tempoLimite;
         }
 

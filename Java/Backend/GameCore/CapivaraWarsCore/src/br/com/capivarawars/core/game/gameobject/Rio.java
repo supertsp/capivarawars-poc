@@ -194,6 +194,25 @@ public class Rio extends GameObject{
     public void reconstruirPedacoDaCanoa(int indicePedaco){
         canoa.reconstruirPedaco(indicePedaco);
     }
+    
+    public String toStringWithJustTheDrawing(){
+        StringBuilder finalText = new StringBuilder(200);
+        
+        for (int count = 0; count < lengthOfPedacos(); count++) {
+            if (getPedaco(count).isMarcado()) {
+                finalText.append("[O]");
+            }
+            else{
+                finalText.append("[~]");
+            }
+        }
+        
+        finalText                
+                .append("   isCanoaDestruida: ")
+                .append(isCanoaDestruida());
+        
+        return finalText.toString();
+    }
     //</editor-fold>
     
     //</editor-fold>

@@ -109,8 +109,7 @@ public class Canoa extends GameObject{
         if (includeParentAttributes) {
             finalText.append(super.toStringWithAttibutesOnly_GameObjectDemo(tabSizeForEachAttribute));
         }
-        
-        
+                
         StringBuilder tabSpace = new StringBuilder();        
         for (int count = 0; count < tabSizeForEachAttribute; count++) {
             tabSpace.append(' ');
@@ -227,6 +226,26 @@ public class Canoa extends GameObject{
         }
         
         return false;
+    }
+    
+    public String toStringWithJustTheDrawing(){
+        StringBuilder finalText = new StringBuilder(200);
+                
+        for (int count = 0; count < lengthOfPedacos(); count++) {
+            if (getPedaco(count).isDestruido()) {
+                finalText.append("[~]");
+            }
+            else{
+                finalText.append("[O]");
+            }
+        }
+        
+        finalText
+                .append(ImprovableToString.ATTRIBUTE_SEPARATOR)
+                .append("   isDestruida: ")
+                .append(isDestruida());
+        
+        return finalText.toString();
     }
     //</editor-fold>
     

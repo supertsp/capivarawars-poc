@@ -10,6 +10,7 @@ import br.com.capivarawars.core.game.component.Pedaco;
 import br.com.capivarawars.core.game.component.Pedacos;
 import br.com.capivarawars.core.game.gameobject.Canoa;
 import br.com.capivarawars.core.game.gameobject.Jogador;
+import br.com.capivarawars.core.game.gameobject.Partida;
 import br.com.capivarawars.core.game.gameobject.Rio;
 import br.com.capivarawars.core.primitive.*;
 import static java.lang.Double.parseDouble;
@@ -25,9 +26,9 @@ import java.util.Scanner;
 //<editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
- * 
+ *
  * Description: ...
- * 
+ *
  * @version 1.0.0
  * @author TPEDROSO, 17/09/2019, 10:47:45
  *///</editor-fold>
@@ -40,7 +41,7 @@ public class Play {
 
     //<editor-fold desc="executable method...">
     public static void main(String[] args) {
-        
+
         //<editor-fold defaultstate="collapsed" desc="TESTES: BARRA DE ENERGIA">
 //        System.out.println("\n>>> Iniciando Capivara"); //7
 //        capivara = new Capivara("Tidinha", CorPadrao.BRANCO);
@@ -82,21 +83,16 @@ public class Play {
 //        capivara.receberDano();
 //        System.out.println(capivara);
         //</editor-fold>
-        
 //        iniciarTimerRegenercao();
-        
         //<editor-fold defaultstate="collapsed" desc="TESTES: CAPIVARA">
 //        Capivara capis = new Capivara("capis", CorPadrao.BRANCO);
 //        capis.addComponent(new BarraDeEnergia(new Integer(0), new Integer(10), 3));
 //        capis.addComponent(new BarraDeEnergia(new Integer(100), new Integer(1000), 50));
 //        capis.addComponent(new Coroa("Coroa Azul", TipoCoroa.NACIONAL, 10));
-        
 //        System.out.println(capis);
-        
 //        Coordinates coor =  new Coordinates(10, 5);
 //        System.out.println(coor);
         //</editor-fold>
-        
         //<editor-fold defaultstate="collapsed" desc="TESTES: CANOA E RIO">
 //        Canoa canoa = new Canoa("Banana", CorPadrao.ROXO, 4);
 //        Rio rio = new Rio(10, canoa);
@@ -174,67 +170,121 @@ public class Play {
 //        
 //        System.out.println(canoa);
         //</editor-fold>
-        
         //<editor-fold defaultstate="collapsed" desc="TESTES: ADD CHILD & ADD COMPONENTS">
-        
-        //Components
-        BarraDeEnergia<Integer> barraDeEnergia = new BarraDeEnergia(0, 10, 5.3f);
-        Coroa coroa = new Coroa("Coroa Mágica", TipoCoroa.CAPRICORNIO, 50);
-        Evolucao evolucao = new Evolucao();
-        Pedacos pedacos = new Pedacos(50);
-        
-        //Component -> Acessorio
-        AcessorioChapeu chapeu1 = new AcessorioChapeu(0, 0, "chapeu magico");
-        AcessorioChapeu chapeu2 = new AcessorioChapeu(0, 0, "chapeu peludo");
-        AcessorioChapeu chapeu3 = new AcessorioChapeu(0, 0, "chapeu azul");
-        AcessorioChapeu chapeu4 = new AcessorioChapeu(0, 0, "chapeu nacional");
-        
-        Acessorios acessorios = new Acessorios();
-        acessorios.add(chapeu1);
-        acessorios.add(chapeu2);
-        acessorios.add(chapeu3);        
-        System.out.println(acessorios);
-        
-        //GameObjects
-        Canoa canoa = new Canoa("Popye", CorPadrao.ROXO, 4);
-//        System.out.println(canoa);
-        
-        Capivara capivara = new Capivara("capis", CorPadrao.BRANCO);
-        capivara.getAcessorios().add(chapeu1, chapeu2);
-        
-        Capivara capivaraNova = new Capivara("happy", CorPadrao.AMARELO);
-        
-        
-        System.out.println(capivara);
-
-        Rio rio = new Rio(10, canoa);
-        rio.setCanoa(canoa);
-        rio.addChild(capivara);
-        System.out.println(rio);
-        
-        //Add testes
-        GameObject gameObject = GameObject.instantiate();
-        //                       0       1       2      3
-        gameObject.addChildren(canoa, capivara, rio, capivaraNova);
-        gameObject.addComponents(barraDeEnergia, coroa, evolucao, pedacos);
-        
-        //parent testes
-        gameObject.setParent(rio);
-        
-        
-        System.out.println(gameObject);
-        
-//        System.out.println(gameObject.getChildren(Capivara.class));
-        
-//        gameObject.removeChild(capivara);
-        gameObject.updateChild(0, capivaraNova);
-        System.out.println(gameObject.getChild(0));
-        System.out.println(gameObject);
-//        System.out.println(gameObject.isExistsChild(capivara));
-        
+//        
+//        //Components
+//        BarraDeEnergia<Integer> barraDeEnergia = new BarraDeEnergia(0, 10, 5.3f);
+//        Coroa coroa = new Coroa("Coroa Mágica", TipoCoroa.CAPRICORNIO, 50);
+//        Evolucao evolucao = new Evolucao();
+//        Pedacos pedacos = new Pedacos(50);
+//        
+//        //Component -> Acessorio
+//        AcessorioChapeu chapeu1 = new AcessorioChapeu(0, 0, "chapeu magico");
+//        AcessorioChapeu chapeu2 = new AcessorioChapeu(0, 0, "chapeu peludo");
+//        AcessorioChapeu chapeu3 = new AcessorioChapeu(0, 0, "chapeu azul");
+//        AcessorioChapeu chapeu4 = new AcessorioChapeu(0, 0, "chapeu nacional");
+//        
+//        Acessorios acessorios = new Acessorios();
+//        acessorios.add(chapeu1);
+//        acessorios.add(chapeu2);
+//        acessorios.add(chapeu3);        
+//        System.out.println(acessorios);
+//        
+//        //GameObjects
+//        Canoa canoa = new Canoa("Popye", CorPadrao.ROXO, 4);
+////        System.out.println(canoa);
+//        
+//        Capivara capivara = new Capivara("capis", CorPadrao.BRANCO);
+//        capivara.getAcessorios().add(chapeu1, chapeu2);
+//        
+//        Capivara capivaraNova = new Capivara("happy", CorPadrao.AMARELO);
+//        
+//        
+//        System.out.println(capivara);
+//
+//        Rio rio = new Rio(10, canoa);
+//        rio.setCanoa(canoa);
+//        rio.addChild(capivara);
+//        System.out.println(rio);
+//        
+//        //Add testes
+//        GameObject gameObject = GameObject.instantiate();
+//        //                       0       1       2      3
+//        gameObject.addChildren(canoa, capivara, rio, capivaraNova);
+//        gameObject.addComponents(barraDeEnergia, coroa, evolucao, pedacos);
+//        
+//        //parent testes
+//        gameObject.setParent(rio);
+//        
+//        
+//        System.out.println(gameObject);
+//        
+////        System.out.println(gameObject.getChildren(Capivara.class));
+//        
+////        gameObject.removeChild(capivara);
+//        gameObject.updateChild(0, capivaraNova);
+//        System.out.println(gameObject.getChild(0));
+//        System.out.println(gameObject);
+////        System.out.println(gameObject.isExistsChild(capivara));
+//        
         //</editor-fold>
-        
-        
+        //<editor-fold defaultstate="collapsed" desc="TESTES: PARTIDA">
+        Partida partida = new Partida();
+        int qtdJogadores = 2;
+        int tamanhoRio = 10;
+        int tamanhoCanoa = 4;
+        String nomeJogador = "";
+        String nomeCapivara = "";
+        Jogador jogTemp = null;
+        int posicaoEscolhida = 0;
+        String mensagem = "";
+
+        for (int indice = 0; indice < qtdJogadores; indice++) {
+            nomeJogador = showInputDialog("JOGADOR " + (indice + 1) + "\n\nQual é o seu nome?");
+            nomeCapivara = showInputDialog("JOGADOR " + (indice + 1) + "\n\nQual é nome da sua Capivara?");
+            jogTemp = new Jogador(nomeJogador, nomeJogador, new Capivara(nomeCapivara, CorPadrao.TRANSPARENTE), tamanhoRio, tamanhoCanoa);
+            partida.addJogador(jogTemp);
+        }
+
+        partida.iniciar();
+
+        do {
+            
+            //MOVENDO CANOAS
+            for (int indice = 0; indice < qtdJogadores; indice++) {
+                try {
+                    posicaoEscolhida = Integer.parseInt(showInputDialog(
+                            partida.getJogador(indice).getNome() + " (J" + (indice + 1)
+                            + ")\n\nQual nova posição da sua canoa?"
+                    ));
+                } catch (Exception e) {
+                    posicaoEscolhida = 0;
+                }
+
+                partida.moverCanoaAtual(posicaoEscolhida);
+            }
+            
+            //ATIRANDO NO INIMIGO
+            for (int indice = 0; indice < qtdJogadores; indice++) {
+                try {
+                    posicaoEscolhida = Integer.parseInt(showInputDialog(
+                            partida.getJogador(indice).getNome() + " (J" + (indice + 1)
+                            + ")\n\nQual posição você quer ATIRAR?"
+                    ));
+                } catch (Exception e) {
+                    posicaoEscolhida = 0;
+                }
+
+                partida.atirarNoInimigo(posicaoEscolhida + 1, posicaoEscolhida);
+            }
+            
+            //Exibindo Resultados
+            
+        } while (!partida.terminou());
+
+        System.out.println(partida);
+        //</editor-fold>
+
     }//main
     //</editor-fold>
 
@@ -257,12 +307,12 @@ public class Play {
         print("");
         return readValue;
     }
-    
-    public static void showMessageDialog(Object message){
+
+    public static void showMessageDialog(Object message) {
         JOptionPane.showMessageDialog(null, message, "Write Operation", JOptionPane.PLAIN_MESSAGE);
     }
-    
-    public static String showInputDialog(Object message){
+
+    public static String showInputDialog(Object message) {
         String readValue = "";
         try {
             readValue = JOptionPane.showInputDialog(null, message, "Read Operation", JOptionPane.PLAIN_MESSAGE);
@@ -270,18 +320,19 @@ public class Play {
         }
         return readValue;
     }
-    
-    public static void iniciarTimerRegenercao(){
+
+    public static void iniciarTimerRegenercao() {
         int tempoEsperaAtualizaEmMili = 500;
-        
-        new Thread(()->{
-            while (true) {                
-                
+
+        new Thread(() -> {
+            while (true) {
+
                 System.out.println("\n" + capivara);
-                
+
                 try {
                     Thread.sleep(tempoEsperaAtualizaEmMili);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
             }
         }).start();
     }

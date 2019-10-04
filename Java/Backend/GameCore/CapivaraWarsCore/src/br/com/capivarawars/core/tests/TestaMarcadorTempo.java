@@ -11,90 +11,74 @@ import java.awt.event.KeyEvent;
 //<editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
- * 
+ *
  * Description: ...
- * 
+ *
  * @version 1.0.0
  * @author TPEDROSO, 23 de set de 2019, 09:24:48
  *///</editor-fold>
 public class TestaMarcadorTempo extends javax.swing.JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="attributes...">
-    
     //<editor-fold defaultstate="collapsed" desc="static attributes...">
-    
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
-    
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
     private MarcadorDeTempo marcadorDeTempo;
     //</editor-fold>
-    
+
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="constructor...">
     public TestaMarcadorTempo() {
         initComponents();
-        moveJFrameToCenterOfScreen();        
+        moveJFrameToCenterOfScreen();
         //your code below
-        
+
         marcadorDeTempo = new MarcadorDeTempo(10);
         atualizaMarcadorDeTempoNaTela();
+        jc_usarTempoLimite.setSelected(true);
     }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="your methods...">
-    
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="override methods...">
-    
     //</editor-fold>    
-    
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
-    private void atualizaMarcadorDeTempoNaTela(){
+    private void atualizaMarcadorDeTempoNaTela() {
         int tempoEsperaAtualizaEmMili = 500;
-        
-        new Thread(()->{
-            while (true) {                
-                
+
+        new Thread(() -> {
+            while (true) {
+
                 lb_tempoDecorrido.setText(marcadorDeTempo.getTempoDecorridoComoInteger().toString());
-                
+
                 try {
                     Thread.sleep(tempoEsperaAtualizaEmMili);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
             }
         }).start();
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="static methods...">
-    
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="main methods...">
-    
     //</editor-fold>
-    
     //</editor-fold>
-    
-
     //\\ Do not change the lines of code below, except the EVENTS ;) \\//
-
     //<editor-fold defaultstate="collapsed" desc="methods: getScreenWidth(), getScreenHeight(), moveJFrameToCenterOfScreen()...">
     private static Integer getScreenWidth() {
-        return  Toolkit.getDefaultToolkit().getScreenSize().width;
+        return Toolkit.getDefaultToolkit().getScreenSize().width;
     }
-    
+
     private static Integer getScreenHeight() {
         return Toolkit.getDefaultToolkit().getScreenSize().height;
     }
-    
+
     private void moveJFrameToCenterOfScreen() {
         super.setLocation((getScreenWidth() / 2) - (super.getWidth() / 2),
                 (getScreenHeight() / 2) - (super.getHeight() / 2)
@@ -142,6 +126,7 @@ public class TestaMarcadorTempo extends javax.swing.JFrame {
     private javax.swing.JButton bt_pausar;
     private javax.swing.JButton bt_reiniciar;
     private javax.swing.JButton bt_retomar;
+    private javax.swing.JCheckBox jc_usarTempoLimite;
     private javax.swing.JLabel lb_segundos;
     private javax.swing.JLabel lb_tempoDecorrido;
     private javax.swing.JLabel lb_tempoLimite;
@@ -150,7 +135,6 @@ public class TestaMarcadorTempo extends javax.swing.JFrame {
     //</editor-fold> 
 
     //<editor-fold defaultstate="collapsed" desc="generated methods: initComponents() and EVENTS...">
-    
     //generated method: initComponents()
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -166,13 +150,14 @@ public class TestaMarcadorTempo extends javax.swing.JFrame {
         bt_retomar = new javax.swing.JButton();
         lb_tempoLimite = new javax.swing.JLabel();
         tf_tempoLimite = new javax.swing.JTextField();
+        jc_usarTempoLimite = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         backgroundPanel.setBackground(new java.awt.Color(60, 64, 65));
 
-        lb_tempoDecorrido.setFont(new java.awt.Font("Dialog", 3, 48)); // NOI18N
+        lb_tempoDecorrido.setFont(new java.awt.Font("Dialog", 3, 56)); // NOI18N
         lb_tempoDecorrido.setForeground(new java.awt.Color(255, 255, 255));
         lb_tempoDecorrido.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lb_tempoDecorrido.setText("10000");
@@ -235,6 +220,7 @@ public class TestaMarcadorTempo extends javax.swing.JFrame {
         });
 
         lb_tempoLimite.setForeground(new java.awt.Color(204, 204, 204));
+        lb_tempoLimite.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_tempoLimite.setText("Tempo Limite");
 
         tf_tempoLimite.setBackground(new java.awt.Color(102, 102, 102));
@@ -253,44 +239,55 @@ public class TestaMarcadorTempo extends javax.swing.JFrame {
             }
         });
 
+        jc_usarTempoLimite.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jc_usarTempoLimite.setForeground(new java.awt.Color(187, 187, 186));
+        jc_usarTempoLimite.setText("Usar tempo limite?");
+        jc_usarTempoLimite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jc_usarTempoLimiteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
         backgroundPanelLayout.setHorizontalGroup(
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
-                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addComponent(lb_tempoDecorrido, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lb_segundos))
-                    .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(bt_pausar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bt_iniciar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_parar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bt_reiniciar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9))
-                    .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(lb_tempoLimite, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
-                .addGap(26, 26, 26))
-            .addGroup(backgroundPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(bt_retomar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
-                .addComponent(tf_tempoLimite)
-                .addGap(39, 39, 39))
+                            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(bt_pausar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE))
+                            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                                .addComponent(lb_tempoDecorrido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lb_segundos)
+                                .addGap(28, 28, 28)))
+                        .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bt_iniciar, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(bt_parar, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(bt_reiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(lb_tempoLimite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, backgroundPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(bt_retomar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jc_usarTempoLimite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(tf_tempoLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(35, 35, 35))
         );
         backgroundPanelLayout.setVerticalGroup(
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundPanelLayout.createSequentialGroup()
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lb_tempoDecorrido, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb_segundos, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(52, 52, 52)
@@ -305,10 +302,12 @@ public class TestaMarcadorTempo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(lb_tempoLimite)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tf_tempoLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_retomar))
-                .addGap(0, 42, Short.MAX_VALUE))
+                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_retomar)
+                    .addComponent(tf_tempoLimite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jc_usarTempoLimite)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -326,36 +325,33 @@ public class TestaMarcadorTempo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void onClick_iniciar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClick_iniciar
-         marcadorDeTempo.iniciarTempo();
+        marcadorDeTempo.iniciarTempo();
     }//GEN-LAST:event_onClick_iniciar
 
     private void onClick_parar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClick_parar
-         marcadorDeTempo.pararTempo();
+        marcadorDeTempo.pararTempo();
     }//GEN-LAST:event_onClick_parar
 
     private void onClick_reiniciar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClick_reiniciar
-         marcadorDeTempo.reiniciarTempo();
+        marcadorDeTempo.reiniciarTempo();
     }//GEN-LAST:event_onClick_reiniciar
 
     private void onClick_pausar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClick_pausar
-         marcadorDeTempo.pausarTempo();
+        marcadorDeTempo.pausarTempo();
     }//GEN-LAST:event_onClick_pausar
 
     private void onClick_retomar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClick_retomar
-         marcadorDeTempo.retomarTempo();
+        marcadorDeTempo.retomarTempo();
     }//GEN-LAST:event_onClick_retomar
 
     private void onFocusLost_tempoLimite(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_onFocusLost_tempoLimite
-        System.out.println("onFocusLost_tempoLimite");
-        
         int tempoLimite = 0;
-        
         try {
             tempoLimite = Integer.parseInt(tf_tempoLimite.getText());
         } catch (Exception e) {
-            
+
         }
-        
+
         marcadorDeTempo = new MarcadorDeTempo(tempoLimite);
         marcadorDeTempo.iniciarTempo();
     }//GEN-LAST:event_onFocusLost_tempoLimite
@@ -366,7 +362,23 @@ public class TestaMarcadorTempo extends javax.swing.JFrame {
             bt_iniciar.requestFocus();
         }
     }//GEN-LAST:event_onKeyPressed_tempoLimite
-        
+
+    private void jc_usarTempoLimiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_usarTempoLimiteActionPerformed
+        if (jc_usarTempoLimite.isSelected()) {            
+            int tempoLimite = 0;
+            try {
+                tempoLimite = Integer.parseInt(tf_tempoLimite.getText());
+            } catch (Exception e) {
+
+            }
+            marcadorDeTempo = new MarcadorDeTempo(tempoLimite);
+            marcadorDeTempo.iniciarTempo();
+        }
+        else{
+            marcadorDeTempo = new MarcadorDeTempo();
+            marcadorDeTempo.iniciarTempo();
+        }
+    }//GEN-LAST:event_jc_usarTempoLimiteActionPerformed
+
     //</editor-fold>
-        
 }
