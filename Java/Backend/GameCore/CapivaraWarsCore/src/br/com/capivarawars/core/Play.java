@@ -229,7 +229,10 @@ public class Play {
         String nomeCapivara = "";
         Jogador jogTemp = null;
         int posicaoEscolhida = 0;
-
+        
+        CorPadrao corPadrao =CorPadrao.AMARELO;
+        
+        
         for (int indice = 0; indice < qtdJogadores; indice++) {
             nomeJogador = showInputDialog("JOGADOR " + (indice + 1) + "\n\nQual é o seu nome?");
             nomeCapivara = showInputDialog("JOGADOR " + (indice + 1) + "\n\nQual é nome da sua Capivara?");
@@ -281,7 +284,7 @@ public class Play {
             showMessageDialog("PARABÉNS!!! " + partida.alguemGanhou().getNome());
         }
         
-        System.out.println(partida);;
+        System.out.println(partida);
         
         //</editor-fold>
 
