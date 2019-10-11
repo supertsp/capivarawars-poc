@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/primitive/Component.java</file>
-            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/tests/telas/Inicial.java</file>
-            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/tests/telas/AtirarNoRio.java</file>
-            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/primitive/GameObject.java</file>
-            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/Play.java</file>
-            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/tests/telas/CadastroJogadores.java</file>
-            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/tests/telas/MoverCanoa.java</file>
-            <file>file:/C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/tests/telas/TotalJogadores.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/tests/telas/CadastroJogadores.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/game/gameobject/Partida.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/Play.java</file>
+            <file>file:/C:/Users/TPEDROSO/source/NetbeansProjects/CapivaraWars/Java/Backend/GameCore/CapivaraWarsCore/src/br/com/capivarawars/core/tests/telas/Inicial.java</file>
         </group>
     </open-files>
 </project-private>
