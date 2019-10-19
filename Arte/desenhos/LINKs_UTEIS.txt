@@ -1,2 +1,14 @@
 ESCALAR PIXEL ART
 	https://lospec.com/pixel-art-scaler/
+	
+ANIMAÇÃO COM SPRITE
+	https://jsfiddle.net/simurai/CGmCe/
+	
+ANIMÇÃO GERAL
+	http://animista.net/play/basic
+	
+ANIMAÇÃO COM KEYFRAME
+	https://cssanimate.com/
+	
+FREE ICONS
+	https://www.uihere.com
