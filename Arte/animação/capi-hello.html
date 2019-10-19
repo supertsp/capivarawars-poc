@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Capii Hello</title>
+    <style>
+        .hi {
+            width: 180px;
+            height: 265px;
+            /* width: 50px;
+            height: 72px; */
+            background-image: url("./capii-hello-sprite_180x265.png");
+            /* background-image: url("http://s.cdpn.io/79/sprite-steps.png"); */
+            /* 10x imagens de 50x72 */
+
+            animation: play .3s steps(4) infinite;
+            /* animation: play .8s steps(10) infinite; */
+            /* .8s = duração   steps(10) = qtd de partes */
+        }
+
+        @keyframes play {
+            from {
+                background-position: 0px;
+            }
+
+            to {
+                background-position: -720px;
+                /* background-position: -500px; */
+                /* comprimento do sprite */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hi"></div>
+</body>
+
+</html>
