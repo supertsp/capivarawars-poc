@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import AppBar from 'material-ui/AppBar';
+// import RaisedButton from 'material-ui/RaisedButton';
+// import TextField from 'material-ui/TextField';
 import axios from 'axios';
 
 
@@ -51,7 +51,8 @@ constructor(props){
 render() {
     return (
       <div>
-        <MuiThemeProvider>
+        Funciona
+        {/* <MuiThemeProvider>
           <div>
           <AppBar
              title="Login"
@@ -71,7 +72,7 @@ render() {
              <br/>
              <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
          </div>
-         </MuiThemeProvider>
+         </MuiThemeProvider> */}
       </div>
     );
   }
