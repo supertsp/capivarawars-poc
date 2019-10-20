@@ -1,0 +1,18 @@
+.pag01{
+    
+    margin-left: 7%;
+    height: 40em;
+  display: flex;
+  align-items: center;
+  justify-content: center
+    
+}
+
+.pag02{
+    position:absolute;
+    top: 35px;
+
+
+
+}
+

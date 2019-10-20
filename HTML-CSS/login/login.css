@@ -1,0 +1,87 @@
+.pag1{
+    
+    margin-left: 7%;
+    height: 27em;
+  display: flex;
+  align-items: center;
+  justify-content: center
+    
+}
+
+.pag2{
+
+    margin-top: 10%;
+    margin-left: 120px;
+}
+
+.pag3{
+
+    margin-top: 1%;
+    margin-left: 107px;
+}
+
+.pag4{
+
+    background-color: ghostwhite;
+}
+
+.corText{
+
+color: black;
+}
+
+.texto{
+
+    font-size: 20px;
+}
+
+.Imagem {
+
+    margin-top: 50px;
+    margin-left: 500px;
+    background: url(CapivaraWars-logo.png) no-repeat;
+    height: 100px;
+    width: 300px;
+
+}
+
+.Imagem2 {
+
+    margin-top: 200px;
+    margin-left: 500px;
+    background: url(vector-bamboo-background.jpg) no-repeat;
+    height: 500px;
+    width: 700px;
+    z-index: -1;
+
+}
+
+.imagemCap {
+    border: 0px;
+    position: absolute;
+    top: 120px;
+    left: 320px;
+    width: 180px;
+    height: 265px;
+    /* width: 50px;
+    height: 72px; */
+    background-image: url("capii-hello-sprite_180x265.png");
+    /* background-image: url("http://s.cdpn.io/79/sprite-steps.png"); */
+    /* 10x imagens de 50x72 */
+
+    animation: play .3s steps(4) infinite;
+    /* animation: play .8s steps(10) infinite; */
+    /* .8s = duração   steps(10) = qtd de partes */
+}
+
+@keyframes play {
+    from {
+        background-position: 0px;
+    }
+
+    to {
+        background-position: -720px;
+        /* background-position: -500px; */
+        /* comprimento do sprite */
+    }
+}
