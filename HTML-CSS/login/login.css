@@ -1,96 +1,87 @@
-.teste{
-    position: absolute;
-    background-image: url(imagem-mar.png) no-repeat;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
+.fundoAgua {
+  position: absolute;
+  background-image: url(imagem-mar.png) no-repeat;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
 }
 
+.bambu {
+  position: absolute;
+  background-image: url(moldura-bambu.png) no-repeat;
+  height: 105%;
+  width: 41%;
+  top: -4%;
+  left: 29.5%;
+}
 
-.pag1{
-    
-    margin-left: 7%;
-    height: 27em;
+.pag1 {
+  position: absolute;
+  top: 20%;
+  margin-left: 7%;
+  height: 27em;
   display: flex;
   align-items: center;
-  justify-content: center
-    
+  justify-content: center;
 }
 
-.pag2{
-
-    margin-top: 10%;
-    margin-left: 120px;
+.pag2 {
+  margin-top: 10%;
+  margin-left: 39%;
 }
 
-.pag3{
-
-    margin-top: 1%;
-    margin-left: 107px;
+.pag3 {
+  margin-top: 1%;
+  margin-left: 34%;
 }
 
-.pag4{
-
-    background-color: ghostwhite;
+.pag4 {
+  background-color: ghostwhite;
 }
 
-.corText{
-
-color: black;
+.corText {
+  color: black;
 }
 
-.texto{
-
-    font-size: 20px;
+.texto {
+  font-size: 20px;
 }
 
 .Imagem {
-
-    margin-top: 50px;
-    margin-left: 500px;
-    background: url(CapivaraWars-logo.png) no-repeat;
-    height: 100px;
-    width: 300px;
-
+  position: absolute;
+  top: 3%;
+  left: 37%;
+  background: url(CapivaraWars-logo.png) no-repeat;
+  height: 20%;
+  width: 20%;
 }
 
-.Imagem2 {
-
-    margin-top: 200px;
-    margin-left: 500px;
-    background: url(vector-bamboo-background.jpg) no-repeat;
-    height: 500px;
-    width: 700px;
-    z-index: -1;
-
-}
-
-.imagemCap {
-    border: 0px;
-    position: absolute;
-    top: 120px;
-    left: 320px;
-    width: 180px;
-    height: 265px;
-    /* width: 50px;
+.imagemCap{
+  border: none;
+  position: absolute;
+  top: 12%;
+  left: 320px;
+  width: 180px;
+  height: 265px;
+  /* width: 50px;
     height: 72px; */
-    background-image: url("capii-hello-sprite_180x265.png");
-    /* background-image: url("http://s.cdpn.io/79/sprite-steps.png"); */
-    /* 10x imagens de 50x72 */
+  background-image: url("capii-hello-sprite_180x265.png");
+  /* background-image: url("http://s.cdpn.io/79/sprite-steps.png"); */
+  /* 10x imagens de 50x72 */
 
-    animation: play .3s steps(4) infinite;
-    /* animation: play .8s steps(10) infinite; */
-    /* .8s = duração   steps(10) = qtd de partes */
+  animation: play 0.3s steps(4) infinite;
+  /* animation: play .8s steps(10) infinite; */
+  /* .8s = duração   steps(10) = qtd de partes */
 }
 
 @keyframes play {
-    from {
-        background-position: 0px;
-    }
+  from {
+    background-position: 0px;
+  }
 
-    to {
-        background-position: -720px;
-        /* background-position: -500px; */
-        /* comprimento do sprite */
-    }
+  to {
+    background-position: -720px;
+    /* background-position: -500px; */
+    /* comprimento do sprite */
+  }
 }
