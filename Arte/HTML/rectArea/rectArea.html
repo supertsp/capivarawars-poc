@@ -7,27 +7,155 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Capii Hello</title>
     <style>
-        .hi {
-            width: 180px;
-            height: 265px;
-            /* width: 50px;
-            height: 72px; */
-            background-image: url("./capii-hello-sprite_180x265.png");
-            /* background-image: url("http://s.cdpn.io/79/sprite-steps.png"); */
-            /* 10x imagens de 50x72 */
+        .title-are {}
 
-            animation: play .3s steps(4) infinite;
-            /* animation: play .8s steps(10) infinite; */
-            /* .8s = duração   steps(10) = qtd de partes */
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+
+            width: 500px;
+            height: 500px;
+
+            grid-gap: 0x;
+
+            border: 1px dotted green;
+        }
+
+        .gird-border-cell {
+            border: 1px dotted red;
+        }
+
+        /* ║ */
+        .corner-left {
+            grid-row-start: 2;
+            background-image: url("./bamboo_155x155_recorte_left.png");
+            background-repeat: repeat-y;
+            /* width: 35px; */
+            width: 45px;
+            height: 450px;
+        }
+
+        /* ╔ */
+        .corner-top-left {
+            grid-row-start: 1;
+            background-image: url("./bamboo_155x155_recorte_top_left.png");
+            background-repeat: no-repeat;
+            width: 45px;
+            height: 45px;
+        }
+
+        /* ═ */
+        .corner-top {
+            grid-row-start: 1;
+            background-image: url("./bamboo_155x155_recorte_top.png");
+            background-repeat: repeat-x;
+            width: 410px;
+            /* height: 35px; */
+            height: 45px;
+        }
+
+        /* ╗ */
+        .corner-top-right {
+            grid-row-start: 1;
+            background-image: url("./bamboo_155x155_recorte_top_right.png");
+            background-repeat: no-repeat;
+            /* width: 40px; */
+            width: 45px;
+            height: 45px;
+        }
+
+        /* ~ */
+        .middle-content {
+            grid-row-start: 2;
+            /* width: auto;
+            height: auto; */
+        }
+
+        /* ╚ */
+        .corner-botton-left {
+            grid-row-start: 3;
+            background-image: url("./bamboo_155x155_recorte_botton_left.png");
+            background-repeat: no-repeat;
+            width: 45px;
+            /* height: 40px; */
+            height: 45px;
+        }
+
+        /* ═ */
+        .corner-botton {
+            grid-row-start: 3;
+            background-image: url("./bamboo_155x155_recorte_botton.png");
+            background-repeat: repeat-x;
+            background-position-y: 5px;
+            width: 410px;
+            /* height: 35px; */
+            height: 45px;
+        }
+
+        /* ╝ */
+        .corner-botton-right {
+            grid-row-start: 3;
+            background-image: url("./bamboo_155x155_recorte_botton_right.png");
+            background-repeat: no-repeat;
+            /* width: 40px;
+            height: 40px; */
+            width: 45px;
+            height: 45px;
+        }
+
+        /* ║ */
+        .corner-right {
+            grid-row-start: 2;
+            background-image: url("./bamboo_155x155_recorte_right.png");
+            background-repeat: repeat-y;
+            background-position-x: 5px;
+            /* width: 35px; */
+            width: 45px;
+            height: 450px;
         }
     </style>
 </head>
 
 <body>
     <div class="rectArea">
-        <div class="row">
-            <div class="">
+
+        <div class="title-are">
+            Título
+        </div>
+
+        <div class="grid-container">
+
+            <div class="corner-left gird-border-cell">
+                &nbsp;
             </div>
+            <div class="corner-top-left  gird-border-cell">
+                &nbsp;
+            </div>
+            <div class="corner-top  gird-border-cell">
+                &nbsp;
+            </div>
+            <div class="corner-top-right  gird-border-cell">
+                &nbsp;
+            </div>
+
+            <div class="middle-content gird-border-cell">
+                middle <br>
+                on middle again :)
+            </div>
+
+            <div class="corner-botton-left gird-border-cell">
+                &nbsp;
+            </div>
+            <div class="corner-botton gird-border-cell">
+                &nbsp;
+            </div>
+            <div class="corner-botton-right gird-border-cell">
+                &nbsp;
+            </div>
+            <div class="corner-right gird-border-cell">
+                &nbsp;
+            </div>
+
         </div>
 </body>
 
