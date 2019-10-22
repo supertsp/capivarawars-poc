@@ -1,19 +1,19 @@
-.pag01{
-    
-    margin-left: 7%;
-    height: 40em;
+.container1 {
+  margin-left: 7%;
+  height: 40em;
   display: flex;
   align-items: center;
-  justify-content: center
-    
+  justify-content: center;
 }
 
-.pag02{
-    position:absolute;
-    top: 35px;
+.card1 {
+  top: 10%;
+}
 
-
-
+.radio1 {
+  position: absolute;
+  top: 100%;
+  z-index: 1;
 }
 
 .fundoAgua {
@@ -24,12 +24,29 @@
   width: 100%;
 }
 
-.logo{
+.logo {
   position: absolute;
   background-image: url(CapivaraWars-logo.png) no-repeat;
   height: 20%;
   width: 20%;
   left: 36%;
-  top: 5%;
+  top: 3%;
 }
 
+.botaoSub {
+  position: relative;
+  left: 36%;
+}
+
+.bambu1 {
+  position: absolute;
+  background-image: url(moldura-bambu.png) no-repeat;
+  height: 81%;
+  width: 57%;
+  top: 17%;
+  left: 20.3%;
+}
+
+.texto {
+  font-size: 20px;
+}
