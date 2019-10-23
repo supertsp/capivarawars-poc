@@ -34,7 +34,6 @@ public class Jogador extends GameObject{
     private Character genero;
     private LocalDate dataNascimento;
     private Boolean online;
-    private String ultimoCodigoAtivacao;
     private Integer vitorias;
     private Integer empates;
     private Integer derrotas;
@@ -81,136 +80,215 @@ public class Jogador extends GameObject{
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public void setNome(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
     public String getNick() {
         return nick;
     }
 
-    public void setNick(String nick) {
+    public Jogador setNick(String nick) {
         this.nick = nick;
-    }
-    
-    public void setOnline(boolean estaOnline) {
-        online = estaOnline;
+        return this;
     }
 
-    public boolean isOnline() {
+    public LocalDateTime getDataHoraCriacaoConta() {
+        return dataHoraCriacaoConta;
+    }
+
+    public Jogador setDataHoraCriacaoConta(LocalDateTime dataHoraCriacaoConta) {
+        this.dataHoraCriacaoConta = dataHoraCriacaoConta;
+        return this;
+    }
+
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public Jogador setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+        return this;
+    }
+    
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public Jogador setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Jogador setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public Character getGenero() {
+        return genero;
+    }
+
+    public Jogador setGenero(Character genero) {
+        this.genero = genero;
+        return this;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public Jogador setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+        return this;
+    }
+    
+    public Boolean isOnline() {
         return online;
     }
 
-    public int getVitorias() {
+    public Jogador setOnline(boolean estaOnline) {
+        online = estaOnline;
+        return this;
+    }
+    
+    public Integer getVitorias() {
         return vitorias;
     }
     
-    public void incrementarVitorias(int valorIncremento) {
+    public Jogador incrementarVitorias(int valorIncremento) {
         vitorias += valorIncremento;
+        return this;
     }
 
-//    public void setVitorias(int vitorias) {
-//        this.vitorias = vitorias;
-//    }
-
+    public Jogador setVitorias(int vitorias) {
+        this.vitorias = vitorias;
+        return this;
+    }
+        
+    public Integer getEmpates() {
+        return empates;
+    }
+    
+    public Jogador incrementarEmpates(int valorIncremento) {
+        empates += valorIncremento;
+        return this;
+    }
+    
+    public Jogador setEmpates(int empates) {
+        this.empates = empates;
+        return this;
+    }
+    
     public int getDerrotas() {
         return derrotas;
     }
     
-    public void incrementarDerrotas(int valorIncremento) {
+     public Jogador incrementarDerrotas(int valorIncremento) {
         derrotas += valorIncremento;
+        return this;
     }
 
-//    public void setDerrotas(int derrotas) {
-//        this.derrotas = derrotas;
-//    }
-
-    public int getEmpates() {
-        return empates;
+    public Jogador setDerrotas(int derrotas) {
+        this.derrotas = derrotas;
+        return this;
     }
     
-    public void incrementarEmpates(int valorIncremento) {
-        empates += valorIncremento;
+    public Integer getMoedas() {
+        return moedas;
     }
     
-//    public void setEmpates(int empates) {
-//        this.empates = empates;
-//    }
+    public Jogador incrementarMoedas(int valorIncremento) {
+        moedas += valorIncremento;
+        return this;
+    }
+    
+    public Jogador setMoedas(Integer moedas) {
+        this.moedas = moedas;
+        return this;
+    }
 
     public int getQtdTirosCerteiros() {
         return qtdTirosCerteiros;
     }
     
-    public void incrementarQtdTirosCerteiros(int valorIncremento) {
+    public Jogador incrementarQtdTirosCerteiros(int valorIncremento) {
         qtdTirosCerteiros += valorIncremento;
+        return this;
     }
 
-//    public void setQtdTirosCerteiros(int qtdTirosCerteiros) {
-//        this.qtdTirosCerteiros = qtdTirosCerteiros;
-//    }
+    public Jogador setQtdTirosCerteiros(int qtdTirosCerteiros) {
+        this.qtdTirosCerteiros = qtdTirosCerteiros;
+        return this;
+    }
 
     public int getQtdTirosRuins() {
         return qtdTirosRuins;
     }
 
-    public void incrementarQtdTirosRuins(int valorIncremento) {
+    public Jogador incrementarQtdTirosRuins(int valorIncremento) {
         qtdTirosRuins += valorIncremento;
+        return this;
     }
     
-//    public void setQtdTirosRuins(int qtdTirosRuins) {
-//        this.qtdTirosRuins = qtdTirosRuins;
-//    }
+    public Jogador setQtdTirosRuins(int qtdTirosRuins) {
+        this.qtdTirosRuins = qtdTirosRuins;
+        return this;
+    }
     
     public int getQtdTirosRecebidos() {
         return qtdTirosRecebidos;
     }
 
-    public void incrementarQtdTirosRecebidos(int valorIncremento) {
+    public Jogador incrementarQtdTirosRecebidos(int valorIncremento) {
         qtdTirosRecebidos += valorIncremento;
+        return this;
     }
     
-//    public void setQtdTirosRecebidos(int qtdTirosRecebidos) {
-//        this.qtdTirosRecebidos = qtdTirosRecebidos;
-//    }
+    public Jogador setQtdTirosRecebidos(int qtdTirosRecebidos) {
+        this.qtdTirosRecebidos = qtdTirosRecebidos;
+        return this;
+    }
     
     public int getQtdMovimentos() {
         return qtdMovimentos;
     }
 
-    public void incrementarQtdMovimentos(int valorIncremento) {
+    public Jogador incrementarQtdMovimentos(int valorIncremento) {
         qtdMovimentos += valorIncremento;
+        return this;
     }
     
-//    public void setQtdMovimentos(int qtdMovimentos) {
-//        this.qtdMovimentos = qtdMovimentos;
-//    }
+    public Jogador setQtdMovimentos(int qtdMovimentos) {
+        this.qtdMovimentos = qtdMovimentos;
+        return this;
+    }
     
     public Capivara getCapivara(){
         return super.getChild(Capivara.class, INDICE_CHILD_CAPIVARA);
     }
     
-    public void setCapivara(Capivara novaCapivara){
+    public Jogador setCapivara(Capivara novaCapivara){
         super.updateChild(INDICE_CHILD_CAPIVARA, novaCapivara);
+        return this;
     }
     
     public Rio getRio(){
         return super.getChild(Rio.class, INDICE_CHILD_RIO);
     }
     
-    public void setRio(Rio novoRio){
+    public Jogador setRio(Rio novoRio){
         super.updateChild(INDICE_CHILD_RIO, novoRio);
+        return this;
     }
     
     public Canoa getCanoa(){
         return super.getChild(Canoa.class, INDICE_CHILD_CANOA);
     }
     
-    public void setCanoa(Canoa novaCanoa){
+    public Jogador setCanoa(Canoa novaCanoa){
         super.updateChild(INDICE_CHILD_CANOA, novaCanoa);
+        return this;
     }
     //</editor-fold>
     

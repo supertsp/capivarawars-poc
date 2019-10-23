@@ -1,8 +1,6 @@
 package br.com.capivarawars.database.model;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
-import br.com.capivarawars.core.CorPadrao;
-import br.com.capivarawars.core.game.gameobject.Capivara;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -22,39 +20,32 @@ import javax.persistence.*;
  * Last update: -
  *///</editor-fold>
 @Entity
-@Table(name="CAPIVARA")
-public class CapivaraDAO {
+@Table(name="COR")
+public class CorDAO {
     
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     @Id
     @GeneratedValue
-    @Column(name = "ID_CAPIVARA")
-    private Long idCapivara;
+    @Column(name = "ID_COR")
+    private Long idCor;
     
     @Column(name = "NOME", length = VARCHAR_LENGTH_NOME)
     private String nome;
         
-    @Column(name = "DATA_HORA_CRIACAO_CONTA", columnDefinition = "DATETIME")
-    private LocalDateTime dataHoraCriacao;
+    @Column(name = "RGBA", length = CHAR_LENGTH_RGBA, columnDefinition = "CHAR")
+    private String rgba;
+          
+    @OneToMany(mappedBy = "corDAO")
+    private List<CapivaraDAO> listaCapivaraDAO;
     
-    @Column(name = "BARRA_VIDA")
-    private Integer barraVida;
-    
-    @ManyToOne
-    @JoinColumn(name = "ID_COR")
-    private CorDAO corDAO;
-    
-    @ManyToOne
-    @JoinColumn(name = "ID_JOGADOR")
-    private JogadorDAO jogadorDAO;
-      
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
     public static final int
-            VARCHAR_LENGTH_NOME = 45;
+            VARCHAR_LENGTH_NOME = 120,
+            CHAR_LENGTH_RGBA = 9;
             
     //</editor-fold>
     
@@ -69,27 +60,25 @@ public class CapivaraDAO {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    public CapivaraDAO() {
+    public CorDAO() {
         super();
     }
     
-    public CapivaraDAO(String nome, LocalDateTime dataHoraCriacao, Integer barraVida, CorDAO corDAO) {
+    public CorDAO(String nome, String rgba) {
         this.nome = nome;
-        this.dataHoraCriacao = dataHoraCriacao;
-        this.barraVida = barraVida;
-        this.corDAO = corDAO;
+        this.rgba = rgba;
     }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="methods...">
     
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-     public Long getIdCapivara() {
-        return idCapivara;
+    public Long getIdCor() {
+        return idCor;
     }
 
-    public void setIdCapivara(Long idCapivara) {
-        this.idCapivara = idCapivara;
+    public void setIdCor(Long idCor) {
+        this.idCor = idCor;
     }
 
     public String getNome() {
@@ -100,38 +89,21 @@ public class CapivaraDAO {
         this.nome = nome;
     }
 
-    public LocalDateTime getDataHoraCriacao() {
-        return dataHoraCriacao;
+    public String getRgba() {
+        return rgba;
     }
 
-    public void setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
-        this.dataHoraCriacao = dataHoraCriacao;
+    public void setRgba(String rgba) {
+        this.rgba = rgba;
     }
 
-    public Integer getBarraVida() {
-        return barraVida;
+    public List<CapivaraDAO> getListaCapivaraDAO() {
+        return listaCapivaraDAO;
     }
 
-    public void setBarraVida(Integer barraVida) {
-        this.barraVida = barraVida;
+    public void setListaCapivaraDAO(List<CapivaraDAO> listaCapivaraDAO) {
+        this.listaCapivaraDAO = listaCapivaraDAO;
     }
-
-    public CorDAO getCorDAO() {
-        return corDAO;
-    }
-
-    public void setCorDAO(CorDAO corDAO) {
-        this.corDAO = corDAO;
-    }
-
-    public JogadorDAO getJogadorDAO() {
-        return jogadorDAO;
-    }
-
-    public void setJogadorDAO(JogadorDAO jogadorDAO) {
-        this.jogadorDAO = jogadorDAO;
-    }
-
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="override methods...">
@@ -147,20 +119,9 @@ public class CapivaraDAO {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
-    public Capivara fillJogador(Capivara capivara){
-        capivara
-            .setNome(getNome())
-            .setCor(CorPadrao.NENHUMA)
-            .setDataHoraCriacao(getDataHoraCriacao())
-            .getBarraDeEnergia().setValorAtual(getBarraVida());
-            ;
-        
-        return capivara;
-    }
+    
     //</editor-fold>
     
     //</editor-fold>
-
-   
         
 }//class
