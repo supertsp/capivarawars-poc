@@ -1,0 +1,21 @@
+===========ANTIGO=============================
+e-mail: 182-3b-grupo1@bandtec.com.br
+s: #Gfgrupo1b
+
+url: srvgrupo3b1.database.windows.net
+u: usergrupo3b1@srvgrupo3b1
+s: #Gfgrupo1b
+==============================================
+
+url: capivarawars.database.windows.net
+u: capivara_admin
+s: !Capii123
+bd: CapivaraWars
+
+
+STRING CONNECTION
+	JDBC
+		jdbc:sqlserver://capivarawars.database.windows.net:1433;database=CapivaraWars;user=capivara_admin@capivarawars;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+	
+	ODBC (NODE)
+		Driver={ODBC Driver 13 for SQL Server};Server=tcp:capivarawars.database.windows.net,1433;Database=CapivaraWars;Uid=capivara_admin;Pwd={your_password_here};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;
