@@ -1,13 +1,60 @@
 .container1 {
-    margin-left: 7%;
+    margin-left: 25.5%;
+    width: 55.8%;
     height: 40em;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
+  .nome01{
+
+    position: absolute;
+    left: 3% !important;
+    top: 4%;
+    width: 100%;
+
+  }
+
+  .nickName{
+    position: absolute;
+    left: 3% !important;
+    top: 26%;
+    width: 100%;
+    
+  }
+
+  .senha{
+    position: absolute;
+    left: 28% !important;
+    top: 58%;
+    width: 43%;
+
+  }
+
+  .cadastro{
+    position: absolute;
+    left: -300% !important;
+    margin-top: 385%;
+    width: 130%;
+  }
+
+  .sexo{
+    position: absolute;
+    left: 28% !important;
+    top: 72%;
+    width: 52.7%;
+
+  }
   
   .card1 {
     top: 10%;
+    height: 70%;
+    width: 95%;
+  }
+
+  .foto{
+    left: -9% !important;
   }
   
   .radio1 {

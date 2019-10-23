@@ -19,7 +19,7 @@ class Register extends Component {
             <img src= { molduraBambu } className=" bambu1"></img>
             <div className="card card1">
               <div className="card-body">
-                <div className="row">
+                <div className="row nome01">
                   <div className="col">
                     <div className="form-group">
                       <label for="name1" className=" texto corText texto">
@@ -51,7 +51,7 @@ class Register extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="row nickName">
                 <div className="col">
                   <div className="form-group">
                     <label for="nickName1" className=" texto corText texto">
@@ -83,7 +83,7 @@ class Register extends Component {
                 </div>
               </div>
             </div>
-            <div className="row">
+            <div className="row senha">
               <div className="col">
                 <div className="form-group">
                   <label for="nickName1" className=" texto corText texto">
@@ -115,7 +115,7 @@ class Register extends Component {
               </div>
             </div>
             <div>
-              <div className="row">
+              <div className="row sexo">
                 <div className="col">
                   <div className="form-check">
                     <label for="example-email-input" className="texto corText">
@@ -149,10 +149,10 @@ class Register extends Component {
                     </label>
                   </div>
                 </div>
-                <div className="col">
+                <div className="col foto">
                   <div>
                     <div>
-                      <label for="exampleFormControlFile1" className=" texto">
+                      <label for="exampleFormControlFile1" className="">
                         Escolha uma foto sua
                       </label>
                       <input
@@ -164,7 +164,7 @@ class Register extends Component {
                   </div>
                 </div>
               </div>
-              <button type="submit" className="btn btn-primary botaoSub">
+              <button type="submit" className="btn btn-primary botaoSub cadastro">
                 Finalizar cadastro
               </button>
             </div>
