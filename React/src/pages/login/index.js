@@ -53,7 +53,7 @@ class Login extends Component {
                     Não tem uma conta? Então clieque no botão cadastrar.
                   </small>
                   <button type="submit" className="btn btn-primary pag3">
-                    Cadastrar
+                    <Link to={'/register'}>Cadastrar</Link>
                   </button>
                 </div>
               </div>
