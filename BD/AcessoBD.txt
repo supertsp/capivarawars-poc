@@ -1,0 +1,9 @@
+ACESSOS BD
+
+EMAIL: 182-3b-grupo1@bandtec.com.br
+SENHA: #Gfgrupo1b
+
+LOGIN: usergrupo3b1
+SENHA: #Gfgrupo1b
+
+SERVIDOR: srvgrupo3b1.database.windows.net
