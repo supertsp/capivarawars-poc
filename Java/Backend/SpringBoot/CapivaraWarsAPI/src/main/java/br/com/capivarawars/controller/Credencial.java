@@ -2,8 +2,6 @@ package br.com.capivarawars.controller;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import br.com.capivarawars.core.Jogador;
-
 public class Credencial {
 	
 	@JsonProperty
@@ -37,10 +35,5 @@ public class Credencial {
 		this.senha = senha;
 	}
 	
-	public boolean equals(Object outraCredendial) {
-		return	outraCredendial instanceof Jogador &&
-				((Jogador)outraCredendial).getUsuario().equals(getUsuario()) &&
-				((Jogador)outraCredendial).getSenha().equals(getSenha());
-	}
-	
+		
 }

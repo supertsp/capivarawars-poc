@@ -11,6 +11,8 @@ import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Toolkit;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import java.util.Scanner;
 //</editor-fold>
@@ -221,73 +223,75 @@ public class Play {
 //        
         //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="TESTES: PARTIDA">
-        Partida partida = new Partida();
-        int qtdJogadores = 2;
-        int tamanhoRio = 10;
-        int tamanhoCanoa = 4;
-        String nomeJogador = "";
-        String nomeCapivara = "";
-        Jogador jogTemp = null;
-        int posicaoEscolhida = 0;
-        
-        CorPadrao corPadrao =CorPadrao.AMARELO;
-        
-        
-        for (int indice = 0; indice < qtdJogadores; indice++) {
-            nomeJogador = showInputDialog("JOGADOR " + (indice + 1) + "\n\nQual é o seu nome?");
-            nomeCapivara = showInputDialog("JOGADOR " + (indice + 1) + "\n\nQual é nome da sua Capivara?");
-            jogTemp = new Jogador(nomeJogador, nomeJogador, new Capivara(nomeCapivara, CorPadrao.TRANSPARENTE), tamanhoRio, tamanhoCanoa);
-            partida.addJogador(jogTemp);
-        }
-
-        partida.iniciar();
-
-        do {
-            
-            //MOVENDO CANOAS
-            for (int indice = 0; indice < qtdJogadores; indice++) {
-                try {
-                    posicaoEscolhida = Integer.parseInt(showInputDialog(
-                            partida.getJogador(indice).getNome() + " (J" + (indice + 1)
-                            + ")\n\nQual nova posição da sua canoa?"
-                    ));
-                } catch (Exception e) {
-                    posicaoEscolhida = 0;
-                }
-
-                partida.moverCanoaAtual(posicaoEscolhida);
-            }
-            
-            //ATIRANDO NO INIMIGO
-            for (int indice = 0; indice < qtdJogadores; indice++) {
-                try {
-                    posicaoEscolhida = Integer.parseInt(showInputDialog(
-                            partida.getJogador(indice).getNome() + " (J" + (indice + 1)
-                            + ")\n\nQual posição você quer ATIRAR?"
-                    ));
-                } catch (Exception e) {
-                    posicaoEscolhida = 0;
-                }
-
-                partida.atirarNoInimigo(posicaoEscolhida + 1, posicaoEscolhida);
-            }
-            
-            //Exibindo Resultados
-            System.out.println(partida);
-            
-        } while (!partida.terminou());
-        
-        if (partida.houveEmpate()) {
-            showMessageDialog("EMPATOU!!!!!");
-        }
-        else{
-            showMessageDialog("PARABÉNS!!! " + partida.alguemGanhou().getNome());
-        }
-        
-        System.out.println(partida);
+//        Partida partida = new Partida();
+//        int qtdJogadores = 2;
+//        int tamanhoRio = 10;
+//        int tamanhoCanoa = 4;
+//        String nomeJogador = "";
+//        String nomeCapivara = "";
+//        Jogador jogTemp = null;
+//        int posicaoEscolhida = 0;
+//        
+//        CorPadrao corPadrao =CorPadrao.AMARELO;
+//        
+//        
+//        for (int indice = 0; indice < qtdJogadores; indice++) {
+//            nomeJogador = showInputDialog("JOGADOR " + (indice + 1) + "\n\nQual é o seu nome?");
+//            nomeCapivara = showInputDialog("JOGADOR " + (indice + 1) + "\n\nQual é nome da sua Capivara?");
+//            jogTemp = new Jogador(nomeJogador, nomeJogador, new Capivara(nomeCapivara, CorPadrao.TRANSPARENTE), tamanhoRio, tamanhoCanoa);
+//            partida.addJogador(jogTemp);
+//        }
+//
+//        partida.iniciar();
+//
+//        do {
+//            
+//            //MOVENDO CANOAS
+//            for (int indice = 0; indice < qtdJogadores; indice++) {
+//                try {
+//                    posicaoEscolhida = Integer.parseInt(showInputDialog(
+//                            partida.getJogador(indice).getNome() + " (J" + (indice + 1)
+//                            + ")\n\nQual nova posição da sua canoa?"
+//                    ));
+//                } catch (Exception e) {
+//                    posicaoEscolhida = 0;
+//                }
+//
+//                partida.moverCanoaAtual(posicaoEscolhida);
+//            }
+//            
+//            //ATIRANDO NO INIMIGO
+//            for (int indice = 0; indice < qtdJogadores; indice++) {
+//                try {
+//                    posicaoEscolhida = Integer.parseInt(showInputDialog(
+//                            partida.getJogador(indice).getNome() + " (J" + (indice + 1)
+//                            + ")\n\nQual posição você quer ATIRAR?"
+//                    ));
+//                } catch (Exception e) {
+//                    posicaoEscolhida = 0;
+//                }
+//
+//                partida.atirarNoInimigo(posicaoEscolhida + 1, posicaoEscolhida);
+//            }
+//            
+//            //Exibindo Resultados
+//            System.out.println(partida);
+//            
+//        } while (!partida.terminou());
+//        
+//        if (partida.houveEmpate()) {
+//            showMessageDialog("EMPATOU!!!!!");
+//        }
+//        else{
+//            showMessageDialog("PARABÉNS!!! " + partida.alguemGanhou().getNome());
+//        }
+//        
+//        System.out.println(partida);
         
         //</editor-fold>
-
+            
+        LocalDateTime dataHoraCriacaoConta = LocalDateTime.parse("2019-10-01T13:15:26");
+        System.out.println(dataHoraCriacaoConta);
     }//main
     //</editor-fold>
 

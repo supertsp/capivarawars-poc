@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import br.com.capivarawars.core.Jogador;
+
 
 public class LoginControllerTest {
 	private AcessoController controller;
