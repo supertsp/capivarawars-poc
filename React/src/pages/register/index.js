@@ -172,6 +172,7 @@ class Register extends Component {
                 type="submit"
                 className="btn btn-primary botaoSub cadastro"
               >
+                <Link to={'../login'}  className=" corFonte">Cadastrar</Link>
                 Finalizar cadastro{" "}
               </button>{" "}
             </div>{" "}
