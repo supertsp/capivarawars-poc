@@ -16,12 +16,12 @@ class GameScreen extends Component {
       <img src={capivaraLogo} className=" logo">
         {" "}
       </img>
-      <div className="canvasGame">
+      <div className="container container1">
         <img src={molduraBambu} className=" bambu1">
           {" "}
         </img>{" "}
         <canvas
-          id="myCanvas"
+          id="canvasGame"
           width="200"
           height="100"
           style="border:1px solid #000000;"
