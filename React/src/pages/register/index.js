@@ -26,7 +26,7 @@ class Register extends Component {
                 <div className="row nome01">
                   <div className="col">
                     <div className="form-group">
-                      <label for="name1" className=" texto corText texto">
+                      <label htmlFor="name1" className=" texto corText texto">
                         Insira seu nome completo{" "}
                       </label>{" "}
                       <input
@@ -40,7 +40,7 @@ class Register extends Component {
                   <div className="col">
                     <div className="form-group">
                       <label
-                        for="example-date-input"
+                        htmlFor="example-date-input"
                         className="texto corText texto"
                       >
                         Data de nascimento{" "}
@@ -58,7 +58,7 @@ class Register extends Component {
               <div className="row nickName">
                 <div className="col">
                   <div className="form-group">
-                    <label for="nickName1" className=" texto corText texto">
+                    <label htmlFor="nickName1" className=" texto corText texto">
                       Nick name do jogador{" "}
                     </label>{" "}
                     <input
@@ -72,7 +72,7 @@ class Register extends Component {
                 <div className="col">
                   <div className="form-group">
                     <label
-                      for="example-email-input"
+                      htmlFor="example-email-input"
                       className="texto corText texto"
                     >
                       Digite seu E - mail{" "}
@@ -90,7 +90,7 @@ class Register extends Component {
             <div className="row senha">
               <div className="col">
                 <div className="form-group">
-                  <label for="nickName1" className=" texto corText texto">
+                  <label htmlFor="nickName1" className=" texto corText texto">
                     Senha{" "}
                   </label>{" "}
                   <input
@@ -104,7 +104,7 @@ class Register extends Component {
               <div className="col">
                 <div className="form-group">
                   <label
-                    for="example-email-input"
+                    htmlFor="example-email-input"
                     className="texto corText texto"
                   >
                     Confirme sua senha{" "}
@@ -122,7 +122,7 @@ class Register extends Component {
               <div className="row sexo">
                 <div className="col">
                   <div className="form-check">
-                    <label for="example-email-input" className="texto corText">
+                    <label htmlFor="example-email-input" className="texto corText">
                       Informe seu sexo{" "}
                     </label>{" "}
                     <input
@@ -135,7 +135,7 @@ class Register extends Component {
                     ></input>{" "}
                     <label
                       className="form-check-label radio1"
-                      for="exampleRadios1"
+                      htmlFor="exampleRadios1"
                     >
                       Masculino{" "}
                     </label>{" "}
@@ -148,7 +148,7 @@ class Register extends Component {
                       id="exampleRadios2"
                       value="option2"
                     ></input>{" "}
-                    <label className="form-check-label" for="exampleRadios2">
+                    <label className="form-check-label" htmlFor="exampleRadios2">
                       Feminino{" "}
                     </label>{" "}
                   </div>{" "}
@@ -156,7 +156,7 @@ class Register extends Component {
                 <div className="col foto">
                   <div>
                     <div>
-                      <label for="exampleFormControlFile1" className="">
+                      <label htmlFor="exampleFormControlFile1" className="">
                         Escolha uma foto sua{" "}
                       </label>{" "}
                       <input
