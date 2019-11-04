@@ -11,11 +11,11 @@
     </parent>
 	
     <groupId>br.com.</groupId>
-    <artifactId>capivara-wars-api</artifactId>
+    <artifactId>capivara-wars-game-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>CapivaraWarsAPI</name>
+    <name>CapivaraWarsGameAPI</name>
     <url>http://maven.apache.org</url>
 
     <properties>
