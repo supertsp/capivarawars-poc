@@ -126,8 +126,9 @@ public class PremioDAO {
         }
         
         return 
-                jogador1 != null &&
-                jogador2 != null;
+                nome != null &&
+                valorEmMoedas != null &&
+                urlImagem != null;
     }
     //</editor-fold>
     //</editor-fold>

@@ -36,7 +36,11 @@ public class CorDAO {
         
     @Column(name = "RGBA", length = CHAR_LENGTH_RGBA, columnDefinition = "CHAR")
     private String rgba;
-          
+    
+    
+    /**
+     * FOREIGN KEYS
+     */
     @OneToMany(mappedBy = "corDAO")
     private List<CapivaraDAO> listaCapivaraDAO;
     

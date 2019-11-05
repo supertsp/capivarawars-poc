@@ -85,6 +85,10 @@ public class JogadorDAO {
     @Column(name = "QTD_MOVIMENTOS")
     private Integer qtdMovimentos;
     
+    
+    /**
+     * FOREIGN KEYS
+     */
     @OneToMany(mappedBy = "jogadorDAO")
     private List<CapivaraDAO> listaCapivaraDAO;
     
@@ -96,6 +100,15 @@ public class JogadorDAO {
     
     @OneToOne(mappedBy = "jogadorVencedor")
     private PartidaDAO partidaDAOVencedor;
+    
+    @OneToOne(mappedBy = "jogadorVencedorPrimeiro")
+    private CampeonatoDAO campeonatoDAOVencedorPrimeiro;
+        
+    @OneToOne(mappedBy = "jogadorVencedorSegundo")
+    private CampeonatoDAO campeonatoDAOVencedorSegundo;
+            
+    @OneToOne(mappedBy = "jogadorVencedorTerceiro")
+    private CampeonatoDAO campeonatoDAOVencedorTerceiro;
     
     //</editor-fold>
     

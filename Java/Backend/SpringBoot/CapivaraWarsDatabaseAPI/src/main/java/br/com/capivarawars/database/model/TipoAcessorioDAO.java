@@ -34,6 +34,10 @@ public class TipoAcessorioDAO {
     @Column(name = "NOME", length = VARCHAR_LENGTH_NOME)
     private String nome;
     
+    
+    /**
+     * FOREIGN KEYS
+     */
     @OneToMany(mappedBy = "tipoAcessorioDAO")
     private List<AcessorioDAO> listaAcessorioDAO;
     //</editor-fold>

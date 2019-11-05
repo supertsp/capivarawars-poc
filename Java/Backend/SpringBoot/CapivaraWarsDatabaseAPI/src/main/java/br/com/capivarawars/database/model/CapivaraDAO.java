@@ -40,6 +40,10 @@ public class CapivaraDAO {
     @Column(name = "BARRA_VIDA")
     private Integer barraVida;
     
+    
+    /**
+     * FOREIGN KEYS
+     */
     @ManyToOne
     @JoinColumn(name = "ID_COR")
     private CorDAO corDAO;

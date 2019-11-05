@@ -43,6 +43,10 @@ public class AcessorioDAO {
     @Column(name = "DATAHORA_CRIACAO", columnDefinition = "DATETIME")
     private LocalDateTime dataHoraCriacao;
     
+    
+    /**
+     * FOREIGN KEYS
+     */
     @ManyToOne
     @JoinColumn(name = "ID_TIPO_ACESSORIO")
     private TipoAcessorioDAO tipoAcessorioDAO;

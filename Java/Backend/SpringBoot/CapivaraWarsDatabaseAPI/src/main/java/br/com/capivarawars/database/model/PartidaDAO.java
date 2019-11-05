@@ -34,7 +34,11 @@ public class PartidaDAO {
     
     @Column(name = "DATAHORA_FIM", columnDefinition = "DATETIME")
     private LocalDateTime dataHoraFim;
-
+    
+    
+    /**
+     * FOREIGN KEYS
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_JOGADOR_1", referencedColumnName = "ID_JOGADOR")
     private JogadorDAO jogador1;
