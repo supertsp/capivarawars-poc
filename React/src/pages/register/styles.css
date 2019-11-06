@@ -65,7 +65,7 @@
   
   .fundoAgua {
     position: absolute;
-    background-image: url(../../public/images/imagem-mar.jpg) no-repeat;
+    background-image: url(../../assets/images/imagem-mar.jpg) no-repeat;
     z-index: -1;
     height: 100%;
     width: 100%;
@@ -73,7 +73,7 @@
   
   .logo {
     position: absolute;
-    background-image: url(../../public/images/CapivaraWars-logo.png) no-repeat;
+    background-image: url(../../assets/images/CapivaraWars-logo.png) no-repeat;
     height: 20%;
     width: 20%;
     left: 36%;
@@ -87,7 +87,7 @@
   
   .bambu1 {
     position: absolute;
-    background-image: url(../../public/images/moldura-bambu.png) no-repeat;
+    background-image: url(../../assets/images/moldura-bambu.png) no-repeat;
     height: 81%;
     width: 57%;
     top: 17%;

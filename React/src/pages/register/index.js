@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 
-import imagemMar from "../../public/images/imagem-mar.jpg";
-import capivaraLogo from "../../public/images/CapivaraWars-logo.png";
-import molduraBambu from "../../public/images/moldura-bambu.png";
+import imagemMar from "../../assets/images/imagem-mar.jpg";
+import capivaraLogo from "../../assets/images/CapivaraWars-logo.png";
+import molduraBambu from "../../assets/images/moldura-bambu.png";
 import "./styles.css";
 
 class Register extends Component {

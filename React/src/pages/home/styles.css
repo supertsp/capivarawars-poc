@@ -1,0 +1,22 @@
+.components{
+    float: right;
+    margin-top: 35px;
+    list-style: none;
+}
+
+.card-options {
+    margin: 15px 5px;
+    background: none;
+    border: 40px solid transparent;
+    border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
+}
+
+.img-options {
+    border: none;
+    background: none;
+}
+
+.img-player {
+    width: 70px;
+    height: 70px;
+}
