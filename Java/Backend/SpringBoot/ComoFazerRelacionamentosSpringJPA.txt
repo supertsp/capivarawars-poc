@@ -1,0 +1,191 @@
+=======================================================
+========== EMBEDDED =================================
+
++-------+      *------------*        
+| ALUNO |  has   Credencias
++-------+      *------------*
+
+//Entidade que receberá a chave estrangeira
+@Entity
+@Table(name = "ALUNO")
+class Aluno{
+	@Id
+    @GeneratedValue
+    @Column(name = "ID_ALUNO")
+    private Long idAluno;
+	
+	@Embedded
+    private Credenciais credenciais;
+}
+
+@Embeddable
+class Credenciais {
+	@JsonProperty
+    @Column(name = "USUARIO", length = 10)
+    private String usuario;
+    
+    @Column(name = "senha", length = 60)
+    private String senha;
+}
+
+
+=======================================================
+========== ONE-TO-ONE =================================
+
++-------+              +-----------+
+| ALUNO | 1 -------- 1 | MATRICULA | 
++-------+              +-----------+ 
+
+//Entidade que receberá a chave estrangeira
+@Entity
+@Table(name = "ALUNO")
+class Aluno{
+	@Id
+    @GeneratedValue
+    @Column(name = "ID_ALUNO")
+    private Long idAluno;
+	
+	@Column(name = "NOME", columnDefinition = "CHAR", length = 30)
+    private String nome;
+	
+	/**
+     * RELATIONSHIPS
+     */
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_MATRICULA_FK", referencedColumnName = "ID_MATRICULA")
+    private Matricula matriculaFK;
+}
+
+@Entity
+@Table(name = "MATRICULA")
+class Matricula{
+	@Id
+    @GeneratedValue
+    @Column(name = "ID_MATRICULA")
+    private Long idMatricula;
+	
+	@Column(name = "CODIGO", columnDefinition = "CHAR", length = 15)
+    private String codigo;
+	
+	/**
+     * RELATIONSHIPS
+     */
+	@OneToOne(mappedBy = "matriculaFK")
+    private Aluno aluno;
+}
+
+
+=======================================================
+========== ONE-TO-MANY ================================
+
++-------+              +-------+
+| ALUNO | 1 -------- N | PROVA | 
++-------+              +-------+ 
+
+@Entity
+@Table(name = "ALUNO")
+class Aluno{
+	@Id
+    @GeneratedValue
+    @Column(name = "ID_ALUNO")
+    private Long idAluno;
+	
+	@Column(name = "NOME", columnDefinition = "CHAR", length = 30)
+    private String nome;
+	
+	/**
+     * RELATIONSHIPS
+     */
+	@OneToMany(mappedBy = "alunoFK")
+    private List<Prova> listaDeProva;
+}
+
+@Entity
+@Table(name = "PROVA")
+class Prova{
+	@Id
+    @GeneratedValue
+    @Column(name = "ID_PROVA")
+    private Long idProva;
+	
+	@Column(name = "CONTEUDO", columnDefinition = "TEXT")
+    private String conteudo;
+	
+	/**
+     * RELATIONSHIPS
+     */
+	@ManyToOne
+    @JoinColumn(name = "ID_ALUNO_FK")
+    private Aluno alunoFK;
+}
+
+
+=======================================================
+========== MANY-TO-MANY ================================
+
+#1 STEP
++-------+              +---------+
+| ALUNO | N -------- N | MATERIA | 
++-------+              +---------+ 
+
+#2 STEP (FINAL)
++-------+         +-------------------+         +---------+
+| ALUNO | 1 --- N | MATERIAS_DO_ALUNO | N --- 1 | MATERIA |
++-------+         +-------------------+         +---------+
+
+@Entity
+@Table(name = "ALUNO")
+class Aluno{
+	@Id
+    @GeneratedValue
+    @Column(name = "ID_ALUNO")
+    private Long idAluno;
+	
+	@Column(name = "NOME", length = 30)
+    private String nome;
+	
+	/**
+     * RELATIONSHIPS
+     */
+	@OneToMany(mappedBy = "idMateriasDoAlunoPK.alunoFK")
+    private List<MateriasDoAluno> listaDeMateriasDoAluno;
+}
+
+@Entity
+@Table(name = "MATERIA")
+class Materia{
+	@Id
+    @GeneratedValue
+    @Column(name = "ID_MATERIA")
+    private Long idMateria;
+	
+	@Column(name = "NOME", length = 130)
+    private String nome;
+	
+	/**
+     * RELATIONSHIPS
+     */
+	@OneToMany(mappedBy = "idMateriasDoAlunoPK.materiaFK")
+    private List<MateriasDoAluno> listaDeMateriasDoAluno;
+}
+
+@Entity
+@Table(name = "MATERIAS_DO_ALUNO")
+class MateriasDoAluno{
+	@EmbeddedId
+    private MateriasDoAlunoPK idMateriasDoAlunoPK;
+	
+	@Column(name = "DATAHORA_ADICAO", columnDefinition = "DATETIME")
+    private LocalDateTime dataHoraAdicao;	
+}
+
+@Embeddable
+class MateriasDoAlunoPK implements Serializable{
+	@ManyToOne
+    @JoinColumn(name = "ID_ALUNO")
+    private Aluno alunoFK;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_MATERIA")
+    private Materia materiaFK;	
+}

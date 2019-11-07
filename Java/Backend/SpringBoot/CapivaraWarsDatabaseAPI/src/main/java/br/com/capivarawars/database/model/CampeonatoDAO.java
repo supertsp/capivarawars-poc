@@ -43,7 +43,9 @@ public class CampeonatoDAO {
 
     @Column(name = "QTD_PARTICIPANTES")
     private Integer qtdParticipantes;
-
+    
+    
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_PREMIO_PRIMEIRO_COLOCADO", referencedColumnName = "ID_PREMIO")
     private PremioDAO premioPrimeiroColocado;

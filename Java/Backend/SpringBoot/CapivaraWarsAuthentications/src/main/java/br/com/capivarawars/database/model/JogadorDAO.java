@@ -1,6 +1,7 @@
 package br.com.capivarawars.database.model;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.core.game.gameobject.Jogador;
 import br.com.capivarawars.security.Credenciais;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
@@ -85,31 +86,8 @@ public class JogadorDAO {
     @Column(name = "QTD_MOVIMENTOS")
     private Integer qtdMovimentos;
     
-    
-    /**
-     * 
-     */    
     @OneToMany(mappedBy = "jogadorDAO")
     private List<CapivaraDAO> listaCapivaraDAO;
-    
-    @OneToMany(mappedBy = "jogador1")
-    private List<PartidaDAO> partidaDAO1;
-    
-    @OneToMany(mappedBy = "jogador2")
-    private List<PartidaDAO> partidaDAO2;
-    
-    @OneToMany(mappedBy = "jogadorVencedor")
-    private List<PartidaDAO> partidaDAOVencedor;
-    
-    @OneToMany(mappedBy = "jogadorVencedorPrimeiro")
-    private List<CampeonatoDAO> campeonatoDAOVencedorPrimeiro;
-        
-    @OneToMany(mappedBy = "jogadorVencedorSegundo")
-    private List<CampeonatoDAO> campeonatoDAOVencedorSegundo;
-            
-    @OneToMany(mappedBy = "jogadorVencedorTerceiro")
-    private List<CampeonatoDAO> campeonatoDAOVencedorTerceiro;
-    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
@@ -133,7 +111,21 @@ public class JogadorDAO {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="constructors...">
+    public JogadorDAO() {
+        super();
+    }
     
+    public JogadorDAO(Credenciais credenciais, LocalDateTime dataHoraCriacaoConta, String urlFoto, String nomeCompleto, String email, Character genero, LocalDate dataNascimento, Boolean online, Integer moedas) {
+        this.credenciais = credenciais;
+        this.dataHoraCriacaoConta = dataHoraCriacaoConta;
+        this.urlFoto = urlFoto;
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.genero = genero;
+        this.dataNascimento = dataNascimento;
+        this.online = online;
+        this.moedas = moedas;
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="methods...">
@@ -143,192 +135,152 @@ public class JogadorDAO {
         return idJogador;
     }
 
-    public JogadorDAO setIdJogador(Long idJogador) {
+    public void setIdJogador(Long idJogador) {
         this.idJogador = idJogador;
-        return this;
     }
 
     public Credenciais getCredenciais() {
         return credenciais;
     }
 
-    public JogadorDAO setCredenciais(Credenciais credenciais) {
+    public void setCredenciais(Credenciais credenciais) {
         this.credenciais = credenciais;
-        return this;
     }
 
     public LocalDateTime getDataHoraCriacaoConta() {
         return dataHoraCriacaoConta;
     }
 
-    public JogadorDAO setDataHoraCriacaoConta(LocalDateTime dataHoraCriacaoConta) {
-        if (dataHoraCriacaoConta == null) {
-            this.dataHoraCriacaoConta = LocalDateTime.now();
-        }
-        else{
-            this.dataHoraCriacaoConta = dataHoraCriacaoConta;
-        }
-        
-        return this;
+    public void setDataHoraCriacaoConta(LocalDateTime dataHoraCriacaoConta) {
+        this.dataHoraCriacaoConta = dataHoraCriacaoConta;
     }
 
     public String getUrlFoto() {
         return urlFoto;
     }
 
-    public JogadorDAO setUrlFoto(String urlFoto) {
+    public void setUrlFoto(String urlFoto) {
         this.urlFoto = urlFoto;
-        return this;
     }
 
     public String getNomeCompleto() {
         return nomeCompleto;
     }
 
-    public JogadorDAO setNomeCompleto(String nomeCompleto) {
+    public void setNomeCompleto(String nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
-        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public JogadorDAO setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-        return this;
     }
 
     public Character getGenero() {
         return genero;
     }
 
-    public JogadorDAO setGenero(Character genero) {
-        switch (genero) {
-            case 'M':
-            case 'm':                
-                genero = 'M';
-                break;
-            
-            case 'F':
-            case 'f':
-                genero = 'F';
-                break;
-            
-            default:
-                genero = 'M';
-        }
+    public void setGenero(Character genero) {
         this.genero = genero;
-        
-        return this;
     }
 
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public JogadorDAO setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
-        return this;
     }
 
     public Boolean isOnline() {
         return online;
     }
 
-    public JogadorDAO setOnline(Boolean online) {
+    public void setOnline(Boolean online) {
         this.online = online;
-        return this;
     }
 
     public String getUltimoCodigoAtivacao() {
         return ultimoCodigoAtivacao;
     }
 
-    public JogadorDAO setUltimoCodigoAtivacao(String ultimoCodigoAtivacao) {
+    public void setUltimoCodigoAtivacao(String ultimoCodigoAtivacao) {
         this.ultimoCodigoAtivacao = ultimoCodigoAtivacao;
-        return this;
     }
 
     public Integer getVitorias() {
         return vitorias;
     }
 
-    public JogadorDAO setVitorias(Integer vitorias) {
+    public void setVitorias(Integer vitorias) {
         this.vitorias = vitorias;
-        return this;
     }
 
     public Integer getEmpates() {
         return empates;
     }
 
-    public JogadorDAO setEmpates(Integer empates) {
+    public void setEmpates(Integer empates) {
         this.empates = empates;
-        return this;
     }
 
     public Integer getDerrotas() {
         return derrotas;
     }
 
-    public JogadorDAO setDerrotas(Integer derrotas) {
+    public void setDerrotas(Integer derrotas) {
         this.derrotas = derrotas;
-        return this;
     }
 
     public Integer getMoedas() {
         return moedas;
     }
 
-    public JogadorDAO setMoedas(Integer moedas) {
+    public void setMoedas(Integer moedas) {
         this.moedas = moedas;
-        return this;
     }
 
     public Integer getQtdTirosCerteiros() {
         return qtdTirosCerteiros;
     }
 
-    public JogadorDAO setQtdTirosCerteiros(Integer qtdTirosCerteiros) {
+    public void setQtdTirosCerteiros(Integer qtdTirosCerteiros) {
         this.qtdTirosCerteiros = qtdTirosCerteiros;
-        return this;
     }
 
     public Integer getQtdTirosRuins() {
         return qtdTirosRuins;
     }
 
-    public JogadorDAO setQtdTirosRuins(Integer qtdTirosRuins) {
+    public void setQtdTirosRuins(Integer qtdTirosRuins) {
         this.qtdTirosRuins = qtdTirosRuins;
-        return this;
     }
 
     public Integer getQtdTirosRecebidos() {
         return qtdTirosRecebidos;
     }
 
-    public JogadorDAO setQtdTirosRecebidos(Integer qtdTirosRecebidos) {
+    public void setQtdTirosRecebidos(Integer qtdTirosRecebidos) {
         this.qtdTirosRecebidos = qtdTirosRecebidos;
-        return this;
     }
 
     public Integer getQtdMovimentos() {
         return qtdMovimentos;
     }
 
-    public JogadorDAO setQtdMovimentos(Integer qtdMovimentos) {
+    public void setQtdMovimentos(Integer qtdMovimentos) {
         this.qtdMovimentos = qtdMovimentos;
-        return this;
     }
 
     public List<CapivaraDAO> getListaCapivaraDAO() {
         return listaCapivaraDAO;
     }
 
-    public JogadorDAO setListaCapivaraDAO(List<CapivaraDAO> listaCapivaraDAO) {
+    public void setListaCapivaraDAO(List<CapivaraDAO> listaCapivaraDAO) {
         this.listaCapivaraDAO = listaCapivaraDAO;
-        return this;
     }
     //</editor-fold>
     
@@ -345,21 +297,33 @@ public class JogadorDAO {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="main methods...">
-    public boolean preencheuCamposObrigatorios(){
-        if (dataHoraCriacaoConta == null) {
-            this.dataHoraCriacaoConta = LocalDateTime.now();
-        }
-        
-        return 
-                credenciais != null &&
-                urlFoto != null &&
-                nomeCompleto != null &&
-                email != null &&
-                genero != null &&
-                dataNascimento != null;
+    public Jogador fillJogador(Jogador jogador){
+        jogador
+            .setNick(getCredenciais().getNick())
+            .setDataHoraCriacaoConta(getDataHoraCriacaoConta())
+            .setUrlFoto(getUrlFoto())
+            .setNomeCompleto(getNomeCompleto())
+            .setEmail(getEmail())
+            .setGenero(getGenero())
+            .setDataNascimento(getDataNascimento())
+            .setOnline(isOnline())
+            .setVitorias(getVitorias())
+            .setEmpates(getEmpates())
+            .setDerrotas(getDerrotas())
+            .setMoedas(getMoedas())
+            .setQtdTirosCerteiros(getQtdTirosCerteiros())
+            .setQtdTirosRuins(getQtdTirosRuins())
+            .setQtdTirosRecebidos(getQtdTirosRecebidos())
+            .setQtdMovimentos(getQtdMovimentos())
+            ;
+        return jogador;
     }
     //</editor-fold>
     
     //</editor-fold>
+
     
+
+    
+           
 }//class
