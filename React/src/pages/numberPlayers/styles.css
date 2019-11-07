@@ -1,0 +1,27 @@
+li {
+    float: left;
+    list-style: none;
+    margin: 10%;
+    left: 10%;
+}
+
+.card{
+    width: 70%;
+    top: 10%;
+}
+
+#num {
+    margin: auto 30px;
+}
+
+.logo-cap{
+    position: absolute;
+    right: 80%;
+    top: 3%;
+}
+
+.botao-continuar{
+    position: absolute;
+    left: 84%;
+    top: 80%;
+}
