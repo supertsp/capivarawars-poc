@@ -11,13 +11,13 @@ public class CapivaraWarsDatabaseAPI {
 
         System.out.println(
                 "\n\n" +
-                "         ^_^\n" +
-                "  .-----/  0\\\n" +
-                " /  \\     __/ \n" +
-                " \\  /_- -/ \n" +
-                "  \\\\\\  \\\\\\ \n" +
+                "         ^_^      ____    \n" +
+                "  .-----/  0\\    (____)   \n" +
+                " /  \\     __/    | DB |   \n" +
+                " \\  /_- -/       (____)   \n" +
+                "  \\\\\\  \\\\\\           \n" +
                 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n" +
-                ">>> NOW, RUNNING A CAPIVARA SERVER ON A RIVER  ;)\n"
+                ">>> NOW, RUNNING A CAPIVARA SERVER DATABASE ON A RIVER API ;)\n"
         );
     }
 
