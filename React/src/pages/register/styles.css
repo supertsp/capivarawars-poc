@@ -8,11 +8,10 @@
   }
 
   .nome01{
-
     position: absolute;
     left: 3% !important;
     top: 4%;
-    width: 100%;
+    width: 90%;
 
   }
 
@@ -20,41 +19,43 @@
     position: absolute;
     left: 3% !important;
     top: 26%;
-    width: 100%;
+    width: 90%;
     
   }
 
   .senha{
     position: absolute;
-    left: 28% !important;
+    left: 17.3% !important;
     top: 58%;
-    width: 43%;
+    width: 63%;
 
   }
 
   .cadastro{
     position: absolute;
-    left: -300% !important;
-    margin-top: 385%;
-    width: 130%;
+    top: 85% !important;
+    left: 42%;
   }
 
   .sexo{
     position: absolute;
-    left: 28% !important;
+    left: 20% !important;
     top: 72%;
     width: 52.7%;
 
   }
   
   .card1 {
-    top: 10%;
+    position: absolute;
+    left: 15%;
+    margin-top: 7%;
     height: 70%;
-    width: 95%;
+    width: 70% !important;
+    z-index: -1;
   }
 
   .foto{
-    left: -9% !important;
+    left: 5% !important;
   }
   
   .radio1 {
@@ -80,21 +81,6 @@
     top: 3%;
   }
   
-  .botaoSub {
-    position: relative;
-    left: 36%;
-  }
-  
-  .bambu1 {
-    position: absolute;
-    background-image: url(../../assets/images/moldura-bambu.png) no-repeat;
-    height: 81%;
-    width: 57%;
-    top: 17%;
-    left: 20.3%;
-  }
-  
   .texto {
     font-size: 20px;
   }
-  

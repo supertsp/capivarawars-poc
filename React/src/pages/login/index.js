@@ -70,13 +70,13 @@ class Login extends Component {
                   <div className="form-group">
                     <input
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn btn-primary botao-login"
                       value="Login"
                     ></input>
                   </div>
                   <label>Não tem uma conta? Então clique em cadastrar</label>
                   <div>
-                    <button className="btn btn-primary">Cadastrar</button>
+                    <button className="btn btn-primary botao-cadastro">Cadastrar</button>
                   </div>
                 </div>
               </div>

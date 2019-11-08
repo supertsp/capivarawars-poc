@@ -5,6 +5,11 @@
   z-index: -100;
 }
 
+.card{
+  left: 10%;
+  margin-top: -8%;
+}
+
 .card-body {
   background: none;
   border: 40px solid transparent;
@@ -20,6 +25,8 @@
 }
 
 .img-fluid {
+  position: relative;
+  left: -10%;
   height: 150px;
   width: 300px;
   display: flex;
@@ -30,4 +37,14 @@
 .img-thumbnail {
   border: none;
   background: none;
+}
+
+.botao-cadastro{
+  position: relative;
+  left: 25%;
+}
+
+.botao-login{
+  position: relative;
+  left: 32%;
 }
