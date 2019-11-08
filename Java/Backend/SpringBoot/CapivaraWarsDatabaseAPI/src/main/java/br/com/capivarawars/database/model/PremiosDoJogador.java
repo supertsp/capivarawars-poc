@@ -19,21 +19,18 @@ import javax.persistence.*;
  * @author TPEDROSO, 23/10/2019, 13:11:44 Last update: -
  *///</editor-fold>
 @Entity
-@Table(name = "ACESSORIOS_DA_CAPIVARA")
-public class AcessoriosDaCapivaraDAO {
+@Table(name = "PREMIOS_DO_JOGADOR")
+public class PremiosDoJogador {
 
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     @EmbeddedId
-    private AcessoriosDaCapivaraPK idAcessoriosDaCapivaraPK;
+    private IdPremiosDoJogadorPK idPremiosDoJogadorPK;
 
     @Column(name = "DATAHORA_AQUISICAO", columnDefinition = "DATETIME")
     private LocalDateTime dataHoraAquisicao;
 
-    @Column(name = "PRECO_PAGO")
-    private Integer precoPago;
     //</editor-fold>
-
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="static attributes...">
@@ -45,12 +42,12 @@ public class AcessoriosDaCapivaraDAO {
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="methods...">
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    public AcessoriosDaCapivaraPK getIdAcessoriosDaCapivaraPK() {
-        return idAcessoriosDaCapivaraPK;
+    public IdPremiosDoJogadorPK getIdPremiosDoJogadorPK() {
+        return idPremiosDoJogadorPK;
     }
 
-    public AcessoriosDaCapivaraDAO setIdAcessoriosDaCapivaraPK(AcessoriosDaCapivaraPK idAcessoriosDaCapivaraPK) {
-        this.idAcessoriosDaCapivaraPK = idAcessoriosDaCapivaraPK;
+    public PremiosDoJogador setIdPremiosDoJogadorPK(IdPremiosDoJogadorPK idPremiosDoJogadorPK) {
+        this.idPremiosDoJogadorPK = idPremiosDoJogadorPK;
         return this;
     }
 
@@ -58,23 +55,13 @@ public class AcessoriosDaCapivaraDAO {
         return dataHoraAquisicao;
     }
 
-    public AcessoriosDaCapivaraDAO setDataHoraAquisicao(LocalDateTime dataHoraAquisicao) {
-        if (dataHoraAquisicao == null) {
+    public PremiosDoJogador setDataHoraInicio(LocalDateTime dataHoraInicio) {
+        if (dataHoraInicio == null) {
             this.dataHoraAquisicao = LocalDateTime.now();
+        } else {
+            this.dataHoraAquisicao = dataHoraInicio;
         }
-        else{
-            this.dataHoraAquisicao = dataHoraAquisicao;
-        }
-        
-        return this;
-    }
 
-    public Integer getPrecoPago() {
-        return precoPago;
-    }
-
-    public AcessoriosDaCapivaraDAO setPrecoPago(Integer precoPago) {
-        this.precoPago = precoPago;
         return this;
     }
 
@@ -90,10 +77,8 @@ public class AcessoriosDaCapivaraDAO {
         if (dataHoraAquisicao == null) {
             this.dataHoraAquisicao = LocalDateTime.now();
         }
-        
-        return 
-                idAcessoriosDaCapivaraPK != null &&
-                precoPago != null;
+
+        return idPremiosDoJogadorPK != null;
     }
     //</editor-fold>
     //</editor-fold>

@@ -173,14 +173,14 @@ class Materia{
 @Table(name = "MATERIAS_DO_ALUNO")
 class MateriasDoAluno{
 	@EmbeddedId
-    private MateriasDoAlunoPK idMateriasDoAlunoPK;
+    private IdMateriasDoAlunoPK idMateriasDoAlunoPK;
 	
 	@Column(name = "DATAHORA_ADICAO", columnDefinition = "DATETIME")
     private LocalDateTime dataHoraAdicao;	
 }
 
 @Embeddable
-class MateriasDoAlunoPK implements Serializable{
+class IdMateriasDoAlunoPK implements Serializable{
 	@ManyToOne
     @JoinColumn(name = "ID_ALUNO")
     private Aluno alunoFK;

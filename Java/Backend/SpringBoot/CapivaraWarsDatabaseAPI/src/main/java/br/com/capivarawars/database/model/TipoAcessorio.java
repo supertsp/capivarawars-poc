@@ -12,65 +12,50 @@ import javax.persistence.*;
 //<editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
- * 
+ *
  * Description: ...
- * 
+ *
  * @version 1.0.0
- * @author TPEDROSO, 23/10/2019, 13:11:44
- * Last update: -
+ * @author TPEDROSO, 23/10/2019, 13:11:44 Last update: -
  *///</editor-fold>
 @Entity
-@Table(name="TIPO_ACESSORIO")
-public class TipoAcessorioDAO {
-    
+@Table(name = "TIPO_ACESSORIO")
+public class TipoAcessorio {
+
     //<editor-fold defaultstate="collapsed" desc="attributes...">
-    
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     @Id
     @GeneratedValue
     @Column(name = "ID_TIPO_ACESSORIO")
     private Long idTipoAcessorio;
-    
+
     @Column(name = "NOME", length = VARCHAR_LENGTH_NOME)
     private String nome;
-    
-    
+
     /**
-     * FOREIGN KEYS
+     * RELATIONSHIPS
      */
-    @OneToMany(mappedBy = "tipoAcessorioDAO")
-    private List<AcessorioDAO> listaAcessorioDAO;
+    @OneToMany(mappedBy = "tipoAcessorioFK")
+    private List<Acessorio> listaDeAcessorios;
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
-    public static final int
-            VARCHAR_LENGTH_NOME = 120
-            ;
-            
+    public static final int VARCHAR_LENGTH_NOME = 120;
+
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="static attributes...">
-    
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
-    
     //</editor-fold>
-    
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="constructors...">
-    
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="methods...">
-    
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
     public Long getIdTipoAcessorio() {
         return idTipoAcessorio;
     }
 
-    public TipoAcessorioDAO setIdTipoAcessorio(Long idTipoAcessorio) {
+    public TipoAcessorio setIdTipoAcessorio(Long idTipoAcessorio) {
         this.idTipoAcessorio = idTipoAcessorio;
         return this;
     }
@@ -79,31 +64,35 @@ public class TipoAcessorioDAO {
         return nome;
     }
 
-    public TipoAcessorioDAO setNome(String nome) {
+    public TipoAcessorio setNome(String nome) {
         this.nome = nome;
         return this;
     }
+
+    /**
+     * RELATIONSHIPS
+     */
+    public List<Acessorio> getListaDeAcessorios() {
+        return listaDeAcessorios;
+    }
+
+    public TipoAcessorio setListaDeAcessorios(List<Acessorio> listaDeAcessorios) {
+        this.listaDeAcessorios = listaDeAcessorios;
+        return this;
+    }
+
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="override methods...">
-    
     //</editor-fold>    
-    
     //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
-    
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="static methods...">
-    
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="main methods...">
-    public boolean preencheuCamposObrigatorios(){
-        return 
-                nome != null;
+    public boolean preencheuCamposObrigatorios() {
+        return nome != null;
     }
     //</editor-fold>
-    
     //</editor-fold>
-        
+
 }//class

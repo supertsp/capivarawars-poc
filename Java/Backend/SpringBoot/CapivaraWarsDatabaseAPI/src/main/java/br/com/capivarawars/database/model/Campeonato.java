@@ -20,7 +20,7 @@ import javax.persistence.*;
  *///</editor-fold>
 @Entity
 @Table(name = "CAMPEONATO")
-public class CampeonatoDAO {
+public class Campeonato {
 
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
@@ -41,35 +41,41 @@ public class CampeonatoDAO {
     @Column(name = "LIMITE_PARTICIPANTES")
     private Integer limiteParticipantes;
 
-    @Column(name = "QTD_PARTICIPANTES")
-    private Integer qtdParticipantes;
-    
-    
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_PREMIO_PRIMEIRO_COLOCADO", referencedColumnName = "ID_PREMIO")
-    private PremioDAO premioPrimeiroColocado;
+    @Column(name = "QTD_ATUAL_PARTICIPANTES")
+    private Integer qtdAtualParticipantes;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_PREMIO_SEGUNDO_COLOCADO", referencedColumnName = "ID_PREMIO")
-    private PremioDAO premioSegundoColocado;
+    /**
+     * RELATIONSHIPS
+     */
+    @ManyToOne
+    @JoinColumn(name = "ID_PREMIO_PRIMEIRO_COLOCADO")
+    private Premio premioPrimeiroColocado;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_PREMIO_TERCEIRO_COLOCADO", referencedColumnName = "ID_PREMIO")
-    private PremioDAO premioTerceiroColocado;
+    @ManyToOne
+    @JoinColumn(name = "ID_PREMIO_SEGUNDO_COLOCADO")
+    private Premio premioSegundoColocado;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_JOGADOR_VENCEDOR_PRIMEIRO", referencedColumnName = "ID_JOGADOR")
-    private JogadorDAO jogadorVencedorPrimeiro;
+    @ManyToOne
+    @JoinColumn(name = "ID_PREMIO_TERCEIRO_COLOCADO")
+    private Premio premioTerceiroColocado;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_JOGADOR_VENCEDOR_SEGUNDO", referencedColumnName = "ID_JOGADOR")
-    private JogadorDAO jogadorVencedorSegundo;
+    @ManyToOne
+    @JoinColumn(name = "ID_JOGADOR_VENCEDOR_PRIMEIRO")
+    private Jogador jogadorVencedorPrimeiro;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_JOGADOR_VENCEDOR_TERCEIRO", referencedColumnName = "ID_JOGADOR")
-    private JogadorDAO jogadorVencedorTerceiro;
+    @ManyToOne
+    @JoinColumn(name = "ID_JOGADOR_VENCEDOR_SEGUNDO")
+    private Jogador jogadorVencedorSegundo;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_JOGADOR_VENCEDOR_TERCEIRO")
+    private Jogador jogadorVencedorTerceiro;
+
+    @OneToMany(mappedBy = "idJogadoresEmCampeonatoPK.campeonatoFK")
+    private List<JogadoresEmCampeonato> listaDeJogadoresParticipantes;
+
+    @OneToMany(mappedBy = "campeonatoFK")
+    private List<Partida> listaDePartidasOcorridas;
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
     public static final int VARCHAR_LENGTH_NOME = 120;
@@ -88,7 +94,7 @@ public class CampeonatoDAO {
         return idPartida;
     }
 
-    public CampeonatoDAO setIdPartida(Long idPartida) {
+    public Campeonato setIdPartida(Long idPartida) {
         this.idPartida = idPartida;
         return this;
     }
@@ -97,7 +103,7 @@ public class CampeonatoDAO {
         return nome;
     }
 
-    public CampeonatoDAO setNome(String nome) {
+    public Campeonato setNome(String nome) {
         this.nome = nome;
         return this;
     }
@@ -106,7 +112,7 @@ public class CampeonatoDAO {
         return dataHoraInicio;
     }
 
-    public CampeonatoDAO setDataHoraInicio(LocalDateTime dataHoraInicio) {
+    public Campeonato setDataHoraInicio(LocalDateTime dataHoraInicio) {
         if (dataHoraInicio == null) {
             this.dataHoraInicio = LocalDateTime.now();
         } else {
@@ -120,7 +126,7 @@ public class CampeonatoDAO {
         return dataHoraFim;
     }
 
-    public CampeonatoDAO setDataHoraFim(LocalDateTime dataHoraFim) {
+    public Campeonato setDataHoraFim(LocalDateTime dataHoraFim) {
         if (dataHoraFim == null) {
             this.dataHoraFim = LocalDateTime.now();
         } else {
@@ -134,71 +140,92 @@ public class CampeonatoDAO {
         return limiteParticipantes;
     }
 
-    public CampeonatoDAO setLimiteParticipantes(Integer limiteParticipantes) {
+    public Campeonato setLimiteParticipantes(Integer limiteParticipantes) {
         this.limiteParticipantes = limiteParticipantes;
         return this;
     }
 
-    public Integer getQtdParticipantes() {
-        return qtdParticipantes;
+    public Integer getQtdAtualParticipantes() {
+        return qtdAtualParticipantes;
     }
 
-    public CampeonatoDAO setQtdParticipantes(Integer qtdParticipantes) {
-        this.qtdParticipantes = qtdParticipantes;
+    public Campeonato setQtdAtualParticipantes(Integer qtdAtualParticipantes) {
+        this.qtdAtualParticipantes = qtdAtualParticipantes;
         return this;
     }
 
-    public PremioDAO getPremioPrimeiroColocado() {
+    /**
+     * RELATIONSHIPS
+     */
+    public Premio getPremioPrimeiroColocado() {
         return premioPrimeiroColocado;
     }
 
-    public CampeonatoDAO setPremioPrimeiroColocado(PremioDAO premioPrimeiroColocado) {
+    public Campeonato setPremioPrimeiroColocado(Premio premioPrimeiroColocado) {
         this.premioPrimeiroColocado = premioPrimeiroColocado;
         return this;
     }
 
-    public PremioDAO getPremioSegundoColocado() {
+    public Premio getPremioSegundoColocado() {
         return premioSegundoColocado;
     }
 
-    public CampeonatoDAO setPremioSegundoColocado(PremioDAO premioSegundoColocado) {
+    public Campeonato setPremioSegundoColocado(Premio premioSegundoColocado) {
         this.premioSegundoColocado = premioSegundoColocado;
         return this;
     }
 
-    public PremioDAO getPremioTerceiroColocado() {
+    public Premio getPremioTerceiroColocado() {
         return premioTerceiroColocado;
     }
 
-    public CampeonatoDAO setPremioTerceiroColocado(PremioDAO premioTerceiroColocado) {
+    public Campeonato setPremioTerceiroColocado(Premio premioTerceiroColocado) {
         this.premioTerceiroColocado = premioTerceiroColocado;
         return this;
     }
 
-    public JogadorDAO getJogadorVencedorPrimeiro() {
+    public Jogador getJogadorVencedorPrimeiro() {
         return jogadorVencedorPrimeiro;
     }
 
-    public CampeonatoDAO setJogadorVencedorPrimeiro(JogadorDAO jogadorVencedorPrimeiro) {
+    public Campeonato setJogadorVencedorPrimeiro(Jogador jogadorVencedorPrimeiro) {
         this.jogadorVencedorPrimeiro = jogadorVencedorPrimeiro;
         return this;
     }
 
-    public JogadorDAO getJogadorVencedorSegundo() {
+    public Jogador getJogadorVencedorSegundo() {
         return jogadorVencedorSegundo;
     }
 
-    public CampeonatoDAO setJogadorVencedorSegundo(JogadorDAO jogadorVencedorSegundo) {
+    public Campeonato setJogadorVencedorSegundo(Jogador jogadorVencedorSegundo) {
         this.jogadorVencedorSegundo = jogadorVencedorSegundo;
         return this;
     }
 
-    public JogadorDAO getJogadorVencedorTerceiro() {
+    public Jogador getJogadorVencedorTerceiro() {
         return jogadorVencedorTerceiro;
     }
 
-    public CampeonatoDAO setJogadorVencedorTerceiro(JogadorDAO jogadorVencedorTerceiro) {
+    public Campeonato setJogadorVencedorTerceiro(Jogador jogadorVencedorTerceiro) {
         this.jogadorVencedorTerceiro = jogadorVencedorTerceiro;
+        return this;
+    }
+
+    public List<JogadoresEmCampeonato> getListaDeJogadoresParticipantes() {
+        return listaDeJogadoresParticipantes;
+    }
+
+    public Campeonato setListaDeJogadoresParticipantes(List<JogadoresEmCampeonato> listaDeJogadoresParticipantes) {
+        this.listaDeJogadoresParticipantes = listaDeJogadoresParticipantes;
+        return this;
+    }
+
+    public List<Partida> getListaDePartidasOcorridas() {
+        return listaDePartidasOcorridas;
+    }
+
+    public Campeonato setListaDePartidasOcorridas(List<Partida> listaDePartidasOcorridas) {
+        this.listaDePartidasOcorridas = listaDePartidasOcorridas;
         return this;
     }
 
@@ -210,19 +237,21 @@ public class CampeonatoDAO {
     //<editor-fold defaultstate="collapsed" desc="static methods...">
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="main methods...">
+    public Campeonato incrementQtdAtualParticipantes(int incrementValue) {
+        qtdAtualParticipantes += incrementValue;
+        return this;
+    }
+
     public boolean preencheuCamposObrigatorios() {
         if (dataHoraInicio == null) {
             this.dataHoraInicio = LocalDateTime.now();
         }
 
-        return 
-                nome != null &&
-                limiteParticipantes != null &&
-                qtdParticipantes != null &&
-                premioPrimeiroColocado != null &&
-                premioSegundoColocado != null &&
-                premioTerceiroColocado != null;
-        
+        return nome != null
+                && limiteParticipantes != null
+                && premioPrimeiroColocado != null
+                && premioSegundoColocado != null
+                && premioTerceiroColocado != null;
     }
     //</editor-fold>
     //</editor-fold>

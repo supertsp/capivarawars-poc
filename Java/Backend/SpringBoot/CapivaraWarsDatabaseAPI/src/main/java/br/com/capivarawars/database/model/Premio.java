@@ -20,7 +20,7 @@ import javax.persistence.*;
  *///</editor-fold>
 @Entity
 @Table(name = "PREMIO")
-public class PremioDAO {
+public class Premio {
 
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
@@ -28,28 +28,39 @@ public class PremioDAO {
     @GeneratedValue
     @Column(name = "ID_PREMIO")
     private Long idPremio;
-    
+
     @Column(name = "NOME", length = VARCHAR_LENGTH_NOME)
     private String nome;
-    
+
     @Column(name = "VALOR_EM_MOEDAS")
     private Integer valorEmMoedas;
-    
+
     @Column(name = "URL_IMAGEM", length = VARCHAR_LENGTH_URL_IMAGEM)
     private String urlImagem;
-    
+
     @Column(name = "DATAHORA_CRIACAO", columnDefinition = "DATETIME")
     private LocalDateTime dataHoraCriacao;
-    
-    
-    
-    //</editor-fold>
 
+    /**
+     * RELATIONSHIPS
+     */
+    @OneToMany(mappedBy = "premioPrimeiroColocado")
+    private List<Campeonato> listaDeCampeonatosComPrimeiroColocado;
+
+    @OneToMany(mappedBy = "premioSegundoColocado")
+    private List<Campeonato> listaDeCampeonatosComSegundoColocado;
+
+    @OneToMany(mappedBy = "premioTerceiroColocado")
+    private List<Campeonato> listaDeCampeonatosComTerceiroColocado;
+
+    @OneToMany(mappedBy = "idPremiosDoJogadorPK.premioFK")
+    private List<PremiosDoJogador> listaDePremiosDoJogador;
+
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
-    public static final int
-            VARCHAR_LENGTH_NOME = 120,
-            VARCHAR_LENGTH_URL_IMAGEM = 255
-            ;
+    public static final int VARCHAR_LENGTH_NOME = 120,
+            VARCHAR_LENGTH_URL_IMAGEM = 255;
+
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="static attributes...">
     //</editor-fold>
@@ -64,7 +75,7 @@ public class PremioDAO {
         return idPremio;
     }
 
-    public PremioDAO setIdPremio(Long idPremio) {
+    public Premio setIdPremio(Long idPremio) {
         this.idPremio = idPremio;
         return this;
     }
@@ -73,7 +84,7 @@ public class PremioDAO {
         return nome;
     }
 
-    public PremioDAO setNome(String nome) {
+    public Premio setNome(String nome) {
         this.nome = nome;
         return this;
     }
@@ -82,7 +93,7 @@ public class PremioDAO {
         return valorEmMoedas;
     }
 
-    public PremioDAO setValorEmMoedas(Integer valorEmMoedas) {
+    public Premio setValorEmMoedas(Integer valorEmMoedas) {
         this.valorEmMoedas = valorEmMoedas;
         return this;
     }
@@ -91,7 +102,7 @@ public class PremioDAO {
         return urlImagem;
     }
 
-    public PremioDAO setUrlImagem(String urlImagem) {
+    public Premio setUrlImagem(String urlImagem) {
         this.urlImagem = urlImagem;
         return this;
     }
@@ -100,17 +111,54 @@ public class PremioDAO {
         return dataHoraCriacao;
     }
 
-    public PremioDAO setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
+    public Premio setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
         if (dataHoraCriacao == null) {
             this.dataHoraCriacao = LocalDateTime.now();
-        }
-        else{
+        } else {
             this.dataHoraCriacao = dataHoraCriacao;
         }
-        
+
         return this;
     }
-    
+
+    /**
+     * RELATIONSHIPS
+     */
+    public List<Campeonato> getListaDeCampeonatosComPrimeiroColocado() {
+        return listaDeCampeonatosComPrimeiroColocado;
+    }
+
+    public Premio setListaDeCampeonatosComPrimeiroColocado(List<Campeonato> listaDeCampeonatosComPrimeiroColocado) {
+        this.listaDeCampeonatosComPrimeiroColocado = listaDeCampeonatosComPrimeiroColocado;
+        return this;
+    }
+
+    public List<Campeonato> getListaDeCampeonatosComSegundoColocado() {
+        return listaDeCampeonatosComSegundoColocado;
+    }
+
+    public Premio setListaDeCampeonatosComSegundoColocado(List<Campeonato> listaDeCampeonatosComSegundoColocado) {
+        this.listaDeCampeonatosComSegundoColocado = listaDeCampeonatosComSegundoColocado;
+        return this;
+    }
+
+    public List<Campeonato> getListaDeCampeonatosComTerceiroColocado() {
+        return listaDeCampeonatosComTerceiroColocado;
+    }
+
+    public Premio setListaDeCampeonatosComTerceiroColocado(List<Campeonato> listaDeCampeonatosComTerceiroColocado) {
+        this.listaDeCampeonatosComTerceiroColocado = listaDeCampeonatosComTerceiroColocado;
+        return this;
+    }
+
+    public List<PremiosDoJogador> getListaDePremiosDoJogador() {
+        return listaDePremiosDoJogador;
+    }
+
+    public Premio setListaDePremiosDoJogador(List<PremiosDoJogador> listaDePremiosDoJogador) {
+        this.listaDePremiosDoJogador = listaDePremiosDoJogador;
+        return this;
+    }
 
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="override methods...">
@@ -124,14 +172,12 @@ public class PremioDAO {
         if (dataHoraCriacao == null) {
             this.dataHoraCriacao = LocalDateTime.now();
         }
-        
-        return 
-                nome != null &&
-                valorEmMoedas != null &&
-                urlImagem != null;
+
+        return nome != null
+                && valorEmMoedas != null
+                && urlImagem != null;
     }
     //</editor-fold>
     //</editor-fold>
-
 
 }//class

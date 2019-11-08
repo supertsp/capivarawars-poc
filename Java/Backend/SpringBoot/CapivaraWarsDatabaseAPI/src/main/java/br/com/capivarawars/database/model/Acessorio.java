@@ -12,55 +12,50 @@ import javax.persistence.*;
 //<editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
- * 
+ *
  * Description: ...
- * 
+ *
  * @version 1.0.0
- * @author TPEDROSO, 23/10/2019, 13:11:44
- * Last update: -
+ * @author TPEDROSO, 23/10/2019, 13:11:44 Last update: -
  *///</editor-fold>
 @Entity
-@Table(name="ACESSORIO")
-public class AcessorioDAO {
-    
+@Table(name = "ACESSORIO")
+public class Acessorio {
+
     //<editor-fold defaultstate="collapsed" desc="attributes...">
-    
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     @Id
     @GeneratedValue
     @Column(name = "ID_ACESSORIO")
     private Long idTipoAcessorio;
-    
+
     @Column(name = "NOME", length = VARCHAR_LENGTH_NOME)
     private String nome;
-    
+
     @Column(name = "PRECO")
     private Integer preco;
-    
+
     @Column(name = "URL_IMAGEM", length = VARCHAR_LENGTH_URL_IMAGEM)
     private String urlImagem;
-    
+
     @Column(name = "DATAHORA_CRIACAO", columnDefinition = "DATETIME")
     private LocalDateTime dataHoraCriacao;
-    
-    
+
     /**
-     * FOREIGN KEYS
+     * RELATIONSHIPS
      */
     @ManyToOne
     @JoinColumn(name = "ID_TIPO_ACESSORIO")
-    private TipoAcessorioDAO tipoAcessorioDAO;
-    
-    @OneToMany(mappedBy = "idAcessoriosDaCapivaraPK.acessorioDAO")
-    private List<AcessoriosDaCapivaraDAO> listaAcessoriosDaCapivaraDAO;
+    private TipoAcessorio tipoAcessorioFK;
+
+    @OneToMany(mappedBy = "idAcessoriosDaCapivaraPK.acessorioFK")
+    private List<AcessoriosDaCapivara> listaDeAcessoriosDaCapivara;
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
-    public static final int
-            VARCHAR_LENGTH_NOME = 120,
-            VARCHAR_LENGTH_URL_IMAGEM = 255
-            ;
-    
+    public static final int VARCHAR_LENGTH_NOME = 120,
+            VARCHAR_LENGTH_URL_IMAGEM = 255;
+
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="static attributes...">
     //</editor-fold>
@@ -70,13 +65,12 @@ public class AcessorioDAO {
     //<editor-fold defaultstate="collapsed" desc="constructors...">
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="methods...">
-    
     //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
     public Long getIdTipoAcessorio() {
         return idTipoAcessorio;
     }
 
-    public AcessorioDAO setIdTipoAcessorio(Long idTipoAcessorio) {
+    public Acessorio setIdTipoAcessorio(Long idTipoAcessorio) {
         this.idTipoAcessorio = idTipoAcessorio;
         return this;
     }
@@ -85,7 +79,7 @@ public class AcessorioDAO {
         return nome;
     }
 
-    public AcessorioDAO setNome(String nome) {
+    public Acessorio setNome(String nome) {
         this.nome = nome;
         return this;
     }
@@ -94,7 +88,7 @@ public class AcessorioDAO {
         return preco;
     }
 
-    public AcessorioDAO setPreco(Integer preco) {
+    public Acessorio setPreco(Integer preco) {
         this.preco = preco;
         return this;
     }
@@ -103,7 +97,7 @@ public class AcessorioDAO {
         return urlImagem;
     }
 
-    public AcessorioDAO setUrlImagem(String urlImagem) {
+    public Acessorio setUrlImagem(String urlImagem) {
         this.urlImagem = urlImagem;
         return this;
     }
@@ -112,25 +106,37 @@ public class AcessorioDAO {
         return dataHoraCriacao;
     }
 
-    public AcessorioDAO setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
+    public Acessorio setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
         if (dataHoraCriacao == null) {
             this.dataHoraCriacao = LocalDateTime.now();
-        }
-        else{
+        } else {
             this.dataHoraCriacao = dataHoraCriacao;
         }
-        
+
         return this;
     }
 
-    public TipoAcessorioDAO getTipoAcessorioDAO() {
-        return tipoAcessorioDAO;
+    /**
+     * RELATIONSHIPS
+     */
+    public TipoAcessorio getTipoAcessorioFK() {
+        return tipoAcessorioFK;
     }
 
-    public AcessorioDAO setTipoAcessorioDAO(TipoAcessorioDAO tipoAcessorioDAO) {
-        this.tipoAcessorioDAO = tipoAcessorioDAO;
+    public Acessorio setTipoAcessorioFK(TipoAcessorio tipoAcessorioFK) {
+        this.tipoAcessorioFK = tipoAcessorioFK;
         return this;
     }
+
+    public List<AcessoriosDaCapivara> getListaDeAcessoriosDaCapivara() {
+        return listaDeAcessoriosDaCapivara;
+    }
+
+    public Acessorio setListaDeAcessoriosDaCapivara(List<AcessoriosDaCapivara> listaDeAcessoriosDaCapivara) {
+        this.listaDeAcessoriosDaCapivara = listaDeAcessoriosDaCapivara;
+        return this;
+    }
+
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="override methods...">
     //</editor-fold>
@@ -143,11 +149,13 @@ public class AcessorioDAO {
         if (dataHoraCriacao == null) {
             this.dataHoraCriacao = LocalDateTime.now();
         }
-        
-        return 
-                nome != null;
+
+        return nome != null
+                && preco != null
+                && urlImagem != null
+                && tipoAcessorioFK != null;
     }
     //</editor-fold>
     //</editor-fold>
-        
+
 }//class

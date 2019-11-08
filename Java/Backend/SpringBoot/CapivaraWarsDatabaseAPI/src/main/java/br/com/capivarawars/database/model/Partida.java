@@ -20,7 +20,7 @@ import javax.persistence.*;
  *///</editor-fold>
 @Entity
 @Table(name = "PARTIDA")
-public class PartidaDAO {
+public class Partida {
 
     //<editor-fold defaultstate="collapsed" desc="attributes...">
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
@@ -31,33 +31,33 @@ public class PartidaDAO {
 
     @Column(name = "DATAHORA_INICIO", columnDefinition = "DATETIME")
     private LocalDateTime dataHoraInicio;
-    
+
     @Column(name = "DATAHORA_FIM", columnDefinition = "DATETIME")
     private LocalDateTime dataHoraFim;
-    
-    
-    /**
-     * FOREIGN KEYS
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_JOGADOR_1", referencedColumnName = "ID_JOGADOR")
-    private JogadorDAO jogador1;
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_JOGADOR_2", referencedColumnName = "ID_JOGADOR")
-    private JogadorDAO jogador2;
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ID_JOGADOR_VENCEDOR", referencedColumnName = "ID_JOGADOR")
-    private JogadorDAO jogadorVencedor;
-    
+
     @Column(name = "EMPATOU")
     private Boolean empatou;
-    
-    
-    
-    //</editor-fold>
 
+    /**
+     * RELATIONSHIPS
+     */
+    @ManyToOne
+    @JoinColumn(name = "ID_JOGADOR_1")
+    private Jogador jogador1;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_JOGADOR_2")
+    private Jogador jogador2;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_JOGADOR_VENCEDOR")
+    private Jogador jogadorVencedor;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_CAMPEONATO")
+    private Campeonato campeonatoFK;
+
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="static attributes...">
@@ -73,7 +73,7 @@ public class PartidaDAO {
         return idPartida;
     }
 
-    public PartidaDAO setIdPartida(Long idPartida) {
+    public Partida setIdPartida(Long idPartida) {
         this.idPartida = idPartida;
         return this;
     }
@@ -82,14 +82,13 @@ public class PartidaDAO {
         return dataHoraInicio;
     }
 
-    public PartidaDAO setDataHoraInicio(LocalDateTime dataHoraInicio) {
+    public Partida setDataHoraInicio(LocalDateTime dataHoraInicio) {
         if (dataHoraInicio == null) {
             this.dataHoraInicio = LocalDateTime.now();
-        }
-        else{
+        } else {
             this.dataHoraInicio = dataHoraInicio;
         }
-        
+
         return this;
     }
 
@@ -97,41 +96,13 @@ public class PartidaDAO {
         return dataHoraFim;
     }
 
-    public PartidaDAO setDataHoraFim(LocalDateTime dataHoraFim) {
+    public Partida setDataHoraFim(LocalDateTime dataHoraFim) {
         if (dataHoraFim == null) {
             this.dataHoraFim = LocalDateTime.now();
-        }
-        else{
+        } else {
             this.dataHoraFim = dataHoraFim;
         }
-        
-        return this;
-    }
 
-    public JogadorDAO getJogador1() {
-        return jogador1;
-    }
-
-    public PartidaDAO setJogador1(JogadorDAO jogador1) {
-        this.jogador1 = jogador1;
-        return this;
-    }
-
-    public JogadorDAO getJogador2() {
-        return jogador2;
-    }
-
-    public PartidaDAO setJogador2(JogadorDAO jogador2) {
-        this.jogador2 = jogador2;
-        return this;
-    }
-
-    public JogadorDAO getJogadorVencedor() {
-        return jogadorVencedor;
-    }
-
-    public PartidaDAO setJogadorVencedor(JogadorDAO jogadorVencedor) {
-        this.jogadorVencedor = jogadorVencedor;
         return this;
     }
 
@@ -139,10 +110,49 @@ public class PartidaDAO {
         return empatou;
     }
 
-    public PartidaDAO setEmpatou(Boolean empatou) {
+    public Partida setEmpatou(Boolean empatou) {
         this.empatou = empatou;
         return this;
-    }  
+    }
+
+    /**
+     * RELATIONSHIPS
+     */
+    public Jogador getJogador1() {
+        return jogador1;
+    }
+
+    public Partida setJogador1(Jogador jogador1) {
+        this.jogador1 = jogador1;
+        return this;
+    }
+
+    public Jogador getJogador2() {
+        return jogador2;
+    }
+
+    public Partida setJogador2(Jogador jogador2) {
+        this.jogador2 = jogador2;
+        return this;
+    }
+
+    public Jogador getJogadorVencedor() {
+        return jogadorVencedor;
+    }
+
+    public Partida setJogadorVencedor(Jogador jogadorVencedor) {
+        this.jogadorVencedor = jogadorVencedor;
+        return this;
+    }
+
+    public Campeonato getCampeonatoFK() {
+        return campeonatoFK;
+    }
+
+    public void setCampeonatoFK(Campeonato campeonatoFK) {
+        this.campeonatoFK = campeonatoFK;
+    }
+
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="override methods...">
     //</editor-fold>
@@ -155,14 +165,11 @@ public class PartidaDAO {
         if (dataHoraInicio == null) {
             this.dataHoraInicio = LocalDateTime.now();
         }
-        
-        return 
-                jogador1 != null &&
-                jogador2 != null;
+
+        return jogador1 != null
+                && jogador2 != null;
     }
     //</editor-fold>
     //</editor-fold>
-
-    
 
 }//class
