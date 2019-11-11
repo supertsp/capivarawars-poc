@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import api from "../../services/api";
+
 import imagemMar from "../../assets/images/imagem-mar.jpg";
 import capivaraLogo from "../../assets/images/CapivaraWars-logo.png";
 
@@ -10,9 +12,10 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      nick: '',
-      password: ''
-    }
+      nick: "",
+      password: "",
+      errorMessage: ""
+    };
   }
 
   handleChange = (event) => {
@@ -21,32 +24,47 @@ class Login extends Component {
     state[field] = event.target.value;
 
     this.setState(state);
-  }
+  };
 
-  validateForm = (state) => {
-    if(this.state.name !== '' || this.state.name != null && 
-      this.state.password !== '' || this.state.password != null){
-        return true;
+  validateForm = async (state) => {
+    if (this.state.name !== "" && this.state.password !== "") {
+      return await true;
+    }
+
+    return await false;
+  };
+
+  signIn = async () => {
+    try {
+      if(this.validateForm(this.state)){
+        const response = await api.post('', {
+          nick: this.state.nick,
+          password: this.state.password
+        });
       }
-
-    return false;
+    } catch(response) {
+      this.setState({errorMessage: response.data.error})
+    }
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     return (
       <div>
         <img src={imagemMar} className="background"></img>
-        <div className="container">
+        <div className="container container-login">
           <div className="row">
             <div className="col-md-12">
-              <img src={capivaraLogo} className="img-fluid img-thumbnail"></img>
+              <img
+                src={capivaraLogo}
+                className="img-fluid img-fluid-login img-thumbnail img-thumbnail-login"
+              ></img>
             </div>
           </div>
           <div className="row">
             <div className="col-md-12">
               <div className="card">
-                <div className="card-body">
+                <div className="card-body card-body-login">
                   <div className="form-group">
                     <label for="nick">Digite seu nickname:</label>
                     <input
@@ -60,7 +78,7 @@ class Login extends Component {
                   <div className="form-group">
                     <label for="password">Digite sua senha:</label>
                     <input
-                      onChange={(evt) => this.handleChange(evt)} 
+                      onChange={(evt) => this.handleChange(evt)}
                       type="password"
                       className="form-control"
                       id="password"
@@ -76,7 +94,9 @@ class Login extends Component {
                   </div>
                   <label>Não tem uma conta? Então clique em cadastrar</label>
                   <div>
-                    <button className="btn btn-primary botao-cadastro">Cadastrar</button>
+                    <button className="btn btn-primary botao-cadastro">
+                      Cadastrar
+                    </button>
                   </div>
                 </div>
               </div>

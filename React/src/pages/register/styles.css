@@ -1,86 +1,32 @@
-.container1 {
-    margin-left: 25.5%;
-    width: 55.8%;
-    height: 40em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.container-register {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  .nome01{
-    position: absolute;
-    left: 3% !important;
-    top: 4%;
-    width: 90%;
+.img-fluid-register {
+  position: relative;
+  height: 150px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  }
+.img-thumbnail-register {
+  border: none;
+  background: none;
+}
 
-  .nickName{
-    position: absolute;
-    left: 3% !important;
-    top: 26%;
-    width: 90%;
-    
-  }
+.card-register {
+  width: 200vh;
+}
 
-  .senha{
-    position: absolute;
-    left: 17.3% !important;
-    top: 58%;
-    width: 63%;
+.card-body-register {
+  background: none;
+  border: 40px solid transparent;
+  border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
+}
 
-  }
-
-  .cadastro{
-    position: absolute;
-    top: 85% !important;
-    left: 42%;
-  }
-
-  .sexo{
-    position: absolute;
-    left: 20% !important;
-    top: 72%;
-    width: 52.7%;
-
-  }
-  
-  .card1 {
-    position: absolute;
-    left: 15%;
-    margin-top: 7%;
-    height: 70%;
-    width: 70% !important;
-    z-index: -1;
-  }
-
-  .foto{
-    left: 5% !important;
-  }
-  
-  .radio1 {
-    position: absolute;
-    top: 100%;
-    z-index: 1;
-  }
-  
-  .fundoAgua {
-    position: absolute;
-    background-image: url(../../assets/images/imagem-mar.jpg) no-repeat;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .logo {
-    position: absolute;
-    background-image: url(../../assets/images/CapivaraWars-logo.png) no-repeat;
-    height: 20%;
-    width: 20%;
-    left: 36%;
-    top: 3%;
-  }
-  
-  .texto {
-    font-size: 20px;
-  }

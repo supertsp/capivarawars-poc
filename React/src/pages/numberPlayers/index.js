@@ -23,7 +23,7 @@ class NumberPlayers extends Component {
                     <div className=" logo-cap">
                         <img src={capivaraLogo} className="img-fluid img-thumbnail"></img>
                     </div>
-                    <div className="card">
+                    <div className="card-num">
                         <div className="card-body">
                             <ul>
                                 <li><button type="button" class="btn btn-primary">Adicionar</button></li>

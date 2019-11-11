@@ -5,18 +5,13 @@
   z-index: -100;
 }
 
-.card{
-  left: 10%;
-  margin-top: -8%;
-}
-
-.card-body {
+.card-body-login {
   background: none;
   border: 40px solid transparent;
   border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
 }
 
-.container {
+.container-login {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,9 +19,8 @@
   align-items: center;
 }
 
-.img-fluid {
+.img-fluid-login {
   position: relative;
-  left: -10%;
   height: 150px;
   width: 300px;
   display: flex;
@@ -34,7 +28,7 @@
   align-items: center;
 }
 
-.img-thumbnail {
+.img-thumbnail-login {
   border: none;
   background: none;
 }
