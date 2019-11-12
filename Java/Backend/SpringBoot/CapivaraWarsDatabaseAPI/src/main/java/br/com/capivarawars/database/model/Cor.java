@@ -1,6 +1,7 @@
 package br.com.capivarawars.database.model;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class Cor {
     /**
      * RELATIONSHIPS
      */
+	@JsonIgnore
     @OneToMany(mappedBy = "corFK")
     private List<Capivara> listaDeCapivaras;
     //</editor-fold>

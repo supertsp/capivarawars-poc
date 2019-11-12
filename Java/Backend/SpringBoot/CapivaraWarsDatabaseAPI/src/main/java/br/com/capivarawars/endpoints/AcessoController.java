@@ -1,4 +1,4 @@
-package br.com.capivarawars.controller;
+package br.com.capivarawars.endpoints;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

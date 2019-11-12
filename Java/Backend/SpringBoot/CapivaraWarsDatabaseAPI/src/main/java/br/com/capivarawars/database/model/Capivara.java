@@ -1,6 +1,7 @@
 package br.com.capivarawars.database.model;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -41,14 +42,17 @@ public class Capivara {
     /**
      * RELATIONSHIPS
      */
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_COR")
     private Cor corFK;
-
+	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_JOGADOR")
     private Jogador jogadorFK;
 
+	@JsonIgnore
     @OneToMany(mappedBy = "idAcessoriosDaCapivaraPK.capivaraFK")
     private List<AcessoriosDaCapivara> listaDeAcessoriosDaCapivara;
     //</editor-fold>

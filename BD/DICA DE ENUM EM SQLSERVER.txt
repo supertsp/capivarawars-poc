@@ -1,0 +1,14 @@
+https://social.msdn.microsoft.com/Forums/sqlserver/en-US/c7abe3c1-cd48-4ddf-9ce2-b28d0ffb25f6/enum-in-sql-server?forum=transactsql
+
+In MYSQL:
+
+CREATE TABLE sizes (
+    name ENUM('small', 'medium', 'large')
+);
+
+In SQL SERVER
+
+CREATE TABLE sizes
+(
+    name varchar(10) NOT NULL CHECK (name IN('small', 'medium', 'large'))
+)

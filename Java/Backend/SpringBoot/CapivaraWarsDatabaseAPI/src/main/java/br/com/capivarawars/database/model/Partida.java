@@ -1,6 +1,7 @@
 package br.com.capivarawars.database.model;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -41,18 +42,22 @@ public class Partida {
     /**
      * RELATIONSHIPS
      */
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_JOGADOR_1")
     private Jogador jogador1;
-
+	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_JOGADOR_2")
     private Jogador jogador2;
 
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_JOGADOR_VENCEDOR")
     private Jogador jogadorVencedor;
-
+	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_CAMPEONATO")
     private Campeonato campeonatoFK;

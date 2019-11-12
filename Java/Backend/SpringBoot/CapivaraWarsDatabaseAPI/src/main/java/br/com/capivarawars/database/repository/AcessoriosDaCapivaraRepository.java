@@ -17,12 +17,11 @@ import org.springframework.stereotype.Repository;
  * @author tiago, 07/11/2019, 21:49:30 Last update: -
  *///</editor-fold>
 @Repository
-public interface AcessoriosDaCapivaraRepository extends JpaRepository<AcessorioRepository, IdAcessoriosDaCapivaraPK> {
+public interface AcessoriosDaCapivaraRepository extends JpaRepository<AcessoriosDaCapivara, IdAcessoriosDaCapivaraPK> {
 
-    //<editor-fold defaultstate="collapsed" desc="constants attributes...">
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="abstract methods...">
-    
-    //</editor-fold>
-    
+	//<editor-fold defaultstate="collapsed" desc="constants attributes...">
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="abstract methods...">
+	//</editor-fold>
+	
 }//interface

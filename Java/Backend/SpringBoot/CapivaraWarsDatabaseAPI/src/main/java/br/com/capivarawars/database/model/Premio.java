@@ -1,6 +1,7 @@
 package br.com.capivarawars.database.model;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -22,162 +23,165 @@ import javax.persistence.*;
 @Table(name = "PREMIO")
 public class Premio {
 
-    //<editor-fold defaultstate="collapsed" desc="attributes...">
-    //<editor-fold defaultstate="collapsed" desc="main attributes...">
-    @Id
-    @GeneratedValue
-    @Column(name = "ID_PREMIO")
-    private Long idPremio;
+	//<editor-fold defaultstate="collapsed" desc="attributes...">
+	//<editor-fold defaultstate="collapsed" desc="main attributes...">
+	@Id
+	@GeneratedValue
+	@Column(name = "ID_PREMIO")
+	private Long idPremio;
 
-    @Column(name = "NOME", length = VARCHAR_LENGTH_NOME)
-    private String nome;
+	@Column(name = "NOME", length = VARCHAR_LENGTH_NOME)
+	private String nome;
 
-    @Column(name = "VALOR_EM_MOEDAS")
-    private Integer valorEmMoedas;
+	@Column(name = "VALOR_EM_MOEDAS")
+	private Integer valorEmMoedas;
 
-    @Column(name = "URL_IMAGEM", length = VARCHAR_LENGTH_URL_IMAGEM)
-    private String urlImagem;
+	@Column(name = "URL_IMAGEM", length = VARCHAR_LENGTH_URL_IMAGEM)
+	private String urlImagem;
 
-    @Column(name = "DATAHORA_CRIACAO", columnDefinition = "DATETIME")
-    private LocalDateTime dataHoraCriacao;
+	@Column(name = "DATAHORA_CRIACAO", columnDefinition = "DATETIME")
+	private LocalDateTime dataHoraCriacao;
 
-    /**
-     * RELATIONSHIPS
-     */
-    @OneToMany(mappedBy = "premioPrimeiroColocado")
-    private List<Campeonato> listaDeCampeonatosComPrimeiroColocado;
+	/**
+	 * RELATIONSHIPS
+	 */
+	@JsonIgnore
+	@OneToMany(mappedBy = "premioPrimeiroColocado")
+	private List<Campeonato> listaDeCampeonatosComPrimeiroColocado;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "premioSegundoColocado")
+	private List<Campeonato> listaDeCampeonatosComSegundoColocado;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "premioTerceiroColocado")
+	private List<Campeonato> listaDeCampeonatosComTerceiroColocado;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "idPremiosDoJogadorPK.premioFK")
+	private List<PremiosDoJogador> listaDePremiosDoJogador;
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="constants attributes...">
+	public static final int VARCHAR_LENGTH_NOME = 120,
+			VARCHAR_LENGTH_URL_IMAGEM = 255;
 
-    @OneToMany(mappedBy = "premioSegundoColocado")
-    private List<Campeonato> listaDeCampeonatosComSegundoColocado;
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="static attributes...">
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
+	//</editor-fold>
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="constructors...">
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="methods...">
+	//<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
+	public Long getIdPremio() {
+		return idPremio;
+	}
 
-    @OneToMany(mappedBy = "premioTerceiroColocado")
-    private List<Campeonato> listaDeCampeonatosComTerceiroColocado;
+	public Premio setIdPremio(Long idPremio) {
+		this.idPremio = idPremio;
+		return this;
+	}
 
-    @OneToMany(mappedBy = "idPremiosDoJogadorPK.premioFK")
-    private List<PremiosDoJogador> listaDePremiosDoJogador;
+	public String getNome() {
+		return nome;
+	}
 
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="constants attributes...">
-    public static final int VARCHAR_LENGTH_NOME = 120,
-            VARCHAR_LENGTH_URL_IMAGEM = 255;
+	public Premio setNome(String nome) {
+		this.nome = nome;
+		return this;
+	}
 
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="static attributes...">
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="auxiliary attributes...">
-    //</editor-fold>
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="constructors...">
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="methods...">
-    //<editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-    public Long getIdPremio() {
-        return idPremio;
-    }
+	public Integer getValorEmMoedas() {
+		return valorEmMoedas;
+	}
 
-    public Premio setIdPremio(Long idPremio) {
-        this.idPremio = idPremio;
-        return this;
-    }
+	public Premio setValorEmMoedas(Integer valorEmMoedas) {
+		this.valorEmMoedas = valorEmMoedas;
+		return this;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public String getUrlImagem() {
+		return urlImagem;
+	}
 
-    public Premio setNome(String nome) {
-        this.nome = nome;
-        return this;
-    }
+	public Premio setUrlImagem(String urlImagem) {
+		this.urlImagem = urlImagem;
+		return this;
+	}
 
-    public Integer getValorEmMoedas() {
-        return valorEmMoedas;
-    }
+	public LocalDateTime getDataHoraCriacao() {
+		return dataHoraCriacao;
+	}
 
-    public Premio setValorEmMoedas(Integer valorEmMoedas) {
-        this.valorEmMoedas = valorEmMoedas;
-        return this;
-    }
+	public Premio setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
+		if (dataHoraCriacao == null) {
+			this.dataHoraCriacao = LocalDateTime.now();
+		} else {
+			this.dataHoraCriacao = dataHoraCriacao;
+		}
 
-    public String getUrlImagem() {
-        return urlImagem;
-    }
+		return this;
+	}
 
-    public Premio setUrlImagem(String urlImagem) {
-        this.urlImagem = urlImagem;
-        return this;
-    }
+	/**
+	 * RELATIONSHIPS
+	 */
+	public List<Campeonato> getListaDeCampeonatosComPrimeiroColocado() {
+		return listaDeCampeonatosComPrimeiroColocado;
+	}
 
-    public LocalDateTime getDataHoraCriacao() {
-        return dataHoraCriacao;
-    }
+	public Premio setListaDeCampeonatosComPrimeiroColocado(List<Campeonato> listaDeCampeonatosComPrimeiroColocado) {
+		this.listaDeCampeonatosComPrimeiroColocado = listaDeCampeonatosComPrimeiroColocado;
+		return this;
+	}
 
-    public Premio setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
-        if (dataHoraCriacao == null) {
-            this.dataHoraCriacao = LocalDateTime.now();
-        } else {
-            this.dataHoraCriacao = dataHoraCriacao;
-        }
+	public List<Campeonato> getListaDeCampeonatosComSegundoColocado() {
+		return listaDeCampeonatosComSegundoColocado;
+	}
 
-        return this;
-    }
+	public Premio setListaDeCampeonatosComSegundoColocado(List<Campeonato> listaDeCampeonatosComSegundoColocado) {
+		this.listaDeCampeonatosComSegundoColocado = listaDeCampeonatosComSegundoColocado;
+		return this;
+	}
 
-    /**
-     * RELATIONSHIPS
-     */
-    public List<Campeonato> getListaDeCampeonatosComPrimeiroColocado() {
-        return listaDeCampeonatosComPrimeiroColocado;
-    }
+	public List<Campeonato> getListaDeCampeonatosComTerceiroColocado() {
+		return listaDeCampeonatosComTerceiroColocado;
+	}
 
-    public Premio setListaDeCampeonatosComPrimeiroColocado(List<Campeonato> listaDeCampeonatosComPrimeiroColocado) {
-        this.listaDeCampeonatosComPrimeiroColocado = listaDeCampeonatosComPrimeiroColocado;
-        return this;
-    }
+	public Premio setListaDeCampeonatosComTerceiroColocado(List<Campeonato> listaDeCampeonatosComTerceiroColocado) {
+		this.listaDeCampeonatosComTerceiroColocado = listaDeCampeonatosComTerceiroColocado;
+		return this;
+	}
 
-    public List<Campeonato> getListaDeCampeonatosComSegundoColocado() {
-        return listaDeCampeonatosComSegundoColocado;
-    }
+	public List<PremiosDoJogador> getListaDePremiosDoJogador() {
+		return listaDePremiosDoJogador;
+	}
 
-    public Premio setListaDeCampeonatosComSegundoColocado(List<Campeonato> listaDeCampeonatosComSegundoColocado) {
-        this.listaDeCampeonatosComSegundoColocado = listaDeCampeonatosComSegundoColocado;
-        return this;
-    }
+	public Premio setListaDePremiosDoJogador(List<PremiosDoJogador> listaDePremiosDoJogador) {
+		this.listaDePremiosDoJogador = listaDePremiosDoJogador;
+		return this;
+	}
 
-    public List<Campeonato> getListaDeCampeonatosComTerceiroColocado() {
-        return listaDeCampeonatosComTerceiroColocado;
-    }
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="override methods...">
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="static methods...">
+	//</editor-fold>
+	//<editor-fold defaultstate="collapsed" desc="main methods...">
+	public boolean preencheuCamposObrigatorios() {
+		if (dataHoraCriacao == null) {
+			this.dataHoraCriacao = LocalDateTime.now();
+		}
 
-    public Premio setListaDeCampeonatosComTerceiroColocado(List<Campeonato> listaDeCampeonatosComTerceiroColocado) {
-        this.listaDeCampeonatosComTerceiroColocado = listaDeCampeonatosComTerceiroColocado;
-        return this;
-    }
-
-    public List<PremiosDoJogador> getListaDePremiosDoJogador() {
-        return listaDePremiosDoJogador;
-    }
-
-    public Premio setListaDePremiosDoJogador(List<PremiosDoJogador> listaDePremiosDoJogador) {
-        this.listaDePremiosDoJogador = listaDePremiosDoJogador;
-        return this;
-    }
-
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="override methods...">
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="static methods...">
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="main methods...">
-    public boolean preencheuCamposObrigatorios() {
-        if (dataHoraCriacao == null) {
-            this.dataHoraCriacao = LocalDateTime.now();
-        }
-
-        return nome != null
-                && valorEmMoedas != null
-                && urlImagem != null;
-    }
-    //</editor-fold>
-    //</editor-fold>
+		return nome != null
+				&& valorEmMoedas != null
+				&& urlImagem != null;
+	}
+	//</editor-fold>
+	//</editor-fold>
 
 }//class

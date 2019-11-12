@@ -1,6 +1,7 @@
 package br.com.capivarawars.database.model;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -47,33 +48,41 @@ public class Campeonato {
     /**
      * RELATIONSHIPS
      */
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_PREMIO_PRIMEIRO_COLOCADO")
     private Premio premioPrimeiroColocado;
-
+	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_PREMIO_SEGUNDO_COLOCADO")
     private Premio premioSegundoColocado;
-
+	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_PREMIO_TERCEIRO_COLOCADO")
     private Premio premioTerceiroColocado;
-
+	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_JOGADOR_VENCEDOR_PRIMEIRO")
     private Jogador jogadorVencedorPrimeiro;
-
+	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_JOGADOR_VENCEDOR_SEGUNDO")
     private Jogador jogadorVencedorSegundo;
-
+	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_JOGADOR_VENCEDOR_TERCEIRO")
     private Jogador jogadorVencedorTerceiro;
-
+	
+	@JsonIgnore
     @OneToMany(mappedBy = "idJogadoresEmCampeonatoPK.campeonatoFK")
     private List<JogadoresEmCampeonato> listaDeJogadoresParticipantes;
-
+	
+	@JsonIgnore
     @OneToMany(mappedBy = "campeonatoFK")
     private List<Partida> listaDePartidasOcorridas;
     //</editor-fold>
