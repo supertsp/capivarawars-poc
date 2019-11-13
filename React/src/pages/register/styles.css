@@ -30,3 +30,19 @@
   border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
 }
 
+.input-data{
+  margin-top: -1%;
+}
+
+.input-email{
+  margin-top: 2%;
+}
+
+.input-confirm-senha{
+  margin-top: 2.5%;
+}
+
+.botao-cadastrar{
+  margin-top: 7%;
+  margin-left: 35%;
+}

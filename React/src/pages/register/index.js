@@ -26,7 +26,7 @@ class Register extends Component {
                       <input type="text" className="form-control" id="name" placeholder="Nome completo"></input>
                     </div>
                     <div className="form-group">
-                      <label for="nick">Nickname do jogador</label>
+                      <label for="nick">Nickname do jogador:</label>
                       <input type="text" className="form-control" id="nick" placeholder="nickname"></input>
                     </div>
                     <div className="form-group">
@@ -34,7 +34,7 @@ class Register extends Component {
                       <input type="password" className="form-control" id="password" placeholder="senha"></input>
                     </div>
                     <div className="form-group">
-                      <label>informe seu sexo:</label>
+                      <label>Informe seu sexo:</label>
                       <div className="form-check">
                         <input className="form-check-input" type="radio" name="sex"></input>
                         <label className="form-check-label" for="male">Masculino</label>
@@ -46,7 +46,21 @@ class Register extends Component {
                     </div>
                   </div>
                   <div className="col-md-6">
-                    
+                    <div className=" input-data">
+                  <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                  <input class="form-control" type="date" value="2011-08-19" id="example-date-input"></input>
+                  </div>
+                  <div className=" input-email">
+                  <label for="example-email-input" class="col-2 col-form-label">Email</label>
+                  <input class="form-control" type="email" value="capivara@canoa.com" id="example-email-input"></input>
+                  </div>
+                  <div className=" input-confirm-senha">
+                  <label for="password">Confirm sua senha:</label>
+                      <input type="password" className="form-control" id="password" placeholder="senha"></input>
+                  </div>
+                  <div className="botao-cadastrar">
+                  <button type="submit" class="btn btn-primary">Confirmar cadastro</button>
+                  </div>
                   </div>
                 </div>
               </div>
