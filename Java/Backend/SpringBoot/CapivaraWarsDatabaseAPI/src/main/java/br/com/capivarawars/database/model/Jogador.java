@@ -31,7 +31,7 @@ public class Jogador {
     @Column(name = "ID_JOGADOR")
     private Long idJogador;
 
-    @Column(name = "NICK", length = VARCHAR_LENGTH_NICK, unique=true, nullable=false)
+    @Column(name = "NICK", length = VARCHAR_LENGTH_NICK, unique = true, nullable = false)
     private String nick;
 
     @Column(name = "SENHA", length = VARCHAR_LENGTH_SENHA)
@@ -46,7 +46,7 @@ public class Jogador {
     @Column(name = "NOME_COMPLETO", length = VARCHAR_LENGTH_NOME_COMPLETO)
     private String nomeCompleto;
 
-    @Column(name = "EMAIL", length = VARCHAR_LENGTH_EMAIL, unique=true)
+    @Column(name = "EMAIL", length = VARCHAR_LENGTH_EMAIL, unique = true)
     private String email;
 
     @Column(name = "GENERO", length = CHAR_LENGTH_GENERO, columnDefinition = "CHAR")
@@ -175,6 +175,10 @@ public class Jogador {
     public void setSenha(String senha) {
         senha = senha.trim();
         this.senha = Cripotografia.getSHA256(senha);
+    }
+    
+    public void setSenhaSemSHA256(String senha) {
+        this.senha = senha;
     }
     
     public LocalDateTime getDataHoraCriacaoConta() {

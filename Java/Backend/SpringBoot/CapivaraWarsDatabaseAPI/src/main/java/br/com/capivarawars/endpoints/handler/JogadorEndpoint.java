@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 //</editor-fold>
 
@@ -67,12 +68,34 @@ public class JogadorEndpoint {
 	 */
 	
 	@GetMapping(API_GENERAL_SEARCH)
-	public ResponseEntity<List<Jogador>> getAll() {
+	public ResponseEntity<List<Jogador>> searchAll() {
 		return ResponseEntity.ok(jogadorRepository.findAll());
 	}
+	
+	@GetMapping(API_JOGADOR_SEARCH_BY_ONLINE)
+	public ResponseEntity<List<Jogador>> searchAllByOnline(@PathVariable("online") Boolean online) {
+		List<Jogador> jogadoresProcurados = jogadorRepository.findAllByOnlineOrderByPontuacaoDesc(online);
 
+		if (jogadoresProcurados != null) {
+			return ResponseEntity.ok(jogadoresProcurados);
+		}
+
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(API_JOGADOR_SEARCH_BY_PONTUACAO)
+	public ResponseEntity<List<Jogador>> searchAllByPontuacao() {
+		List<Jogador> jogadoresProcurados = jogadorRepository.findAllOrderByPontuacao();
+
+		if (jogadoresProcurados != null) {
+			return ResponseEntity.ok(jogadoresProcurados);
+		}
+
+		return ResponseEntity.noContent().build();
+	}	
+	
 	@GetMapping(API_JOGADOR_SEARCH_BY_ID)
-	public ResponseEntity<Jogador> getOneById(@PathVariable("id") Long id) {
+	public ResponseEntity<Jogador> searchOneById(@PathVariable("id") Long id) {
 		try {
 			Jogador jogadorProcurado = jogadorRepository.findById(id).get();
 			return ResponseEntity.ok(jogadorProcurado);
@@ -82,7 +105,7 @@ public class JogadorEndpoint {
 	}
 
 	@GetMapping(API_JOGADOR_SEARCH_BY_NICK)
-	public ResponseEntity<Jogador> getOneByNick(@PathVariable("nick") String nick) {
+	public ResponseEntity<Jogador> searchOneByNick(@PathVariable("nick") String nick) {
 		Jogador jogadorProcurado = jogadorRepository.getByNick(nick);
 
 		if (jogadorProcurado != null) {
@@ -93,7 +116,7 @@ public class JogadorEndpoint {
 	}
 	
 	@GetMapping(API_JOGADOR_SEARCH_BY_EMAIL)
-	public ResponseEntity<Jogador> getOneByEmail(@PathVariable("email") String email) {
+	public ResponseEntity<Jogador> searchOneByEmail(@PathVariable("email") String email) {
 		Jogador jogadorProcurado = jogadorRepository.getByEmail(email);
 
 		if (jogadorProcurado != null) {
@@ -101,17 +124,84 @@ public class JogadorEndpoint {
 		}
 
 		return ResponseEntity.noContent().build();
-	}	
+	}
 	
-	@GetMapping(API_JOGADOR_SEARCH_BY_PONTUACAO)
-	public ResponseEntity<List<Jogador>> getOneByPontuacao() {
-		List<Jogador> jogadoresProcurados = jogadorRepository.findAllOrderByPontuacao();
-
-		if (jogadoresProcurados != null) {
-			return ResponseEntity.ok(jogadoresProcurados);
+	
+	/**
+	 * UPDATE
+	 * 	
+	 */
+	
+	@Transactional
+	@PutMapping(API_JOGADOR_UPDATE_BY_ID)
+	public ResponseEntity<Boolean> updateOneById(@PathVariable("id") Long id, @RequestBody Jogador atualizacaoJogador) {
+		Jogador jogadorTemp = searchOneById(id).getBody();
+		
+		if (jogadorTemp != null) {
+			
+			if (atualizacaoJogador.getNick() != null) {
+				jogadorTemp.setNick(atualizacaoJogador.getNick());
+			}
+			
+			if (atualizacaoJogador.getSenha() != null) {
+				jogadorTemp.setSenhaSemSHA256(atualizacaoJogador.getSenha());
+			}
+			
+			if (atualizacaoJogador.getDataHoraCriacaoConta()!= null) {
+				jogadorTemp.setDataHoraCriacaoConta(atualizacaoJogador.getDataHoraCriacaoConta());
+			}
+			
+			if (atualizacaoJogador.getUrlFoto()!= null) {
+				jogadorTemp.setUrlFoto(atualizacaoJogador.getUrlFoto());
+			}
+			
+			
+			return ResponseEntity.ok(true);
 		}
-
-		return ResponseEntity.noContent().build();
+		
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(false);
+	}
+	
+	
+	/**
+	 * DELETE
+	 * 	
+	 */
+	
+	@DeleteMapping(API_JOGADOR_DELETE_BY_ID)
+	public ResponseEntity<Boolean> deleteOneById(@PathVariable("id") Long id) {
+		try {
+			jogadorRepository.deleteById(id);
+			return ResponseEntity.ok(true);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body(false);
+		}
+	}
+	
+	@Transactional
+	@DeleteMapping(API_JOGADOR_DELETE_BY_NICK)
+	public ResponseEntity<Boolean> deleteOneByNick(@PathVariable("nick") String nick) {
+		Jogador jogadorTemp = searchOneByNick(nick).getBody();
+		
+		if (jogadorTemp != null) {
+			jogadorRepository.deleteByNick(nick);
+			return ResponseEntity.ok(true);
+		}
+		
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(false);
+	}
+	
+	@Transactional
+	@DeleteMapping(API_JOGADOR_DELETE_BY_EMAIL)
+	public ResponseEntity<Boolean> deleteOneByEmail(@PathVariable("email") String email) {
+		Jogador jogadorTemp = searchOneByEmail(email).getBody();
+		
+		if (jogadorTemp != null) {
+			jogadorRepository.deleteByEmail(email);
+			return ResponseEntity.ok(true);
+		}
+		
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(false);
 	}
 	
 	
@@ -146,7 +236,7 @@ public class JogadorEndpoint {
 		}
 
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(false);
-	}
+	}	
 	//</editor-fold>
 
 }//class

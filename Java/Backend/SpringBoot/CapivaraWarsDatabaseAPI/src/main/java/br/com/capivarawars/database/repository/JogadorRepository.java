@@ -39,10 +39,25 @@ public interface JogadorRepository extends JpaRepository<Jogador, Long> {
 	
     public Jogador getByEmail(String email);
 	
-    public List<Jogador> getByOnline(Boolean online);
+    public List<Jogador> findAllByOnlineOrderByPontuacaoDesc(Boolean online);
 	
 	@Query("select j from Jogador j order by j.pontuacao desc")
 	public List<Jogador> findAllOrderByPontuacao();
+	
+	
+	 /**
+	 * DELETE
+	 * 	
+	 */
+	
+	@Modifying
+	@Query("delete from Jogador j where j.nick = :nick")
+	public void deleteByNick(@Param("nick") String nick);
+	
+	@Modifying
+	@Query("delete from Jogador j where j.email = :email")
+	public void deleteByEmail(@Param("email") String email);
+	
 	
 	/**
 	 * EXISTS
