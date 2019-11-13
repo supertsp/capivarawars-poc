@@ -1,0 +1,30 @@
+.card-resertPassword{
+    width: 100vh;
+    margin-top: -40%;
+
+}
+
+.img-fluid-reset {
+    position: relative;
+    height: 150px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+  }
+
+.container-reset {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.card-body-reset{
+    background: none;
+  border: 40px solid transparent;
+  border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
+}

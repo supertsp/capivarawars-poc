@@ -48,20 +48,20 @@ class Register extends Component {
                   <div className="col-md-6">
                     <div className=" input-data">
                   <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                  <input class="form-control" type="date" value="2011-08-19" id="example-date-input"></input>
+                  <input class="form-control" type="date" id="example-date-input" placeholder="01/12/2019"></input>
                   </div>
                   <div className=" input-email">
                   <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                  <input class="form-control" type="email" value="capivara@canoa.com" id="example-email-input"></input>
+                  <input class="form-control" type="email" id="example-email-input" placeholder="capivara@canoa.com"></input>
                   </div>
                   <div className=" input-confirm-senha">
                   <label for="password">Confirm sua senha:</label>
-                      <input type="password" className="form-control" id="password" placeholder="senha"></input>
+                      <input type="password" className="form-control" id="password" placeholder="Confirme sua senha"></input>
                   </div>
                   <div className="botao-cadastrar">
                   <button type="submit" class="btn btn-primary">Confirmar cadastro</button>
 
-                  
+
                   </div>
                   </div>
                 </div>
