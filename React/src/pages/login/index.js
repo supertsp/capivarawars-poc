@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import api from "../../services/api";
 
@@ -94,9 +95,9 @@ class Login extends Component {
                   </div>
                   <label>Não tem uma conta? Então clique em cadastrar</label>
                   <div>
-                    <button className="btn btn-primary botao-cadastro">
+                    <Link className="btn btn-primary botao-cadastro" to={'/register'}>
                       Cadastrar
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
