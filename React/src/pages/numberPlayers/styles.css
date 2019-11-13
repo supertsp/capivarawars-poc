@@ -1,27 +1,24 @@
-li {
+.img-fluid-num {
+  position: relative;
+  height: 150px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-thumbnail-num {
+  border: none;
+  background: none;
+}
+
+.card-body-num {
+  background: none;
+  border: 40px solid transparent;
+  border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
+}
+
+.number {
+    font-size: 45px;
     float: left;
-    list-style: none;
-    margin: 10%;
-    left: 10%;
-}
-
-.card-num{
-    width: 70%;
-    top: 10%;
-}
-
-#num {
-    margin: auto 30px;
-}
-
-.logo-cap{
-    position: absolute;
-    right: 80%;
-    top: 3%;
-}
-
-.botao-continuar{
-    position: absolute;
-    left: 84%;
-    top: 80%;
 }
