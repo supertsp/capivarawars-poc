@@ -15,7 +15,7 @@ const Routes = () => (
             <Route path="/register" component={Register} />
             <Route path="/home" component={Home} />
             <Route path="/numberPlayers" component={NumberPlayers} />
-            <Route path="/resetPassword" component={ResetPassword} /> 
+            <Route path="/resetPassword" component={ResetPassword} />
         </Switch>
     </BrowserRouter>
 );

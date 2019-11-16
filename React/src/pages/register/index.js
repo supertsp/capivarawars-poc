@@ -60,8 +60,6 @@ class Register extends Component {
                   </div>
                   <div className="botao-cadastrar">
                   <button type="submit" class="btn btn-primary">Confirmar cadastro</button>
-
-
                   </div>
                   </div>
                 </div>
