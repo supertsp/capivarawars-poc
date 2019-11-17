@@ -1,0 +1,1 @@
+db.getCollection('usuarios').findOne({"_id":ObjectId("5dba13ba6658aa4f13323ab5")})

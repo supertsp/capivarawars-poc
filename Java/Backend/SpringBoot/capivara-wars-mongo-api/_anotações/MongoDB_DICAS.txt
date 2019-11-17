@@ -1,0 +1,71 @@
+ROBO 3T (MONGO UI)
+
+Site pra gerenciar o BD Mongo
+https://cloud.mongodb.com/
+
+==================================================================================
+db.createCollection("usuarios")
+db.getCollection('usuarios').insert({<content json>})
+
+//USUÁRIOS
+
+{
+	"nome": "Tiago Pedroso",
+	"email": "tiago@pedroso.com.br",
+	"sexo": "m",
+	"endereco": "R. SobeDesce NucaAparece 123"
+},
+{
+	"nome": "Samuel Pedroso",
+	"email": "samuel@pedroso.com.br",
+	"sexo": "m",
+	"endereco": "R. SobeDesce NucaAparece 123"
+}
+{   
+	"nome": "Giovana Pedroso",
+	"email": "giovana@pedroso.com.br",
+	"sexo": "f",
+	"endereco": "R. SobeDesce NucaAparece 123"
+}
+
+==================================================================================
+//ANIMAIS DE ESTIMAÇÃO
+
+{
+	"nome": "Bob",
+	"especie": "cachorro",
+	"raca": "pastor alemão"
+},
+{
+	"nome": "Nina",
+	"especie": "gato",
+	"raca": "siamês"
+},
+{
+	"nome": "Daysy",
+	"especie": "papagaio",
+	"raca": "ave"
+}
+
+db.getCollection('AnimaisDeEstimacao').insertMany([{
+	"nome": "Bob",
+	"especie": "cachorro",
+	"raca": "pastor alemão"
+},
+{
+	"nome": "Nina",
+	"especie": "gato",
+	"raca": "siamês"
+},
+{
+	"nome": "Daysy",
+	"especie": "papagaio",
+	"raca": "ave"
+}])
+
+==================================================================================
+
+Site para iniciar um projeto Spring Boot
+https://start.spring.io/
+
+
