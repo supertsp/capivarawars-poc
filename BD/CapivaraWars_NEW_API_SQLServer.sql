@@ -1,0 +1,199 @@
+-- [GENERO] VARCHAR(1) NOT NULL CHECK([GENERO] IN('M', 'F'))
+-- -----------------------------------------------------
+-- Schema CapivaraWars
+-- -----------------------------------------------------
+-- CREATE SCHEMA IF NOT EXISTS CapivaraWars DEFAULT CHARACTER SET utf8 ;
+USE CapivaraWars;
+
+-- -----------------------------------------------------
+-- Table GAME_STATUS
+-- -----------------------------------------------------
+CREATE TABLE GAME_STATUS
+(
+    ID_GAME_STATUS INT NOT NULL IDENTITY,
+    [NAME] VARCHAR(7) NOT NULL CHECK([NAME] IN('CREATED', 'ONGOING', 'WIN', 'LOSE', 'DRAW')),
+    PRIMARY KEY (ID_GAME_STATUS)
+);
+
+
+-- -----------------------------------------------------
+-- Table MATCH
+-- -----------------------------------------------------
+CREATE TABLE MATCH
+(
+    ID_MATCH INT NOT NULL IDENTITY,
+    [START] DATETIME2(0) NULL,
+    [END] DATETIME2(0) NULL,
+    ID_PRIZE_FOR_PLACE_1 INT NULL,
+    ID_PRIZE_FOR_PLACE_2 INT NULL,
+    ID_PRIZE_FOR_PLACE_3 INT NULL,
+    ID_GAME_STATUS INT NOT NULL,
+    PRIMARY KEY (ID_MATCH),
+    CONSTRAINT fk_MATCH_GAME_STATUS1
+    FOREIGN KEY (ID_GAME_STATUS)
+    REFERENCES GAME_STATUS (ID_GAME_STATUS)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
+
+-- -----------------------------------------------------
+-- Table CHAMPIONSHIP
+-- -----------------------------------------------------
+CREATE TABLE CHAMPIONSHIP
+(
+    ID_CHAMPIONSHIP INT NOT NULL IDENTITY,
+    [NAME] VARCHAR(120) NOT NULL,
+    [START] DATETIME2(0) NOT NULL,
+    [END] DATETIME2(0) NULL,
+    MAX_PLAYERS INT NOT NULL,
+    MAX_MATCHES INT NOT NULL,
+    CURRENT_NUMBER_OF_PLAYERS INT NULL,
+    ID_PRIZE_FOR_PLACE_1 INT NOT NULL,
+    ID_PRIZE_FOR_PLACE_2 INT NOT NULL,
+    ID_PRIZE_FOR_PLACE_3 INT NOT NULL,
+    ID_GAME_STATUS INT NOT NULL,
+    PRIMARY KEY (ID_CHAMPIONSHIP),
+    CONSTRAINT fk_CHAMPIONSHIP_GAME_STATUS1
+    FOREIGN KEY (ID_GAME_STATUS)
+    REFERENCES GAME_STATUS (ID_GAME_STATUS)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
+
+-- -----------------------------------------------------
+-- Table PLAYER
+-- -----------------------------------------------------
+CREATE TABLE PLAYER
+(
+    ID_PLAYER INT NOT NULL IDENTITY,
+    NICK VARCHAR(45) NOT NULL,
+    [PASSWORD] VARCHAR(45) NOT NULL,
+    EMAIL VARCHAR(255) NOT NULL,
+    ACCOUNT_BIRTHDAY DATETIME2(0) NOT NULL,
+    AVATAR_URL VARCHAR(255) NOT NULL,
+    FULL_NAME VARCHAR(100) NOT NULL,
+    GENDER VARCHAR(1) NOT NULL CHECK([GENDER] IN('M', 'F')),
+    BIRTHDAY DATE NOT NULL,
+    [ONLINE] SMALLINT NULL,
+    LAST_ACTIVATION_CODE VARCHAR(255) NULL,
+    COINS INT NULL,
+    SCORE INT NULL,
+    WINS INT NULL,
+    LOSSES INT NULL,
+    DRAWS INT NULL,
+    ACCURATE_SHOTS INT NULL,
+    BAD_SHOTS INT NULL,
+    SHOTS_RECEIVED INT NULL,
+    MOVEMENTS INT NULL,
+    MATCHES_PLAYED INT NULL,
+    CHAMPIONSHIPS_PLAYED INT NULL,
+    PRIZES_EARNED INT NULL,
+    PRIMARY KEY (ID_PLAYER),
+    CONSTRAINT NICK_UNIQUE UNIQUE (NICK ASC),
+    CONSTRAINT EMAIL_UNIQUE UNIQUE (EMAIL ASC)
+);
+
+
+-- -----------------------------------------------------
+-- Table COLOR
+-- -----------------------------------------------------
+CREATE TABLE COLOR
+(
+    ID_COLOR INT NOT NULL IDENTITY,
+    [NAME] VARCHAR(120) NOT NULL,
+    RGBA CHAR(9) NOT NULL,
+    PRIMARY KEY (ID_COLOR)
+);
+
+
+-- -----------------------------------------------------
+-- Table CAPYBARA
+-- -----------------------------------------------------
+CREATE TABLE CAPYBARA
+(
+    ID_CAPYBARA INT NOT NULL IDENTITY,
+    [NAME] VARCHAR(45) NOT NULL,
+    BIRTHDAY DATETIME2(0) NOT NULL,
+    HP INT NULL,
+    ID_COLOR INT NULL,
+    ID_PLAYER INT NULL,
+    PRIMARY KEY (ID_CAPYBARA),
+    CONSTRAINT fk_CAPIVARA_COR
+    FOREIGN KEY (ID_COLOR)
+    REFERENCES COLOR (ID_COLOR)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
+
+-- -----------------------------------------------------
+-- Table PRIZE
+-- -----------------------------------------------------
+CREATE TABLE PRIZE
+(
+    ID_PRIZE INT NOT NULL IDENTITY,
+    [NAME] VARCHAR(120) NOT NULL,
+    COINS INT NOT NULL,
+    ICON_URL VARCHAR(255) NOT NULL,
+    CREATED_IN DATETIME2(0) NOT NULL,
+    PRIMARY KEY (ID_PRIZE)
+);
+
+
+-- -----------------------------------------------------
+-- Table PRIZES_EARNED
+-- -----------------------------------------------------
+CREATE TABLE PRIZES_EARNED
+(
+    ID_PRIZES_EARNED INT NOT NULL IDENTITY,
+    ID_PLAYER INT NOT NULL,
+    ID_PRIZE INT NOT NULL,
+    PRIZE_DATETIME DATETIME2(0) NOT NULL,
+    PRIMARY KEY (ID_PRIZES_EARNED),
+    CONSTRAINT fk_JOGADOR_PREMIO_JOGADOR1
+    FOREIGN KEY (ID_PLAYER)
+    REFERENCES PLAYER (ID_PLAYER)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
+
+-- -----------------------------------------------------
+-- Table CHAMPIONSHIPS_PLAYED
+-- -----------------------------------------------------
+CREATE TABLE CHAMPIONSHIPS_PLAYED
+(
+    ID_CHAMPIONSHIPS_PLAYED INT NOT NULL IDENTITY,
+    ID_CHAMPIONSHIP INT NOT NULL,
+    ID_PLAYER INT NOT NULL,
+    [START] DATETIME2(0) NULL,
+    [END] DATETIME2(0) NULL,
+    ID_GAME_STATUS INT NULL,
+    PRIMARY KEY (ID_CHAMPIONSHIPS_PLAYED),
+    CONSTRAINT fk_JOGADORES_EM_CAMPEONATO_JOGADOR1
+    FOREIGN KEY (ID_PLAYER)
+    REFERENCES PLAYER (ID_PLAYER)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
+
+-- -----------------------------------------------------
+-- Table MATCHES_PLAYED
+-- -----------------------------------------------------
+CREATE TABLE MATCHES_PLAYED
+(
+    ID_MATCHES_PLAYED INT NOT NULL IDENTITY,
+    ID_PLAYER INT NOT NULL,
+    ID_MATCH INT NOT NULL,
+    ID_GAME_STATUS INT NULL,
+    PRIMARY KEY (ID_MATCHES_PLAYED),
+    CONSTRAINT fk_JOGADOR_PARTIDA_JOGADOR1
+    FOREIGN KEY (ID_PLAYER)
+    REFERENCES PLAYER (ID_PLAYER)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
