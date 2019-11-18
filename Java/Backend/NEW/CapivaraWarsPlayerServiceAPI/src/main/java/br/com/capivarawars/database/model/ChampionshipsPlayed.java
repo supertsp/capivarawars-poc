@@ -1,6 +1,6 @@
 package br.com.capivarawars.database.model;
 
-//<editor-fold defaultstate="collapsed" desc="imports...">
+// <editor-fold defaultstate="collapsed" desc="imports...">
 import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.database.repository.*;
 import br.com.capivarawars.endpoint.client.*;
@@ -16,11 +16,11 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
-import br.com.capivarawars.security.Criptografia;
+import br.com.capivarawars.security.Cryptography;
 import com.fasterxml.jackson.annotation.*;
-//</editor-fold>
+// </editor-fold>
 
-//<editor-fold defaultstate="collapsed" desc="documentation...">
+// <editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
  *
@@ -30,47 +30,34 @@ import com.fasterxml.jackson.annotation.*;
  * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00 Last update: -
  */// </editor-fold>
 @Entity
-@Table(name = "JOGADOR")
-public class Jogador {
+@Table(name = "CHAMPIONSHIPS_PLAYED")
+public class ChampionshipsPlayed {
 
 	// <editor-fold defaultstate="collapsed" desc="attributes...">
 	// <editor-fold desc="DATABASE FIELDS..." defaultstate="collapsed">
 	@Id
 	@GeneratedValue
-	@Column(name = "ID_JOGADOR")
-	private Long idJogador;
+	@Column(name = "ID_CHAMPIONSHIPS_PLAYED")
+	private Long idChampionshipsPlayed;
+	
+	@Column(name = "START", columnDefinition = "DATETIME")
+	private LocalDateTime start;
+	
+	@Column(name = "END", columnDefinition = "DATETIME")
+	private LocalDateTime end;
+	// </editor-fold>	
+	// <editor-fold desc="RELATIONSHIPS..." defaultstate="collapsed">	
+	@Column(name = "ID_CHAMPIONSHIP")
+	private Long idChampionship;
+	
+	@ManyToOne
+    @JoinColumn(name = "ID_PLAYER")
+	private Player playerFK;
 
-	@Column(name = "NICK", length = 255, unique = true, nullable = false)
-	private String nick;
-	private String senha;
-	private LocalDateTime dataHoraCriacaoConta;
-	private String urlFoto;
-	private String nomeCompleto;
-	private String email;
-	private Character genero;
-	private LocalDate dataNascimento;
-	private Boolean online;
-	private String ultimoCodigoAtivacao;
-	private Integer moedas;
-	private Integer pontuacao;
-	private Integer vitorias;
-	private Integer empates;
-	private Integer derrotas;
-	private Integer qtdTirosCerteiros;
-	private Integer qtdTirosRuins;
-	private Integer qtdTirosRecebidos;
-	private Integer qtdMovimentos;
+	@Column(name = "ID_GAME_STATUS")
+	private Long idGameStatus;
 	// </editor-fold>
-	// <editor-fold desc="RELATIONSHIPS..." defaultstate="collapsed">
-	@JsonIgnore
-	@OneToMany(mappedBy = "playerFK")
-	private List<String> listOfMatchesPlayed;
-	// </editor-fold>
-	// <editor-fold defaultstate="collapsed" desc="constants attributes...">
-	public static final int //
-			VARCHAR_LENGTH_NICK = 45,
-			PONTUACAO_PESO_MOVIMENTOS = 2 //
-			;
+	// <editor-fold defaultstate="collapsed" desc="constants attributes...">	
 	// </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc="static attributes...">
 	// </editor-fold>
@@ -82,14 +69,14 @@ public class Jogador {
 	// <editor-fold defaultstate="collapsed" desc="methods...">
 	// <editor-fold defaultstate="collapsed" desc="getter and setter methods...">
 	// </editor-fold>
-	// <editor-fold defaultstate="collapsed" desc="override methods...">
+	// <editor-fold defaultstate="collapsed" desc="override methods...">	
 	// </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc="auxiliary methods...">
 	// </editor-fold>
 	// <editor-fold defaultstate="collapsed" desc="static methods...">
 	// </editor-fold>
-	// <editor-fold defaultstate="collapsed" desc="main methods...">
+	// <editor-fold defaultstate="collapsed" desc="main methods...">	
 	// </editor-fold>
 	// </editor-fold>
-
-}// class
+	
+}//class

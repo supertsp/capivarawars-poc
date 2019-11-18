@@ -44,7 +44,7 @@ public class FeignClientMapping {
 	public DataBaseAPIClient dataBaseAPIClient() {
 		return Feign.builder().encoder(new JacksonEncoder())
 				.decoder(new JacksonDecoder())
-				.target(DataBaseAPIClient.class, "http://localhost:8086/api/PARA/CONSULTA");
+				.target(DataBaseAPIClient.class, "http://localhost:8086/api/database/v1/jogador");
 	}
 
 }//class

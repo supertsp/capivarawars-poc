@@ -21,9 +21,9 @@ public class EndpointsMapping {
 			API_GENERAL_SEARCH = "/", //GET
 			API_GENERAL_CHECK = "/",  //GET	
 			
-			API_AUTHENTICATION = "/api" + API_VERSION + "/authentication",
+			API_PLAYER_SERVICE = "/api" + API_VERSION + "/playerservice",
 			
-			API_AUTHENTICATION_LOGIN = "/login",
+			API_PLAYER_SERVICE_LOGIN = "/login",
 			
 			
 			
