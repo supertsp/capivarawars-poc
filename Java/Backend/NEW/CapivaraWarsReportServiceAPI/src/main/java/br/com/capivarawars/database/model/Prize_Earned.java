@@ -1,5 +1,5 @@
 package br.com.capivarawars.database.model;
 
-public class Premio {
+public class Prize_Earned {
 
 }

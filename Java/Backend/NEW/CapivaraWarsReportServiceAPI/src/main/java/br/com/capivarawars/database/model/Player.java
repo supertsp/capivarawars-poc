@@ -13,16 +13,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.capivarawars.security.Criptografia;
 
-@Document(collection = "Jogador")
-public class Jogador {
+@Document(collection = "Player")
+public class Player {
    
     @Id
-    private ObjectId idJogador;
+    private ObjectId _id;
     
     @Indexed(name = "nick")
     private String nick;
     
-    @Indexed(name = "senha")
+    @Indexed(name = "password")
     private String senha;
     
   @Indexed(name = "DATAHORA_CRIACAO_CONTA")
@@ -78,33 +78,33 @@ public class Jogador {
 
    
     @DBRef
-    private java.util.List<Capivara> listaDeCapivaras;
+    private java.util.List<Capybara> listaDeCapivaras;
 	
 	@DBRef
-    private java.util.List<Partida> listaDePartidasComoJogador1;
+    private java.util.List<Match> listaDePartidasComoJogador1;
 	
 	
     @DBRef
-    private java.util.List<Partida> listaDePartidasComoJogador2;
+    private java.util.List<Match> listaDePartidasComoJogador2;
 	
     @DBRef
-    private java.util.List<Partida> listaDePartidasComoVencedor;
+    private java.util.List<Match> listaDePartidasComoVencedor;
 	
 	
     @DBRef
-    private java.util.List<Campeonato> listaDeCampeonatosGanhosEmPrimeiro;
+    private java.util.List<Championships> listaDeCampeonatosGanhosEmPrimeiro;
 
 	
     @DBRef
-    private java.util.List<Campeonato> listaDeCampeonatosGanhosEmSegundo;
+    private java.util.List<Championships> listaDeCampeonatosGanhosEmSegundo;
 
 	@JsonIgnore
     @DBRef
-    private java.util.List<Campeonato> listaDeCampeonatosGanhosEmTerceiro;
+    private java.util.List<Championships> listaDeCampeonatosGanhosEmTerceiro;
 	
 	@JsonIgnore
     @DBRef
-    private java.util.List<JogadoresEmCampeonato> listaDeCampeonatosParticipados;
+    private java.util.List<Championships_Played> listaDeCampeonatosParticipados;
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
     public static final int VARCHAR_LENGTH_NICK = 45,
@@ -125,12 +125,12 @@ public class Jogador {
 			;
 
 
-    public ObjectId getIdJogador() {
-        return idJogador;
+    public String get_id() {
+        return _id.toHexString();
     }
 
-    public Jogador setIdJogador(ObjectId idJogador2) {
-        this.idJogador = idJogador2;
+    public Player set_id(ObjectId _idPlayer){
+        this._id = _idPlayer;
         return this;
     }
 
@@ -159,7 +159,7 @@ public class Jogador {
         return dataHoraCriacaoConta;
     }
 
-    public Jogador setDataHoraCriacaoConta(LocalDateTime dataHoraCriacaoConta) {
+    public Player setDataHoraCriacaoConta(LocalDateTime dataHoraCriacaoConta) {
         if (dataHoraCriacaoConta == null) {
             this.dataHoraCriacaoConta = LocalDateTime.now();
         } else {
@@ -173,7 +173,7 @@ public class Jogador {
         return urlFoto;
     }
 
-    public Jogador setUrlFoto(String urlFoto) {
+    public Player setUrlFoto(String urlFoto) {
         this.urlFoto = urlFoto;
         return this;
     }
@@ -182,7 +182,7 @@ public class Jogador {
         return nomeCompleto;
     }
 
-    public Jogador setNomeCompleto(String nomeCompleto) {
+    public Player setNomeCompleto(String nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
         return this;
     }
@@ -191,7 +191,7 @@ public class Jogador {
         return email;
     }
 
-    public Jogador setEmail(String email) {
+    public Player setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -200,7 +200,7 @@ public class Jogador {
         return genero;
     }
 
-    public Jogador setGenero(Character genero) {
+    public Player setGenero(Character genero) {
         switch (genero) {
             case 'M':
             case 'm':
@@ -224,7 +224,7 @@ public class Jogador {
         return dataNascimento;
     }
 
-    public Jogador setDataNascimento(LocalDate dataNascimento) {
+    public Player setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
         return this;
     }
@@ -233,7 +233,7 @@ public class Jogador {
         return online;
     }
 
-    public Jogador setOnline(Boolean online) {
+    public Player setOnline(Boolean online) {
         this.online = online;
         return this;
     }
@@ -242,7 +242,7 @@ public class Jogador {
         return ultimoCodigoAtivacao;
     }
 
-    public Jogador setUltimoCodigoAtivacao(String ultimoCodigoAtivacao) {
+    public Player setUltimoCodigoAtivacao(String ultimoCodigoAtivacao) {
         this.ultimoCodigoAtivacao = ultimoCodigoAtivacao;
         return this;
     }
@@ -251,7 +251,7 @@ public class Jogador {
         return moedas;
     }
 
-    public Jogador setMoedas(Integer moedas) {
+    public Player setMoedas(Integer moedas) {
         this.moedas = moedas;
         return this;
     }
@@ -260,7 +260,7 @@ public class Jogador {
 		return pontuacao;
 	}
 
-	public Jogador setPontuacao(Integer pontuacao) {
+	public Player setPontuacao(Integer pontuacao) {
 		this.pontuacao = pontuacao;
 		return this;
 	}
@@ -269,7 +269,7 @@ public class Jogador {
         return vitorias;
     }
 
-    public Jogador setVitorias(Integer vitorias) {
+    public Player setVitorias(Integer vitorias) {
         this.vitorias = vitorias;
         return this;
     }
@@ -278,7 +278,7 @@ public class Jogador {
         return empates;
     }
 
-    public Jogador setEmpates(Integer empates) {
+    public Player setEmpates(Integer empates) {
         this.empates = empates;
         return this;
     }
@@ -287,7 +287,7 @@ public class Jogador {
         return derrotas;
     }
 
-    public Jogador setDerrotas(Integer derrotas) {
+    public Player setDerrotas(Integer derrotas) {
         this.derrotas = derrotas;
         return this;
     }    
@@ -296,7 +296,7 @@ public class Jogador {
         return qtdTirosCerteiros;
     }
 
-    public Jogador setQtdTirosCerteiros(Integer qtdTirosCerteiros) {
+    public Player setQtdTirosCerteiros(Integer qtdTirosCerteiros) {
         this.qtdTirosCerteiros = qtdTirosCerteiros;
         return this;
     }
@@ -305,7 +305,7 @@ public class Jogador {
         return qtdTirosRuins;
     }
 
-    public Jogador setQtdTirosRuins(Integer qtdTirosRuins) {
+    public Player setQtdTirosRuins(Integer qtdTirosRuins) {
         this.qtdTirosRuins = qtdTirosRuins;
         return this;
     }
@@ -314,7 +314,7 @@ public class Jogador {
         return qtdTirosRecebidos;
     }
 
-    public Jogador setQtdTirosRecebidos(Integer qtdTirosRecebidos) {
+    public Player setQtdTirosRecebidos(Integer qtdTirosRecebidos) {
         this.qtdTirosRecebidos = qtdTirosRecebidos;
         return this;
     }
@@ -323,79 +323,79 @@ public class Jogador {
         return qtdMovimentos;
     }
 
-    public Jogador setQtdMovimentos(Integer qtdMovimentos) {
+    public Player setQtdMovimentos(Integer qtdMovimentos) {
         this.qtdMovimentos = qtdMovimentos;
         return this;
     }
 
-    public java.util.List<Capivara> getListaDeCapivaras() {
+    public java.util.List<Capybara> getListaDeCapivaras() {
         return listaDeCapivaras;
     }
 
-    public Jogador setListaDeCapivaras(java.util.List<Capivara> listaDeCapivaras) {
+    public Player setListaDeCapivaras(java.util.List<Capybara> listaDeCapivaras) {
         this.listaDeCapivaras = listaDeCapivaras;
         return this;
     }
 
-    public java.util.List<Partida> getListaDePartidasComoJogador1() {
+    public java.util.List<Match> getListaDePartidasComoJogador1() {
         return listaDePartidasComoJogador1;
     }
 
-    public Jogador setListaDePartidasComoJogador1(java.util.List<Partida> listaDePartidasComoJogador1) {
+    public Player setListaDePartidasComoJogador1(java.util.List<Match> listaDePartidasComoJogador1) {
         this.listaDePartidasComoJogador1 = listaDePartidasComoJogador1;
         return this;
     }
 
-    public java.util.List<Partida> getListaDePartidasComoJogador2() {
+    public java.util.List<Match> getListaDePartidasComoJogador2() {
         return listaDePartidasComoJogador2;
     }
 
-    public Jogador setListaDePartidasComoJogador2(java.util.List<Partida> listaDePartidasComoJogador2) {
+    public Player setListaDePartidasComoJogador2(java.util.List<Match> listaDePartidasComoJogador2) {
         this.listaDePartidasComoJogador2 = listaDePartidasComoJogador2;
         return this;
     }
 
-    public java.util.List<Partida> getListaDePartidasComoVencedor() {
+    public java.util.List<Match> getListaDePartidasComoVencedor() {
         return listaDePartidasComoVencedor;
     }
 
-    public Jogador setListaDePartidasComoVencedor(java.util.List<Partida> listaDePartidasComoVencedor) {
+    public Player setListaDePartidasComoVencedor(java.util.List<Match> listaDePartidasComoVencedor) {
         this.listaDePartidasComoVencedor = listaDePartidasComoVencedor;
         return this;
     }
 
-    public java.util.List<Campeonato> getListaDeCampeonatosGanhosEmPrimeiro() {
+    public java.util.List<Championships> getListaDeCampeonatosGanhosEmPrimeiro() {
         return listaDeCampeonatosGanhosEmPrimeiro;
     }
 
-    public Jogador setListaDeCampeonatosGanhosEmPrimeiro(java.util.List<Campeonato> listaDeCampeonatosGanhosEmPrimeiro) {
+    public Player setListaDeCampeonatosGanhosEmPrimeiro(java.util.List<Championships> listaDeCampeonatosGanhosEmPrimeiro) {
         this.listaDeCampeonatosGanhosEmPrimeiro = listaDeCampeonatosGanhosEmPrimeiro;
         return this;
     }
 
-    public java.util.List<Campeonato> getListaDeCampeonatosGanhosEmSegundo() {
+    public java.util.List<Championships> getListaDeCampeonatosGanhosEmSegundo() {
         return listaDeCampeonatosGanhosEmSegundo;
     }
 
-    public Jogador setListaDeCampeonatosGanhosEmSegundo(java.util.List<Campeonato> listaDeCampeonatosGanhosEmSegundo) {
+    public Player setListaDeCampeonatosGanhosEmSegundo(java.util.List<Championships> listaDeCampeonatosGanhosEmSegundo) {
         this.listaDeCampeonatosGanhosEmSegundo = listaDeCampeonatosGanhosEmSegundo;
         return this;
     }
 
-    public java.util.List<Campeonato> getListaDeCampeonatosGanhosEmTerceiro() {
+    public java.util.List<Championships> getListaDeCampeonatosGanhosEmTerceiro() {
         return listaDeCampeonatosGanhosEmTerceiro;
     }
 
-    public Jogador setListaDeCampeonatosGanhosEmTerceiro(java.util.List<Campeonato> listaDeCampeonatosGanhosEmTerceiro) {
+    public Player setListaDeCampeonatosGanhosEmTerceiro(java.util.List<Championships> listaDeCampeonatosGanhosEmTerceiro) {
         this.listaDeCampeonatosGanhosEmTerceiro = listaDeCampeonatosGanhosEmTerceiro;
         return this;
     }
 
-    public java.util.List<JogadoresEmCampeonato> getListaDeCampeonatosParticipados() {
+    public java.util.List<Championships_Played> getListaDeCampeonatosParticipados() {
         return listaDeCampeonatosParticipados;
     }
 
-    public Jogador setListaDeCampeonatosParticipados(java.util.List<JogadoresEmCampeonato> listaDeCampeonatosParticipados) {
+    public Player setListaDeCampeonatosParticipados(java.util.List<Championships_Played> listaDeCampeonatosParticipados) {
         this.listaDeCampeonatosParticipados = listaDeCampeonatosParticipados;
         return this;
     }
@@ -439,47 +439,47 @@ public class Jogador {
 		return pontuacao;
 	}
 	
-	public Jogador incrementMoedas(int incrementValue) {
+	public Player incrementMoedas(int incrementValue) {
         moedas += incrementValue;
         return this;
     }
 	
-	public Jogador incrementPontuacao(int incrementValue) {
+	public Player incrementPontuacao(int incrementValue) {
         pontuacao += incrementValue;
         return this;
     }
 	
-	public Jogador incrementVitorias(int incrementValue) {
+	public Player incrementVitorias(int incrementValue) {
 		vitorias += incrementValue;
 		return this;
 	}
 
-    public Jogador incrementEmpates(int incrementValue) {
+    public Player incrementEmpates(int incrementValue) {
         empates += incrementValue;
         return this;
     }
 
-    public Jogador incrementDerrotas(int incrementValue) {
+    public Player incrementDerrotas(int incrementValue) {
         derrotas += incrementValue;
         return this;
     }
 	
-    public Jogador incrementQtdTirosCerteiros(int incrementValue) {
+    public Player incrementQtdTirosCerteiros(int incrementValue) {
         qtdTirosCerteiros += incrementValue;
         return this;
     }
 
-    public Jogador incrementQtdTirosRuins(int incrementValue) {
+    public Player incrementQtdTirosRuins(int incrementValue) {
         qtdTirosRuins += incrementValue;
         return this;
     }
 
-    public Jogador incrementQtdTirosRecebidos(int incrementValue) {
+    public Player incrementQtdTirosRecebidos(int incrementValue) {
         qtdTirosRecebidos += incrementValue;
         return this;
     }
 
-    public Jogador incrementQtdMovimentos(int incrementValue) {
+    public Player incrementQtdMovimentos(int incrementValue) {
         qtdMovimentos += incrementValue;
         return this;
     }

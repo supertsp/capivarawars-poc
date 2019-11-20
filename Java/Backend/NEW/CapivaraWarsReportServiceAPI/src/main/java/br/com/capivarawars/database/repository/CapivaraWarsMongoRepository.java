@@ -13,10 +13,6 @@ import org.springframework.data.mongodb.repository.*;
 //</editor-fold>
 
 
-
-//import ...
-//</editor-fold>
-
 //<editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
@@ -24,17 +20,17 @@ import org.springframework.data.mongodb.repository.*;
  * Description: ...
  * 
  * @version 1.0.0
- * @author tiago, 06/11/2019, 19:46:38
+ * @author joshua, 06/11/2019, 19:46:38
  * Last update: -
  *///</editor-fold>
-public interface CapivaraWarsMongoRepository extends MongoRepository<Jogador, ObjectId>{
+public interface CapivaraWarsMongoRepository extends MongoRepository<Player, ObjectId>{
     
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
     
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="abstract methods...">
-    Jogador findBy_id(ObjectId _id);
+    Player findBy_id(ObjectId _id);
     
     
     //</editor-fold>

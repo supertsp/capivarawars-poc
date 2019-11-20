@@ -9,12 +9,12 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Campeonato {
+public class Championships {
 	 //<editor-fold defaultstate="collapsed" desc="attributes...">
     //<editor-fold defaultstate="collapsed" desc="main attributes...">
     @Id
     @Indexed(name = "ID_CAMPEONATO")
-    private Long idPartida;
+    private Long id_Partida;
 
     @Indexed(name = "NOME")
     private String nome;
@@ -33,44 +33,44 @@ public class Campeonato {
 
  
     @DBRef
-    private Premio premioPrimeiroColocado;
+    private Prize_Earned premioPrimeiroColocado;
 
     @DBRef
     @Indexed(name = "ID_PREMIO_SEGUNDO_COLOCADO")
-    private Premio premioSegundoColocado;
+    private Prize_Earned premioSegundoColocado;
 	
     @DBRef
     @Indexed(name = "ID_PREMIO_TERCEIRO_COLOCADO")
-    private Premio premioTerceiroColocado;
+    private Prize_Earned premioTerceiroColocado;
 	
 
     @DBRef
-    private Jogador jogadorVencedorPrimeiro;
+    private Player jogadorVencedorPrimeiro;
 	
 	
     @DBRef
-    private Jogador jogadorVencedorSegundo;
+    private Player jogadorVencedorSegundo;
 	
 	
     @DBRef
-    private Jogador jogadorVencedorTerceiro;
+    private Player jogadorVencedorTerceiro;
 	
 	
     @DBRef
-    private List<JogadoresEmCampeonato> listaDeJogadoresParticipantes;
+    private List<Championships_Played> listaDeJogadoresParticipantes;
 	
 	@DBRef
-    private List<Partida> listaDePartidasOcorridas;
+    private List<Match> listaDePartidasOcorridas;
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
     public static final int VARCHAR_LENGTH_NOME = 120;
 
     public Long getIdPartida() {
-        return idPartida;
+        return id_Partida;
     }
 
-    public Campeonato setIdPartida(Long idPartida) {
-        this.idPartida = idPartida;
+    public Championships setIdPartida(Long idPartida) {
+        this.id_Partida = idPartida;
         return this;
     }
 
@@ -78,7 +78,7 @@ public class Campeonato {
         return nome;
     }
 
-    public Campeonato setNome(String nome) {
+    public Championships setNome(String nome) {
         this.nome = nome;
         return this;
     }
@@ -87,7 +87,7 @@ public class Campeonato {
         return dataHoraInicio;
     }
 
-    public Campeonato setDataHoraInicio(LocalDateTime dataHoraInicio) {
+    public Championships setDataHoraInicio(LocalDateTime dataHoraInicio) {
         if (dataHoraInicio == null) {
             this.dataHoraInicio = LocalDateTime.now();
         } else {
@@ -101,7 +101,7 @@ public class Campeonato {
         return dataHoraFim;
     }
 
-    public Campeonato setDataHoraFim(LocalDateTime dataHoraFim) {
+    public Championships setDataHoraFim(LocalDateTime dataHoraFim) {
         if (dataHoraFim == null) {
             this.dataHoraFim = LocalDateTime.now();
         } else {
@@ -115,7 +115,7 @@ public class Campeonato {
         return limiteParticipantes;
     }
 
-    public Campeonato setLimiteParticipantes(Integer limiteParticipantes) {
+    public Championships setLimiteParticipantes(Integer limiteParticipantes) {
         this.limiteParticipantes = limiteParticipantes;
         return this;
     }
@@ -124,7 +124,7 @@ public class Campeonato {
         return qtdAtualParticipantes;
     }
 
-    public Campeonato setQtdAtualParticipantes(Integer qtdAtualParticipantes) {
+    public Championships setQtdAtualParticipantes(Integer qtdAtualParticipantes) {
         this.qtdAtualParticipantes = qtdAtualParticipantes;
         return this;
     }
@@ -132,74 +132,74 @@ public class Campeonato {
     /**
      * RELATIONSHIPS
      */
-    public Premio getPremioPrimeiroColocado() {
+    public Prize_Earned getPremioPrimeiroColocado() {
         return premioPrimeiroColocado;
     }
 
-    public Campeonato setPremioPrimeiroColocado(Premio premioPrimeiroColocado) {
+    public Championships setPremioPrimeiroColocado(Prize_Earned premioPrimeiroColocado) {
         this.premioPrimeiroColocado = premioPrimeiroColocado;
         return this;
     }
 
-    public Premio getPremioSegundoColocado() {
+    public Prize_Earned getPremioSegundoColocado() {
         return premioSegundoColocado;
     }
 
-    public Campeonato setPremioSegundoColocado(Premio premioSegundoColocado) {
+    public Championships setPremioSegundoColocado(Prize_Earned premioSegundoColocado) {
         this.premioSegundoColocado = premioSegundoColocado;
         return this;
     }
 
-    public Premio getPremioTerceiroColocado() {
+    public Prize_Earned getPremioTerceiroColocado() {
         return premioTerceiroColocado;
     }
 
-    public Campeonato setPremioTerceiroColocado(Premio premioTerceiroColocado) {
+    public Championships setPremioTerceiroColocado(Prize_Earned premioTerceiroColocado) {
         this.premioTerceiroColocado = premioTerceiroColocado;
         return this;
     }
 
-    public Jogador getJogadorVencedorPrimeiro() {
+    public Player getJogadorVencedorPrimeiro() {
         return jogadorVencedorPrimeiro;
     }
 
-    public Campeonato setJogadorVencedorPrimeiro(Jogador jogadorVencedorPrimeiro) {
+    public Championships setJogadorVencedorPrimeiro(Player jogadorVencedorPrimeiro) {
         this.jogadorVencedorPrimeiro = jogadorVencedorPrimeiro;
         return this;
     }
 
-    public Jogador getJogadorVencedorSegundo() {
+    public Player getJogadorVencedorSegundo() {
         return jogadorVencedorSegundo;
     }
 
-    public Campeonato setJogadorVencedorSegundo(Jogador jogadorVencedorSegundo) {
+    public Championships setJogadorVencedorSegundo(Player jogadorVencedorSegundo) {
         this.jogadorVencedorSegundo = jogadorVencedorSegundo;
         return this;
     }
 
-    public Jogador getJogadorVencedorTerceiro() {
+    public Player getJogadorVencedorTerceiro() {
         return jogadorVencedorTerceiro;
     }
 
-    public Campeonato setJogadorVencedorTerceiro(Jogador jogadorVencedorTerceiro) {
+    public Championships setJogadorVencedorTerceiro(Player jogadorVencedorTerceiro) {
         this.jogadorVencedorTerceiro = jogadorVencedorTerceiro;
         return this;
     }
 
-    public List<JogadoresEmCampeonato> getListaDeJogadoresParticipantes() {
+    public List<Championships_Played> getListaDeJogadoresParticipantes() {
         return listaDeJogadoresParticipantes;
     }
 
-    public Campeonato setListaDeJogadoresParticipantes(List<JogadoresEmCampeonato> listaDeJogadoresParticipantes) {
+    public Championships setListaDeJogadoresParticipantes(List<Championships_Played> listaDeJogadoresParticipantes) {
         this.listaDeJogadoresParticipantes = listaDeJogadoresParticipantes;
         return this;
     }
 
-    public List<Partida> getListaDePartidasOcorridas() {
+    public List<Match> getListaDePartidasOcorridas() {
         return listaDePartidasOcorridas;
     }
 
-    public Campeonato setListaDePartidasOcorridas(List<Partida> listaDePartidasOcorridas) {
+    public Championships setListaDePartidasOcorridas(List<Match> listaDePartidasOcorridas) {
         this.listaDePartidasOcorridas = listaDePartidasOcorridas;
         return this;
     }
@@ -212,7 +212,7 @@ public class Campeonato {
     //<editor-fold defaultstate="collapsed" desc="static methods...">
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="main methods...">
-    public Campeonato incrementQtdAtualParticipantes(int incrementValue) {
+    public Championships incrementQtdAtualParticipantes(int incrementValue) {
         qtdAtualParticipantes += incrementValue;
         return this;
     }

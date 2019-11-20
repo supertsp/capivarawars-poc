@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.mongodb.core.index.Indexed;
 
-public class JogadoresEmCampeonato {
+public class Championships_Played {
 	   
 //	 private IdJogadoresEmCampeonatoPK idJogadoresEmCampeonatoPK;
 
@@ -28,7 +28,7 @@ public class JogadoresEmCampeonato {
 	        return dataHoraInicioParticipacao;
 	    }
 
-	    public JogadoresEmCampeonato setDataHoraInicioParticipacao(LocalDateTime dataHoraInicioParticipacao) {
+	    public Championships_Played setDataHoraInicioParticipacao(LocalDateTime dataHoraInicioParticipacao) {
 	        if (dataHoraInicioParticipacao == null) {
 	            this.dataHoraInicioParticipacao = LocalDateTime.now();
 	        } else {
@@ -42,7 +42,7 @@ public class JogadoresEmCampeonato {
 	        return dataHoraFimParticipacao;
 	    }
 
-	    public JogadoresEmCampeonato setDataHoraFimParticipacao(LocalDateTime dataHoraFimParticipacao) {
+	    public Championships_Played setDataHoraFimParticipacao(LocalDateTime dataHoraFimParticipacao) {
 	        if (dataHoraFimParticipacao == null) {
 	            this.dataHoraFimParticipacao = LocalDateTime.now();
 	        } else {

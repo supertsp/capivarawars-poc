@@ -2,21 +2,21 @@ package br.com.capivarawars.database.model;
 
 import java.time.LocalDateTime;
 
-public class Partida {
-	private Long idPartida;
+public class Match {
+	private Long _idPartida;
 	 private LocalDateTime dataHoraInicio;
 	 private LocalDateTime dataHoraFim;
 	 private Boolean empatou;
-	 private Jogador jogador1;
-	 private Jogador jogador2;
-	  private Jogador jogadorVencedor;
+	 private Player jogador1;
+	 private Player jogador2;
+	  private Player jogadorVencedor;
 	   
 	   public Long getIdPartida() {
-	        return idPartida;
+	        return _idPartida;
 	    }
 
-	    public Partida setIdPartida(Long idPartida) {
-	        this.idPartida = idPartida;
+	    public Match setIdPartida(Long idPartida) {
+	        this._idPartida = idPartida;
 	        return this;
 	    }
 
@@ -24,7 +24,7 @@ public class Partida {
 	        return dataHoraInicio;
 	    }
 
-	    public Partida setDataHoraInicio(LocalDateTime dataHoraInicio) {
+	    public Match setDataHoraInicio(LocalDateTime dataHoraInicio) {
 	        if (dataHoraInicio == null) {
 	            this.dataHoraInicio = LocalDateTime.now();
 	        } else {
@@ -38,7 +38,7 @@ public class Partida {
 	        return dataHoraFim;
 	    }
 
-	    public Partida setDataHoraFim(LocalDateTime dataHoraFim) {
+	    public Match setDataHoraFim(LocalDateTime dataHoraFim) {
 	        if (dataHoraFim == null) {
 	            this.dataHoraFim = LocalDateTime.now();
 	        } else {
@@ -52,7 +52,7 @@ public class Partida {
 	        return empatou;
 	    }
 
-	    public Partida setEmpatou(Boolean empatou) {
+	    public Match setEmpatou(Boolean empatou) {
 	        this.empatou = empatou;
 	        return this;
 	    }
@@ -60,29 +60,29 @@ public class Partida {
 	    /**
 	     * RELATIONSHIPS
 	     */
-	    public Jogador getJogador1() {
+	    public Player getJogador1() {
 	        return jogador1;
 	    }
 
-	    public Partida setJogador1(Jogador jogador1) {
+	    public Match setJogador1(Player jogador1) {
 	        this.jogador1 = jogador1;
 	        return this;
 	    }
 
-	    public Jogador getJogador2() {
+	    public Player getJogador2() {
 	        return jogador2;
 	    }
 
-	    public Partida setJogador2(Jogador jogador2) {
+	    public Match setJogador2(Player jogador2) {
 	        this.jogador2 = jogador2;
 	        return this;
 	    }
 
-	    public Jogador getJogadorVencedor() {
+	    public Player getJogadorVencedor() {
 	        return jogadorVencedor;
 	    }
 
-	    public Partida setJogadorVencedor(Jogador jogadorVencedor) {
+	    public Match setJogadorVencedor(Player jogadorVencedor) {
 	        this.jogadorVencedor = jogadorVencedor;
 	        return this;
 	    }

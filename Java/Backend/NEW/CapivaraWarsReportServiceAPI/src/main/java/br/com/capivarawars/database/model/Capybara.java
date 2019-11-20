@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-public class Capivara {
+public class Capybara {
 
 
 	    private Long idCapivara;
@@ -19,10 +19,10 @@ public class Capivara {
 	    private Integer barraVida;
 
 
-	    private Jogador jogadorFK;
+	    private Player jogadorFK;
 
 	
-	    private List<AcessoriosDaCapivara> listaDeAcessoriosDaCapivara;
+//	    private List<AcessoriosDaCapivara> listaDeAcessoriosDaCapivara;
 
 	    public static final int VARCHAR_LENGTH_NOME = 45;
 
@@ -30,7 +30,7 @@ public class Capivara {
 	        return idCapivara;
 	    }
 
-	    public Capivara setIdCapivara(Long idCapivara) {
+	    public Capybara setIdCapivara(Long idCapivara) {
 	        this.idCapivara = idCapivara;
 	        return this;
 	    }
@@ -39,7 +39,7 @@ public class Capivara {
 	        return nome;
 	    }
 
-	    public Capivara setNome(String nome) {
+	    public Capybara setNome(String nome) {
 	        this.nome = nome;
 	        return this;
 	    }
@@ -48,7 +48,7 @@ public class Capivara {
 	        return dataHoraCriacao;
 	    }
 
-	    public Capivara setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
+	    public Capybara setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
 	        if (dataHoraCriacao == null) {
 	            this.dataHoraCriacao = LocalDateTime.now();
 	        } else {
@@ -62,28 +62,28 @@ public class Capivara {
 	        return barraVida;
 	    }
 
-	    public Capivara setBarraVida(Integer barraVida) {
+	    public Capybara setBarraVida(Integer barraVida) {
 	        this.barraVida = barraVida;
 	        return this;
 	    }
 
-	    public Jogador getJogadorFK() {
+	    public Player getJogadorFK() {
 	        return jogadorFK;
 	    }
 
-	    public Capivara setJogadorFK(Jogador jogadorFK) {
+	    public Capybara setJogadorFK(Player jogadorFK) {
 	        this.jogadorFK = jogadorFK;
 	        return this;
 	    }
 
-	    public List<AcessoriosDaCapivara> getListaDeAcessoriosDaCapivara() {
-	        return listaDeAcessoriosDaCapivara;
-	    }
+//	    public List<AcessoriosDaCapivara> getListaDeAcessoriosDaCapivara() {
+//	        return listaDeAcessoriosDaCapivara;
+//	    }
 
-	    public Capivara setListaDeAcessoriosDaCapivara(List<AcessoriosDaCapivara> listaDeAcessoriosDaCapivara) {
-	        this.listaDeAcessoriosDaCapivara = listaDeAcessoriosDaCapivara;
-	        return this;
-	    }
+//	    public Capivara setListaDeAcessoriosDaCapivara(List<AcessoriosDaCapivara> listaDeAcessoriosDaCapivara) {
+//	        this.listaDeAcessoriosDaCapivara = listaDeAcessoriosDaCapivara;
+//	        return this;
+//	    }
 	    
 	    public boolean preencheuCamposObrigatorios() {
 	        if (dataHoraCriacao == null) {
