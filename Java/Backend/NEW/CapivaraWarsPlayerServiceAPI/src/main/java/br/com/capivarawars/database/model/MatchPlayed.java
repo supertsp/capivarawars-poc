@@ -6,6 +6,7 @@ import br.com.capivarawars.database.repository.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
+import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import javax.persistence.*;
 import br.com.capivarawars.security.Cryptography;
 import br.com.capivarawars.tool.JsonHandler;
 import com.fasterxml.jackson.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="documentation...">
@@ -31,26 +33,28 @@ import com.fasterxml.jackson.annotation.*;
  * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00 Last update: -
  */// </editor-fold>
 @Entity
-@Table(name = "PRIZ_EARNED",
+@Table(name = "MATCH_PLAYED",
 		indexes = {
-			@Index(name = "INDEX_PRIZE_EARNED_ID_PRIZE", columnList = "ID_PRIZE")
+			@Index(name = "INDEX_MATCH_PLAYED_ID_MATCH", columnList = "ID_MATCH"),
+			@Index(name = "INDEX_MATCH_PLAYED_ID_GAME_STATUS", columnList = "ID_GAME_STATUS")
 })
-public class PrizesEarned {
+public class MatchPlayed {
 
 	// <editor-fold defaultstate="collapsed" desc="Database fields...">
 	@Id
 	@GeneratedValue
-	@Column(name = "ID_PRIZE_EARNED")
-	private Long idPrizeEarned;
+	@Column(name = "ID_MATCH_PLAYED")
+	private Long idMatchPlayed;
 	
-	@Column(name = "PRIZE_DATETIME", columnDefinition = "DATETIME")
-	private LocalDateTime prizeDateTime;
-	
-	@Column(name = "ID_PRIZE")
-	private Long idPrize;
+	@Column(name = "ID_MATCH")
+	private Long idMatch;
+
+	@Column(name = "ID_GAME_STATUS")
+	private Long idGameStatus;
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="Relationships fields...">
+	@JsonIgnore
 	@ManyToOne
     @JoinColumn(name = "ID_PLAYER")
 	private Player playerFK;
@@ -67,47 +71,50 @@ public class PrizesEarned {
 	// <editor-fold defaultstate="collapsed" desc="methods...">
 
 	// <editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-
-	public Long getIdPrizeEarned() {
-		return idPrizeEarned;
+	public Long getIdMatchPlayed() {
+		return idMatchPlayed;
 	}
 
-	public void setIdPrizeEarned(Long idPrizeEarned) {
-		this.idPrizeEarned = idPrizeEarned;
+	public MatchPlayed setIdMatchPlayed(Long idMatchPlayed) {
+		this.idMatchPlayed = idMatchPlayed;
+		return this;
 	}
 
-	public LocalDateTime getPrizeDateTime() {
-		return prizeDateTime;
-	}
-
-	public void setPrizeDateTime(LocalDateTime prizeDateTime) {
-		this.prizeDateTime = prizeDateTime;
-	}
-
-	public Long getIdPrize() {
-		return idPrize;
-	}
-
-	public void setIdPrize(Long idPrize) {
-		this.idPrize = idPrize;
-	}
-	
 	@JsonIgnore
 	public Player getPlayerFK() {
 		return playerFK;
 	}
-	
+
 	@JsonIgnore
-	public void setPlayerFK(Player playerFK) {
+	public MatchPlayed setPlayerFK(Player playerFK) {
 		this.playerFK = playerFK;
+		return this;
 	}
-	
+
 	public Long getPlayerId(){
 		if (playerFK != null) {
 			return playerFK.getIdPlayer();
 		}
 		
 		return null;
+	}
+	
+	public Long getIdMatch() {
+		return idMatch;
+	}
+
+	public MatchPlayed setIdMatch(Long idMatch) {
+		this.idMatch = idMatch;
+		return this;
+	}
+
+	public Long getIdGameStatus() {
+		return idGameStatus;
+	}
+
+	public MatchPlayed setIdGameStatus(Long idGameStatus) {
+		this.idGameStatus = idGameStatus;
+		return this;
 	}	
 	// </editor-fold>
 
@@ -122,7 +129,8 @@ public class PrizesEarned {
 	@JsonIgnore
 	public boolean isValidObject() {
         return playerFK != null
-                && idPrize != null;
+                && idMatch != null
+                && idGameStatus != null;
     }
 	// </editor-fold>
 

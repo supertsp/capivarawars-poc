@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import feign.Client;
+import java.time.LocalDateTime;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 // </editor-fold>
 
@@ -34,6 +35,7 @@ public class CapivaraWarsPlayerServiceAPI {
 				+ "  \\\\\\  \\\\\\         \\ = /                                                \n"
 				+ "~~~~~~~~~~~~~~~~~~~~¨¨¨~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 				+ " >>> NOW, RUNNING A " + CapivaraWarsPlayerServiceAPI.class.getSimpleName() + " ON A RIVER API ;)\n"
+				+ " >>> " + LocalDateTime.now() + "\n\n"
 		);
 	}
 

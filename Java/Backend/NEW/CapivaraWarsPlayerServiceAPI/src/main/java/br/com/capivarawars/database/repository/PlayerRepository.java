@@ -10,8 +10,6 @@ import org.springframework.data.repository.query.*;
 import org.springframework.stereotype.Repository;
 //</editor-fold>
 
-//</editor-fold>
-
 //<editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
@@ -22,7 +20,7 @@ import org.springframework.stereotype.Repository;
  * @author tiago, 06/11/2019, 19:46:38
  * Last update: -
  *///</editor-fold>
-public interface JogadorRepository extends JpaRepository<Player, Long>{
+public interface PlayerRepository extends JpaRepository<Player, Long>{
     
 //    @Query("select j from Jogador j order by j.pontuacao desc")
 //	public List<Jogador> findAllOrderByPontuacao();

@@ -30,8 +30,11 @@ import org.springframework.web.bind.annotation.*;
  * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00 Last update: -
  */// </editor-fold>
 @RestController
-@RequestMapping(API_AUTHENTICATION)
+@RequestMapping(API_PLAYER_SERVICE)
 public class AuthenticationEndpoint {
+
+	@Autowired
+	private JogadorRepository jogadorRepository;
 
 	@Autowired
 	private DataBaseAPIClient dataBaseAPIClient;
@@ -47,12 +50,13 @@ public class AuthenticationEndpoint {
 	// <editor-fold desc="CHECK methods..." defaultstate="collapsed">
 	// </editor-fold>
 	// <editor-fold desc="AUTHENTICATION methods..." defaultstate="collapsed">
-	@PostMapping(API_AUTHENTICATION_LOGIN)
+	@PostMapping(API_PLAYER_SERVICE_LOGIN)
 	public ResponseEntity<Jogador> login(@RequestHeader String nick, @RequestHeader String senha) {
-		Jogador jogadorProcurado = null;
+		Jogador jogadorProcurado = new Jogador();
+		jogadorProcurado.setIdJogador(1L);
 		jogadorProcurado = dataBaseAPIClient.updateOneOnline(jogadorProcurado.getIdJogador(), true);
 		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
 	}
 	// </editor-fold>
 
-}//class
+}// class

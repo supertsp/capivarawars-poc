@@ -1,6 +1,6 @@
 package br.com.capivarawars;
 
-//<editor-fold defaultstate="collapsed" desc="imports...">
+// <editor-fold defaultstate="collapsed" desc="imports...">
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Bean;
 
 import feign.Client;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-//</editor-fold>
+// </editor-fold>
 
-//<editor-fold defaultstate="collapsed" desc="documentation...">
+// <editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
  *
@@ -18,9 +18,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  *
  * @version 1.0.0
  * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00 Last update: -
- *///</editor-fold>
+ */// </editor-fold>
 @SpringBootApplication
-@EnableFeignClients
 public class CapivaraWarsExampleServiceAPI {
 
 	public static void main(String[] args) {

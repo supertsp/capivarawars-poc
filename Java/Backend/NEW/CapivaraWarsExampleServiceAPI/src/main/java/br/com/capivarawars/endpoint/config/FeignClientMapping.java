@@ -1,6 +1,6 @@
 package br.com.capivarawars.endpoint.config;
 
-//<editor-fold defaultstate="collapsed" desc="imports...">
+// <editor-fold defaultstate="collapsed" desc="imports...">
 import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
@@ -22,9 +22,9 @@ import feign.jackson.JacksonEncoder;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-//</editor-fold>
+// </editor-fold>
 
-//<editor-fold defaultstate="collapsed" desc="documentation...">
+// <editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
  *
@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @version 1.0.0
  * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00 Last update: -
- *///</editor-fold>
+ */// </editor-fold>
 @Configuration
 @EnableFeignClients
 public class FeignClientMapping {

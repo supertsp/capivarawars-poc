@@ -100,7 +100,7 @@ class Aluno{
 	/**
      * RELATIONSHIPS
      */
-	@OneToMany(mappedBy = "alunoFK")
+	@OneToMany(mappedBy = "alunoFK", cascade = CascadeType.ALL)
     private List<Prova> listaDeProva;
 }
 
@@ -151,7 +151,7 @@ class Aluno{
 	/**
      * RELATIONSHIPS
      */
-	@OneToMany(mappedBy = "idMateriasDoAlunoPK.alunoFK")
+	@OneToMany(mappedBy = "idMateriasDoAlunoPK.alunoFK", cascade = CascadeType.ALL)
     private List<MateriasDoAluno> listaDeMateriasDoAluno;
 }
 
@@ -169,7 +169,7 @@ class Materia{
 	/**
      * RELATIONSHIPS
      */
-	@OneToMany(mappedBy = "idMateriasDoAlunoPK.materiaFK")
+	@OneToMany(mappedBy = "idMateriasDoAlunoPK.materiaFK", cascade = CascadeType.ALL)
     private List<MateriasDoAluno> listaDeMateriasDoAluno;
 }
 

@@ -1,6 +1,6 @@
 package br.com.capivarawars.endpoint.client;
 
-//<editor-fold defaultstate="collapsed" desc="imports...">
+// <editor-fold defaultstate="collapsed" desc="imports...">
 import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.database.model.*;
 import br.com.capivarawars.database.repository.*;
@@ -11,9 +11,9 @@ import br.com.capivarawars.security.*;
 
 import feign.Param;
 import feign.RequestLine;
-//</editor-fold>
+// </editor-fold>
 
-//<editor-fold defaultstate="collapsed" desc="documentation...">
+// <editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
  *
@@ -21,7 +21,7 @@ import feign.RequestLine;
  *
  * @version 1.0.0
  * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00 Last update: -
- *///</editor-fold>
+ */// </editor-fold>
 public interface DataBaseAPIClient {
 
 	@RequestLine("PATCH /v1/jogador/update/{id}/online/{online}")

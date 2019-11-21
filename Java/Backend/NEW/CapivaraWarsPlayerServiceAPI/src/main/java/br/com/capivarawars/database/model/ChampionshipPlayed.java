@@ -19,6 +19,7 @@ import javax.persistence.*;
 import br.com.capivarawars.security.Cryptography;
 import br.com.capivarawars.tool.JsonHandler;
 import com.fasterxml.jackson.annotation.*;
+import java.time.LocalTime;
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="documentation...">
@@ -28,26 +29,34 @@ import com.fasterxml.jackson.annotation.*;
  * Description: ...
  *
  * @version 1.0.0
- * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00 Last update: -
+ * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00
+ * Last update: -
  */// </editor-fold>
 @Entity
-@Table(name = "PRIZ_EARNED",
+@Table(name = "CHAMPIONSHIP_PLAYED",
 		indexes = {
-			@Index(name = "INDEX_PRIZE_EARNED_ID_PRIZE", columnList = "ID_PRIZE")
+			@Index(name = "INDEX_CHAMPIONSHIP_PLAYED_ID_CHAMPIONSHIP", columnList = "ID_CHAMPIONSHIP"),
+			@Index(name = "INDEX_CHAMPIONSHIP_PLAYED_ID_GAME_STATUS", columnList = "ID_GAME_STATUS")
 })
-public class PrizesEarned {
-
+public class ChampionshipPlayed {
+	
 	// <editor-fold defaultstate="collapsed" desc="Database fields...">
 	@Id
 	@GeneratedValue
-	@Column(name = "ID_PRIZE_EARNED")
-	private Long idPrizeEarned;
+	@Column(name = "ID_CHAMPIONSHIP_PLAYED")
+	private Long idChampionshipPlayed;
 	
-	@Column(name = "PRIZE_DATETIME", columnDefinition = "DATETIME")
-	private LocalDateTime prizeDateTime;
+	@Column(name = "ID_CHAMPIONSHIP")
+	private Long idChampionship;
 	
-	@Column(name = "ID_PRIZE")
-	private Long idPrize;
+	@Column(name = "START", columnDefinition = "DATETIME")
+	private LocalDateTime start;
+	
+	@Column(name = "END", columnDefinition = "DATETIME")
+	private LocalDateTime end;
+	
+	@Column(name = "ID_GAME_STATUS")
+	private Long idGameStatus;
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="Relationships fields...">
@@ -67,29 +76,49 @@ public class PrizesEarned {
 	// <editor-fold defaultstate="collapsed" desc="methods...">
 
 	// <editor-fold defaultstate="collapsed" desc="getter and setter methods...">
-
-	public Long getIdPrizeEarned() {
-		return idPrizeEarned;
+	public Long getIdChampionshipPlayed() {
+		return idChampionshipPlayed;
 	}
 
-	public void setIdPrizeEarned(Long idPrizeEarned) {
-		this.idPrizeEarned = idPrizeEarned;
+	public ChampionshipPlayed setIdChampionshipPlayed(Long idChampionshipPlayed) {
+		this.idChampionshipPlayed = idChampionshipPlayed;
+		return this;
 	}
 
-	public LocalDateTime getPrizeDateTime() {
-		return prizeDateTime;
+	public Long getIdChampionship() {
+		return idChampionship;
 	}
 
-	public void setPrizeDateTime(LocalDateTime prizeDateTime) {
-		this.prizeDateTime = prizeDateTime;
+	public ChampionshipPlayed setIdChampionship(Long idChampionship) {
+		this.idChampionship = idChampionship;
+		return this;
 	}
 
-	public Long getIdPrize() {
-		return idPrize;
+	public LocalDateTime getStart() {
+		return start;
 	}
 
-	public void setIdPrize(Long idPrize) {
-		this.idPrize = idPrize;
+	public ChampionshipPlayed setStart(LocalDateTime start) {
+		this.start = start;
+		return this;
+	}
+	
+	public LocalDateTime getEnd() {
+		return end;
+	}
+
+	public ChampionshipPlayed setEnd(LocalDateTime end) {
+		this.end = end;
+		return this;
+	}
+
+	public Long getIdGameStatus() {
+		return idGameStatus;
+	}
+
+	public ChampionshipPlayed setIdGameStatus(Long idGameStatus) {
+		this.idGameStatus = idGameStatus;
+		return this;
 	}
 	
 	@JsonIgnore
@@ -98,8 +127,9 @@ public class PrizesEarned {
 	}
 	
 	@JsonIgnore
-	public void setPlayerFK(Player playerFK) {
+	public ChampionshipPlayed setPlayerFK(Player playerFK) {
 		this.playerFK = playerFK;
+		return this;
 	}
 	
 	public Long getPlayerId(){
@@ -108,7 +138,7 @@ public class PrizesEarned {
 		}
 		
 		return null;
-	}	
+	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="override methods...">
@@ -122,10 +152,11 @@ public class PrizesEarned {
 	@JsonIgnore
 	public boolean isValidObject() {
         return playerFK != null
-                && idPrize != null;
+                && idChampionship != null
+                && idGameStatus != null;
     }
 	// </editor-fold>
 
 	// </editor-fold>
-		
+	
 }//class
