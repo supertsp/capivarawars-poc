@@ -351,6 +351,7 @@ public class Player {
 	}
 
 	public Integer getMatchesPlayed() {
+		matchesPlayed = listOfMatchesPlayed.size();
 		return matchesPlayed;
 	}
 
@@ -360,6 +361,7 @@ public class Player {
 	}
 
 	public Integer getChampionshipsPlayed() {
+		championshipsPlayed = listOfChampionshipsPlayed.size();
 		return championshipsPlayed;
 	}
 

@@ -7,6 +7,7 @@ import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
+import br.com.capivarawars.endpoint.service.PlayerEnpointService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -37,19 +38,7 @@ public class PlayerCreateEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
-	private PlayerRepository playerRepository;
-	
-	@Autowired
-	private MatchPlayedRepository matchPlayedRepository;
-	
-	@Autowired
-	private ChampionshipPlayedRepository championshipPlayedRepository;
-	
-	@Autowired
-	private PlayerSearchEndpoints playerSearchEndpoint;
-	
-//	@Autowired
-//	private DataBaseAPIClient dataBaseAPIClient;
+	private PlayerEnpointService playerEnpointService;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
@@ -58,22 +47,8 @@ public class PlayerCreateEndpoints {
 
 	// <editor-fold desc="CREATE methods..." defaultstate="collapsed">
 	@PostMapping(API_PLAYER_SERVICE_CREATE_ONE_PLAYER)
-	public ResponseEntity<Player> createOnePlayer(@RequestBody Player newPlayer) {
-		if (newPlayer.isValidObject()) {
-			
-			Player searchedPlayer = playerSearchEndpoint.searchOnePlayerById(newPlayer.getIdPlayer()).getBody();
-			
-			if (searchedPlayer == null) {
-				try {
-					newPlayer = playerRepository.save(newPlayer);
-					return ResponseEntity.ok(newPlayer);
-				} catch (Exception e) {
-					//Caso o email ou nick sejam duplicados é gerado esse erro				
-				}
-			}			
-		}
-		
-		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
+	public ResponseEntity<Player> createOnePlayer(@RequestBody Player newPlayer) {		
+		return playerEnpointService.createOnePlayer(newPlayer);
 	}
 	
 	@PostMapping(API_PLAYER_SERVICE_CREATE_ONE_PLAYER_MATCH)
@@ -81,32 +56,7 @@ public class PlayerCreateEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@RequestBody MatchPlayed matchPlayed) {
 		
-		Player searchedPlayer = playerSearchEndpoint.searchOnePlayerById(idPlayer).getBody();		
-		
-		if (searchedPlayer != null) {			
-			matchPlayed.setPlayerFK(searchedPlayer);
-			
-			MatchPlayed searchedMatchPlayed = playerSearchEndpoint.searchOnePlayerMatchById(idPlayer, matchPlayed.getIdMatch()).getBody();
-			
-			if (searchedMatchPlayed == null) {
-				if (matchPlayed.isValidObject()) {					
-					matchPlayed = matchPlayedRepository.save(matchPlayed);
-//					searchedPlayer.addMatchPlayed(matchPlayed);
-//					playerRepository.save(searchedPlayer);
-					
-					return ResponseEntity.ok(matchPlayed);
-				}
-				else{
-					return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(new MatchPlayed());
-				}
-			}
-			else{
-				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new MatchPlayed());
-			}			
-		}
-		else{
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
+		return playerEnpointService.createOnePlayerMatch(idPlayer, matchPlayed);
 	}
 	
 	@PostMapping(API_PLAYER_SERVICE_CREATE_ONE_PLAYER_CHAMPIONSHIP)
@@ -114,33 +64,7 @@ public class PlayerCreateEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@RequestBody ChampionshipPlayed championshipPlayed) {
 		
-		Player searchedPlayer = playerSearchEndpoint.searchOnePlayerById(idPlayer).getBody();
-		
-		if (searchedPlayer != null) {
-			championshipPlayed.setPlayerFK(searchedPlayer);
-			
-			ChampionshipPlayed searchedChampionshipPlayed = 
-					championshipPlayedRepository.findByIdChampionshipAndPlayerFK(championshipPlayed.getIdChampionship(), searchedPlayer);	
-			
-			if (searchedChampionshipPlayed == null) {
-				if (championshipPlayed.isValidObject()) {
-					championshipPlayed = championshipPlayedRepository.save(championshipPlayed);					
-//					searchedPlayer.addChampionshipPlayed(championshipPlayed);
-//					playerRepository.save(searchedPlayer);
-					
-					return ResponseEntity.ok(championshipPlayed);
-				}
-				else{
-					return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(new ChampionshipPlayed());
-				}
-			}
-			else{
-				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new ChampionshipPlayed());
-			}
-		}
-		else{
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
+		return playerEnpointService.createOnePlayerChampionship(idPlayer, championshipPlayed);
 	}	
 	// </editor-fold>	
 	

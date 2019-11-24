@@ -7,6 +7,7 @@ import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
+import br.com.capivarawars.endpoint.service.PlayerEnpointService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -37,19 +38,7 @@ public class PlayerUpdateEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
-	private PlayerRepository playerRepository;
-	
-	@Autowired
-	private MatchPlayedRepository matchPlayedRepository;
-	
-	@Autowired
-	private ChampionshipPlayedRepository championshipPlayedRepository;
-	
-	@Autowired
-	private PlayerSearchEndpoints playerSearchEndpoint;
-	
-//	@Autowired
-//	private DataBaseAPIClient dataBaseAPIClient;
+	private PlayerEnpointService playerEnpointService;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
@@ -62,22 +51,7 @@ public class PlayerUpdateEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@RequestBody Player playerToBeUpdated) {
 		
-		if (playerToBeUpdated.isValidObject()) {
-			
-			Player searchedPlayer = playerSearchEndpoint.searchOnePlayerById(idPlayer).getBody();
-			
-			if (searchedPlayer != null) {
-				try {
-					playerToBeUpdated.setIdPlayer(idPlayer);
-					playerToBeUpdated = playerRepository.save(playerToBeUpdated);
-					return ResponseEntity.ok(playerToBeUpdated);
-				} catch (Exception e) {
-					//Caso o email ou nick sejam duplicados é gerado esse erro				
-				}
-			}			
-		}
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		return playerEnpointService.updateOnePlayer(idPlayer, playerToBeUpdated);
 	}
 	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_ONLINE)
@@ -85,18 +59,7 @@ public class PlayerUpdateEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("online") Boolean online) {	
 			
-		Player searchedPlayer = playerSearchEndpoint.searchOnePlayerById(idPlayer).getBody();
-
-		if (searchedPlayer != null) {
-			try {
-				searchedPlayer.setOnline(online);
-				searchedPlayer = playerRepository.save(searchedPlayer);
-				return ResponseEntity.ok(searchedPlayer);
-			} catch (Exception e) {
-			}
-		}
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		return playerEnpointService.updateOnePlayerOnline(idPlayer, online);
 	}
 	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_MATCH)
@@ -105,23 +68,7 @@ public class PlayerUpdateEndpoints {
 			@PathVariable("idMatch") Long idMatch,
 			@RequestBody MatchPlayed matchToBeUpdated) {
 		
-		MatchPlayed searchedMatchPlayed = playerSearchEndpoint.searchOnePlayerMatchById(idPlayer, idMatch).getBody();
-		
-		if (searchedMatchPlayed != null) {
-			matchToBeUpdated.setIdMatchPlayed(searchedMatchPlayed.getIdMatchPlayed());
-			matchToBeUpdated.setIdMatch(searchedMatchPlayed.getIdMatch());
-			matchToBeUpdated.setPlayerFK(searchedMatchPlayed.getPlayerFK());			
-		
-			if (matchToBeUpdated.isValidObject()) {
-				try {
-					matchToBeUpdated = matchPlayedRepository.save(matchToBeUpdated);					
-					return ResponseEntity.ok(matchToBeUpdated);
-				} catch (Exception e) {					
-				}
-			}
-		}
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		return playerEnpointService.updateOnePlayerMatch(idPlayer, idMatch, matchToBeUpdated);
 	}
 	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_CHAMPIONSHIP)
@@ -130,23 +77,7 @@ public class PlayerUpdateEndpoints {
 			@PathVariable("idChampionship") Long idChampionship,
 			@RequestBody ChampionshipPlayed championshipToBeUpdated) {
 		
-		ChampionshipPlayed searchedChampionshipPlayed = playerSearchEndpoint.searchOnePlayerChampionshipById(idPlayer, idChampionship).getBody();
-		
-		if (searchedChampionshipPlayed != null) {
-			championshipToBeUpdated.setIdChampionshipPlayed(searchedChampionshipPlayed.getIdChampionshipPlayed());
-			championshipToBeUpdated.setIdChampionship(searchedChampionshipPlayed.getIdChampionship());
-			championshipToBeUpdated.setPlayerFK(searchedChampionshipPlayed.getPlayerFK());			
-		
-			if (championshipToBeUpdated.isValidObject()) {
-				try {
-					championshipToBeUpdated = championshipPlayedRepository.save(championshipToBeUpdated);					
-					return ResponseEntity.ok(championshipToBeUpdated);
-				} catch (Exception e) {					
-				}
-			}
-		}
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		return playerEnpointService.updateOnePlayerChampionship(idPlayer, idChampionship, championshipToBeUpdated);
 	}
 	// </editor-fold>
 	

@@ -1,15 +1,10 @@
 package br.com.capivarawars.endpoint.handler;
 
 // <editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.endpoint.service.*;
 import br.com.capivarawars.database.model.*;
 import br.com.capivarawars.database.repository.*;
 import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
-import br.com.capivarawars.endpoint.client.*;
-import br.com.capivarawars.endpoint.config.*;
-import br.com.capivarawars.endpoint.handler.*;
-import br.com.capivarawars.endpoint.service.PlayerEnpointService;
-import br.com.capivarawars.security.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -17,6 +12,8 @@ import java.util.LinkedHashMap;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import javax.persistence.*;
+import com.fasterxml.jackson.annotation.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -25,36 +22,48 @@ import org.springframework.web.bind.annotation.*;
 // <editor-fold defaultstate="collapsed" desc="documentation...">
 /**
  * Objective: ...
- *
+ * 
  * Description: ...
- *
+ * 
  * @version 1.0.0
- * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00 
+ * @author tiago, 24/11/2019, 18:00:53
  * Last update: -
  */// </editor-fold>
 @RestController
-@RequestMapping(API_PLAYER_SERVICE)
-public class PlayerAuthenticationEndpoints {
-		
+@RequestMapping(API_CAPYBARA_SERVICE)
+public class ColorEndpoints {
+	
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
-	private PlayerEnpointService playerEnpointService;
+	private ColorService colorService;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
 
 	// </editor-fold>
-	
-	// <editor-fold desc="AUTHENTICATION methods..." defaultstate="collapsed">
-	@PostMapping(API_PLAYER_SERVICE_LOGIN)
-	public ResponseEntity<String> login(@RequestBody Credentials credentials) {
-		return playerEnpointService.login(credentials);
+
+	// <editor-fold desc="CREATE methods..." defaultstate="collapsed">
+	@PostMapping(API_CAPYBARA_SERVICE_CREATE_ONE_COLOR)
+	public ResponseEntity<Color> createOneColor(@RequestBody Color newColor) {		
+		return colorService.createOneColor(newColor);
 	}
 	
-	@PostMapping(API_PLAYER_SERVICE_LOGOUT)
-	public ResponseEntity<String> logout(@PathVariable("idPlayer") Long idPlayer) {
-		return playerEnpointService.logout(idPlayer);
-	}
-	// </editor-fold>	
-	
+	// </editor-fold>
+
+	// <editor-fold defaultstate="collapsed" desc="UPDATE methods...">
+
+	// </editor-fold>
+
+	// <editor-fold defaultstate="collapsed" desc="DELETE methods...">
+
+	// </editor-fold>
+
+	// <editor-fold defaultstate="collapsed" desc="SEARCH methods...">
+
+	// </editor-fold>
+
+	// <editor-fold defaultstate="collapsed" desc="CHECK methods...">
+
+	// </editor-fold>
+
 }//class

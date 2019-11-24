@@ -1,5 +1,8 @@
-CapivaraWarsPlayerServiceAPI
+Player Service API
 	jdbc:h2:file:C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/NEW/CapivaraWarsPlayerServiceAPI/db/database;AUTO_SERVER=TRUE
+
+Capybara Service API
+	jdbc:h2:file:C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/NEW/CapivaraWarsCapybaraServiceAPI/db/database;AUTO_SERVER=TRUE
 	
 CapivaraWarsDatabaseAPI
 	C:/Users/tiago/Desktop/CapivaraWars/Java/Backend/OLD/SpringBoot/CapivaraWarsDatabaseAPI/db/database;AUTO_SERVER=TRUE
