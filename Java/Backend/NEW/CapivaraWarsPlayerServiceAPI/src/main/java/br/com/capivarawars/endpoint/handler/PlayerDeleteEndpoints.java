@@ -1,0 +1,112 @@
+package br.com.capivarawars.endpoint.handler;
+
+// <editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.database.model.*;
+import br.com.capivarawars.database.repository.*;
+import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
+import br.com.capivarawars.endpoint.client.*;
+import br.com.capivarawars.endpoint.config.*;
+import br.com.capivarawars.endpoint.handler.*;
+import br.com.capivarawars.security.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+// </editor-fold>
+
+// <editor-fold defaultstate="collapsed" desc="documentation...">
+/**
+ * Objective: ...
+ *
+ * Description: ...
+ *
+ * @version 1.0.0
+ * @author Tiago Penha Pedroso, 17/11/2019, 15:44:00 
+ * Last update: -
+ */// </editor-fold>
+@RestController
+@RequestMapping(API_PLAYER_SERVICE)
+public class PlayerDeleteEndpoints {
+		
+	// <editor-fold defaultstate="collapsed" desc="fields...">
+	@Autowired
+	private PlayerRepository playerRepository;
+	
+	@Autowired
+	private MatchPlayedRepository matchPlayedRepository;
+	
+	@Autowired
+	private ChampionshipPlayedRepository championshipPlayedRepository;
+	
+	@Autowired
+	private PlayerSearchEndpoints playerSearchEndpoint;
+	
+//	@Autowired
+//	private DataBaseAPIClient dataBaseAPIClient;
+	// </editor-fold>
+	
+	// <editor-fold defaultstate="collapsed" desc="constructors...">
+
+	// </editor-fold>
+	
+	// <editor-fold defaultstate="collapsed" desc="DELETE methods...">
+	@DeleteMapping(API_PLAYER_SERVICE_DELETE_ONE_PLAYER)
+	public ResponseEntity<Player> deleteOnePlayer(@PathVariable("idPlayer") Long idPlayer) {
+		Player searchedPlayer = playerSearchEndpoint.searchOnePlayerById(idPlayer).getBody();
+
+		if (searchedPlayer != null) {
+			try {
+				playerRepository.deleteById(idPlayer);
+				return ResponseEntity.ok(searchedPlayer);
+			} catch (Exception e) {
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+	}
+	
+	@DeleteMapping(API_PLAYER_SERVICE_DELETE_ONE_PLAYER_MATCH)
+	public ResponseEntity<MatchPlayed> deleteOnePlayerMatch(
+			@PathVariable("idPlayer") Long idPlayer,
+			@PathVariable("idMatch") Long idMatch){
+	
+		MatchPlayed searchedMatchPlayed = playerSearchEndpoint.searchOnePlayerMatchById(idPlayer, idMatch).getBody();
+
+		if (searchedMatchPlayed != null) {
+			try {
+				matchPlayedRepository.deleteById(searchedMatchPlayed.getIdMatchPlayed());
+				return ResponseEntity.ok(searchedMatchPlayed);
+			} catch (Exception e) {
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+	}
+	
+	@DeleteMapping(API_PLAYER_SERVICE_DELETE_ONE_PLAYER_CHAMPIONSHIP)
+	public ResponseEntity<ChampionshipPlayed> deleteOnePlayerChampionship(
+			@PathVariable("idPlayer") Long idPlayer,
+			@PathVariable("idChampionship") Long idChampionship){
+	
+		ChampionshipPlayed searchedChampionshipPlayed = playerSearchEndpoint.searchOnePlayerChampionshipById(idPlayer, idChampionship).getBody();
+
+		if (searchedChampionshipPlayed != null) {
+			try {
+				championshipPlayedRepository.deleteById(searchedChampionshipPlayed.getIdChampionshipPlayed());
+				return ResponseEntity.ok(searchedChampionshipPlayed);
+			} catch (Exception e) {
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+	}
+	// </editor-fold>	
+	
+}//class

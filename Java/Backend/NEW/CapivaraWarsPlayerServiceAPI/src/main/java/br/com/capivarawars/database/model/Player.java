@@ -377,14 +377,14 @@ public class Player {
 		return this;
 	}
 	
-//	@JsonIgnore
-	@JsonProperty
+	@JsonIgnore
+//	@JsonProperty
 	public List<MatchPlayed> getListOfMatchesPlayed(){
 		return listOfMatchesPlayed;
 	}
 		
-//	@JsonIgnore
-	@JsonProperty
+	@JsonIgnore
+//	@JsonProperty
 	public List<ChampionshipPlayed> getListOfChampionshipsPlayed(){
 		return listOfChampionshipsPlayed;
 	}
