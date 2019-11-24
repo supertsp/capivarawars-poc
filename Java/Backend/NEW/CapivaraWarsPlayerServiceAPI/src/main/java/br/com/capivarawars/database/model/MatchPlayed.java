@@ -6,7 +6,6 @@ import br.com.capivarawars.database.repository.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
-import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 
 import java.util.List;
@@ -36,7 +35,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Table(name = "MATCH_PLAYED",
 		indexes = {
 			@Index(name = "INDEX_MATCH_PLAYED_ID_MATCH", columnList = "ID_MATCH"),
-			@Index(name = "INDEX_MATCH_PLAYED_ID_GAME_STATUS", columnList = "ID_GAME_STATUS")
+			@Index(name = "INDEX_MATCH_PLAYED_ID_GAME_STATUS", columnList = "ID_GAME_STATUS"),
+			@Index(name = "INDEX_MATCH_PLAYED_ID_PRIZE_EARNED", columnList = "ID_PRIZE_EARNED")
 })
 public class MatchPlayed {
 
@@ -51,6 +51,9 @@ public class MatchPlayed {
 
 	@Column(name = "ID_GAME_STATUS")
 	private Long idGameStatus;
+	
+	@Column(name = "ID_PRIZE_EARNED")
+	private Long idPrizeEarned;
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="Relationships fields...">
@@ -79,7 +82,34 @@ public class MatchPlayed {
 		this.idMatchPlayed = idMatchPlayed;
 		return this;
 	}
+	
+	public Long getIdMatch() {
+		return idMatch;
+	}
 
+	public MatchPlayed setIdMatch(Long idMatch) {
+		this.idMatch = idMatch;
+		return this;
+	}
+
+	public Long getIdGameStatus() {
+		return idGameStatus;
+	}
+
+	public MatchPlayed setIdGameStatus(Long idGameStatus) {
+		this.idGameStatus = idGameStatus;
+		return this;
+	}
+
+	public Long getIdPrizeEarned() {
+		return idPrizeEarned;
+	}
+
+	public MatchPlayed setIdPrizeEarned(Long idPrizeEarned) {
+		this.idPrizeEarned = idPrizeEarned;
+		return this;
+	}
+		
 	@JsonIgnore
 	public Player getPlayerFK() {
 		return playerFK;
@@ -98,24 +128,6 @@ public class MatchPlayed {
 		
 		return null;
 	}
-	
-	public Long getIdMatch() {
-		return idMatch;
-	}
-
-	public MatchPlayed setIdMatch(Long idMatch) {
-		this.idMatch = idMatch;
-		return this;
-	}
-
-	public Long getIdGameStatus() {
-		return idGameStatus;
-	}
-
-	public MatchPlayed setIdGameStatus(Long idGameStatus) {
-		this.idGameStatus = idGameStatus;
-		return this;
-	}	
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="override methods...">
@@ -127,10 +139,9 @@ public class MatchPlayed {
 
 	// <editor-fold defaultstate="collapsed" desc="main methods...">
 	@JsonIgnore
-	public boolean isValidObject() {
+	public boolean isValidObject(){
         return playerFK != null
-                && idMatch != null
-                && idGameStatus != null;
+                && idMatch != null;
     }
 	// </editor-fold>
 

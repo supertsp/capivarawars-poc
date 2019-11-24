@@ -36,7 +36,8 @@ import java.time.LocalTime;
 @Table(name = "CHAMPIONSHIP_PLAYED",
 		indexes = {
 			@Index(name = "INDEX_CHAMPIONSHIP_PLAYED_ID_CHAMPIONSHIP", columnList = "ID_CHAMPIONSHIP"),
-			@Index(name = "INDEX_CHAMPIONSHIP_PLAYED_ID_GAME_STATUS", columnList = "ID_GAME_STATUS")
+			@Index(name = "INDEX_CHAMPIONSHIP_PLAYED_ID_GAME_STATUS", columnList = "ID_GAME_STATUS"),
+			@Index(name = "INDEX_CHAMPIONSHIP_PLAYED_ID_PRIZE_EARNED", columnList = "ID_PRIZE_EARNED")
 })
 public class ChampionshipPlayed {
 	
@@ -57,6 +58,9 @@ public class ChampionshipPlayed {
 	
 	@Column(name = "ID_GAME_STATUS")
 	private Long idGameStatus;
+	
+	@Column(name = "ID_PRIZE_EARNED")
+	private Long idPrizeEarned;
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="Relationships fields...">
@@ -93,11 +97,11 @@ public class ChampionshipPlayed {
 		this.idChampionship = idChampionship;
 		return this;
 	}
-
+	
 	public LocalDateTime getStart() {
 		return start;
 	}
-
+		
 	public ChampionshipPlayed setStart(LocalDateTime start) {
 		this.start = start;
 		return this;
@@ -118,6 +122,15 @@ public class ChampionshipPlayed {
 
 	public ChampionshipPlayed setIdGameStatus(Long idGameStatus) {
 		this.idGameStatus = idGameStatus;
+		return this;
+	}
+	
+	public Long getIdPrizeEarned() {
+		return idPrizeEarned;
+	}
+
+	public ChampionshipPlayed setIdPrizeEarned(Long idPrizeEarned) {
+		this.idPrizeEarned = idPrizeEarned;
 		return this;
 	}
 	

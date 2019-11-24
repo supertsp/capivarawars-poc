@@ -26,5 +26,7 @@ public interface ChampionshipPlayedRepository extends JpaRepository<Championship
 //	public List<Jogador> findAllOrderByPontuacao();
 	
 	public ChampionshipPlayed findByIdChampionshipAndPlayerFK(Long IdChampionship, Player playerFK);
+	
+	public List<ChampionshipPlayed> findAllByPlayerFK(Player playerFK);
     
 }//interface

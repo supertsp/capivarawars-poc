@@ -27,5 +27,6 @@ public interface MatchPlayedRepository extends JpaRepository<MatchPlayed, Long>{
 	
 	public MatchPlayed findByIdMatchAndPlayerFK(Long idMatch, Player playerFK);
 	
+	public List<MatchPlayed> findAllByPlayerFK(Player playerFK);
     
 }//interface

@@ -22,8 +22,13 @@ import org.springframework.stereotype.Repository;
  *///</editor-fold>
 public interface PlayerRepository extends JpaRepository<Player, Long>{
     
-//    @Query("select j from Jogador j order by j.pontuacao desc")
-//	public List<Jogador> findAllOrderByPontuacao();
+	public Player findByNick(String nick);
 	
+	public Player findByEmail(String email);
+	
+	@Query("SELECT p FROM Player p ORDER BY p.score desc")
+	public List<Player> findAllOrderByScoreDesc();
+	
+	public List<Player> findAllByOnlineOrderByScoreDesc(Boolean online);
     
 }//interface

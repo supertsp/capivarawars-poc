@@ -19,6 +19,7 @@ import javax.persistence.*;
 import br.com.capivarawars.security.Cryptography;
 import br.com.capivarawars.tool.JsonHandler;
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="documentation...">
@@ -48,7 +49,8 @@ public class Player {
 
 	@Column(name = "EMAIL", length = VARCHAR_LENGTH_EMAIL, unique = true)
 	private String email;
-
+	
+//	@JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "yyyy-MM-dd hh:mm:ss")
 	@Column(name = "ACCOUNT_BIRTHDAY", columnDefinition = "DATETIME")
 	private LocalDateTime accountBirthday;
 
@@ -115,10 +117,6 @@ public class Player {
 	@JsonIgnore
 	@OneToMany(mappedBy = "playerFK", cascade = CascadeType.ALL)
 	private List<ChampionshipPlayed> listOfChampionshipsPlayed;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "playerFK", cascade = CascadeType.ALL)
-	private List<PrizesEarned> listOfPrizesEarned;
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="constants fields...">
@@ -185,11 +183,11 @@ public class Player {
 		this.email = email;
 		return this;
 	}
-
+	
 	public LocalDateTime getAccountBirthday() {
 		return accountBirthday;
 	}
-
+		
 	public Player setAccountBirthday(LocalDateTime accountBirthday) {
 		this.accountBirthday = accountBirthday;
 		return this;
@@ -378,6 +376,18 @@ public class Player {
 		this.prizesEarned = prizesEarned;
 		return this;
 	}
+	
+//	@JsonIgnore
+	@JsonProperty
+	public List<MatchPlayed> getListOfMatchesPlayed(){
+		return listOfMatchesPlayed;
+	}
+		
+//	@JsonIgnore
+	@JsonProperty
+	public List<ChampionshipPlayed> getListOfChampionshipsPlayed(){
+		return listOfChampionshipsPlayed;
+	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="override methods...">
@@ -418,6 +428,56 @@ public class Player {
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="main methods...">
+	public Player addMatchPlayed(MatchPlayed newMatchPlayed){
+		listOfMatchesPlayed.add(newMatchPlayed);
+		newMatchPlayed.setPlayerFK(this);
+		matchesPlayed = listOfMatchesPlayed.size();
+		return this;
+	}
+	
+	public Player addChampionshipPlayed(ChampionshipPlayed newChampionshipPlayed){
+		listOfChampionshipsPlayed.add(newChampionshipPlayed);
+		newChampionshipPlayed.setPlayerFK(this);
+		championshipsPlayed = listOfChampionshipsPlayed.size();
+		return this;
+	}
+		
+	public boolean updateMatchPlayed(MatchPlayed originalMatch, MatchPlayed matchToBeUpdated){
+		int indexOfOriginal = listOfMatchesPlayed.indexOf(originalMatch);
+		
+		if (indexOfOriginal != -1) {
+			listOfMatchesPlayed.set(indexOfOriginal, matchToBeUpdated);
+			matchToBeUpdated.setPlayerFK(this);
+			return true;
+		}
+		
+		return false;
+	}	
+	
+	public boolean updateChampionshipPlayed(ChampionshipPlayed originalChampionshipPlayed, ChampionshipPlayed championshipToBeUpdated){
+		int indexOfOriginal = listOfChampionshipsPlayed.indexOf(originalChampionshipPlayed);
+		
+		if (indexOfOriginal != -1) {
+			listOfChampionshipsPlayed.set(indexOfOriginal, championshipToBeUpdated);
+			championshipToBeUpdated.setPlayerFK(this);
+			return true;
+		}
+		
+		return false;
+	}	
+		
+	public Player removeMatchPlayed(MatchPlayed matchToBeRemoved){
+		listOfMatchesPlayed.remove(matchToBeRemoved);
+		matchesPlayed = listOfMatchesPlayed.size();
+		return this;
+	}
+	
+	public Player removeChampionshipPlayed(ChampionshipPlayed championshipToBeRemoved){
+		listOfChampionshipsPlayed.remove(championshipToBeRemoved);
+		championshipsPlayed = listOfChampionshipsPlayed.size();
+		return this;
+	}
+	
 	@JsonIgnore
 	public boolean isValidObject() {
         if (accountBirthday == null) {
