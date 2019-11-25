@@ -145,7 +145,7 @@ public class ChampionshipPlayed {
 		return this;
 	}
 	
-	public Long getPlayerId(){
+	public Long getIdPlayer(){
 		if (playerFK != null) {
 			return playerFK.getIdPlayer();
 		}

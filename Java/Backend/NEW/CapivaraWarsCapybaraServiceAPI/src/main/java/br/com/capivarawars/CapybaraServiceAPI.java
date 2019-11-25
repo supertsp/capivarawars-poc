@@ -75,7 +75,7 @@ public class CapybaraServiceAPI {
 	private ApiInfo createApiInfo(){
 		return new ApiInfo(
 				"Capybara Service API", 
-				"Manage Capybara data: CRUD", 
+				"Manage Capybara and Color data: CRUD", 
 				API_VERSION, 
 				"Free to use", 
 				new Contact(

@@ -121,7 +121,7 @@ public class MatchPlayed {
 		return this;
 	}
 
-	public Long getPlayerId(){
+	public Long getIdPlayer(){
 		if (playerFK != null) {
 			return playerFK.getIdPlayer();
 		}

@@ -44,21 +44,30 @@ public class ColorService {
 
 	// <editor-fold desc="CREATE methods..." defaultstate="collapsed">
 	public ResponseEntity<Color> createOneColor(@RequestBody Color newColor) {		
-		return ResponseEntity.status(HttpStatus.OK).body(newColor);
-	}
-	
+		return ResponseEntity.status(HttpStatus.OK).body(null);
+	}	
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="UPDATE methods...">
-
+	public ResponseEntity<Color> updateOneColor(Long idColor, Color colorToBeUpdated) {		
+		return ResponseEntity.status(HttpStatus.OK).body(null);
+	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="DELETE methods...">
-
+	public ResponseEntity<Color> deleteOneColor(Long idColor) {
+		return ResponseEntity.status(HttpStatus.OK).body(null);
+	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="SEARCH methods...">
-
+	public ResponseEntity<Color> searchOneColorById(Long idColor){
+		return ResponseEntity.status(HttpStatus.OK).body(null);
+	}
+	
+	public ResponseEntity<List<Color>> searchAllColors(){
+		return ResponseEntity.status(HttpStatus.OK).body(null);
+	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="CHECK methods...">

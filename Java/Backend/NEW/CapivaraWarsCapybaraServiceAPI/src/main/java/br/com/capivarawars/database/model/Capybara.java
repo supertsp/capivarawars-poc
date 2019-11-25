@@ -44,6 +44,9 @@ public class Capybara {
 	@Column(name = "HP")
 	private Integer hp;
 	
+	@Column(name = "DEATHS")
+	private Integer deaths;
+	
 	@Column(name = "ID_PLAYER")
 	private Integer idPlayer;
 	// </editor-fold>
@@ -52,6 +55,10 @@ public class Capybara {
 	@ManyToOne
     @JoinColumn(name = "ID_COLOR")
 	private Color color;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "capybaraFK", cascade = CascadeType.ALL)
+	private List<CapybaraDeath> listOfCapybaraDeaths;
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="constants fields...">
@@ -103,6 +110,16 @@ public class Capybara {
 		return this;
 	}
 
+	public Integer getDeaths() {
+		deaths = listOfCapybaraDeaths.size();
+		return deaths;
+	}
+
+	public Capybara setDeaths(Integer deaths) {
+		this.deaths = deaths;
+		return this;
+	}
+		
 	public Integer getIdPlayer() {
 		return idPlayer;
 	}
@@ -120,6 +137,11 @@ public class Capybara {
 		this.color = color;
 		return this;
 	}
+	
+	@JsonIgnore
+	public List<CapybaraDeath> getListOfCapybaraDeaths() {
+		return listOfCapybaraDeaths;
+	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="override methods...">
@@ -130,6 +152,29 @@ public class Capybara {
 	// </editor-fold>    
 
 	// <editor-fold defaultstate="collapsed" desc="main methods...">
+	public Capybara addCapybaraDeath(CapybaraDeath newCapybaraDeath){
+		listOfCapybaraDeaths.add(newCapybaraDeath);
+		newCapybaraDeath.setCapybaraFK(this);
+		return this;
+	}
+	
+	public boolean updateCapybaraDeath(CapybaraDeath originalCapybaraDeath, CapybaraDeath capybaraToBeUpdatedDeath){
+		int indexOfOriginal = listOfCapybaraDeaths.indexOf(originalCapybaraDeath);
+		
+		if (indexOfOriginal != -1) {
+			listOfCapybaraDeaths.set(indexOfOriginal, capybaraToBeUpdatedDeath);
+			capybaraToBeUpdatedDeath.setCapybaraFK(this);
+			return true;
+		}
+		
+		return false;
+	}	
+	
+	public Capybara removeCapybaraDeath(CapybaraDeath capybaraBeRemoved){
+		listOfCapybaraDeaths.remove(capybaraBeRemoved);
+		return this;
+	}
+	
 	@JsonIgnore
 	public boolean isValidObject(){
 		if (birthday == null) {

@@ -1,0 +1,6 @@
+#FileLock
+#Sun Nov 24 23:55:14 BRST 2019
+hostName=192.168.15.13
+id=16ea0451f7b7cb74adaf313ff8c4da1e24877abc4a6
+method=file
+server=192.168.15.13\:53213

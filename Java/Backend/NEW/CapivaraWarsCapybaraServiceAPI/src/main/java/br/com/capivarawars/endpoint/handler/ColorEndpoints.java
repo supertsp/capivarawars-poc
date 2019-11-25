@@ -46,20 +46,36 @@ public class ColorEndpoints {
 	@PostMapping(API_CAPYBARA_SERVICE_CREATE_ONE_COLOR)
 	public ResponseEntity<Color> createOneColor(@RequestBody Color newColor) {		
 		return colorService.createOneColor(newColor);
-	}
-	
+	}	
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="UPDATE methods...">
-
+	@PutMapping(API_CAPYBARA_SERVICE_UPDATE_ONE_COLOR)
+	public ResponseEntity<Color> updateOneColor(
+			@PathVariable("idColor") Long idColor,
+			@RequestBody Color colorToBeUpdated) {
+		
+		return colorService.updateOneColor(idColor, colorToBeUpdated);
+	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="DELETE methods...">
-
+	@DeleteMapping(API_CAPYBARA_SERVICE_DELETE_ONE_COLOR)
+	public ResponseEntity<Color> deleteOneColor(@PathVariable("idColor") Long idColor) {
+		return colorService.deleteOneColor(idColor);
+	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="SEARCH methods...">
-
+	@GetMapping(API_CAPYBARA_SERVICE_SEARCH_ONE_COLOR_BY_ID)
+	public ResponseEntity<Color> searchOneColorById(@PathVariable("idColor") Long idColor){
+		return colorService.searchOneColorById(idColor);
+	}
+	
+	@GetMapping(API_CAPYBARA_SERVICE_SEARCH_ALL_COLORS)
+	public ResponseEntity<List<Color>> searchAllColors(){
+		return colorService.searchAllColors();
+	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="CHECK methods...">
