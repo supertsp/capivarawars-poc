@@ -1,12 +1,4 @@
-.container-reset {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.img-fluid-reset {
+.img-fluid-loading {
   position: relative;
   height: 150px;
   width: 300px;
@@ -15,20 +7,29 @@
   align-items: center;
 }
 
-.img-thumbnail-reset {
+.img-thumbnail-loading {
   border: none;
   background: none;
 }
 
-.card-reset {
-  width: 80vh;
-}
-
-.card-body-reset {
+.card-body-loading {
   background: none;
   border: 40px solid transparent;
   border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
-  display: flex;
+}
+
+.align-timer {
+  text-align: center;
   justify-content: center;
-  align-items: center;
+}
+
+.img-fluid-capLoading {
+  height: 250px;
+  width: 150px;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

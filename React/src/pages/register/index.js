@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import imagemMar from "../../assets/images/imagem-mar.jpg";
 import capivaraLogo from "../../assets/images/CapivaraWars-logo.png";
@@ -13,7 +13,12 @@ class Register extends Component {
         <div className="container container-register">
           <div className="row">
             <div className="col-md-12">
-              <img src={capivaraLogo} className="img-fluid img-thumbnail img-fluid-register img-thumbnail-register"></img>
+              <Link to={'/'}>
+                <img
+                  src={capivaraLogo}
+                  className="img-fluid img-thumbnail img-fluid-register img-thumbnail-register"
+                ></img>
+              </Link>
             </div>
           </div>
           <div className="row">
@@ -23,44 +28,98 @@ class Register extends Component {
                   <div className="col-md-6">
                     <div className="form-group">
                       <label for="name">Insira seu nome completo:</label>
-                      <input type="text" className="form-control" id="name" placeholder="Nome completo"></input>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        placeholder="Nome completo"
+                      ></input>
                     </div>
                     <div className="form-group">
                       <label for="nick">Nickname do jogador:</label>
-                      <input type="text" className="form-control" id="nick" placeholder="nickname"></input>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="nick"
+                        placeholder="nickname"
+                      ></input>
                     </div>
                     <div className="form-group">
                       <label for="password">Senha:</label>
-                      <input type="password" className="form-control" id="password" placeholder="senha"></input>
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        placeholder="senha"
+                      ></input>
                     </div>
                     <div className="form-group">
                       <label>Informe seu sexo:</label>
                       <div className="form-check">
-                        <input className="form-check-input" type="radio" name="sex"></input>
-                        <label className="form-check-label" for="male">Masculino</label>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="sex"
+                        ></input>
+                        <label className="form-check-label" for="male">
+                          Masculino
+                        </label>
                       </div>
                       <div className="form-check">
-                        <input className="form-check-input" type="radio" name="sex"></input>
-                        <label className="form-check-label" for="female">Feminino</label>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="sex"
+                        ></input>
+                        <label className="form-check-label" for="female">
+                          Feminino
+                        </label>
                       </div>
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className=" input-data">
-                  <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                  <input class="form-control" type="date" id="example-date-input" placeholder="01/12/2019"></input>
-                  </div>
-                  <div className=" input-email">
-                  <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                  <input class="form-control" type="email" id="example-email-input" placeholder="capivara@canoa.com"></input>
-                  </div>
-                  <div className=" input-confirm-senha">
-                  <label for="password">Confirm sua senha:</label>
-                      <input type="password" className="form-control" id="password" placeholder="Confirme sua senha"></input>
-                  </div>
-                  <div className="botao-cadastrar">
-                  <button type="submit" class="btn btn-primary">Confirmar cadastro</button>
-                  </div>
+                      <label
+                        for="example-date-input"
+                        class="col-2 col-form-label"
+                      >
+                        Date
+                      </label>
+                      <input
+                        class="form-control"
+                        type="date"
+                        id="example-date-input"
+                        placeholder="01/12/2019"
+                      ></input>
+                    </div>
+                    <div className=" input-email">
+                      <label
+                        for="example-email-input"
+                        class="col-2 col-form-label"
+                      >
+                        Email
+                      </label>
+                      <input
+                        class="form-control"
+                        type="email"
+                        id="example-email-input"
+                        placeholder="capivara@canoa.com"
+                      ></input>
+                    </div>
+                    <div className=" input-confirm-senha">
+                      <label for="password">Confirm sua senha:</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        placeholder="Confirme sua senha"
+                      ></input>
+                    </div>
+                    <div className="botao-cadastrar">
+                      <button type="submit" class="btn btn-primary">
+                        Confirmar cadastro
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
