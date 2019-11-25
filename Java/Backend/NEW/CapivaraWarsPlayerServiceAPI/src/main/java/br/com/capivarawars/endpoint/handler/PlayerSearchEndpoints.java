@@ -7,7 +7,7 @@ import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
-import br.com.capivarawars.endpoint.service.PlayerEnpointService;
+import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,11 +34,12 @@ import org.springframework.web.bind.annotation.*;
  */// </editor-fold>
 @RestController
 @RequestMapping(API_PLAYER_SERVICE)
+@CrossOrigin
 public class PlayerSearchEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
-	private PlayerEnpointService playerEnpointService;
+	private PlayerService playerService;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
@@ -48,32 +49,32 @@ public class PlayerSearchEndpoints {
 	// <editor-fold defaultstate="collapsed" desc="SEARCH methods...">
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ONE_PLAYER_BY_ID)
 	public ResponseEntity<Player> searchOnePlayerById(@PathVariable("idPlayer") Long idPlayer){
-		return playerEnpointService.searchOnePlayerById(idPlayer);
+		return playerService.searchOnePlayerById(idPlayer);
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ONE_PLAYER_BY_NICK)
 	public ResponseEntity<Player> searchOnePlayerByNick(@PathVariable("nick") String nick){
-		return playerEnpointService.searchOnePlayerByNick(nick);
+		return playerService.searchOnePlayerByNick(nick);
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ONE_PLAYER_BY_EMAIL)
 	public ResponseEntity<Player> searchOnePlayerByEmail(@PathVariable("email") String email){
-		return playerEnpointService.searchOnePlayerByEmail(email);
+		return playerService.searchOnePlayerByEmail(email);
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ALL_PLAYERS)
 	public ResponseEntity<List<Player>> searchAllPlayers(){
-		return playerEnpointService.searchAllPlayers();
+		return playerService.searchAllPlayers();
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ALL_PLAYERS_BY_SCORE)
 	public ResponseEntity<List<Player>> searchAllPlayersByScore(){
-		return playerEnpointService.searchAllPlayersByScore();
+		return playerService.searchAllPlayersByScore();
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ALL_PLAYERS_BY_ONLINE)
 	public ResponseEntity<List<Player>> searchAllPlayersByOnline(@PathVariable("online") Boolean online){
-		return playerEnpointService.searchAllPlayersByOnline(online);
+		return playerService.searchAllPlayersByOnline(online);
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ONE_PLAYER_MATCH)
@@ -81,12 +82,12 @@ public class PlayerSearchEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("idMatch") Long idMatch){
 		
-		return playerEnpointService.searchOnePlayerMatchById(idPlayer, idMatch);
+		return playerService.searchOnePlayerMatchById(idPlayer, idMatch);
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ALL_PLAYER_MATCHES)
 	public ResponseEntity<List<MatchPlayed>> searchAllPlayerMatches(@PathVariable("idPlayer") Long idPlayer){		
-		return playerEnpointService.searchAllPlayerMatches(idPlayer);
+		return playerService.searchAllPlayerMatches(idPlayer);
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ONE_PLAYER_CHAMPIONSHIP)
@@ -94,12 +95,12 @@ public class PlayerSearchEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("idChampionship") Long idChampionship){
 		
-		return playerEnpointService.searchOnePlayerChampionshipById(idPlayer, idChampionship);
+		return playerService.searchOnePlayerChampionshipById(idPlayer, idChampionship);
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_SEARCH_ALL_PLAYER_CHAMPIONSHIPS)
 	public ResponseEntity<List<ChampionshipPlayed>> searchAllPlayerChampionships(@PathVariable("idPlayer") Long idPlayer){		
-		return playerEnpointService.searchAllPlayerChampionships(idPlayer);
+		return playerService.searchAllPlayerChampionships(idPlayer);
 	}	
 	// </editor-fold>
 	

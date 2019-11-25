@@ -7,7 +7,7 @@ import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
-import br.com.capivarawars.endpoint.service.PlayerEnpointService;
+import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,11 +34,12 @@ import org.springframework.web.bind.annotation.*;
  */// </editor-fold>
 @RestController
 @RequestMapping(API_PLAYER_SERVICE)
+@CrossOrigin
 public class PlayerUpdateEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
-	private PlayerEnpointService playerEnpointService;
+	private PlayerService playerService;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
@@ -51,7 +52,7 @@ public class PlayerUpdateEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@RequestBody Player playerToBeUpdated) {
 		
-		return playerEnpointService.updateOnePlayer(idPlayer, playerToBeUpdated);
+		return playerService.updateOnePlayer(idPlayer, playerToBeUpdated);
 	}
 	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_ONLINE)
@@ -59,7 +60,7 @@ public class PlayerUpdateEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("online") Boolean online) {	
 			
-		return playerEnpointService.updateOnePlayerOnline(idPlayer, online);
+		return playerService.updateOnePlayerOnline(idPlayer, online);
 	}
 	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_MATCH)
@@ -68,7 +69,7 @@ public class PlayerUpdateEndpoints {
 			@PathVariable("idMatch") Long idMatch,
 			@RequestBody MatchPlayed matchToBeUpdated) {
 		
-		return playerEnpointService.updateOnePlayerMatch(idPlayer, idMatch, matchToBeUpdated);
+		return playerService.updateOnePlayerMatch(idPlayer, idMatch, matchToBeUpdated);
 	}
 	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_CHAMPIONSHIP)
@@ -77,7 +78,7 @@ public class PlayerUpdateEndpoints {
 			@PathVariable("idChampionship") Long idChampionship,
 			@RequestBody ChampionshipPlayed championshipToBeUpdated) {
 		
-		return playerEnpointService.updateOnePlayerChampionship(idPlayer, idChampionship, championshipToBeUpdated);
+		return playerService.updateOnePlayerChampionship(idPlayer, idChampionship, championshipToBeUpdated);
 	}
 	// </editor-fold>
 	

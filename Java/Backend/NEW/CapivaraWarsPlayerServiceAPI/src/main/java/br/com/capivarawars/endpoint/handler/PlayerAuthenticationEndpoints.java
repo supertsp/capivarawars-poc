@@ -7,7 +7,7 @@ import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
-import br.com.capivarawars.endpoint.service.PlayerEnpointService;
+import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,11 +34,12 @@ import org.springframework.web.bind.annotation.*;
  */// </editor-fold>
 @RestController
 @RequestMapping(API_PLAYER_SERVICE)
+@CrossOrigin
 public class PlayerAuthenticationEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
-	private PlayerEnpointService playerEnpointService;
+	private PlayerService playerService;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
@@ -48,12 +49,12 @@ public class PlayerAuthenticationEndpoints {
 	// <editor-fold desc="AUTHENTICATION methods..." defaultstate="collapsed">
 	@PostMapping(API_PLAYER_SERVICE_LOGIN)
 	public ResponseEntity<String> login(@RequestBody Credentials credentials) {
-		return playerEnpointService.login(credentials);
+		return playerService.login(credentials);
 	}
 	
 	@PostMapping(API_PLAYER_SERVICE_LOGOUT)
 	public ResponseEntity<String> logout(@PathVariable("idPlayer") Long idPlayer) {
-		return playerEnpointService.logout(idPlayer);
+		return playerService.logout(idPlayer);
 	}
 	// </editor-fold>	
 	

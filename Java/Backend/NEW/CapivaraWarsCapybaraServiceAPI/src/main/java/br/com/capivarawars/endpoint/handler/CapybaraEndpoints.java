@@ -118,8 +118,8 @@ public class CapybaraEndpoints {
 	}
 	
 	@GetMapping(API_CAPYBARA_SERVICE_SEARCH_ALL_CAPYBARA_DEATHS)
-	public ResponseEntity<List<CapybaraDeath>> searchAllCapybaraDeaths(){
-		return capybaraService.searchAllCapybaraDeaths();
+	public ResponseEntity<List<CapybaraDeath>> searchAllCapybaraDeaths(@PathVariable("idCapybara") Long idCapybara){
+		return capybaraService.searchAllCapybaraDeaths(idCapybara);
 	}
 	
 	@GetMapping(API_CAPYBARA_SERVICE_SEARCH_ALL_LIVE_CAPYBARAS)

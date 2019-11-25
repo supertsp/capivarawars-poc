@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.*;
  * Last update: -
  */// </editor-fold>
 @Service
-public class PlayerEnpointService {
+public class PlayerService {
 	
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
