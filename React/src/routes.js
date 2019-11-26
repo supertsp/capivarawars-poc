@@ -6,6 +6,7 @@ import Home from './pages/home/index'
 import NumberPlayers from './pages/numberPlayers/index';
 import ResetPassword from './pages/resetPassword/index';
 import Loading from './pages/loadingPage/index';
+import Game from './pages/gameScreen/index';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ const Routes = () => (
             <Route path="/numberPlayers" component={NumberPlayers} />
             <Route path="/resetPassword" component={ResetPassword} />
             <Route path="/loading" component={Loading} />
+            <Route path="/game" component={Game} />
         </Switch>
     </BrowserRouter>
 );

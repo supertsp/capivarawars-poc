@@ -1,0 +1,6 @@
+.card-body-game {
+  background: none;
+  border: 40px solid transparent;
+  border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
+}
+
