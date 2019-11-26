@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.*;
  */// </editor-fold>
 @RestController
 @RequestMapping(API_PLAYER_SERVICE)
-@CrossOrigin
+//@CrossOrigin
 public class PlayerAuthenticationEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">

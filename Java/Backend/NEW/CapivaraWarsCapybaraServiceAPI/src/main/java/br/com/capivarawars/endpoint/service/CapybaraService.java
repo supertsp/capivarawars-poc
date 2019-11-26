@@ -48,12 +48,46 @@ public class CapybaraService {
 	// <editor-fold desc="CREATE methods..." defaultstate="collapsed">
 	//"/capybara"
 	public ResponseEntity<Capybara> createOneCapybara(@RequestBody Capybara newCapybara) {	
+		if (newCapybara.isValidObject()) {			
+			Capybara searchedPlayer = searchOneCapybaraById(newCapybara.getIdCapybara()).getBody();
+			
+			if (searchedPlayer == null) {
+				try {
+					newCapybara = capybaraRepository.save(newCapybara);
+					return ResponseEntity.ok(newCapybara);
+				} catch (Exception e) {		
+				}
+			}			
+		}
 		
+		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
 	}
 	
 	//"/capybara/{idCapybara}/death"
 	public ResponseEntity<CapybaraDeath> createOneCapybaraDeath(Long idCapybara, CapybaraDeath newCapybaraDeath) {		
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		Capybara searchedCapybara = searchOneCapybaraById(idCapybara).getBody();		
+		
+		if (searchedCapybara != null) {			
+			newCapybaraDeath.setCapybaraFK(searchedCapybara);
+			
+			CapybaraDeath searchedCapybaraDeath = searchOneCapybaraDeathById(idCapybara, newCapybaraDeath.getIdCapybaraDeath()).getBody();
+			
+			if (searchedCapybaraDeath == null) {
+				if (newCapybaraDeath.isValidObject()) {					
+					newCapybaraDeath = capybaraDeathRepository.save(newCapybaraDeath);
+					return ResponseEntity.ok(newCapybaraDeath);
+				}
+				else{
+					return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(new MatchPlayed());
+				}
+			}
+			else{
+				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new MatchPlayed());
+			}			
+		}
+		else{
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
 	}	
 	// </editor-fold>
 
