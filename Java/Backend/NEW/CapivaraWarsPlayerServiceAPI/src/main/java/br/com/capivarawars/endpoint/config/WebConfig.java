@@ -4,6 +4,7 @@ package br.com.capivarawars.endpoint.config;
 import java.util.List;
 import java.util.ArrayList;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -20,14 +21,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Last update: -
  */// </editor-fold>
 @Configuration
-@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer{
 	
-//	@Override
-//	public void addCorsMappings(CorsRegistry registry) {
-//		registry.addMapping("/**")
-//			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
-//	}
+	
+	public void addCorsMappings(CorsRegistry registry) {
+		registry
+			.addMapping("/**")
+			.allowedOrigins("http://localhost:3000")
+			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
+	}
 	
 	
 }//class
