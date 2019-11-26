@@ -7,7 +7,7 @@ import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
-import br.com.capivarawars.endpoint.service.PlayerEnpointService;
+import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,11 +34,12 @@ import org.springframework.web.bind.annotation.*;
  */// </editor-fold>
 @RestController
 @RequestMapping(API_PLAYER_SERVICE)
+@CrossOrigin
 public class PlayerDeleteEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
-	private PlayerEnpointService playerEnpointService;
+	private PlayerService playerService;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
@@ -48,7 +49,7 @@ public class PlayerDeleteEndpoints {
 	// <editor-fold defaultstate="collapsed" desc="DELETE methods...">
 	@DeleteMapping(API_PLAYER_SERVICE_DELETE_ONE_PLAYER)
 	public ResponseEntity<Player> deleteOnePlayer(@PathVariable("idPlayer") Long idPlayer) {
-		return playerEnpointService.deleteOnePlayer(idPlayer);
+		return playerService.deleteOnePlayer(idPlayer);
 	}
 	
 	@DeleteMapping(API_PLAYER_SERVICE_DELETE_ONE_PLAYER_MATCH)
@@ -56,7 +57,7 @@ public class PlayerDeleteEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("idMatch") Long idMatch){
 	
-		return playerEnpointService.deleteOnePlayerMatch(idPlayer, idMatch);
+		return playerService.deleteOnePlayerMatch(idPlayer, idMatch);
 	}
 	
 	@DeleteMapping(API_PLAYER_SERVICE_DELETE_ONE_PLAYER_CHAMPIONSHIP)
@@ -64,7 +65,7 @@ public class PlayerDeleteEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("idChampionship") Long idChampionship){
 	
-		return playerEnpointService.deleteOnePlayerChampionship(idPlayer, idChampionship);
+		return playerService.deleteOnePlayerChampionship(idPlayer, idChampionship);
 	}
 	// </editor-fold>	
 	

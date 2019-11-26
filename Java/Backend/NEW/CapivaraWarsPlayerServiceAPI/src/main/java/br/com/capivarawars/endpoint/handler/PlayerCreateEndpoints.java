@@ -7,7 +7,7 @@ import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
-import br.com.capivarawars.endpoint.service.PlayerEnpointService;
+import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,11 +34,12 @@ import org.springframework.web.bind.annotation.*;
  */// </editor-fold>
 @RestController
 @RequestMapping(API_PLAYER_SERVICE)
+@CrossOrigin
 public class PlayerCreateEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
-	private PlayerEnpointService playerEnpointService;
+	private PlayerService playerService;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
@@ -48,7 +49,7 @@ public class PlayerCreateEndpoints {
 	// <editor-fold desc="CREATE methods..." defaultstate="collapsed">
 	@PostMapping(API_PLAYER_SERVICE_CREATE_ONE_PLAYER)
 	public ResponseEntity<Player> createOnePlayer(@RequestBody Player newPlayer) {		
-		return playerEnpointService.createOnePlayer(newPlayer);
+		return playerService.createOnePlayer(newPlayer);
 	}
 	
 	@PostMapping(API_PLAYER_SERVICE_CREATE_ONE_PLAYER_MATCH)
@@ -56,7 +57,7 @@ public class PlayerCreateEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@RequestBody MatchPlayed matchPlayed) {
 		
-		return playerEnpointService.createOnePlayerMatch(idPlayer, matchPlayed);
+		return playerService.createOnePlayerMatch(idPlayer, matchPlayed);
 	}
 	
 	@PostMapping(API_PLAYER_SERVICE_CREATE_ONE_PLAYER_CHAMPIONSHIP)
@@ -64,7 +65,7 @@ public class PlayerCreateEndpoints {
 			@PathVariable("idPlayer") Long idPlayer,
 			@RequestBody ChampionshipPlayed championshipPlayed) {
 		
-		return playerEnpointService.createOnePlayerChampionship(idPlayer, championshipPlayed);
+		return playerService.createOnePlayerChampionship(idPlayer, championshipPlayed);
 	}	
 	// </editor-fold>	
 	

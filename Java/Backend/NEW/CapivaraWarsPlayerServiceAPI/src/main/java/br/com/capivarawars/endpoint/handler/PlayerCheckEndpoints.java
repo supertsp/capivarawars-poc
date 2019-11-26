@@ -7,7 +7,7 @@ import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import br.com.capivarawars.endpoint.client.*;
 import br.com.capivarawars.endpoint.config.*;
 import br.com.capivarawars.endpoint.handler.*;
-import br.com.capivarawars.endpoint.service.PlayerEnpointService;
+import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,11 +34,12 @@ import org.springframework.web.bind.annotation.*;
  */// </editor-fold>
 @RestController
 @RequestMapping(API_PLAYER_SERVICE)
+@CrossOrigin
 public class PlayerCheckEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
-	private PlayerEnpointService playerEnpointService;
+	private PlayerService playerService;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
@@ -48,12 +49,12 @@ public class PlayerCheckEndpoints {
 	// <editor-fold defaultstate="collapsed" desc="CHECK methods...">
 	@GetMapping(API_PLAYER_SERVICE_CHECK_ONE_PLAYER_ONLINE)
 	public ResponseEntity<Boolean> checkOnePlayerOnline(@PathVariable("idPlayer") Long idPlayer){
-		return playerEnpointService.checkOnePlayerOnline(idPlayer);
+		return playerService.checkOnePlayerOnline(idPlayer);
 	}
 	
 	@GetMapping(API_PLAYER_SERVICE_CHECK_ONE_PLAYER_CREDENTIALS)
 	public ResponseEntity<Boolean> checkOnePlayerCredentials(@RequestBody Credentials credentials){
-		return playerEnpointService.checkOnePlayerCredentials(credentials);
+		return playerService.checkOnePlayerCredentials(credentials);
 	}	
 	// </editor-fold>
 	
