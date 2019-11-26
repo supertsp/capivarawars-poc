@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-import api from "../../services/api";
+import api from "../../services/apiLogin";
 
 import imagemMar from "../../assets/images/imagem-mar.jpg";
 import capivaraLogo from "../../assets/images/CapivaraWars-logo.png";
@@ -36,17 +36,28 @@ class Login extends Component {
   };
 
   signIn = async () => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    };
+
     try {
-      if(this.validateForm(this.state)){
-        const response = await api.post('', {
+      if (this.validateForm(this.state)) {
+        const response = await api.post("/api/v1/playerservice/login", {
           nick: this.state.nick,
           password: this.state.password
-        });
+        }, config);
+        console.log(response)
+        if (response.status === 200) {
+          this.props.history.push("/home");
+        }
       }
-    } catch(response) {
-      this.setState({errorMessage: response.data.error})
+    } catch (response) {
+      this.setState({ errorMessage: "Erro ao tentar acessar" });
     }
-  }
+  };
 
   render() {
     console.log(this.state);
@@ -91,11 +102,15 @@ class Login extends Component {
                       type="submit"
                       className="btn btn-primary botao-login"
                       value="Login"
+                      onClick={this.signIn}
                     ></input>
                   </div>
                   <label>Não tem uma conta? Então clique em cadastrar</label>
                   <div>
-                    <Link className="btn btn-primary botao-cadastro" to={'/register'}>
+                    <Link
+                      className="btn btn-primary botao-cadastro"
+                      to={"/register"}
+                    >
                       Cadastrar
                     </Link>
                   </div>
@@ -109,4 +124,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

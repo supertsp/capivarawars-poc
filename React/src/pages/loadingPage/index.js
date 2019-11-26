@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import imagemMar from "../../assets/images/imagem-mar.jpg";
 import capivaraLogo from "../../assets/images/CapivaraWars-logo.png";
@@ -35,7 +35,7 @@ class Loading extends Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to="/home" />;
+      return <Redirect to="/game" />;
     }
   };
 

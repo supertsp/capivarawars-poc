@@ -1,6 +1,14 @@
 #FileLock
+<<<<<<< HEAD
 #Mon Nov 25 22:29:56 BRST 2019
 hostName=LAPTOP-TIAGO
 id=16ea51d58405a735a80cdc3746367541f14aa2bce93
 method=file
 server=10.0.1.203\:57856
+=======
+#Mon Nov 25 22:24:40 BRST 2019
+hostName=desktop
+id=16ea513c9e8065f754f05584d941cb7853b02e17653
+method=file
+server=127.0.1.1\:38035
+>>>>>>> 53ddf31020f70a3225bdf946c21ca13b42a3341e
