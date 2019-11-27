@@ -1,0 +1,46 @@
+body {
+    font-family: sans-serif;
+}
+
+.cursorP {
+    cursor: pointer;
+}
+
+.btnBlue {
+    border: 0;
+    outline: none;
+    color: white;
+    font-size: 1.5em;
+    background: #0984E3;
+    border-radius: 100000px;
+}
+
+.btnOutline {
+    outline: none;
+    color: white;
+    background: none;
+    font-size: 1.5em;
+    border-radius: 100000px;
+    border: 2px solid white;
+}
+
+.itensHovered:hover {
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    color: rgba(255, 255, 255, .6);
+    border: 1px solid rgba(255, 255, 255, .6);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.fRight {
+    float: right;
+}
+
+.boldBlue {
+    margin: 0;
+    color: #0984E3;
+    font-weight: bold;
+}

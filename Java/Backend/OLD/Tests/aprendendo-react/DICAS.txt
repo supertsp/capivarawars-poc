@@ -1,0 +1,28 @@
+1) INSTALAÇÃO DO REACT NO PC
+	npm install -g create-react-app
+
+2) CRIANDO UM NOVO PROJETO
+	create-react-app <nome do projeto>
+	
+3) INICIANDO PROJETO	
+	npm start
+
+4) INSTALANDO MÓDULOS
+	npm -i
+	
+5) ROTAS EM REACT
+	npm install react-router-dom
+
+6) CHAMADAS HTTP
+	npm install axios
+
+-------------------------------------------
+STYLE COMPONENTS (CSS VIA JAVASCRIPT)
+	https://www.styled-components.com/
+	
+	
+	
+-------------------------------------------
+TROCAR/RENOMEAR COISAS DO HTML
+	1) class -> className
+	2) for -> htmlFor
