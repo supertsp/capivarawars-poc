@@ -5,7 +5,7 @@ bin/
 .metadata/
 
 # Extensions that should NOT be included.
-
+*.db
 
 # Files that should NOT be included.
 .DS_Store

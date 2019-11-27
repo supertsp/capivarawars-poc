@@ -65,7 +65,7 @@ public class PlayerService {
 					newPlayer = playerRepository.save(newPlayer);
 					return ResponseEntity.ok(newPlayer);
 				} catch (Exception e) {
-					//Caso o email ou nick sejam duplicados é gerado esse erro				
+					//Caso o email ou nick sejam duplicados é gerado esse erro							
 				}
 			}
 			else{
