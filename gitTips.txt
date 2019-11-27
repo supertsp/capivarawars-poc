@@ -1,0 +1,6 @@
+HOW FORCE PULL
+	git reset --hard
+	git pull
+	
+HOW FORCE PUSH
+	https://evilmartians.com/chronicles/git-push---force-and-how-to-deal-with-it
