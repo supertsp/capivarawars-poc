@@ -10,6 +10,8 @@ import br.com.capivarawars.endpoint.handler.*;
 import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -34,7 +36,6 @@ import org.springframework.web.bind.annotation.*;
  */// </editor-fold>
 @RestController
 @RequestMapping(API_PLAYER_SERVICE)
-@CrossOrigin
 public class PlayerDeleteEndpoints {
 		
 	// <editor-fold defaultstate="collapsed" desc="fields...">
@@ -48,11 +49,23 @@ public class PlayerDeleteEndpoints {
 	
 	// <editor-fold defaultstate="collapsed" desc="DELETE methods...">
 	@DeleteMapping(API_PLAYER_SERVICE_DELETE_ONE_PLAYER)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Element Deleted"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "Not Found")})
 	public ResponseEntity<Player> deleteOnePlayer(@PathVariable("idPlayer") Long idPlayer) {
 		return playerService.deleteOnePlayer(idPlayer);
 	}
 	
 	@DeleteMapping(API_PLAYER_SERVICE_DELETE_ONE_PLAYER_MATCH)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Element Deleted"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "Not Found")})
 	public ResponseEntity<MatchPlayed> deleteOnePlayerMatch(
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("idMatch") Long idMatch){
@@ -61,6 +74,12 @@ public class PlayerDeleteEndpoints {
 	}
 	
 	@DeleteMapping(API_PLAYER_SERVICE_DELETE_ONE_PLAYER_CHAMPIONSHIP)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Element Deleted"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "Not Found")})
 	public ResponseEntity<ChampionshipPlayed> deleteOnePlayerChampionship(
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("idChampionship") Long idChampionship){

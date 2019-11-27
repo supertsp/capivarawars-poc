@@ -33,6 +33,8 @@ import org.springframework.web.bind.annotation.*;
 @Service
 public class CapybaraService {
 	
+	//Response codes: https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/HttpStatus.html
+	
 	// <editor-fold defaultstate="collapsed" desc="fields...">
 	@Autowired
 	private CapybaraRepository capybaraRepository;
@@ -47,17 +49,20 @@ public class CapybaraService {
 
 	// <editor-fold desc="CREATE methods..." defaultstate="collapsed">
 	//"/capybara"
-	public ResponseEntity<Capybara> createOneCapybara(@RequestBody Capybara newCapybara) {	
-		if (newCapybara.isValidObject()) {			
-			Capybara searchedPlayer = searchOneCapybaraById(newCapybara.getIdCapybara()).getBody();
-			
-			if (searchedPlayer == null) {
+	public ResponseEntity<Capybara> createOneCapybara(Capybara newCapybara) {	
+		Capybara searchedPlayer = searchOneCapybaraById(newCapybara.getIdCapybara()).getBody();
+		
+		if (searchedPlayer == null) {
+			if (newCapybara.isValidObject()) {
 				try {
 					newCapybara = capybaraRepository.save(newCapybara);
 					return ResponseEntity.ok(newCapybara);
 				} catch (Exception e) {		
 				}
-			}			
+			}
+			else{
+				return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(new Capybara());
+			}
 		}
 		
 		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
@@ -78,11 +83,11 @@ public class CapybaraService {
 					return ResponseEntity.ok(newCapybaraDeath);
 				}
 				else{
-					return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(new MatchPlayed());
+					return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(new CapybaraDeath());
 				}
 			}
 			else{
-				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new MatchPlayed());
+				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new CapybaraDeath());
 			}			
 		}
 		else{
@@ -94,12 +99,36 @@ public class CapybaraService {
 	// <editor-fold defaultstate="collapsed" desc="UPDATE methods...">
 	//"/capybara/{idCapybara}"
 	public ResponseEntity<Capybara> updateOneCapybara(Long idCapybara, Capybara capybaraToBeUpdated) {		
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		if (capybaraToBeUpdated.isValidObject()) {			
+			Capybara searchedCapybara = searchOneCapybaraById(idCapybara).getBody();
+			
+			if (searchedCapybara != null) {
+				try {
+					capybaraToBeUpdated.setIdCapybara(idCapybara);
+					capybaraToBeUpdated = capybaraRepository.save(capybaraToBeUpdated);
+					return ResponseEntity.ok(capybaraToBeUpdated);
+				} catch (Exception e) {	
+				}
+			}			
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	
 	//"/capybara/{idCapybara}/hp/{hp}"
 	public ResponseEntity<Capybara> updateOneCapybaraHp(Long idCapybara, Integer hp) {		
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		Capybara searchedCapybara = searchOneCapybaraById(idCapybara).getBody();
+			
+		if (searchedCapybara != null) {
+			try {
+				searchedCapybara.setHp(hp);
+				searchedCapybara = capybaraRepository.save(searchedCapybara);
+				return ResponseEntity.ok(searchedCapybara);
+			} catch (Exception e) {	
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	
 	//"/capybara/{idCapybara}/death/{idDeath}"
@@ -108,19 +137,54 @@ public class CapybaraService {
 			Long idDeath,
 			CapybaraDeath capybaraDeathToBeUpdated) {
 		
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		CapybaraDeath searchedCapybaraDeath = searchOneCapybaraDeathById(idCapybara, idDeath).getBody();
+		
+		if (searchedCapybaraDeath != null) {
+			capybaraDeathToBeUpdated.setIdCapybaraDeath(searchedCapybaraDeath.getIdCapybaraDeath());
+			capybaraDeathToBeUpdated.setCapybaraFK(searchedCapybaraDeath.getCapybaraFK());			
+		
+			if (capybaraDeathToBeUpdated.isValidObject()) {
+				try {
+					capybaraDeathToBeUpdated = capybaraDeathRepository.save(capybaraDeathToBeUpdated);					
+					return ResponseEntity.ok(capybaraDeathToBeUpdated);
+				} catch (Exception e) {					
+				}
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="DELETE methods...">
 	//"/capybara/{idCapybara}"
 	public ResponseEntity<Capybara> deleteOneCapybara(Long idCapybara) {
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		Capybara searchedCapybara = searchOneCapybaraById(idCapybara).getBody();
+
+		if (searchedCapybara != null) {
+			try {
+				capybaraRepository.deleteById(idCapybara);
+				return ResponseEntity.ok(searchedCapybara);
+			} catch (Exception e) {
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	
 	//"/capybara/{idCapybara}/death/{idDeath}"
 	public ResponseEntity<CapybaraDeath> deleteOneCapybaraDeath(Long idCapybara, Long idDeath) {		
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		CapybaraDeath searchedCapybaraDeath = searchOneCapybaraDeathById(idCapybara, idDeath).getBody();
+
+		if (searchedCapybaraDeath != null) {
+			try {
+				capybaraDeathRepository.deleteById(idDeath);
+				return ResponseEntity.ok(searchedCapybaraDeath);
+			} catch (Exception e) {
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	// </editor-fold>
 
@@ -178,8 +242,6 @@ public class CapybaraService {
 			if (searchedCapybaraDeaths != null && searchedCapybaraDeaths.size() > 0) {
 				return ResponseEntity.ok(searchedCapybaraDeaths);
 			}
-			
-			return ResponseEntity.ok(null);
 		} catch (Exception e) {			
 		}
 		
@@ -202,8 +264,6 @@ public class CapybaraService {
 				
 				return ResponseEntity.ok(capybaras);
 			}
-			
-			return ResponseEntity.ok(null);
 		} catch (Exception e) {			
 		}
 		
@@ -220,8 +280,6 @@ public class CapybaraService {
 			if (searchedCapybaras != null && searchedCapybaras.size() > 0) {
 				return ResponseEntity.ok(searchedCapybaras);
 			}
-			
-			return ResponseEntity.ok(null);
 		} catch (Exception e) {			
 		}
 		

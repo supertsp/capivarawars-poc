@@ -57,25 +57,26 @@ public class PlayerService {
 
 	// <editor-fold desc="CREATE methods..." defaultstate="collapsed">
 	public ResponseEntity<Player> createOnePlayer(Player newPlayer) {
-		if (newPlayer.isValidObject()) {
-			
-			Player searchedPlayer = searchOnePlayerById(newPlayer.getIdPlayer()).getBody();
-			
-			if (searchedPlayer == null) {
+		Player searchedPlayer = searchOnePlayerById(newPlayer.getIdPlayer()).getBody();
+		
+		if (searchedPlayer == null) {
+			if (newPlayer.isValidObject()) {
 				try {
 					newPlayer = playerRepository.save(newPlayer);
 					return ResponseEntity.ok(newPlayer);
 				} catch (Exception e) {
 					//Caso o email ou nick sejam duplicados é gerado esse erro				
 				}
-			}			
+			}
+			else{
+				return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(new Player());
+			}
 		}
 		
 		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
 	}
 	
-	public ResponseEntity<MatchPlayed> createOnePlayerMatch(Long idPlayer, MatchPlayed matchPlayed) {
-		
+	public ResponseEntity<MatchPlayed> createOnePlayerMatch(Long idPlayer, MatchPlayed matchPlayed) {		
 		Player searchedPlayer = searchOnePlayerById(idPlayer).getBody();		
 		
 		if (searchedPlayer != null) {			
@@ -339,9 +340,7 @@ public class PlayerService {
 			
 			if (searchedMatchesPlayed != null && searchedMatchesPlayed.size() > 0) {
 				return ResponseEntity.ok(searchedMatchesPlayed);
-			}
-			
-			return ResponseEntity.ok(null);
+			}			
 		} catch (Exception e) {			
 		}
 		
@@ -375,9 +374,7 @@ public class PlayerService {
 			
 			if (searchedChampionshipsPlayed != null && searchedChampionshipsPlayed.size() > 0) {
 				return ResponseEntity.ok(searchedChampionshipsPlayed);
-			}
-			
-			return ResponseEntity.ok(null);
+			}			
 		} catch (Exception e) {
 		}
 		
