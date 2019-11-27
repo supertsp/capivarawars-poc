@@ -36,25 +36,19 @@ class Login extends Component {
   };
 
   signIn = async () => {
-    let config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      }
-    };
-
     try {
       if (this.validateForm(this.state)) {
         const response = await api.post("/api/v1/playerservice/login", {
           nick: this.state.nick,
           password: this.state.password
-        }, config);
+        });
         console.log(response)
         if (response.status === 200) {
           this.props.history.push("/home");
         }
       }
     } catch (response) {
+      console.log(response)
       this.setState({ errorMessage: "Erro ao tentar acessar" });
     }
   };

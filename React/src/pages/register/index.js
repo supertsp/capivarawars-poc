@@ -6,6 +6,19 @@ import capivaraLogo from "../../assets/images/CapivaraWars-logo.png";
 import "./styles.css";
 
 class Register extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fullName: "",
+      nick: "",
+      password: "",
+      gender: "",
+      birthday: "",
+      email: ""
+    }
+  }
+
   render() {
     return (
       <div>
@@ -60,6 +73,7 @@ class Register extends Component {
                           className="form-check-input"
                           type="radio"
                           name="sex"
+                          value="m"
                         ></input>
                         <label className="form-check-label" for="male">
                           Masculino
@@ -70,6 +84,7 @@ class Register extends Component {
                           className="form-check-input"
                           type="radio"
                           name="sex"
+                          value="f"
                         ></input>
                         <label className="form-check-label" for="female">
                           Feminino

@@ -4,3 +4,28 @@
   border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
 }
 
+.boat {
+  height: 50px;
+  width: 50px;
+  border: black solid 1px;
+}
+
+.limpa {
+  background: white;
+}
+
+.fundo1 {
+  background: brown;
+}
+
+.fundo2 {
+  background: brown;
+}
+
+.fundo3 {
+  background: brown;
+}
+
+.fundo4 {
+  background: brown;
+}

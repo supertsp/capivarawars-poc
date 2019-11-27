@@ -10,14 +10,25 @@ class Game extends Component {
     super(props);
 
     this.state = {
-      boat: [1,2,3,4],
-      position: document.querySelector('.boat')
+      boat: [1, 2, 3, 4, 0, 0, 0, 0, 0, 0],
+      boatVisible: true
     };
   }
 
-  boatMovimentLeft = (event) => {
-    
+  componentDidMount() {
+    this.printBoat();
+    console.log('document: ', document.querySelector('table'))
+  }
+
+  printBoat = () => {
+    for (let i = 0; i < this.state.boat.length; i++) {
+      if (this.state.boat[i] !== 0) {
+        
+      }
+    }
   };
+
+  boatMovimentLeft = () => {};
 
   render() {
     return (
@@ -47,18 +58,42 @@ class Game extends Component {
             <div className="col-md-12">
               <div className="card">
                 <div className="card-body card-body-game">
-                  <tr>
-                    <th id="boat1" className="boat">1</th>
-                    <th id="boat2" className="boat">2</th>
-                    <th id="boat3" className="boat">3</th>
-                    <th id="boat4" className="boat">4</th>
-                    <th id="boat5" className="boat">5</th>
-                    <th id="boat6" className="boat">6</th>
-                    <th id="boat7" className="boat">7</th>
-                    <th id="boat8" className="boat">8</th>
-                    <th id="boat9" className="boat">9</th>
-                    <th id="boat10" className="boat">10</th>
-                  </tr>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td id="boat1" className={'boat'}>
+                          1
+                        </td>
+                        <th id="boat2" className="boat">
+                          2
+                        </th>
+                        <th id="boat3" className="boat">
+                          3
+                        </th>
+                        <th id="boat4" className="boat">
+                          4
+                        </th>
+                        <th id="boat5" className="boat">
+                          5
+                        </th>
+                        <th id="boat6" className="boat">
+                          6
+                        </th>
+                        <th id="boat7" className="boat">
+                          7
+                        </th>
+                        <th id="boat8" className="boat">
+                          8
+                        </th>
+                        <th id="boat9" className="boat">
+                          9
+                        </th>
+                        <th id="boat10" className="boat">
+                          10
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
