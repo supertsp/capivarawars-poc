@@ -44,34 +44,85 @@ public class ColorService {
 
 	// <editor-fold desc="CREATE methods..." defaultstate="collapsed">
 	//"/color"
-	public ResponseEntity<Color> createOneColor(@RequestBody Color newColor) {		
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+	public ResponseEntity<Color> createOneColor(Color newColor) {		
+		Color searchedColor = searchOneColorById(newColor.getIdColor()).getBody();
+		
+		if (searchedColor == null) {			
+			if (newColor.isValidObject()) {	
+				try {
+					newColor = colorRepository.save(newColor);
+					return ResponseEntity.ok(newColor);
+				} catch (Exception e) {		
+				}
+			}
+			else{
+				return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT).body(new Color());
+			}			
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
 	}	
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="UPDATE methods...">
 	//"/color/{idColor}"
 	public ResponseEntity<Color> updateOneColor(Long idColor, Color colorToBeUpdated) {		
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		if (colorToBeUpdated.isValidObject()) {			
+			Color searchedColor = searchOneColorById(idColor).getBody();
+			
+			if (searchedColor != null) {
+				try {
+					colorToBeUpdated.setIdColor(idColor);
+					colorToBeUpdated = colorRepository.save(colorToBeUpdated);
+					return ResponseEntity.ok(colorToBeUpdated);
+				} catch (Exception e) {	
+				}
+			}			
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="DELETE methods...">
 	//"/color/{idColor}"
 	public ResponseEntity<Color> deleteOneColor(Long idColor) {
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		Color searchedColor = searchOneColorById(idColor).getBody();
+
+		if (searchedColor != null) {
+			try {
+				colorRepository.deleteById(idColor);
+				return ResponseEntity.ok(searchedColor);
+			} catch (Exception e) {
+			}
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="SEARCH methods...">
 	//"/color/{idColor}"
 	public ResponseEntity<Color> searchOneColorById(Long idColor){
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		Color searchedColor = null;
+		
+		try {
+			searchedColor = colorRepository.findById(idColor).get();
+			return ResponseEntity.ok(searchedColor);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
 	}
 	
 	//"/colors"
 	public ResponseEntity<List<Color>> searchAllColors(){
-		return ResponseEntity.status(HttpStatus.OK).body(null);
+		List<Color> searchedColor = colorRepository.findAll();
+		
+		if (searchedColor != null) {
+			return ResponseEntity.ok(searchedColor);
+		}
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	// </editor-fold>
 

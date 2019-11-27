@@ -10,6 +10,8 @@ import br.com.capivarawars.endpoint.handler.*;
 import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -47,6 +49,12 @@ public class PlayerUpdateEndpoints {
 
 	// <editor-fold defaultstate="collapsed" desc="UPDATE methods...">
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Element Updated"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "Not Found")})
 	public ResponseEntity<Player> updateOnePlayer(
 			@PathVariable("idPlayer") Long idPlayer,
 			@RequestBody Player playerToBeUpdated) {
@@ -55,6 +63,12 @@ public class PlayerUpdateEndpoints {
 	}
 	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_ONLINE)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Element Updated"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "Not Found")})
 	public ResponseEntity<Player> updateOnePlayerOnline(
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("online") Boolean online) {	
@@ -63,6 +77,12 @@ public class PlayerUpdateEndpoints {
 	}
 	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_MATCH)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Element Updated"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "Not Found")})
 	public ResponseEntity<MatchPlayed> updateOnePlayerMatch(
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("idMatch") Long idMatch,
@@ -72,6 +92,12 @@ public class PlayerUpdateEndpoints {
 	}
 	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_CHAMPIONSHIP)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Element Updated"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "Not Found")})
 	public ResponseEntity<ChampionshipPlayed> updateOnePlayerChampionship(
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("idChampionship") Long idChampionship,

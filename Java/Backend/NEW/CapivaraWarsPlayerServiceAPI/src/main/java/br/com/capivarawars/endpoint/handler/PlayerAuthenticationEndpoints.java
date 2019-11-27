@@ -10,6 +10,8 @@ import br.com.capivarawars.endpoint.handler.*;
 import br.com.capivarawars.endpoint.service.PlayerService;
 import br.com.capivarawars.security.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -47,11 +49,27 @@ public class PlayerAuthenticationEndpoints {
 	
 	// <editor-fold desc="AUTHENTICATION methods..." defaultstate="collapsed">
 	@PostMapping(API_PLAYER_SERVICE_LOGIN)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Successfully logged in :)"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "The credentials are wrong :("),
+      @ApiResponse(code = 406, message = "This user is already logged in :0"),
+	})
 	public ResponseEntity<String> login(@RequestBody Credentials credentials) {
 		return playerService.login(credentials);
 	}
 	
 	@PostMapping(API_PLAYER_SERVICE_LOGOUT)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Successfully logged out :)"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "Invalid user :("),
+      @ApiResponse(code = 406, message = "This user is not logged in yet :0"),
+	})
 	public ResponseEntity<String> logout(@PathVariable("idPlayer") Long idPlayer) {
 		return playerService.logout(idPlayer);
 	}
