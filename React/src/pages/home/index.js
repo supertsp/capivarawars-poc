@@ -15,6 +15,7 @@ class Home extends Component {
             <div className="col-md-4">
               <img
                 src={imgLogo}
+                alt={imgLogo}
                 className="img-fluid img-thumbnail img-options"
               ></img>
             </div>
@@ -23,6 +24,7 @@ class Home extends Component {
                 <li>
                   <img
                     src={imgPlayer}
+                    alt={imgPlayer}
                     className="img-fluid img-thumbnail img-player"
                   ></img>
                 </li>
@@ -33,32 +35,24 @@ class Home extends Component {
           <div className="row">
             <div className="col-md-8">
               <div className="card card-options">
-                <div className="card-body">
-                  Teste
-                </div>
+                <div className="card-body">Teste</div>
               </div>
             </div>
             <div className="col-md-4">
               <div className="card card-options">
-                <div className="card-body">
-                  Teste
-                </div>
+                <div className="card-body">Teste</div>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-md-8">
               <div className="card card-options">
-                <div className="card-body">
-                  Teste
-                </div>
+                <div className="card-body">Teste</div>
               </div>
             </div>
             <div className="col-md-4">
               <div className="card card-options">
-                <div className="card-body">
-                  Teste
-                </div>
+                <div className="card-body">Teste</div>
               </div>
             </div>
           </div>

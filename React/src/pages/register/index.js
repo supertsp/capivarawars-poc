@@ -16,19 +16,20 @@ class Register extends Component {
       gender: "",
       birthday: "",
       email: ""
-    }
+    };
   }
 
   render() {
     return (
       <div>
-        <img src={imagemMar} className="background"></img>
+        <img src={imagemMar} alt={imagemMar} className="background"></img>
         <div className="container container-register">
           <div className="row">
             <div className="col-md-12">
-              <Link to={'/'}>
+              <Link to={"/"}>
                 <img
                   src={capivaraLogo}
+                  alt={capivaraLogo}
                   className="img-fluid img-thumbnail img-fluid-register img-thumbnail-register"
                 ></img>
               </Link>

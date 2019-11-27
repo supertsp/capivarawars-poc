@@ -45,12 +45,13 @@ class Loading extends Component {
     return (
       <div>
         {this.renderRedirect()}
-        <img src={imagemMar} className="background"></img>
+        <img src={imagemMar} alt={imagemMar} className="background"></img>
         <div className="container container-loading">
           <div className="row">
             <div className="col-md-12">
               <img
                 src={capivaraLogo}
+                alt={capivaraLogo}
                 className="img-fluid img-fluid-loading img-thumbnail img-thumbnail-loading"
               ></img>
             </div>
@@ -64,6 +65,7 @@ class Loading extends Component {
                   </h1>
                   <img
                     src={capivaraLoading}
+                    alt={capivaraLoading}
                     className="img-fluid img-fluid-capLoading"
                   ></img>
                 </div>

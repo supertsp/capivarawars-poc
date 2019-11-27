@@ -32,7 +32,7 @@ class NumberPlayers extends Component {
 
     return (
       <div>
-        <img src={imagemMar} className="background"></img>
+        <img src={imagemMar} alt={imagemMar} className="background"></img>
         <div className="container">
           <div className="container">
             <div className="row">
@@ -40,6 +40,7 @@ class NumberPlayers extends Component {
                 <Link to={"/home"}>
                   <img
                     src={capivaraLogo}
+                    alt={capivaraLogo}
                     className="img-fluid img-fluid-num img-thumbnail img-thumbnail-num"
                   ></img>
                 </Link>
@@ -49,6 +50,7 @@ class NumberPlayers extends Component {
                   <li>
                     <img
                       src={imgPlayer}
+                      alt={imgPlayer}
                       className="img-fluid img-thumbnail img-player"
                     ></img>
                   </li>

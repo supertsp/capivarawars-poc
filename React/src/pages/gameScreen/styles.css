@@ -29,3 +29,28 @@
 .fundo4 {
   background: brown;
 }
+
+.card-body-game ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+}
+
+.card-body-game ul li {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  border: 1px solid #cccccc;
+}
+
+.shoot {
+  background: black !important;
+}
+
+.boat {
+  background: burlywood;
+}
+
+.water {
+  background: cadetblue;
+}

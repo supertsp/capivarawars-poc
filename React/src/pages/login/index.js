@@ -38,6 +38,8 @@ class Login extends Component {
   signIn = async () => {
     try {
       if (this.validateForm(this.state)) {
+        const user = await api.get(`/api/v1/playerservice/player/nick/${this.state.nick}`);
+
         const response = await api.post("/api/v1/playerservice/login", {
           nick: this.state.nick,
           password: this.state.password
@@ -57,12 +59,13 @@ class Login extends Component {
     console.log(this.state);
     return (
       <div>
-        <img src={imagemMar} className="background"></img>
+        <img src={imagemMar} alt={imagemMar} className="background"></img>
         <div className="container container-login">
           <div className="row">
             <div className="col-md-12">
               <img
                 src={capivaraLogo}
+                alt={capivaraLogo}
                 className="img-fluid img-fluid-login img-thumbnail img-thumbnail-login"
               ></img>
             </div>

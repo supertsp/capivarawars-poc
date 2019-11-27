@@ -9,13 +9,14 @@ class ResetPassword extends Component {
   render() {
     return (
       <div>
-        <img src={imagemMar} className="background"></img>
+        <img src={imagemMar} alt={imagemMar} className="background"></img>
         <div className="container container-reset">
           <div className="row">
             <div className="col-md-12">
               <Link to={"/"}>
                 <img
                   src={capivaraLogo}
+                  alt={capivaraLogo}
                   className="img-fluid img-thumbnail img-fluid-reset img-thumbnail-reset"
                 ></img>
               </Link>
