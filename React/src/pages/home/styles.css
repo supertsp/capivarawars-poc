@@ -1,22 +1,52 @@
-.components{
-    float: right;
-    margin-top: 35px;
-    list-style: none;
+.components {
+  float: right;
+  margin-top: 35px;
+  list-style: none;
 }
 
 .img-options {
-    border: none;
-    background: none;
+  border: none;
+  background: none;
 }
 
 .card-options {
-    margin: 15px 5px;
-    background: none;
-    border: 40px solid transparent;
-    border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
+  margin: 15px 5px;
+  background: none;
+  border: 40px solid transparent;
+  border-image: url(../../assets/images/bamboo_frame_438x546.png) 30% round;
 }
 
 .img-player {
-    width: 70px;
-    height: 70px;
+  width: 70px;
+  height: 70px;
+}
+
+.img-joy {
+  width: 150px;
+  height: 75px;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-capi {
+  height: 125px;
+  width: 125px;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-coracao {
+  height: 30px;
+}
+
+.list-pts {
+  float: left;
+  position: relative;
+  display: block;
+  margin-left: 35px;
+  margin-right: auto;
 }

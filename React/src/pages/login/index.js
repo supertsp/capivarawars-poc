@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import api from "../../services/apiLogin";
+import apiAuth from "../../services/apiAuth";
 
 import imagemMar from "../../assets/images/imagem-mar.jpg";
 import capivaraLogo from "../../assets/images/CapivaraWars-logo.png";
@@ -31,26 +31,28 @@ class Login extends Component {
     if (this.state.name !== "" && this.state.password !== "") {
       return await true;
     }
-
     return await false;
   };
 
   signIn = async () => {
     try {
       if (this.validateForm(this.state)) {
-        const user = await api.get(`/api/v1/playerservice/player/nick/${this.state.nick}`);
+        const user = await apiAuth.get(`/api/v1/playerservice/player/nick/${this.state.nick}`);
 
-        const response = await api.post("/api/v1/playerservice/login", {
+        const response = await apiAuth.post("/api/v1/playerservice/login", {
           nick: this.state.nick,
           password: this.state.password
         });
-        console.log(response)
+
+        console.log(user)
+        
         if (response.status === 200) {
+          localStorage.setItem('user', user.data.idPlayer)
           this.props.history.push("/home");
         }
       }
     } catch (response) {
-      console.log(response)
+      console.log(response);
       this.setState({ errorMessage: "Erro ao tentar acessar" });
     }
   };

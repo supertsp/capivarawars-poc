@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+
+import apiAuth from "../../services/apiAuth";
 
 import imagemMar from "../../assets/images/imagem-mar.jpg";
 import capivaraLogo from "../../assets/images/CapivaraWars-logo.png";
@@ -10,16 +12,64 @@ class Register extends Component {
     super(props);
 
     this.state = {
-      fullName: "",
       nick: "",
       password: "",
+      email: "",
+      avatarUrl: "...",
+      fullName: "",
       gender: "",
       birthday: "",
-      email: ""
+      errorMessage: ""
     };
   }
 
+  handleChange = (event) => {
+    const state = Object.assign({}, this.state);
+    let field = event.target.id;
+    state[field] = event.target.value;
+
+    this.setState(state);
+  };
+
+  validateForm = async (state) => {
+    if (
+      this.state.nick !== "" &&
+      this.state.password !== "" &&
+      this.state.email !== "" &&
+      this.state.fullName !== "" &&
+      this.state.birthday
+    ) {
+      return await true;
+    }
+
+    return await false;
+  };
+
+  Register = async () => {
+    try {
+      if (this.validateForm(this.state)) {
+        const response = await apiAuth.post("/api/v1/playerservice/player", {
+          nick: this.state.nick,
+          password: this.state.password,
+          email: this.state.email,
+          avatarUrl: "...",
+          fullName: this.state.fullName,
+          gender: this.state.gender,
+          birthday: this.state.birthday
+        });
+
+        if (response.status === 200) {
+          this.props.history.push("/");
+        }
+      }
+    } catch (response) {
+      console.log(response);
+      this.setState({ errorMessage: "Erro ao tentar cadastrar" });
+    }
+  };
+
   render() {
+    console.log(this.state);
     return (
       <div>
         <img src={imagemMar} alt={imagemMar} className="background"></img>
@@ -45,8 +95,9 @@ class Register extends Component {
                       <input
                         type="text"
                         className="form-control"
-                        id="name"
+                        id="fullName"
                         placeholder="Nome completo"
+                        onChange={(evt) => this.handleChange(evt)}
                       ></input>
                     </div>
                     <div className="form-group">
@@ -55,7 +106,8 @@ class Register extends Component {
                         type="text"
                         className="form-control"
                         id="nick"
-                        placeholder="nickname"
+                        placeholder="nick"
+                        onChange={(evt) => this.handleChange(evt)}
                       ></input>
                     </div>
                     <div className="form-group">
@@ -65,6 +117,7 @@ class Register extends Component {
                         className="form-control"
                         id="password"
                         placeholder="senha"
+                        onChange={(evt) => this.handleChange(evt)}
                       ></input>
                     </div>
                     <div className="form-group">
@@ -72,9 +125,11 @@ class Register extends Component {
                       <div className="form-check">
                         <input
                           className="form-check-input"
+                          id="gender"
                           type="radio"
-                          name="sex"
+                          name="gender"
                           value="m"
+                          onChange={(evt) => this.handleChange(evt)}
                         ></input>
                         <label className="form-check-label" for="male">
                           Masculino
@@ -83,9 +138,11 @@ class Register extends Component {
                       <div className="form-check">
                         <input
                           className="form-check-input"
+                          id="gender"
                           type="radio"
-                          name="sex"
+                          name="gender"
                           value="f"
+                          onChange={(evt) => this.handleChange(evt)}
                         ></input>
                         <label className="form-check-label" for="female">
                           Feminino
@@ -96,21 +153,22 @@ class Register extends Component {
                   <div className="col-md-6">
                     <div className=" input-data">
                       <label
-                        for="example-date-input"
+                        htmlFor="example-date-input"
                         class="col-2 col-form-label"
                       >
-                        Date
+                      Data Nasc.
                       </label>
                       <input
                         class="form-control"
                         type="date"
-                        id="example-date-input"
+                        id="birthday"
                         placeholder="01/12/2019"
+                        onChange={(evt) => this.handleChange(evt)}
                       ></input>
                     </div>
                     <div className=" input-email">
                       <label
-                        for="example-email-input"
+                        htmlFor="email"
                         class="col-2 col-form-label"
                       >
                         Email
@@ -118,8 +176,9 @@ class Register extends Component {
                       <input
                         class="form-control"
                         type="email"
-                        id="example-email-input"
+                        id="email"
                         placeholder="capivara@canoa.com"
+                        onChange={(evt) => this.handleChange(evt)}
                       ></input>
                     </div>
                     <div className=" input-confirm-senha">
@@ -129,12 +188,16 @@ class Register extends Component {
                         className="form-control"
                         id="password"
                         placeholder="Confirme sua senha"
+                        onChange={(evt) => this.handleChange(evt)}
                       ></input>
                     </div>
                     <div className="botao-cadastrar">
-                      <button type="submit" class="btn btn-primary">
-                        Confirmar cadastro
-                      </button>
+                      <input
+                        type="submit"
+                        class="btn btn-primary"
+                        value="Confirmar cadastro"
+                        onClick={this.Register}
+                      ></input>
                     </div>
                   </div>
                 </div>
@@ -147,4 +210,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);
