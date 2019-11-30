@@ -1,0 +1,20 @@
+.img-thumbnail-lose {
+    border: none;
+    background: none;
+    right: 11%;
+}
+
+.img-gameOver-lose {
+    border: none;
+    background: none;
+    left: 35%;
+    width: 300px;
+    height: 200px;
+    top: 100%;
+}
+
+.img-fluid-capLoading{
+    width: 150px;
+    height: 200px;
+    right: 3%;
+}
