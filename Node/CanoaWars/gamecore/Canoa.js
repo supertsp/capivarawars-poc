@@ -1,3 +1,5 @@
+const Validator = require('../tool/Validator');
+
 /**
  * Objective: ...
  * 
@@ -10,60 +12,115 @@
 
 class Canoa{
 	
-	tamanho;
+	tamanhoMax;
+	tamanhoAtual;
+	destruida;
 	pedacos;
-	
+		
 	constructor(tamanho){
-		this.tamanho = tamanho;
-		this.pedacos = new Array(this.tamanho);
-		this.reiniciarCanoa(tamanho);
-	}
-	
-	reiniciarCanoa(){
-		for (var cont = 0; cont < this.tamanho; cont++) {
-			this.pedacos[cont] = true;
+		if (Validator.isInteger(tamanho)) {
+			this.tamanhoMax = tamanho;		
+			this.reiniciar();
+			
+			//atualiza atributo da classe
+			this.isDestruida();
+		}
+		
+		//Construtor sem parâmetros
+		if (Validator.isUndefined(tamanho)) {
+			this.tamanhoMax = 4;		
+			this.reiniciar();
+			
+			//atualiza atributo da classe
+			this.isDestruida();
 		}
 	}
 	
-	lengthOfPedacos(){
-		return this.pedacos.length;
+	reiniciar(){
+		this.pedacos = new Array(this.getTamanhoMax());
+		
+		for (var cont = 0; cont < this.getTamanhoMax(); cont++) {
+			this.pedacos[cont] = true;
+		}
+		
+		this.tamanhoAtual = this.pedacos.length;
+		
+		this.destruida = false;
 	}
 	
-	getPedaco(indice){
-		if (indice >= 0 && indice < this.pedacos.length) {
-			return this.pedacos[indice];
+	getTamanhoMax(){
+		return this.tamanhoMax;
+	}
+	
+	getTamanhoAtual(){
+		this.tamanhoAtual = this.pedacos.length;
+		return this.tamanhoAtual;
+	}
+	
+	isDestruida(){
+		if (this.getTamanhoAtual() === 0) {			
+			this.destruida = true;
+		}
+		else{
+			this.destruida = false;
+		}
+		
+		return this.destruida;
+	}
+	
+	getPedaco(indicePedaco){
+		if (Validator.isInteger(indicePedaco) 
+				&& indicePedaco >= 0 
+				&& indicePedaco < this.getTamanhoAtual()) {
+			
+			return this.pedacos[indicePedaco];
 		}
 		
 		return null;
 	}
 	
-	isDestruida(){
-		let destruida = true;
-        
-        for (let cont = 0; cont < this.lengthOfPedacos(); cont++) {
-            destruida &= this.getPedaco(cont).isDestruido();
-        }
-        
-        return destruida;
-	}
-	
-	destruirPedaco(indicePedaco){
-        if (indicePedaco >= 0 
-				&& indicePedaco < this.lengthOfPedacos()
-                && this.pedacos[indicePedaco]) {
-			
+	destruirPedaco(){
+        if (!this.isDestruida()) {			
 			this.pedacos.pop();
-//			const pedacoTemp = this.pedacos.
 			
-//            Pedaco pedacoTemp = pedacos.get(indicePedaco);
-//            pedacos.remove(indicePedaco);
-//            pedacos.add(pedacoTemp);
+			//atualiza atributo da classe
+			this.isDestruida();
+			
             return true;
         }
-        
+		
+        //atualiza atributo da classe
+		this.isDestruida();		
         return false;
     }
 	
+	destruirTodosPedacos(){
+		this.pedacos = [];		
+		
+		//atualiza atributo da classe
+		this.isDestruida();
+		
+		this.destruida = true;
+	}
+	
+	reconstruirTodosPedacos(){
+		this.reiniciar();
+		
+		//atualiza atributo da classe
+		this.isDestruida();
+		
+		this.destruida = false;
+	}
+	
+	reconstruirPedaco(){
+		if (this.getTamanhoAtual() < this.getTamanhoMax()) {
+			this.pedacos.push(true);
+		}
+		
+		//atualiza atributo da classe
+		this.isDestruida();
+	}
+		
 }
 
 module.exports = Canoa;
