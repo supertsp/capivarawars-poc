@@ -1,4 +1,4 @@
-package br.com.CapivaraWars.layout;
+package br.com.capivarawars.database.model;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

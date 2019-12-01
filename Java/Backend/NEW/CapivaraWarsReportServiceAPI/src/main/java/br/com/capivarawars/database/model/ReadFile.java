@@ -1,4 +1,4 @@
-package br.com.CapivaraWars.layout;
+package br.com.capivarawars.database.model;
 
 import com.sun.org.apache.xerces.internal.xs.PSVIProvider;
 import java.io.BufferedReader;
