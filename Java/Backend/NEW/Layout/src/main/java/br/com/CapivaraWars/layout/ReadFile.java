@@ -66,16 +66,15 @@ public class ReadFile {
 					System.out.println("tamanho" + register.length());
 					playerPlace = register.substring(2, 7);
 					playerName = register.substring(7, 57);
-					email = register.substring(57, 97);
-					System.out.println("tamanho do email"+email.length());
+					email = register.substring(57, 87);
 					gender = register.substring(97, 99);
-					age = Integer.parseInt(register.substring(99, 102).replace(',', '.'));
-					victories = Integer.parseInt(register.substring(102, 111).trim());
-					draws = Integer.parseInt(register.substring(111, 120).trim());
-					losts = Integer.parseInt(register.substring(120, 129).trim());
-					coins = Integer.parseInt(register.substring(129, 138).trim());
-					rigthShots = Integer.parseInt(register.substring(138, 147).trim());
-					wrongShots = Integer.parseInt(register.substring(147, 156).trim());
+					age = Integer.parseInt(register.substring(99, 101).replace(',', '.'));
+					victories = Integer.parseInt(register.substring(101, 110).trim());
+					draws = Integer.parseInt(register.substring(110, 119).trim());
+					losts = Integer.parseInt(register.substring(119, 128).trim());
+					coins = Integer.parseInt(register.substring(128, 137).trim());
+					rigthShots = Integer.parseInt(register.substring(137, 146).trim());
+					wrongShots = Integer.parseInt(register.substring(146, 155).trim());
 
 					System.out.printf("%-5s %-50s %-40s %-2s"
 							+ " %-3d %-9d %-9d %-9d %-9d %-9d %-9d %-9d\n",

@@ -47,16 +47,16 @@ public class RecordFile {
 		//Creating the body
 		body += "02";
 		body += String.format("%-5s", "1");
-		body += String.format("%-5s", "Joshua");
-		body += String.format("%-5s", "joshuaandre@gmail.com");
-		body += String.format("%-2s", "m");
-		body += String.format("%-3s", "123");
-		body += String.format("%-5s", "123");
-		body += String.format("%-5s", "123");
-		body += String.format("%-5s", "123");
-		body += String.format("%-5s", "12333");
-		body += String.format("%-5s", "123");
-		body += String.format("%-5s", "123");
+		body += String.format("%-20s", "Joshua");
+		body += String.format("%-30s", "joshuaandre@gmail.com");
+		body += String.format("%-2s", "M");
+		body += String.format("%-3s", "22");
+		body += String.format("%-9s", "10000");
+		body += String.format("%-9s", "500");
+		body += String.format("%-9s", "200");
+		body += String.format("%-9s", "56756677");
+		body += String.format("%-9s", "556745");
+		body += String.format("%-9s", "556868");
 
 		countDataReg++;
 
