@@ -24,7 +24,8 @@ public class ReadFile {
 		try {
 			input = new BufferedReader(new FileReader(fileName));
 		} catch (IOException e) {
-			System.out.printf("Error trying to open the file: %s.\n", e.getMessage());
+			System.out.printf("Error trying to open the file: %s.\n",
+					e.getMessage());
 		}
 
 		//Read the register files
@@ -73,7 +74,6 @@ public class ReadFile {
 								"COINS", "RIGHT STS", "WRONG STS");
 					}
 
-					
 					playerPlace = register.substring(2, 7);
 					playerName = register.substring(7, 27);
 					email = register.substring(27, 57);
@@ -118,6 +118,7 @@ public class ReadFile {
 		}
 
 	}
+
 	public static void main(String[] args) {
 		String fileName = "PlayerData";
 		readFile(fileName);
