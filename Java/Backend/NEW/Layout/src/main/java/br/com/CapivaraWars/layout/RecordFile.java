@@ -46,17 +46,28 @@ public class RecordFile {
 
 		//Creating the body
 		body += "02";
+		//PLAYERPLACE
 		body += String.format("%-5s", "1");
+		//PLAYERNAME
 		body += String.format("%-20s", "Joshua");
+		//EMAIL
 		body += String.format("%-30s", "joshuaandre@gmail.com");
+		//GENDER
 		body += String.format("%-2s", "M");
-		body += String.format("%-3s", "22");
-		body += String.format("%-9s", "10000");
-		body += String.format("%-9s", "500");
-		body += String.format("%-9s", "200");
-		body += String.format("%-9s", "56756677");
-		body += String.format("%-9s", "556745");
-		body += String.format("%-9s", "556868");
+		//AGE
+		body += String.format("%-3d", 22);
+		//VICTORIES
+		body += String.format("%-9d", 10000);
+		//DRAWS
+		body += String.format("%-9d", 500);
+		//LOSTS
+		body += String.format("%-9d", 200);
+		//COINS
+		body += String.format("%-9d", 56756677);
+		//RIGHTSHOTS
+		body += String.format("%-9d", 556745);
+		//WRONGSHOTS
+		body += String.format("%9d", 556868);
 
 		countDataReg++;
 
