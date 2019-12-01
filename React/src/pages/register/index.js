@@ -63,13 +63,11 @@ class Register extends Component {
         }
       }
     } catch (response) {
-      console.log(response);
       this.setState({ errorMessage: "Erro ao tentar cadastrar" });
     }
   };
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <img src={imagemMar} alt={imagemMar} className="background"></img>
