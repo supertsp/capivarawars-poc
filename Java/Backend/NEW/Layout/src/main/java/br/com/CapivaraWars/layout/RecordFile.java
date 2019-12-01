@@ -28,10 +28,10 @@ public class RecordFile {
 
 	public static void main(String[] args) {
 
-		String fileName = "Player Data";
+		String fileName = "PlayerData";
 		String header = "";
 		String body = "";
-		String trailer = "";
+		String trailer  = "";
 		int countDataReg = 0;
 
 		Date todayDate = new Date();
@@ -66,6 +66,7 @@ public class RecordFile {
 		
 		trailer += "01";
 		trailer += String.format("%010d", countDataReg);
+		recordFile(fileName, trailer);
 	}
 
 }//class
