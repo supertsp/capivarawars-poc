@@ -1,0 +1,93 @@
+/* SOBREPONDO DIVS */
+/* .container {
+  display: grid;
+}
+.content, .overlay {
+  grid-area: 1 / 1;
+} */
+
+
+html, body{   
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 1.5vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.background{
+    background: linear-gradient(360deg, rgba(57,35,20,1) 0%, rgba(236,100,12,1) 25%, rgba(2,202,255,1) 30%, rgba(2,202,255,1) 100%);
+}
+
+#logo-inicial{
+    margin: auto;
+    width: 25%;    
+    margin-top: 5%;    
+    text-align: center;
+
+    /* border: 1px dotted green; */
+}
+
+#logo-inicial img{
+    width: 100%;
+}
+
+.container-bamboo-border{
+    margin: auto;
+    width: 30%;    
+    margin-top: 2%;
+    border: 30px solid transparent;
+    border-image: url('../images/borderbamboo.svg') 30 repeat;
+    
+    /* border: 1px dotted green; */
+}
+
+.container-bamboo-bg-color{
+    display: block;    
+    background-color: #bcdba1;
+
+    /* border: 1px dotted red; */
+}
+
+.text-center{
+    text-align: center;
+}
+
+form{
+    /* top rigth bottom left */
+    padding: 5px 10px 5px 10px;
+}
+
+.form-title-first{
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;    
+    color: #425f26;
+    /* color: #1d3209; */
+}
+
+.form-title{
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;    
+    color: #425f26;
+    padding-top: 25px;
+}
+
+.form-input{
+    /* border: border-width border-style border-color|initial|inherit; */
+    border: none;
+    border-bottom: 2px solid #1d3209;
+    background-color: transparent;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: bold;
+    color: #552200;
+}
+
+.form-input:focus{
+    outline: none;
+}
