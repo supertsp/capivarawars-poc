@@ -54,3 +54,11 @@
 .water {
   background: cadetblue;
 }
+
+.loseBtn {
+  float: right;
+}
+
+.shootBtn {
+  margin-left: 5px;
+}

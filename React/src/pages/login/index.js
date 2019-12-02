@@ -44,21 +44,17 @@ class Login extends Component {
           password: this.state.password
         });
 
-        console.log(user)
-        
         if (response.status === 200) {
           localStorage.setItem('user', user.data.idPlayer)
           this.props.history.push("/home");
         }
       }
     } catch (response) {
-      console.log(response);
       this.setState({ errorMessage: "Erro ao tentar acessar" });
     }
   };
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <img src={imagemMar} alt={imagemMar} className="background"></img>
