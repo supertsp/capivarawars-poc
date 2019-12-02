@@ -23,15 +23,12 @@ import org.springframework.data.mongodb.repository.*;
  * @author joshua, 06/11/2019, 19:46:38
  * Last update: -
  *///</editor-fold>
-public interface CapivaraWarsMongoRepository extends MongoRepository<Player, ObjectId>{
+public interface PlayerRepository extends MongoRepository<Player, ObjectId>{
     
-    //<editor-fold defaultstate="collapsed" desc="constants attributes...">
+    public Player findBy_id(ObjectId _id);
     
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="abstract methods...">
-    Player findBy_id(ObjectId _id);
-    
+	
+	
     
     //</editor-fold>
     

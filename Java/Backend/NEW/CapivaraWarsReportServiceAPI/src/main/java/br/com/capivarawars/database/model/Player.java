@@ -19,116 +19,90 @@ public class Player {
     @Id
     private ObjectId _id;
     
-    @Indexed(name = "nick")
+    @Indexed(name = "NCK")
     private String nick;
     
-    @Indexed(name = "password")
-    private String senha;
+    @Indexed(name = "PASSWORD")
+    private String password;
     
-  @Indexed(name = "DATAHORA_CRIACAO_CONTA")
-    private LocalDateTime dataHoraCriacaoConta;
+  @Indexed(name = "ACCOUNT_BIRTHDAY_DATETIME")
+    private LocalDateTime accountBirthdayDateTime;
     
-   @Indexed(name = "URL_FOTO")
-    private String urlFoto;
+   @Indexed(name = "URL_PHOTO")
+    private String urlPhoto;
     
-  @Indexed(name = "NOME_COMPLETO")
-    private String nomeCompleto;
+  @Indexed(name = "FULLNAME")
+    private String fullName;
     
     @Indexed(name = "EMAIL")
     private String email;
     
-    @Indexed(name = "GENERO")
-    private Character genero;
+    @Indexed(name = "GENDER")
+    private Character gender;
 
-    @Indexed(name = "DATA_NASCIMENTO")
-    private LocalDate dataNascimento;
+    @Indexed(name = "BIRTHDAY")
+    private LocalDate birthday;
 
     @Indexed(name = "ONLINE")
     private Boolean online;
 
-   @Indexed(name = "ULTIMO_CODIGO_ATIVACAO")
-    private String ultimoCodigoAtivacao;
+   @Indexed(name = "LAST_ACTIVATION_CODE")
+    private String lastActivationCode;
 	
-   @Indexed(name = "MOEDAS")
-    private Integer moedas;
+   @Indexed(name = "COINS")
+    private Integer coins;
 	
-   @Indexed(name = "PONTUACAO")
-    private Integer pontuacao;	
+   @Indexed(name = "SCORE")
+    private Integer score;	
 	
-   @Indexed(name = "VITORIAS")
-    private Integer vitorias;
+   @Indexed(name = "WINS")
+    private Integer wins;
 
-   @Indexed(name = "EMPATES")
-    private Integer empates;
+   @Indexed(name = "DRAWS")
+    private Integer draws;
 
-   @Indexed(name = "DERROTAS")
-    private Integer derrotas;
+   @Indexed(name = "LOSES")
+    private Integer loses;
 
-   @Indexed(name = "QTD_TIROS_CERTEIROS")
-    private Integer qtdTirosCerteiros;
+   @Indexed(name = "ACCURATE_SHOTS")
+    private Integer accurateShots;
 
-   @Indexed(name = "QTD_TIROS_RUINS")
-    private Integer qtdTirosRuins;
+   @Indexed(name = "BAD_SHOTS")
+    private Integer badShots;
 
-   @Indexed(name = "QTD_TIROS_RECEBIDOS")
-    private Integer qtdTirosRecebidos;
+   @Indexed(name = "SHOTS_RECEIVED")
+    private Integer shotsReceived;
 
-   @Indexed(name = "QTD_MOVIMENTOS")
-    private Integer qtdMovimentos;
+   @Indexed(name = "MOVEMENTS")
+    private Integer movements;
 
-   
-    @DBRef
-    private java.util.List<Capybara> listaDeCapivaras;
-	
-	@DBRef
-    private java.util.List<Match> listaDePartidasComoJogador1;
-	
-	
-    @DBRef
-    private java.util.List<Match> listaDePartidasComoJogador2;
-	
-    @DBRef
-    private java.util.List<Match> listaDePartidasComoVencedor;
-	
-	
-    @DBRef
-    private java.util.List<Championships> listaDeCampeonatosGanhosEmPrimeiro;
-
-	
-    @DBRef
-    private java.util.List<Championships> listaDeCampeonatosGanhosEmSegundo;
-
-	@JsonIgnore
-    @DBRef
-    private java.util.List<Championships> listaDeCampeonatosGanhosEmTerceiro;
-	
-	@JsonIgnore
-    @DBRef
-    private java.util.List<Championships_Played> listaDeCampeonatosParticipados;
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="constants attributes...">
     public static final int VARCHAR_LENGTH_NICK = 45,
-            VARCHAR_LENGTH_SENHA = 45,
-            VARCHAR_LENGTH_URL_FOTO = 255,
-            VARCHAR_LENGTH_NOME_COMPLETO = 100,
+            VARCHAR_LENGTH_PASSWORD = 45,
+            VARCHAR_LENGTH_URL_PHOTO = 255,
+            VARCHAR_LENGTH_FULL_NAME = 100,
             VARCHAR_LENGTH_EMAIL = 255,
-            CHAR_LENGTH_GENERO = 1,
-            VARCHAR_LENGTH_ULTIMO_CODIGO_ATIVACAO = 255,
+            CHAR_LENGTH_GENDER = 1,
+            VARCHAR_LENGTH_LAST_ACTIVATION_CODE = 255,
 			
-			PONTUACAO_PESO_VITORIAS = 4,
-			PONTUACAO_PESO_DERROTAS = 2,
-			PONTUACAO_PESO_EMPATES = 1,
-			PONTUACAO_PESO_TIROS_CERTEIROS = 3,
-			PONTUACAO_PESO_TIROS_RUINS = 3,
-			PONTUACAO_PESO_TIROS_RECEBIDOS = 2,
-			PONTUACAO_PESO_MOVIMENTOS = 2
+			PONTUACAO_PESO_WINS = 4,
+			PONTUACAO_PESO_LOSES = 2,
+			PONTUACAO_PESO_DRAWS = 1,
+			PONTUACAO_PESO_ACCURATE_SHOTS = 3,
+			PONTUACAO_PESO_BAD_SHOTS = 3,
+			PONTUACAO_PESO_SHOTS_RECEIVED = 2,
+			PONTUACAO_PESO_MOVEMENTS = 2
 			;
 
 
     public String get_id() {
         return _id.toHexString();
     }
-
+	@JsonIgnore
+	public ObjectId getObjectId() {
+        return _id;
+    }
     public Player set_id(ObjectId _idPlayer){
         this._id = _idPlayer;
         return this;
@@ -142,48 +116,48 @@ public class Player {
         this.nick = nick;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        senha = senha.trim();
-        this.senha = Criptografia.getSHA256(senha);
+    public void setPassword(String password) {
+        password = password.trim();
+        this.password = Criptografia.getSHA256(password);
     }
     
-    public void setSenhaSemSHA256(String senha) {
-        this.senha = senha;
+    public void setPasswordSemSHA256(String password) {
+        this.password = password;
     }
     
-    public LocalDateTime getDataHoraCriacaoConta() {
-        return dataHoraCriacaoConta;
+    public LocalDateTime getAccountBirthdayDatetime() {
+        return accountBirthdayDateTime;
     }
 
-    public Player setDataHoraCriacaoConta(LocalDateTime dataHoraCriacaoConta) {
-        if (dataHoraCriacaoConta == null) {
-            this.dataHoraCriacaoConta = LocalDateTime.now();
+    public Player setAccountBirthdayDateTime(LocalDateTime accountBirthdayDateTime) {
+        if (accountBirthdayDateTime == null) {
+            this.accountBirthdayDateTime = LocalDateTime.now();
         } else {
-            this.dataHoraCriacaoConta = dataHoraCriacaoConta;
+            this.accountBirthdayDateTime = accountBirthdayDateTime;
         }
 
         return this;
     }
 
     public String getUrlFoto() {
-        return urlFoto;
+        return urlPhoto;
     }
 
-    public Player setUrlFoto(String urlFoto) {
-        this.urlFoto = urlFoto;
+    public Player setUrlPhoto(String urlPhoto) {
+        this.urlPhoto = urlPhoto;
         return this;
     }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
+    public String getFullName() {
+        return fullName;
     }
 
-    public Player setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    public Player setFullName(String fullName) {
+        this.fullName = fullName;
         return this;
     }
 
@@ -196,36 +170,36 @@ public class Player {
         return this;
     }
 
-    public Character getGenero() {
-        return genero;
+    public Character getGender() {
+        return gender;
     }
 
-    public Player setGenero(Character genero) {
-        switch (genero) {
+    public Player setGender(Character gender) {
+        switch (gender) {
             case 'M':
             case 'm':
-                genero = 'M';
+                gender = 'M';
                 break;
 
             case 'F':
             case 'f':
-                genero = 'F';
+                gender = 'F';
                 break;
 
             default:
-                genero = 'M';
+                gender = 'M';
         }
-        this.genero = genero;
+        this.gender = gender;
 
         return this;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public LocalDate getBithday() {
+        return birthday;
     }
 
-    public Player setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public Player setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
         return this;
     }
 
@@ -238,278 +212,223 @@ public class Player {
         return this;
     }
 
-    public String getUltimoCodigoAtivacao() {
-        return ultimoCodigoAtivacao;
+    public String getLastActivationCode() {
+        return lastActivationCode;
     }
 
-    public Player setUltimoCodigoAtivacao(String ultimoCodigoAtivacao) {
-        this.ultimoCodigoAtivacao = ultimoCodigoAtivacao;
+    public Player setLastActiovationCode(String lastActivationCode) {
+        this.lastActivationCode = lastActivationCode;
         return this;
     }
 	
-	public Integer getMoedas() {
-        return moedas;
+	public Integer getCoins() {
+        return coins;
     }
 
-    public Player setMoedas(Integer moedas) {
-        this.moedas = moedas;
+    public Player setCoins(Integer coins) {
+        this.coins = coins;
         return this;
     }
 
-	public Integer getPontuacao() {
-		return pontuacao;
+	public Integer getScore() {
+		return score;
 	}
 
-	public Player setPontuacao(Integer pontuacao) {
-		this.pontuacao = pontuacao;
+	public Player setScore(Integer score) {
+		this.score = score;
 		return this;
 	}
 
-    public Integer getVitorias() {
-        return vitorias;
+    public Integer getWins() {
+        return wins;
     }
 
-    public Player setVitorias(Integer vitorias) {
-        this.vitorias = vitorias;
+    public Player setWins(Integer wins) {
+        this.wins = wins;
         return this;
     }
 
-    public Integer getEmpates() {
-        return empates;
+    public Integer getDraws() {
+        return draws;
     }
 
-    public Player setEmpates(Integer empates) {
-        this.empates = empates;
+    public Player setDraws(Integer draws) {
+        this.draws = draws;
         return this;
     }
 
-    public Integer getDerrotas() {
-        return derrotas;
+    public Integer getLosts() {
+        return loses;
     }
 
-    public Player setDerrotas(Integer derrotas) {
-        this.derrotas = derrotas;
+    public Player setLosts(Integer losts) {
+        this.loses = losts;
         return this;
     }    
 
-    public Integer getQtdTirosCerteiros() {
-        return qtdTirosCerteiros;
+    public Integer getAcurrateShots() {
+        return accurateShots;
     }
 
-    public Player setQtdTirosCerteiros(Integer qtdTirosCerteiros) {
-        this.qtdTirosCerteiros = qtdTirosCerteiros;
+    public Player setAcurrateShots(Integer accurateShots) {
+        this.accurateShots = accurateShots;
         return this;
     }
 
-    public Integer getQtdTirosRuins() {
-        return qtdTirosRuins;
+    public Integer getBadShots() {
+        return badShots;
     }
 
-    public Player setQtdTirosRuins(Integer qtdTirosRuins) {
-        this.qtdTirosRuins = qtdTirosRuins;
+    public Player setBadShots(Integer badShots) {
+        this.badShots = badShots;
         return this;
     }
 
-    public Integer getQtdTirosRecebidos() {
-        return qtdTirosRecebidos;
+    public Integer getShotsReceived() {
+        return shotsReceived;
     }
 
-    public Player setQtdTirosRecebidos(Integer qtdTirosRecebidos) {
-        this.qtdTirosRecebidos = qtdTirosRecebidos;
+    public Player setShotsReceived(Integer shotsReceived) {
+        this.shotsReceived = shotsReceived;
         return this;
     }
 
-    public Integer getQtdMovimentos() {
-        return qtdMovimentos;
+    public Integer getMovements() {
+        return movements;
     }
 
-    public Player setQtdMovimentos(Integer qtdMovimentos) {
-        this.qtdMovimentos = qtdMovimentos;
+    public Player setMovements(Integer movements) {
+        this.movements = movements;
         return this;
     }
 
-    public java.util.List<Capybara> getListaDeCapivaras() {
-        return listaDeCapivaras;
-    }
-
-    public Player setListaDeCapivaras(java.util.List<Capybara> listaDeCapivaras) {
-        this.listaDeCapivaras = listaDeCapivaras;
-        return this;
-    }
-
-    public java.util.List<Match> getListaDePartidasComoJogador1() {
-        return listaDePartidasComoJogador1;
-    }
-
-    public Player setListaDePartidasComoJogador1(java.util.List<Match> listaDePartidasComoJogador1) {
-        this.listaDePartidasComoJogador1 = listaDePartidasComoJogador1;
-        return this;
-    }
-
-    public java.util.List<Match> getListaDePartidasComoJogador2() {
-        return listaDePartidasComoJogador2;
-    }
-
-    public Player setListaDePartidasComoJogador2(java.util.List<Match> listaDePartidasComoJogador2) {
-        this.listaDePartidasComoJogador2 = listaDePartidasComoJogador2;
-        return this;
-    }
-
-    public java.util.List<Match> getListaDePartidasComoVencedor() {
-        return listaDePartidasComoVencedor;
-    }
-
-    public Player setListaDePartidasComoVencedor(java.util.List<Match> listaDePartidasComoVencedor) {
-        this.listaDePartidasComoVencedor = listaDePartidasComoVencedor;
-        return this;
-    }
-
-    public java.util.List<Championships> getListaDeCampeonatosGanhosEmPrimeiro() {
-        return listaDeCampeonatosGanhosEmPrimeiro;
-    }
-
-    public Player setListaDeCampeonatosGanhosEmPrimeiro(java.util.List<Championships> listaDeCampeonatosGanhosEmPrimeiro) {
-        this.listaDeCampeonatosGanhosEmPrimeiro = listaDeCampeonatosGanhosEmPrimeiro;
-        return this;
-    }
-
-    public java.util.List<Championships> getListaDeCampeonatosGanhosEmSegundo() {
-        return listaDeCampeonatosGanhosEmSegundo;
-    }
-
-    public Player setListaDeCampeonatosGanhosEmSegundo(java.util.List<Championships> listaDeCampeonatosGanhosEmSegundo) {
-        this.listaDeCampeonatosGanhosEmSegundo = listaDeCampeonatosGanhosEmSegundo;
-        return this;
-    }
-
-    public java.util.List<Championships> getListaDeCampeonatosGanhosEmTerceiro() {
-        return listaDeCampeonatosGanhosEmTerceiro;
-    }
-
-    public Player setListaDeCampeonatosGanhosEmTerceiro(java.util.List<Championships> listaDeCampeonatosGanhosEmTerceiro) {
-        this.listaDeCampeonatosGanhosEmTerceiro = listaDeCampeonatosGanhosEmTerceiro;
-        return this;
-    }
-
-    public java.util.List<Championships_Played> getListaDeCampeonatosParticipados() {
-        return listaDeCampeonatosParticipados;
-    }
-
-    public Player setListaDeCampeonatosParticipados(java.util.List<Championships_Played> listaDeCampeonatosParticipados) {
-        this.listaDeCampeonatosParticipados = listaDeCampeonatosParticipados;
-        return this;
-    }
-
-    //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="override methods...">	
-	//</editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="auxiliary methods...">
-	//</editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="static methods...">
-	//</editor-fold>
-	//<editor-fold defaultstate="collapsed" desc="main methods...">
 	public Integer calcularPontucao(){
-		int tempVitorias = getVitorias() * PONTUACAO_PESO_VITORIAS;
-		int tempEmpates = getEmpates() * PONTUACAO_PESO_EMPATES;
-		int tempDerrotas = getDerrotas() * PONTUACAO_PESO_DERROTAS;
-		int tempTirosCerteiros = getQtdTirosCerteiros() * PONTUACAO_PESO_TIROS_CERTEIROS;
-		int tempTirosRuins = getQtdTirosRuins()* PONTUACAO_PESO_TIROS_RUINS;
-		int tempTirosRecebidos = getQtdTirosRecebidos()* PONTUACAO_PESO_TIROS_RECEBIDOS;
-		int tempMovimentos = getQtdMovimentos() / PONTUACAO_PESO_MOVIMENTOS;
+		int tempWins = getWins()* PONTUACAO_PESO_WINS;
+		int tempDraws = getDraws()* PONTUACAO_PESO_DRAWS;
+		int tempLoses = getDraws()* PONTUACAO_PESO_DRAWS;
+		int tempAcurrateShots = getAcurrateShots()* PONTUACAO_PESO_ACCURATE_SHOTS;
+		int tempBadShots = getBadShots()* PONTUACAO_PESO_BAD_SHOTS;
+		int tempShotsReceived = getShotsReceived()*PONTUACAO_PESO_SHOTS_RECEIVED;
+		int tempMovements = getMovements()/ PONTUACAO_PESO_MOVEMENTS;
 		
-		int tempPartidas = ((tempVitorias + tempEmpates) - tempDerrotas) * 3;		
-		System.out.println("\nPONTUAÇÃO (tempPartidas): " + tempPartidas + "\n");
+		int tempGames = ((tempWins + tempDraws) - tempLoses) * 3;		
+		System.out.println("\nPONTUAÇÃO (tempPartidas): " + tempGames + "\n");
 		
-		int tempTiros = 0;
+		int tempShots = 0;
 		
 		try {
-			tempTiros = (tempTirosCerteiros / Math.abs(tempTirosRuins - tempTirosRecebidos)) / 2;
+			tempShots = (tempAcurrateShots / Math.abs(tempBadShots - tempShotsReceived)) / 2;
 		} catch (Exception e) {}				
-		System.out.println("\nPONTUAÇÃO (tempTiros): " + tempTiros + "\n");
+		System.out.println("\nPONTUAÇÃO (tempTiros): " + tempShots + "\n");
 		
 		try {
-			pontuacao = (tempPartidas + tempTiros) / tempMovimentos;
+			score = (tempGames + tempShots) / tempMovements;
 		} catch (Exception e) {
-			pontuacao = 0;
+			score = 0;
 		}		
-		System.out.println("\nPONTUAÇÃO (tempMovimentos): " + tempMovimentos + "\n");
-		System.out.println("\nPONTUAÇÃO (tempPartidas + tempTiros): " + (tempTiros + tempPartidas) + "\n");		
-		System.out.println("\nPONTUAÇÃO (final): " + pontuacao + "\n");
+		System.out.println("\nPOINTS (tempMovements): " + tempMovements + "\n");
+		System.out.println("\nPOINTS (tempGames + tempTiros): " + (tempShots + tempGames) + "\n");		
+		System.out.println("\nPOINTS (final): " + score + "\n");
 		
-		return pontuacao;
+		return score;
 	}
 	
 	public Player incrementMoedas(int incrementValue) {
-        moedas += incrementValue;
+        coins += incrementValue;
         return this;
     }
 	
 	public Player incrementPontuacao(int incrementValue) {
-        pontuacao += incrementValue;
+        score += incrementValue;
         return this;
     }
 	
 	public Player incrementVitorias(int incrementValue) {
-		vitorias += incrementValue;
+		wins += incrementValue;
 		return this;
 	}
 
     public Player incrementEmpates(int incrementValue) {
-        empates += incrementValue;
+        draws += incrementValue;
         return this;
     }
 
     public Player incrementDerrotas(int incrementValue) {
-        derrotas += incrementValue;
+        loses += incrementValue;
         return this;
     }
 	
     public Player incrementQtdTirosCerteiros(int incrementValue) {
-        qtdTirosCerteiros += incrementValue;
+        accurateShots += incrementValue;
         return this;
     }
 
     public Player incrementQtdTirosRuins(int incrementValue) {
-        qtdTirosRuins += incrementValue;
+        badShots += incrementValue;
         return this;
     }
 
     public Player incrementQtdTirosRecebidos(int incrementValue) {
-        qtdTirosRecebidos += incrementValue;
+        shotsReceived += incrementValue;
         return this;
     }
 
     public Player incrementQtdMovimentos(int incrementValue) {
-        qtdMovimentos += incrementValue;
+        movements += incrementValue;
         return this;
     }
     
     public boolean preencheuCamposObrigatorios() {
-        if (dataHoraCriacaoConta == null) {
-            this.dataHoraCriacaoConta = LocalDateTime.now();
+        if (accountBirthdayDateTime == null) {
+            this.accountBirthdayDateTime = LocalDateTime.now();
         }
 		
 		online = online == null ? false : online;
 		
-		moedas = moedas == null ? 0 : moedas;
-		pontuacao = pontuacao == null ? 0 : pontuacao;
-		vitorias = vitorias == null ? 0 : vitorias;
-		empates = empates == null ? 0 : empates;
-		derrotas = derrotas == null ? 0 : derrotas;		
-		qtdTirosCerteiros = qtdTirosCerteiros == null ? 0 : qtdTirosCerteiros;
-		qtdTirosRuins = qtdTirosRuins == null ? 0 : qtdTirosRuins;
-		qtdTirosRecebidos = qtdTirosRecebidos == null ? 0 : qtdTirosRecebidos;
-		qtdMovimentos = qtdMovimentos == null ? 0 : qtdMovimentos;
+		coins = coins == null ? 0 : coins;
+		score = score == null ? 0 : score;
+		wins = wins == null ? 0 : wins;
+		draws = draws == null ? 0 : draws;
+		loses = loses == null ? 0 : loses;		
+		accurateShots = accurateShots == null ? 0 : accurateShots;
+		badShots = badShots == null ? 0 : badShots;
+		shotsReceived = shotsReceived == null ? 0 : shotsReceived;
+		movements = movements == null ? 0 : movements;
 		
 		calcularPontucao();
 		
         return nick != null
-                && senha != null
-                && urlFoto != null
-                && nomeCompleto != null
+                && password != null
+                && urlPhoto != null
+                && fullName != null
                 && email != null
-                && genero != null
-                && dataNascimento != null;
+                && gender != null
+                && birthday != null;
+    }
+	
+		public boolean isValidObject() {
+        if (accountBirthdayDateTime == null) {
+            accountBirthdayDateTime = LocalDateTime.now();
+        }
+		
+		online = online == null ? false : online;
+		
+		coins = coins == null ? 0 : coins;
+		score = score == null ? 0 : score;
+		wins = wins == null ? 0 : wins;
+		loses = loses == null ? 0 : loses;
+		draws = draws == null ? 0 : draws;
+		accurateShots = accurateShots == null ? 0 : accurateShots;
+		badShots = badShots == null ? 0 : badShots;
+		shotsReceived = shotsReceived == null ? 0 : shotsReceived;
+		movements = movements == null ? 0 : movements;
+		
+        return nick != null
+                && password != null
+                && email != null
+                && fullName != null
+                && gender != null
+                && birthday != null;
     }
     //</editor-fold>
     //</editor-fold>
