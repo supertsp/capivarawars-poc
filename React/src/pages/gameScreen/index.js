@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import imagemMar from "../../assets/images/imagem-mar.jpg";
 import imgLogo from "../../assets/images/CapivaraWars-logo.png";
@@ -83,6 +84,12 @@ class Game extends Component {
                   >
                     Next
                   </button>
+                  <button className="btn btn-warning mt-2 shootBtn">
+                      Mover
+                  </button>
+                  <Link to="/lose" className="btn btn-danger mt-2 loseBtn">
+                      Desistir
+                  </Link>
                 </div>
               </div>
             </div>
