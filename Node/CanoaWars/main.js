@@ -379,7 +379,7 @@ let posicaoNoRio = 0;
 let posicaoDoTiro = 0;
 let indiceJogadorInimigo = 0;
 
-let partida = new Partida(5);
+let partida = new Partida(6);
 partida.iniciar();
 //console.log(partida);
 
@@ -389,6 +389,7 @@ partida
 		.addJogador(new Jogador('matheus', 'miku', 10, 4).setId(3))
 		.addJogador(new Jogador('leonardo', 'nino', 10, 4).setId(4))
 		.addJogador(new Jogador('jonatas', 'adão', 10, 4).setId(5))
+		.addJogador(new Jogador('juliana', 'harry', 10, 4).setId(5))
 ;
 
 partida.iniciar();
