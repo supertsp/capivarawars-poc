@@ -374,67 +374,72 @@ const Partida = require('./gamecore/Partida');
 
 
 
-
+let stringStatusJogo = "";
 let posicaoNoRio = 0;
 let posicaoDoTiro = 0;
+let indiceJogadorInimigo = 0;
 
-//let jogador1 = new Jogador('tiago', 'feliceta', 10, 4);
-//jogador1.setId(1); console.log(jogador1.toString());
-//
-//let jogador2 = new Jogador('joshua', 'tres', 10, 4);
-//jogador2.setId(2);
-
-
-let partida = new Partida(2);
+let partida = new Partida(5);
 partida.iniciar();
 //console.log(partida);
 
 partida
-//		.addJogador(jogador1)
-//		.addJogador(jogador2)
 		.addJogador(new Jogador('tiago', 'feliceta', 10, 4).setId(1))
 		.addJogador(new Jogador('joshua', 'tres', 10, 4).setId(2))
+		.addJogador(new Jogador('matheus', 'miku', 10, 4).setId(3))
+		.addJogador(new Jogador('leonardo', 'nino', 10, 4).setId(4))
+		.addJogador(new Jogador('jonatas', 'adão', 10, 4).setId(5))
 ;
 
 partida.iniciar();
 
 do{
-	console.log( ``
-		+ `\n====[PARTIDA]======[TURNO: ${partida.getTurnoAtual()}]============[Iniciou? ${partida.isIniciou()}]====[Terminou? ${partida.isTerminou()}]================ \n`
-		+ `${partida.getJogador(0).toString()}\n`
-		+ `  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n`
-		+ `${partida.getJogador(1).toString()}\n`
-		+ `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n\n`
-	);
-
 	//TURNO
 	console.log("=== TURNO #" + partida.getTurnoAtual() + " ========================================================================");
-	posicaoNoRio = parseInt(Math.random() * 10);
-	console.log(` >>> MOVENDO (${posicaoNoRio}) >>> Player ${partida.getJogador(0).getId()} - ${partida.getJogador(0).getNick()}`);
-	partida.moverCanoaDoJogadorAtual(posicaoNoRio);
-
-	posicaoNoRio = parseInt(Math.random() * 10);
-	console.log(` >>> MOVENDO (${posicaoNoRio}) >>> Player ${partida.getJogador(1).getId()} - ${partida.getJogador(1).getNick()}`);
-	partida.moverCanoaDoJogadorAtual(posicaoNoRio);
-
-	posicaoDoTiro = parseInt(Math.random() * 10);
-	console.log(`\n >>> ATIRANDO (${posicaoDoTiro}) >>> Player ${partida.getJogador(0).getId()} - ${partida.getJogador(0).getNick()}`
-				+ `        Sucesso? ${partida.atirarNoInimigoDoJogadorAtual(posicaoDoTiro, partida.getJogador(1))}`
-	);
-
-	posicaoDoTiro = parseInt(Math.random() * 10);
-	console.log(` >>> ATIRANDO (${posicaoDoTiro}) >>> Player ${partida.getJogador(1).getId()} - ${partida.getJogador(1).getNick()}`
-				+ `        Sucesso? ${partida.atirarNoInimigoDoJogadorAtual(posicaoDoTiro, partida.getJogador(0))}`
-	);
+	
+	//movendo jogadores
+	for (let contJogador = 0; contJogador < partida.getQtdAtualDeJogadores(); contJogador++) {
+		posicaoNoRio = parseInt(Math.random() * 10);
+		console.log(` >>> MOVENDO (${posicaoNoRio}) >>> Player ${partida.getJogadorAtual().getId()} - ${partida.getJogadorAtual().getNick()}`);
+		partida.moverCanoaDoJogadorAtual(posicaoNoRio);
+	}
+	
+	//atirando no inimigo
+	for (let contJogador = 0; contJogador < partida.getQtdAtualDeJogadores(); contJogador++) {
+		posicaoDoTiro = parseInt(Math.random() * 10);
+		
+		do{
+			indiceJogadorInimigo = parseInt(Math.random() * partida.getQtdAtualDeJogadores());
+		}
+		while (indiceJogadorInimigo == partida.getIndiceJogadorAtual());
+		
+		console.log(`\n >>> ATIRANDO na posição ${posicaoDoTiro} >>> '${partida.getJogadorAtual().getNick()} escolheu ${partida.getJogador(indiceJogadorInimigo).getNick()}`
+					+ `        Sucesso? ${partida.atirarNoInimigoDoJogadorAtual(posicaoDoTiro, partida.getJogador(indiceJogadorInimigo))}`
+		);
+	}
+	
+	//EXIBINDO STATUS DO JOGO
+	stringStatusJogo = ``
+		+ `\n====[PARTIDA]======[TURNO: ${partida.getTurnoAtual()}]============[Iniciou? ${partida.isIniciou()}]====[Terminou? ${partida.isTerminou()}]================ \n`;	
+	for (let contJogador = 0; contJogador < partida.getQtdAtualDeJogadores(); contJogador++) {
+		stringStatusJogo += ``
+			+ `${partida.getJogador(contJogador).toString()}\n`
+			+ `  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n`;
+	}
+	console.log(stringStatusJogo);
+	
 }while (!partida.isTerminou());
 
 console.log("\n\n=========================FIM DE JOGO ===============================================");
 
 if (partida.isEmpatou()) {
-	console.log("\n EMPATOU!!!!\n");
-	console.log(partida.getEmpatantes());
+	console.log("\nEMPATOU!!!!");
+	const empatantes = partida.getEmpatantes();
+	
+	for (let contJogador = 0; contJogador < empatantes.length; contJogador++) {
+		console.log(`   ${empatantes[contJogador].getNick()}`);
+	}
 }
 else{
-	console.log("\n TEVE 1 VENCEDOR :)\n");
-	console.log(partida.getVencedor());
+	console.log("\n TEVE 1 VENCEDOR :) >>> " + partida.getVencedor().getNick());
 }

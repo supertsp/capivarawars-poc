@@ -9,11 +9,10 @@ import Loading from './pages/loadingPage/index';
 import Game from './pages/gameScreen/index';
 import Shoot from './pages/shootScreen/index';
 import Lose from './pages/lose/index';
-import Victory from './pages/victory/index'
+import Victory from './pages/victory/index';
+import lose from './pages/lose';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-
 
 const Routes = () => (
     <BrowserRouter>
@@ -28,6 +27,7 @@ const Routes = () => (
             <Route path="/shoot" component={Shoot} />
             <Route path="/lose" component={Lose} />
             <Route path="/victory" component={Victory} />
+            <Route path="/lose" component={lose} />
         </Switch>
     </BrowserRouter>
 );

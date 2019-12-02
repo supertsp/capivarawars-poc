@@ -91,11 +91,15 @@ class Jogador{
 	}
 	
 	isCapivaraMorta(){
-		return this.capivara.isMorta();
+		return this.getCapivara().isMorta();
 	}
 	
 	getVidaCapivara(){
-		return this.capivara.getVida();
+		return this.getCapivara().getVida();
+	}
+	
+	reduzirVidaCapivara(){
+		this.getCapivara().receberDano();
 	}
 	
 	getRio(){

@@ -158,18 +158,26 @@ class Partida{
 			if (this.getIndiceJogadorAtual() === 0) {
 				this.incrementarTurnoAtual();
 			}
+						
+			//Descobrindo se o jogo pode terminar após o último jogar
+			if ((this.getIndiceJogadorAtual() + 1) === this.getQtdAtualDeJogadores()) {
+				let contCanoasDestruidas = 0;
+				
+				for (let cont = 0; cont < this.getQtdAtualDeJogadores(); cont++) {
+					if (this.getJogador(cont).isCanoaDestruida()) {
+						contCanoasDestruidas++;
+					}
+				}
+				
+				//houve empate ou sobrou apenas 1 jogador?
+				if (contCanoasDestruidas ===  this.getQtdAtualDeJogadores()
+						|| contCanoasDestruidas === (this.getQtdAtualDeJogadores() - 1)) {
+					this.terminar();
+				}
+			}
 			
 			this.indiceJogadorAtual++;
 			this.indiceJogadorAtual = this.indiceJogadorAtual % this.getQtdAtualDeJogadores();
-			
-			if ((this.getIndiceJogadorAtual() + 1) === this.getQtdAtualDeJogadores()) {
-				for (let cont = 0; cont < this.getQtdAtualDeJogadores(); cont++) {
-					if (this.getJogador(cont).isCanoaDestruida()) {
-						this.terminar();
-						break;
-					}
-				}
-			}
 			
 			return tiroCerteiro;
 		}
@@ -184,9 +192,6 @@ class Partida{
 			for (let cont = 0; cont < this.getQtdAtualDeJogadores(); cont++) {
 				if (!this.getJogador(cont).isCanoaDestruida()) {
 					contVencedores++;
-				}
-				else{
-					
 				}
 			}
 			
@@ -203,6 +208,9 @@ class Partida{
 			for (let cont = 0; cont < this.getQtdAtualDeJogadores(); cont++) {
 				if (!this.getJogador(cont).isCanoaDestruida()) {
 					vencedores.push(this.getJogador(cont));
+				}
+				else{
+					this.getJogador(cont).reduzirVidaCapivara();
 				}
 			}
 			
