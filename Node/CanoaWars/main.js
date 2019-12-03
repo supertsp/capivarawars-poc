@@ -1,11 +1,11 @@
-const Validator = require('./tool/Validator');
-const Console = require('./tool/Console');
-const Canoa = require('./gamecore/Canoa');
-const Rio = require('./gamecore/Rio');
-const Capivara = require('./gamecore/Capivara');
-const Jogador = require('./gamecore/Jogador');
-const BarraDeVida = require('./gamecore/BarraDeVida');
-const Partida = require('./gamecore/Partida');
+const Validator = require("./tool/Validator");
+const Console = require("./tool/Console");
+const Canoa = require("./gamecore/Canoa");
+const Rio = require("./gamecore/Rio");
+const Capivara = require("./gamecore/Capivara");
+const Jogador = require("./gamecore/Jogador");
+const BarraDeVida = require("./gamecore/BarraDeVida");
+const Partida = require("./gamecore/Partida");
 
 //Console.write(new Canoa());
 //Console.log("oi");
@@ -84,8 +84,6 @@ const Partida = require('./gamecore/Partida');
 //rio.receberTiro(9);
 //console.log(rio);
 
-
-
 //let barraDeVida = new BarraDeVida();
 //let valor = 0;
 //console.log(barraDeVida);
@@ -99,7 +97,6 @@ const Partida = require('./gamecore/Partida');
 //console.log(`\n\n Incrementando em ${valor} \n`);
 //barraDeVida.aumentar(valor);
 //console.log(barraDeVida);
-
 
 //let capivara = new Capivara();
 //console.log(capivara);
@@ -162,9 +159,6 @@ const Partida = require('./gamecore/Partida');
 
 //let hexaNumber = '#a05a2cff';
 //console.log(Validator.isRgbaValue(hexaNumber));
-
-
-
 
 //let jogador1 = new Jogador('tiago', 'feliceta', 10, 4);
 //jogador1.setId(1);
@@ -372,74 +366,104 @@ const Partida = require('./gamecore/Partida');
 //	+ `~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n\n`
 //);
 
-
-
 let stringStatusJogo = "";
 let posicaoNoRio = 0;
 let posicaoDoTiro = 0;
 let indiceJogadorInimigo = 0;
 
-let partida = new Partida(5);
+let partida = new Partida(7);
 partida.iniciar();
 //console.log(partida);
 
 partida
-		.addJogador(new Jogador('tiago', 'feliceta', 10, 4).setId(1))
-		.addJogador(new Jogador('joshua', 'tres', 10, 4).setId(2))
-		.addJogador(new Jogador('matheus', 'miku', 10, 4).setId(3))
-		.addJogador(new Jogador('leonardo', 'nino', 10, 4).setId(4))
-		.addJogador(new Jogador('jonatas', 'adão', 10, 4).setId(5))
-;
+  .addJogador(new Jogador("tiago", "feliceta", 10, 4).setId(1))
+  .addJogador(new Jogador("joshua", "tres", 10, 4).setId(2))
+  .addJogador(new Jogador("matheus", "miku", 10, 4).setId(3))
+  .addJogador(new Jogador("leonardo", "nino", 10, 4).setId(4))
+  .addJogador(new Jogador("jonatas", "adão", 10, 4).setId(5))
+  .addJogador(new Jogador("juliana", "harry", 10, 4).setId(5))
+  .addJogador(new Jogador("th", "jesus", 10, 4).setId(5));
 
 partida.iniciar();
 
-do{
-	//TURNO
-	console.log("=== TURNO #" + partida.getTurnoAtual() + " ========================================================================");
-	
-	//movendo jogadores
-	for (let contJogador = 0; contJogador < partida.getQtdAtualDeJogadores(); contJogador++) {
-		posicaoNoRio = parseInt(Math.random() * 10);
-		console.log(` >>> MOVENDO (${posicaoNoRio}) >>> Player ${partida.getJogadorAtual().getId()} - ${partida.getJogadorAtual().getNick()}`);
-		partida.moverCanoaDoJogadorAtual(posicaoNoRio);
-	}
-	
-	//atirando no inimigo
-	for (let contJogador = 0; contJogador < partida.getQtdAtualDeJogadores(); contJogador++) {
-		posicaoDoTiro = parseInt(Math.random() * 10);
-		
-		do{
-			indiceJogadorInimigo = parseInt(Math.random() * partida.getQtdAtualDeJogadores());
-		}
-		while (indiceJogadorInimigo == partida.getIndiceJogadorAtual());
-		
-		console.log(`\n >>> ATIRANDO na posição ${posicaoDoTiro} >>> '${partida.getJogadorAtual().getNick()} escolheu ${partida.getJogador(indiceJogadorInimigo).getNick()}`
-					+ `        Sucesso? ${partida.atirarNoInimigoDoJogadorAtual(posicaoDoTiro, partida.getJogador(indiceJogadorInimigo))}`
-		);
-	}
-	
-	//EXIBINDO STATUS DO JOGO
-	stringStatusJogo = ``
-		+ `\n====[PARTIDA]======[TURNO: ${partida.getTurnoAtual()}]============[Iniciou? ${partida.isIniciou()}]====[Terminou? ${partida.isTerminou()}]================ \n`;	
-	for (let contJogador = 0; contJogador < partida.getQtdAtualDeJogadores(); contJogador++) {
-		stringStatusJogo += ``
-			+ `${partida.getJogador(contJogador).toString()}\n`
-			+ `  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n`;
-	}
-	console.log(stringStatusJogo);
-	
-}while (!partida.isTerminou());
+do {
+  //TURNO
+  console.log(
+    "=== TURNO #" +
+      partida.getTurnoAtual() +
+      " ========================================================================"
+  );
 
-console.log("\n\n=========================FIM DE JOGO ===============================================");
+  //movendo jogadores
+  for (
+    let contJogador = 0;
+    contJogador < partida.getQtdAtualDeJogadores();
+    contJogador++
+  ) {
+    posicaoNoRio = parseInt(Math.random() * 10);
+    console.log(
+      ` >>> MOVENDO (${posicaoNoRio}) >>> Player ${partida
+        .getJogadorAtual()
+        .getId()} - ${partida.getJogadorAtual().getNick()}`
+    );
+    partida.moverCanoaDoJogadorAtual(posicaoNoRio);
+  }
+
+  //atirando no inimigo
+  for (
+    let contJogador = 0;
+    contJogador < partida.getQtdAtualDeJogadores();
+    contJogador++
+  ) {
+    posicaoDoTiro = parseInt(Math.random() * 10);
+
+    do {
+      indiceJogadorInimigo = parseInt(
+        Math.random() * partida.getQtdAtualDeJogadores()
+      );
+    } while (indiceJogadorInimigo == partida.getIndiceJogadorAtual());
+
+    console.log(
+      `\n >>> ATIRANDO na posição ${posicaoDoTiro} >>> '${partida
+        .getJogadorAtual()
+        .getNick()} escolheu ${partida
+        .getJogador(indiceJogadorInimigo)
+        .getNick()}` +
+        `        Sucesso? ${partida.atirarNoInimigoDoJogadorAtual(
+          posicaoDoTiro,
+          partida.getJogador(indiceJogadorInimigo)
+        )}`
+    );
+  }
+
+  //EXIBINDO STATUS DO JOGO
+  stringStatusJogo =
+    `` +
+    `\n====[PARTIDA]======[TURNO: ${partida.getTurnoAtual()}]============[Iniciou? ${partida.isIniciou()}]====[Terminou? ${partida.isTerminou()}]================ \n`;
+  for (
+    let contJogador = 0;
+    contJogador < partida.getQtdAtualDeJogadores();
+    contJogador++
+  ) {
+    stringStatusJogo +=
+      `` +
+      `${partida.getJogador(contJogador).toString()}\n` +
+      `  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n`;
+  }
+  console.log(stringStatusJogo);
+} while (!partida.isTerminou());
+
+console.log(
+  "\n\n=========================FIM DE JOGO ==============================================="
+);
 
 if (partida.isEmpatou()) {
-	console.log("\nEMPATOU!!!!");
-	const empatantes = partida.getEmpatantes();
-	
-	for (let contJogador = 0; contJogador < empatantes.length; contJogador++) {
-		console.log(`   ${empatantes[contJogador].getNick()}`);
-	}
-}
-else{
-	console.log("\n TEVE 1 VENCEDOR :) >>> " + partida.getVencedor().getNick());
+  console.log("\nEMPATOU!!!!");
+  const empatantes = partida.getEmpatantes();
+
+  for (let contJogador = 0; contJogador < empatantes.length; contJogador++) {
+    console.log(`   ${empatantes[contJogador].getNick()}`);
+  }
+} else {
+  console.log("\n TEVE 1 VENCEDOR :) >>> " + partida.getVencedor().getNick());
 }
