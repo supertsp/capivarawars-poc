@@ -1,11 +1,14 @@
 /* SOBREPONDO DIVS */
-
 /* .container {
   display: grid;
 }
 .content, .overlay {
   grid-area: 1 / 1;
 } */
+
+* {
+  cursor: pointer;
+}
 
 html,
 body {
@@ -16,6 +19,16 @@ body {
 
   font-size: 1em;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  overflow: hidden;
+}
+
+p {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #552200;
+  line-height: 1.5em;
 }
 
 .background {
@@ -28,11 +41,105 @@ body {
   );
 }
 
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.move-bottom-3 {
+  bottom: 3em;
+}
+
+.margin-left-right-1 {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.margin-left-right-2 {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.margin-left-right-3 {
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+.padding-top-1 {
+  padding-top: 1em;
+}
+
+.padding-top-2 {
+  padding-top: 2em;
+}
+
+.padding-top-3 {
+  padding-top: 3em;
+}
+
+.padding-bottom-1 {
+  padding-bottom: 1em;
+}
+
+.padding-bottom-2 {
+  padding-bottom: 2em;
+}
+
+.padding-bottom-3 {
+  padding-bottom: 3em;
+}
+
+.padding-right-1 {
+  padding-right: 1em;
+}
+
+.padding-right-2 {
+  padding-right: 2em;
+}
+
+.padding-right-3 {
+  padding-right: 3em;
+}
+
+.width-10 {
+  width: 10%;
+}
+.width-20 {
+  width: 20%;
+}
+.width-30 {
+  width: 30%;
+}
+.width-40 {
+  width: 40%;
+}
+.width-50 {
+  width: 50%;
+}
+
+form {
+  /* top rigth bottom left */
+  padding: 5px 10px 5px 10px;
+}
+
+/**
+*  +---------+                                                                     
+*  |  LOGO   |                                                                  
+*  +---------+                                                           
+*/
+
 #logo-inicial {
-  width: 25%;
+  width: 13em;
 
   margin: auto;
-  margin-top: 5%;
+  margin-top: 1em;
 
   text-align: center;
   /* border: 1px dotted green; */
@@ -42,13 +149,179 @@ body {
   width: 100%;
 }
 
-.container-bamboo-border {
+/**
+*  +-------------------------+                                                                     
+*  |  CAPIVARA STATIC IMAGES |                                                                  
+*  +-------------------------+                                                           
+*/
+
+.capii-silence-hat {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  background-image: url("../images/capii-silence-hat.png");
+}
+
+.capii-silence-coat {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  background-image: url("../images/capii-silence-coat.png");
+}
+
+.capii-moustache {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  background-image: url("../images/capii-moustache.png");
+}
+
+/**
+*  +--------------------------------+                                                                     
+*  |  CAPIVARA & CONTAINER BAMBOO   |                                                                  
+*  +--------------------------------+                                                           
+*/
+
+.container-bamboo-register,
+.capii-animation-register {
+  float: left;
+  margin-left: 13%;
+}
+
+.container-bamboo,
+.capii-silence-hat,
+.capii-silence-coat,
+.capii-moustache,
+.capii-animation {
+  float: left;
+  margin-left: 23%;
+}
+
+/**
+*  +-----------------------+                                                                     
+*  |  CAPIVARA ANIMATION   |                                                                  
+*  +-----------------------+                                                           
+*/
+
+.capii-animation,
+.capii-animation-register {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  /* width: 50px;
+            height: 72px; */
+  background-image: url("../images/capii-hello-sprite_180x265.png");
+  /* background-image: url("http://s.cdpn.io/79/sprite-steps.png"); */
+  /* 10x imagens de 50x72 */
+
+  animation: play 0.3s steps(4) infinite;
+  /* animation: play .8s steps(10) infinite; */
+  /* .8s = duração   steps(10) = qtd de partes */
+}
+
+@keyframes play {
+  from {
+    background-position: 0px;
+  }
+
+  to {
+    background-position: -720px;
+    /* background-position: -500px; */
+    /* comprimento do sprite */
+  }
+}
+
+/**
+*  +-----------------+                                                                     
+*  |  ERROR MESSAGE  |                                                                  
+*  +-----------------+                                                           
+*/
+.error-message {
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+
+  font-size: 0.8em;
+  font-weight: bold;
+  font-style: italic;
+  color: #3b684d;
+}
+
+/**
+*  +---------------------+                                                                     
+*  |  CONTAINER BAMBOO   |                                                                  
+*  +---------------------+                                                           
+*/
+
+.container-bamboo {
   width: 30%;
   margin: auto;
-  margin-top: 2%;
+  margin-top: -1.5em;
+}
+
+.container-bamboo-register {
+  width: 50%;
+  margin: auto;
+  margin-top: -1.5em;
+}
+
+.container-bamboo-title {
+  display: grid;
+  position: relative;
+  top: 2em;
+  width: 8em;
+  margin: auto;
+
+  z-index: 1;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-title img,
+.container-bamboo-title span {
+  grid-area: 1 / 1;
+}
+
+.container-bamboo-title img {
+  display: block;
+  position: relative;
+  left: -4em;
+  width: 16em;
+  height: 3em;
+}
+
+.container-bamboo-title span {
+  display: block;
+  position: relative;
+  width: 65%;
+
+  margin: auto;
+  margin-left: -1.1em;
+
+  font-size: 1em;
+  font-weight: bold;
+  color: #002539ff;
+  text-transform: uppercase;
+  text-align: center;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-border {
+  position: relative;
 
   border: 30px solid transparent;
-  border-image: url("../images/borderbamboo.svg") 30 repeat;
+  border-image: url("../images/borderbamboo.svg") 20 repeat;
+
+  z-index: 0;
+
   /* border: 1px dotted green; */
 }
 
@@ -58,13 +331,25 @@ body {
   /* border: 1px dotted red; */
 }
 
-.text-center {
-  text-align: center;
+/**
+*  +---------------+                                                                     
+*  |  FORM TABLE   |                                                                  
+*  +---------------+                                                           
+*/
+
+.form-table {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  margin: 0 auto;
 }
 
-form {
-  /* top rigth bottom left */
-  padding: 5px 10px 5px 10px;
+.form-table .form-table-item {
+  position: relative;
+  width: 28%;
+  margin-right: 2em;
+  white-space: nowrap;
+  /* border: 1px dotted red; */
 }
 
 /**
@@ -74,11 +359,27 @@ form {
 */
 
 .form-input-text-original:focus,
+.form-input-date-original:focus,
 .form-button:focus,
 .form-button-cancel:focus,
-.form-button-confirm:focus {
+.form-button-confirm:focus,
+.form-checkbox-square {
   /* outline: outline-width outline-style outline-color|initial|inherit; */
   outline: none;
+}
+
+.form-button:hover,
+.form-button-cancel:hover,
+.form-button-confirm:hover,
+.form-button-back:hover,
+.form-checkbox-square:hover {
+  /* box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit; */
+  box-shadow: 0px 0px 1em 0.2em #55220099;
+  /* filter: blur(10px); */
+  /* outline: outline-width outline-style outline-color|initial|inherit; */
+  /* outline: 3px solid #55220099; */
+  /* outline-offset: length|initial|inherit; */
+  /* outline-offset: 5px; */
 }
 
 /**
@@ -89,7 +390,8 @@ form {
 
 .form-input-text-field {
   display: block;
-  margin-bottom: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .form-input-text-title {
@@ -102,7 +404,8 @@ form {
   text-transform: lowercase;
 }
 
-.form-input-text-original {
+.form-input-text-original,
+.form-input-date-original {
   width: 100%;
   padding-bottom: 3px;
 
@@ -119,6 +422,10 @@ form {
   line-height: 1.5em;
 }
 
+.form-input-date-original {
+  font-size: 1em;
+}
+
 /**
 *  +--------------------------+                                                                     
 *  |  INPUT:BUTTON & BUTTON   |                                                                  
@@ -129,30 +436,19 @@ form {
   display: block;
 }
 
-.form-button:hover,
-.form-button-cancel:hover,
-.form-button-confirm:hover {
-  /* box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit; */
-  box-shadow: 0px 0px 1em 0.2em #55220099;
-  /* filter: blur(10px); */
-  /* outline: outline-width outline-style outline-color|initial|inherit; */
-  /* outline: 3px solid #55220099; */
-  /* outline-offset: length|initial|inherit; */
-  /* outline-offset: 5px; */
-}
-
 .form-button,
 .form-button-cancel,
-.form-button-confirm {
+.form-button-confirm,
+.form-button-back {
   padding: 0px;
   padding-right: 2px;
-  margin-top: 8px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 
   border: 1em solid transparent;
   border-radius: 1em;
 
-  font-size: 0.7em;
-  font-style: italic;
+  font-size: 0.75em;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -181,6 +477,14 @@ form {
   color: #37483e;
 }
 
+.form-button-back {
+  background-color: #999999ff;
+
+  border-image: url("../images/borderbuttonback.svg") 2.5 repeat;
+
+  color: #333333ff;
+}
+
 /**
 *  +------------+                                                                     
 *  |  CHECKBOX  |                                                                  
@@ -189,26 +493,28 @@ form {
 *  https://codersblock.com/blog/checkbox-trickery-with-css
 */
 
-.form-checkbox-original[type="checkbox"] {
+.form-checkbox-original {
   visibility: hidden;
 }
 
 .form-checkbox-field {
   display: inline-block;
   position: relative;
-  padding-left: 45px;
-  margin-bottom: 15px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 
-  cursor: pointer;
+  line-height: 1.3em;
+
+  /* border: 1px dotted green; */
 }
 
 /* Desenhando Box + Cor: Desativado */
 .form-checkbox-square {
   position: absolute;
   top: 0;
-  left: 40px;
-  width: 25px;
-  height: 25px;
+  left: 0px;
+  width: 15px;
+  height: 15px;
 
   background-color: #c08c69ff;
 
@@ -228,8 +534,8 @@ form {
 
 /* Desenhando o "V" */
 .form-checkbox-field .form-checkbox-square:before {
-  left: 8px;
-  bottom: 5px;
+  left: 6px;
+  bottom: 2px;
   width: 6px;
   height: 12px;
 
@@ -255,6 +561,8 @@ form {
 }
 
 .form-checkbox-text {
+  padding-left: 0.8em;
+
   font-size: 0.9em;
   font-weight: bold;
   color: #552200ff;
