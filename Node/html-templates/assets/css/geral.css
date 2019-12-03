@@ -124,6 +124,15 @@ form {
   background-image: url("../images/capii-moustache.png");
 }
 
+.capii-sweating {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  background-image: url("../images/capii-sweating.png");
+}
+
 /**
 *  +-----------------------+                                                                     
 *  |  CAPIVARA ANIMATION   |                                                                  
@@ -176,6 +185,7 @@ form {
 .capii-silence-hat,
 .capii-silence-coat,
 .capii-moustache,
+.capii-sweating,
 .capii-animation {
   float: left;
   margin-left: 23%;
@@ -608,7 +618,9 @@ form {
 
 .boat-area {
   display: block;
-  width: 100%;
+  width: 76%;
+  margin: auto;
+
   /* top rigth bottom left */
   padding: 0px 10px 0px 10px;
 
@@ -671,41 +683,6 @@ form {
   margin-left: 1em;
 }
 
-.statistics-area {
-  margin-top: 2em;
-  height: 1em;
-
-  content: "";
-  clear: both;
-  display: table;
-
-  border: 1px dotted green;
-}
-
-.statistics-area .current-boat-size {
-  /* display: inline-block; */
-  float: left;
-
-  border: 1px dotted red;
-}
-
-.current-boat-size-piece {
-  display: inline-block;
-  width: 1.6em;
-  height: 2em;
-
-  background-color: #772c09;
-}
-
-.current-boat-size-number {
-  width: 1.6em;
-  float: left;
-
-  font-size: 2em;
-  font-weight: bold;
-  font-style: italic;
-}
-
 /**
 *  +-------------+                                                                     
 *  |  AIM AREA   |                                                                  
@@ -714,7 +691,8 @@ form {
 
 .aim-area {
   display: block;
-  width: 100%;
+  width: 76%;
+  margin: auto;
   /*        top rigth bottom left */
   padding: 0px 10px 0px 10px;
 
@@ -742,18 +720,18 @@ form {
 
 .aim-area-piece-box {
   display: inline-block;
-  width: 1.7em;
+  width: 1.6em;
   height: 1.9em;
 
+  border: 2px dotted transparent;
   border-radius: 1.5em;
 
   background-color: #68745d99;
 }
 
 .aim-area-piece-box:hover {
-  content: "X";
-
-  background-color: #ff3c00;
+  background-color: #ffee0099;
+  border: 2px dotted rgb(0, 0, 0);
 }
 
 .aim-area-piece input {
@@ -762,16 +740,17 @@ form {
 
 /* Cor: Selecionado */
 .aim-area-piece input:checked ~ .aim-area-piece-box {
-  background-color: #ff3c00;
+  background-color: #ffee0099;
 }
 
 .aim-area-piece input:checked ~ .aim-area-piece-box::before {
   position: relative;
-  left: 8px;
+  left: 7px;
   top: 6px;
 
   content: "X";
   font-weight: bold;
+  color: #614f00;
 }
 
 .aim-area .form-button-cancel,
@@ -788,6 +767,145 @@ form {
 
 .aim-area .form-button-confirm {
   margin-left: 1em;
+}
+
+/**
+*  +------------------------+                                                                     
+*  |  BOAT STATISTICS AREA  |                                                                  
+*  +------------------------+                                                           
+*/
+
+.statistics-area {
+  margin-top: 2em;
+  height: 1em;
+
+  content: "";
+  clear: both;
+  display: table;
+
+  /* border: 1px dotted green; */
+}
+
+.statistics-area-title {
+  margin-bottom: 0.5em;
+
+  font-size: 0.8em;
+  font-weight: bold;
+  font-style: italic;
+  text-align: left;
+  color: #37483e;
+}
+
+.statistics-area .current-boat-size {
+  /* display: inline-block; */
+  float: left;
+
+  /* border: 1px dotted red; */
+}
+
+.current-boat-size {
+  padding-right: 3px;
+  border-radius: 2px;
+  background-color: #552200;
+
+  /* border: 1px dotted blue; */
+}
+
+.current-boat-size-piece {
+  display: inline-block;
+  width: 1.6em;
+  height: 2em;
+
+  border: 2px dashed #7a4623;
+
+  background-color: #86320c;
+}
+
+.current-boat-size-number {
+  width: 1.6em;
+  float: left;
+
+  font-size: 2em;
+  font-weight: bold;
+  font-style: italic;
+  color: #552200;
+}
+
+.confirmation-area {
+  position: relative;
+  width: 20%;
+  top: -2.8em;
+
+  float: right;
+
+  /* border: 1px dotted red; */
+}
+
+/**
+*  +----------------+                                                                     
+*  |  TURN STATUS   |                                                                  
+*  +----------------+                                                           
+*/
+
+.turn-status-table {
+  margin: auto;
+  background-color: #81ec73;
+  /* border: 1px solid #0c3806; */
+}
+
+.turn-status-table td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  /* border: 1px dotted red; */
+}
+
+.turn-status-table-title {
+  /*      top rigth bottom left */
+  padding: 0em 1.5em 0em 1.5em;
+
+  font-weight: bold;
+  font-size: 1.5em;
+  color: rgb(255, 255, 255);
+
+  background-color: #0c3806;
+}
+.turn-status-table .user-capii-icon {
+  width: 4em;
+}
+
+.turn-status-table-white-space {
+  background-color: #bcdba1;
+}
+
+.turn-status-table .current-boat-size {
+  padding-top: 19px;
+
+  /* border: 1px dotted blue; */
+}
+
+.turn-status-table-capivara-nane {
+  font-size: 1.1em;
+  font-weight: bold;
+  font-style: italic;
+  color: #0c3806;
+}
+
+/**
+*  +---------------------+                                                                     
+*  |  MATCH RESULT AREA  |                                                                  
+*  +---------------------+                                                           
+*/
+
+.match-result-winner-name {
+  margin-bottom: 0.5em;
+
+  font-size: 4em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #55b614;
+  /* text-shadow: h-shadow v-shadow blur-radius color|none|initial|inherit; */
+  text-shadow: 0px 0px 10px #86c028;
 }
 
 /**
