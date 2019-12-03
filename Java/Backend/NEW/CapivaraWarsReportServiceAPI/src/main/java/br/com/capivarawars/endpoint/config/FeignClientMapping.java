@@ -41,11 +41,11 @@ public class FeignClientMapping {
 	 * API: DataBase
 	 */
 	@Bean
-	public PlayerServideAPIClient playerServiceAPIClient() {
+	public PlayerServiceAPIClient playerServiceAPIClientFeign() {
 		return Feign.builder()
 				.encoder(new JacksonEncoder())
 				.decoder(new JacksonDecoder())
-				.target(PlayerServideAPIClient.class,
+				.target(PlayerServiceAPIClient.class,
 						"http://localhost:8082/api/v1/playerservice");
 	}
 

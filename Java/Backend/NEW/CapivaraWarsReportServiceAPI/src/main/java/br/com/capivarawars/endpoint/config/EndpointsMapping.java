@@ -16,7 +16,8 @@ public class EndpointsMapping {
 			API_REPORT_SERVICE = "/api" + API_VERSION + "/reportservice",
 			
 			//CREATE :: POST
-			API_REPORT_SERVICE_CREATE_ONE_PLAYER = "/player",
+			API_REPORT_SERVICE_CREATE_ONE_PLAYER = "/player/{idPlayer}",
+			API_REPORT_SERVICE_CREATE_PLAYER_LIST = "/player/",
 			
 			//UPDATE :: PUT
 			API_REPORT_SERVICE_UPDATE_ONE_PLAYER = "/player/{idPlayer}",

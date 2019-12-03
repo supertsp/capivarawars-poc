@@ -2,11 +2,9 @@ package br.com.capivarawars.database.repository;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
 import br.com.capivarawars.database.model.*;
-
+import feign.RequestLine;
 import java.util.List;
 
-import org.springframework.data.repository.query.*;
-import org.springframework.stereotype.Repository;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.*;
@@ -25,11 +23,9 @@ import org.springframework.data.mongodb.repository.*;
  *///</editor-fold>
 public interface PlayerRepository extends MongoRepository<Player, ObjectId>{
     
-    public Player findBy_id(ObjectId _id);
-    
-	
-	
-    
+	@RequestLine("GET/players")
+    public List<Player> findBy_id(ObjectId _id);
+      
     //</editor-fold>
     
 }//interface

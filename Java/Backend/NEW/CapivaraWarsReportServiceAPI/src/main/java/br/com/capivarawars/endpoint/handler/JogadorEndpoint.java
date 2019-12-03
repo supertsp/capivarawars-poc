@@ -12,7 +12,6 @@ import br.com.capivarawars.database.model.Player;
 import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import org.springframework.web.bind.annotation.*;
 import br.com.capivarawars.database.repository.PlayerRepository;
-import br.com.capivarawars.endpoint.client.PlayerServideAPIClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //<editor-fold defaultstate="collapsed" desc="documentation...">
@@ -29,13 +28,10 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping(API_REPORT_SERVICE)
 public class JogadorEndpoint {
 
+	
 	@Autowired
 	private PlayerRepository repository;
-
-	//é assim que se usa o fening
-	@Autowired
-	private PlayerServideAPIClient playerServideAPIClient;
-
+	
 	@GetMapping(API_REPORT_SERVICE_SEARCH_ALL_PLAYERS)
 	public ResponseEntity<List<Player>> searchAllPlayers() {
 		List<Player> searchedPlayers = repository.findAll();
@@ -111,4 +107,5 @@ public class JogadorEndpoint {
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
+
 }
