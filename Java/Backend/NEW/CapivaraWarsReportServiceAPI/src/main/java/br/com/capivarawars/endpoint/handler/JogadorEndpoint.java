@@ -13,10 +13,6 @@ import static br.com.capivarawars.endpoint.config.EndpointsMapping.*;
 import org.springframework.web.bind.annotation.*;
 import br.com.capivarawars.database.repository.PlayerRepository;
 import br.com.capivarawars.endpoint.client.PlayerServiceAPIClient;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //<editor-fold defaultstate="collapsed" desc="documentation...">
@@ -37,7 +33,7 @@ public class JogadorEndpoint {
 	private PlayerRepository repository;
 
 	@Autowired
-	private PlayerServiceAPIClient usingPSAPIC;
+	private PlayerServiceAPIClient playerServiceClient;
 
 	@GetMapping(API_REPORT_SERVICE_SEARCH_ALL_PLAYERS)
 	public ResponseEntity<List<Player>> searchAllPlayers() {

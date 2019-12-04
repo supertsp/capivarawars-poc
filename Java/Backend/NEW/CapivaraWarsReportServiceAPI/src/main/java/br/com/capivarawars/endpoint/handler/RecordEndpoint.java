@@ -26,14 +26,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RecordEndpoint {
 	
 	@Autowired
-	private PlayerServiceAPIClient usingPSAPIC;
+	private PlayerServiceAPIClient playerServiceClient;
 	
 	@Autowired
 	private PlayerRepository repository;
 
 	@GetMapping(API_REPORT_SERVICE_SEARCH_ALL_PLAYERS)
 	public ResponseEntity<List<Player>> searchAllPlayersFromServiceAPICLient() {
-		List<Player> searchedPlayers = usingPSAPIC.searchAllPlayers();
+		List<Player> searchedPlayers = playerServiceClient.searchAllPlayers();
 		repository.saveAll(searchedPlayers);
 
 		if (searchedPlayers != null) {
