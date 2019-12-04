@@ -34,7 +34,14 @@ public class EndpointsMapping {
 			API_REPORT_SERVICE_SEARCH_ALL_PLAYERS_BY_SCORE = "/players/score",
 			API_REPORT_SERVICE_SEARCH_ALL_PLAYER_MATCHES = "/player/{idPlayer}/matches",
 			
+			//POST MONGO
+			API_REPORT_SERVICE_CREATE_ONE_PLAYER_MONGO = "/mongoPlayer/{_idPlayer}",
+			API_REPORT_SERVICE_CREATE_PLAYER_LIST_MONGO = "/mongoPlayer",
 			
+			//CREATE MONGO
+			API_REPORT_SERVICE_SEARCH_ALL_PLAYERS_MONGO = "/mongoPlayers",
+			API_REPORT_SERVICE_SEARCH_ONE_PLAYER_BY_ID_MONGO = "/mongoPlayer/{_idPlayer}",
+			API_REPORT_SERVICE_SEARCH_ONE_PLAYER_BY_NICK_MONGO = "/mongoPlayer/mongoNick/{nick}",
 			API_TEST = "/XXXXX";
 
 }//class
