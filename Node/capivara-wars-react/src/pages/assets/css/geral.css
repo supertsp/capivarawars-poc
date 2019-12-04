@@ -645,6 +645,8 @@ form {
   display: inline-block;
   width: 1.6em;
   height: 2em;
+
+  padding-right: 3px;
 }
 
 .boat-area-piece-box {
@@ -692,7 +694,7 @@ form {
 
 .aim-area {
   display: block;
-  width: 76%;
+  width: 81%;
   margin: auto;
   /*        top rigth bottom left */
   padding: 0px 10px 0px 10px;
@@ -717,6 +719,8 @@ form {
   display: inline-block;
   width: 1.6em;
   height: 2em;
+
+  padding-right: 6px;
 }
 
 .aim-area-piece-box {

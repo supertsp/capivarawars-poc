@@ -196,5 +196,7 @@ export default class Globals {
  * ERROR: "defaultValue"
  *      https://reactjs.org/docs/uncontrolled-components.html#default-values
  *
+ * USANDO CONTEXTO PARA PASSAR VARS
+ *      https://pt-br.reactjs.org/docs/context.html
  *
  */

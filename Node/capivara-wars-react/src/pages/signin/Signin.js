@@ -17,6 +17,7 @@ class Signin extends Component {
 
         return (
             <div>
+
                 <div id="logo-inicial">
                     <img src={require('../assets/images/capivaralogo.svg')} alt="logo capivara wars" />
                 </div>
@@ -36,20 +37,28 @@ class Signin extends Component {
                             <p>First enter your nick</p>
 
                             <span className="form-input-text-field padding-bottom-1">
-                                <label className="form-input-text-title" forName="nick">Nick</label>
-                                <input className="form-input-text-original" type="text" name="nick" />
+                                <label className="form-input-text-title" htmlFor="nick">Nick</label>
+                                <input className="form-input-text-original" type="text" name="nick" value={this.props.name} />
                             </span>
 
                             <span className="error-message display-block">Unfortunately this Nick does not Exist :(</span>
 
                             <span className="form-group-button">
-                                <button className="form-button-back margin-left-right-3">back</button>
-                                <button className="form-button margin-left-right-3">next</button>
+
+                                <Link to="/">
+                                    <button className="form-button-back margin-left-right-3">back</button>
+                                </Link>
+
+                                <Link to="/signinpass">
+                                    <button className="form-button margin-left-right-3">next</button>
+                                </Link>
+
                             </span>
 
                         </form>
                     </div>
                 </div>
+
             </div>
         );
     }
