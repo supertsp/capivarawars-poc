@@ -7,6 +7,9 @@ const Jogador = require("./gamecore/Jogador");
 const BarraDeVida = require("./gamecore/BarraDeVida");
 const Partida = require("./gamecore/Partida");
 
+
+
+
 //Console.write(new Canoa());
 //Console.log("oi");
 //
@@ -390,8 +393,8 @@ do {
   //TURNO
   console.log(
     "=== TURNO #" +
-      partida.getTurnoAtual() +
-      " ========================================================================"
+    partida.getTurnoAtual() +
+    " ========================================================================"
   );
 
   //movendo jogadores
@@ -427,12 +430,12 @@ do {
       `\n >>> ATIRANDO na posição ${posicaoDoTiro} >>> '${partida
         .getJogadorAtual()
         .getNick()} escolheu ${partida
-        .getJogador(indiceJogadorInimigo)
-        .getNick()}` +
-        `        Sucesso? ${partida.atirarNoInimigoDoJogadorAtual(
-          posicaoDoTiro,
-          partida.getJogador(indiceJogadorInimigo)
-        )}`
+          .getJogador(indiceJogadorInimigo)
+          .getNick()}` +
+      `        Sucesso? ${partida.atirarNoInimigoDoJogadorAtual(
+        posicaoDoTiro,
+        partida.getJogador(indiceJogadorInimigo)
+      )}`
     );
   }
 
@@ -467,3 +470,6 @@ if (partida.isEmpatou()) {
 } else {
   console.log("\n TEVE 1 VENCEDOR :) >>> " + partida.getVencedor().getNick());
 }
+
+
+console.log("Teste estático: " + Console.teste);

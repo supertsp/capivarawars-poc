@@ -17,44 +17,46 @@ const Validator = require('./Validator');
 
 //console.log(process.stdin);
 
-class Console{
-	
-	static log(variable){
+class Console {
+
+	static teste;
+
+	static log(variable) {
 		console.log(variable);
 	}
-	
-	static write(variable){
+
+	static write(variable) {
 		console.log(variable);
 	}
-	
+
 	//under construction
-	static readString(message){
+	static readString(message) {
 		console.log(message);
-		
-//		const tempReadLine = readline.createInterface({
-//			input: process.stdin // readable Stream: stdin
-//		});
-		
-//		fetch(
-//			tempReadLine.on('line', (line) => {
-//				console.log(line);				
-//			}))
-//			.then(tempReadLine.close()
-//		);
-		
-//		tempReadLine.on('line', (line) => {
-//			process.
-//			
-//			console.log(line);
-//			
-//			tempReadLine.close();
-//		});
-		
-		
+
+		//		const tempReadLine = readline.createInterface({
+		//			input: process.stdin // readable Stream: stdin
+		//		});
+
+		//		fetch(
+		//			tempReadLine.on('line', (line) => {
+		//				console.log(line);				
+		//			}))
+		//			.then(tempReadLine.close()
+		//		);
+
+		//		tempReadLine.on('line', (line) => {
+		//			process.
+		//			
+		//			console.log(line);
+		//			
+		//			tempReadLine.close();
+		//		});
+
+
 	}
-	
-	
-	
+
+
+
 }
 
 module.exports = Console;

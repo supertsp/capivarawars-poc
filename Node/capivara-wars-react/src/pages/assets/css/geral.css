@@ -1,0 +1,1047 @@
+/* SOBREPONDO DIVS */
+/* .container {
+  display: grid;
+}
+.content, .overlay {
+  grid-area: 1 / 1;
+} */
+
+/* CLEARFIX HACK TO FLOAT PROPERTY */
+/* .clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+} */
+
+* {
+  cursor: pointer;
+}
+
+html,
+body {
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+
+  font-size: 1em;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  overflow: hidden;
+}
+
+p {
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #552200;
+  line-height: 1.5em;
+}
+
+body,
+.background {
+  background: linear-gradient(
+    360deg,
+    rgba(57, 35, 20, 1) 0%,
+    rgba(236, 100, 12, 1) 25%,
+    rgba(2, 202, 255, 1) 30%,
+    rgb(79, 217, 255) 100%
+  );
+}
+
+form {
+  /* top rigth bottom left */
+  padding: 5px 10px 5px 10px;
+}
+
+/**
+*  +---------+                                                                     
+*  |  LOGO   |                                                                  
+*  +---------+                                                           
+*/
+
+#logo-inicial {
+  width: 13em;
+
+  margin: auto;
+  margin-top: 1em;
+
+  text-align: center;
+  /* border: 1px dotted green; */
+}
+
+#logo-inicial img {
+  width: 100%;
+}
+
+/**
+*  +--------------+                                                                     
+*  |  USER AREA   |                                                                  
+*  +--------------+                                                           
+*/
+
+.user-area {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+
+  text-align: center;
+}
+
+.user-area img {
+  width: 5em;
+}
+
+/**
+*  +-------------------------+                                                                     
+*  |  CAPIVARA STATIC IMAGES |                                                                  
+*  +-------------------------+                                                           
+*/
+
+.capii-silence-hat {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  background-image: url("../images/capii-silence-hat.png");
+}
+
+.capii-silence-coat {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  background-image: url("../images/capii-silence-coat.png");
+}
+
+.capii-moustache {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  background-image: url("../images/capii-moustache.png");
+}
+
+.capii-sweating {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  background-image: url("../images/capii-sweating.png");
+}
+
+/**
+*  +-----------------------+                                                                     
+*  |  CAPIVARA ANIMATION   |                                                                  
+*  +-----------------------+                                                           
+*/
+
+.capii-animation,
+.capii-animation-register {
+  position: relative;
+  left: 1em;
+
+  width: 180px;
+  height: 265px;
+  /* width: 50px;
+            height: 72px; */
+  background-image: url("../images/capii-hello-sprite_180x265.png");
+  /* background-image: url("http://s.cdpn.io/79/sprite-steps.png"); */
+  /* 10x imagens de 50x72 */
+
+  animation: play 0.3s steps(4) infinite;
+  /* animation: play .8s steps(10) infinite; */
+  /* .8s = duração   steps(10) = qtd de partes */
+}
+
+@keyframes play {
+  from {
+    background-position: 0px;
+  }
+
+  to {
+    background-position: -720px;
+    /* background-position: -500px; */
+    /* comprimento do sprite */
+  }
+}
+
+/**
+*  +--------------------------------+                                                                     
+*  |  CAPIVARA & CONTAINER BAMBOO   |                                                                  
+*  +--------------------------------+                                                           
+*/
+
+.container-bamboo-register,
+.capii-animation-register {
+  float: left;
+  margin-left: 13%;
+}
+
+.container-bamboo,
+.capii-silence-hat,
+.capii-silence-coat,
+.capii-moustache,
+.capii-sweating,
+.capii-animation {
+  float: left;
+  margin-left: 23%;
+}
+
+/**
+*  +-----------------+                                                                     
+*  |  ERROR MESSAGE  |                                                                  
+*  +-----------------+                                                           
+*/
+.error-message {
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+
+  font-size: 0.8em;
+  font-weight: bold;
+  font-style: italic;
+  color: #3b684d;
+}
+
+/**
+*  +---------------------+                                                                     
+*  |  CONTAINER BAMBOO   |                                                                  
+*  +---------------------+                                                           
+*/
+
+.container-bamboo-no-capii {
+  width: 50%;
+  margin: auto;
+  margin-top: -1.5em;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-home {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  width: 80%;
+  margin: auto;
+  margin-top: -1em;
+
+  overflow-wrap: unset;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-home-item-game {
+  width: 30%;
+  margin: auto;
+}
+
+.container-bamboo-home-item-status {
+  width: 50%;
+  margin: auto;
+
+  font-weight: bold;
+  text-align: center;
+}
+
+.container-bamboo-home-item-status table {
+  /* display: block; */
+  width: 80%;
+
+  margin: auto;
+  margin-top: 1em;
+
+  color: #552200;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-home-item-status td {
+  width: 60%;
+
+  font-size: 1.6em;
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-home-item-status .table-first-col {
+  width: 40%;
+
+  font-size: 1em;
+  color: #37483e;
+}
+
+.container-bamboo-home-item-status .user-capii-icon {
+  width: 4em;
+}
+
+.container-bamboo-home-item {
+  /* display: table-cell; */
+  width: 40%;
+  margin: auto;
+  /* margin-right: 5em; */
+}
+
+.container-bamboo {
+  width: 30%;
+  margin: auto;
+  margin-top: -1.5em;
+}
+
+.container-bamboo-register {
+  width: 50%;
+  margin: auto;
+  margin-top: -1.5em;
+}
+
+.container-bamboo-title {
+  display: grid;
+  position: relative;
+  top: 2em;
+  width: 8em;
+  margin: auto;
+
+  z-index: 1;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-title img,
+.container-bamboo-title span {
+  grid-area: 1 / 1;
+}
+
+.container-bamboo-title img {
+  display: block;
+  position: relative;
+  left: -4em;
+  width: 16em;
+  height: 3em;
+}
+
+.container-bamboo-title span {
+  display: block;
+  position: relative;
+  width: 65%;
+
+  margin: auto;
+  margin-left: -1.1em;
+
+  font-size: 1em;
+  font-weight: bold;
+  color: #002539ff;
+  text-transform: uppercase;
+  text-align: center;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-border {
+  position: relative;
+
+  border: 30px solid transparent;
+  border-image: url("../images/borderbamboo.svg") 20 repeat;
+
+  z-index: 0;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-bg-color {
+  display: block;
+  background-color: #bcdba1;
+  /* border: 1px dotted red; */
+}
+
+/**
+*  +---------------+                                                                     
+*  |  FORM TABLE   |                                                                  
+*  +---------------+                                                           
+*/
+
+.form-table {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  margin: 0 auto;
+}
+
+.form-table .form-table-item {
+  position: relative;
+  width: 26%;
+  margin-right: 2em;
+  white-space: nowrap;
+  /* border: 1px dotted red; */
+}
+
+/**
+*  +-------------------------+                                                                     
+*  |  ALL INPUTS & BUTTONS   |                                                                  
+*  +-------------------------+                                                           
+*/
+
+.form-input-text-original:focus,
+.form-input-date-original:focus,
+.form-button:focus,
+.form-button-play:focus,
+.form-button-cancel:focus,
+.form-button-confirm:focus,
+.form-checkbox-square {
+  /* outline: outline-width outline-style outline-color|initial|inherit; */
+  outline: none;
+}
+
+.form-button:hover,
+.form-button-play:hover,
+.form-button-cancel:hover,
+.form-button-confirm:hover,
+.form-button-back:hover,
+.form-checkbox-square:hover {
+  /* box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit; */
+  box-shadow: 0px 0px 1em 0.2em #55220099;
+  /* filter: blur(10px); */
+  /* outline: outline-width outline-style outline-color|initial|inherit; */
+  /* outline: 3px solid #55220099; */
+  /* outline-offset: length|initial|inherit; */
+  /* outline-offset: 5px; */
+}
+
+/**
+*  +--------------+                                                                     
+*  |  INPUT TEXT  |                                                                  
+*  +--------------+                                                           
+*/
+
+.form-input-text-field {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.form-input-text-title {
+  display: block;
+  /* padding-top: 25px; */
+
+  font-size: 1em;
+  font-weight: bold;
+  color: #425f26;
+  text-transform: lowercase;
+}
+
+.form-input-text-original,
+.form-input-date-original {
+  width: 100%;
+  padding-bottom: 3px;
+
+  /* border: border-width border-style border-color|initial|inherit; */
+  border: none;
+  border-bottom: 2px solid #3a5c1c;
+  background-color: transparent;
+
+  text-align: center;
+  font-size: 1.2em;
+  font-style: italic;
+  font-weight: bold;
+  color: #552200;
+  line-height: 1.5em;
+}
+
+.form-input-date-original {
+  font-size: 1em;
+}
+
+/**
+*  +--------------------------+                                                                     
+*  |  INPUT:BUTTON & BUTTON   |                                                                  
+*  +--------------------------+                                                           
+*/
+
+.form-group-button {
+  display: block;
+}
+
+.form-button,
+.form-button-cancel,
+.form-button-confirm,
+.form-button-back {
+  padding: 0px;
+  padding-right: 2px;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+
+  border: 1em solid transparent;
+  border-radius: 1em;
+
+  font-size: 0.75em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.form-button {
+  background-color: #ff7f2a;
+
+  border-image: url("../images/borderbutton.svg") 2.5 repeat;
+
+  color: #552200;
+}
+
+.form-button-play {
+  width: 2.7em;
+  height: 2.3em;
+
+  background-color: transparent;
+
+  border: none;
+}
+
+.form-button-play img {
+  position: relative;
+  width: 3em;
+  top: -0.28em;
+  left: -0.35em;
+  /* height: 5em; */
+}
+
+.form-button-cancel {
+  background-color: #ff8383ff;
+
+  border-image: url("../images/borderbuttoncancel.svg") 2.5 repeat;
+
+  color: #501616;
+}
+
+.form-button-confirm {
+  background-color: #73d99bff;
+
+  border-image: url("../images/borderbuttonconfirm.svg") 2.5 repeat;
+
+  color: #37483e;
+}
+
+.form-button-back {
+  background-color: #999999ff;
+
+  border-image: url("../images/borderbuttonback.svg") 2.5 repeat;
+
+  color: #333333ff;
+}
+
+/**
+*  +------------+                                                                     
+*  |  CHECKBOX  |                                                                  
+*  +------------+                                                           
+* 
+*  https://codersblock.com/blog/checkbox-trickery-with-css
+*/
+
+.form-checkbox-original {
+  visibility: hidden;
+}
+
+.form-checkbox-field {
+  display: inline-block;
+  position: relative;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+
+  line-height: 1.3em;
+
+  /* border: 1px dotted green; */
+}
+
+/* Desenhando Box + Cor: Desativado */
+.form-checkbox-square {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: 15px;
+  height: 15px;
+
+  background-color: #c08c69ff;
+
+  border-radius: 4px;
+  border: 3px solid #552200ff;
+}
+
+/* Cor: Sobre */
+.form-checkbox-square:hover {
+  background-color: #ff6600ff;
+}
+
+/* Cor: Selecionado */
+.form-checkbox-field .form-checkbox-original:checked ~ .form-checkbox-square {
+  background-color: #ff6600ff;
+}
+
+/* Desenhando o "V" */
+.form-checkbox-field .form-checkbox-square:before {
+  left: 6px;
+  bottom: 2px;
+  width: 6px;
+  height: 12px;
+
+  border: solid #552200ff;
+  border-width: 0 4px 4px 0;
+
+  transform: rotate(45deg);
+}
+
+/* Ocultando o desenho do "V" */
+.form-checkbox-square:before {
+  display: none;
+  position: absolute;
+
+  content: "";
+}
+
+/* Exibindo o desenho do "V" */
+.form-checkbox-field
+  .form-checkbox-original:checked
+  ~ .form-checkbox-square:before {
+  display: block;
+}
+
+.form-checkbox-text {
+  padding-left: 0.8em;
+
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #552200ff;
+}
+
+/**
+*  +--------------+                                                                     
+*  |  BOAT AREA   |                                                                  
+*  +--------------+                                                           
+*/
+
+.boat-area {
+  display: block;
+  width: 76%;
+  margin: auto;
+
+  /* top rigth bottom left */
+  padding: 0px 10px 0px 10px;
+
+  /* border: 1px dotted green; */
+
+  text-align: left;
+}
+
+.boat-area-all-pieces {
+  /*      top rigth bottom left */
+  padding: 6px 18px 6px 18px;
+
+  background-color: #00aeff;
+
+  border-radius: 1em;
+
+  /* border: 1px dotted green; */
+}
+
+.boat-area-piece {
+  display: inline-block;
+  width: 1.6em;
+  height: 2em;
+}
+
+.boat-area-piece-box {
+  display: inline-block;
+  width: 1.6em;
+  height: 2em;
+
+  background-color: #68745d99;
+}
+
+.boat-area-piece-box:hover {
+  background-color: #772c09;
+}
+
+.boat-area-piece input {
+  display: none;
+}
+
+/* Cor: Selecionado */
+.boat-area-piece input:checked ~ .boat-area-piece-box {
+  background-color: #772c09;
+}
+
+.boat-area .form-button-cancel,
+.boat-area .form-button-confirm {
+  margin: 0px;
+  padding: 0px;
+
+  font-size: 1em;
+}
+
+.boat-area .form-button-cancel {
+  margin-right: 1em;
+}
+
+.boat-area .form-button-confirm {
+  margin-left: 1em;
+}
+
+/**
+*  +-------------+                                                                     
+*  |  AIM AREA   |                                                                  
+*  +-------------+                                                           
+*/
+
+.aim-area {
+  display: block;
+  width: 76%;
+  margin: auto;
+  /*        top rigth bottom left */
+  padding: 0px 10px 0px 10px;
+
+  /* border: 1px dotted green; */
+
+  text-align: left;
+}
+
+.aim-area-all-pieces {
+  /*      top rigth bottom left */
+  padding: 6px 18px 6px 18px;
+
+  border-radius: 1em;
+
+  background-color: #00aeff;
+
+  /* border: 1px dotted green; */
+}
+
+.aim-area-piece {
+  display: inline-block;
+  width: 1.6em;
+  height: 2em;
+}
+
+.aim-area-piece-box {
+  display: inline-block;
+  width: 1.6em;
+  height: 1.9em;
+
+  border: 2px dotted transparent;
+  border-radius: 1.5em;
+
+  background-color: #68745d99;
+}
+
+.aim-area-piece-box:hover {
+  background-color: #ffee0099;
+  border: 2px dotted rgb(0, 0, 0);
+}
+
+.aim-area-piece input {
+  display: none;
+}
+
+/* Cor: Selecionado */
+.aim-area-piece input:checked ~ .aim-area-piece-box {
+  background-color: #ffee0099;
+}
+
+.aim-area-piece input:checked ~ .aim-area-piece-box::before {
+  position: relative;
+  left: 7px;
+  top: 6px;
+
+  content: "X";
+  font-weight: bold;
+  color: #614f00;
+}
+
+.aim-area .form-button-cancel,
+.aim-area .form-button-confirm {
+  margin: 0px;
+  padding: 0px;
+
+  font-size: 1em;
+}
+
+.aim-area .form-button-cancel {
+  margin-right: 1em;
+}
+
+.aim-area .form-button-confirm {
+  margin-left: 1em;
+}
+
+/**
+*  +------------------------+                                                                     
+*  |  BOAT STATISTICS AREA  |                                                                  
+*  +------------------------+                                                           
+*/
+
+.statistics-area {
+  margin-top: 2em;
+  height: 1em;
+
+  content: "";
+  clear: both;
+  display: table;
+
+  /* border: 1px dotted green; */
+}
+
+.statistics-area-title {
+  margin-bottom: 0.5em;
+
+  font-size: 0.8em;
+  font-weight: bold;
+  font-style: italic;
+  text-align: left;
+  color: #37483e;
+}
+
+.statistics-area .current-boat-size {
+  /* display: inline-block; */
+  float: left;
+
+  /* border: 1px dotted red; */
+}
+
+.current-boat-size {
+  padding-right: 3px;
+  border-radius: 2px;
+  background-color: #552200;
+
+  /* border: 1px dotted blue; */
+}
+
+.current-boat-size-piece {
+  display: inline-block;
+  width: 1.6em;
+  height: 2em;
+
+  border: 2px dashed #7a4623;
+
+  background-color: #86320c;
+}
+
+.current-boat-size-number {
+  width: 1.6em;
+  float: left;
+
+  font-size: 2em;
+  font-weight: bold;
+  font-style: italic;
+  color: #552200;
+}
+
+.confirmation-area {
+  position: relative;
+  width: 20%;
+  top: -2.8em;
+
+  float: right;
+
+  /* border: 1px dotted red; */
+}
+
+/**
+*  +----------------+                                                                     
+*  |  TURN STATUS   |                                                                  
+*  +----------------+                                                           
+*/
+
+.turn-status-table {
+  margin: auto;
+  background-color: #81ec73;
+  /* border: 1px solid #0c3806; */
+}
+
+.turn-status-table td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  /* border: 1px dotted red; */
+}
+
+.turn-status-table-title {
+  /*      top rigth bottom left */
+  padding: 0em 1.5em 0em 1.5em;
+
+  font-weight: bold;
+  font-size: 1.5em;
+  color: rgb(255, 255, 255);
+
+  background-color: #0c3806;
+}
+.turn-status-table .user-capii-icon {
+  width: 4em;
+}
+
+.turn-status-table-white-space {
+  background-color: #bcdba1;
+}
+
+.turn-status-table .current-boat-size {
+  padding-top: 19px;
+
+  /* border: 1px dotted blue; */
+}
+
+.turn-status-table-capivara-nane {
+  font-size: 1.1em;
+  font-weight: bold;
+  font-style: italic;
+  color: #0c3806;
+}
+
+/**
+*  +---------------------+                                                                     
+*  |  MATCH RESULT AREA  |                                                                  
+*  +---------------------+                                                           
+*/
+
+.match-result-winner-name {
+  margin-bottom: 0.5em;
+
+  font-size: 4em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #55b614;
+  /* text-shadow: h-shadow v-shadow blur-radius color|none|initial|inherit; */
+  text-shadow: 0px 0px 10px #86c028;
+}
+
+/**
+*  +----------------------------+                                                                     
+*  |  EXTRA FORMATTING STYLES   |                                                                  
+*  +----------------------------+                                                           
+*/
+
+.text-center {
+  text-align: center;
+}
+
+.font-size-1 {
+  font-size: 1em;
+}
+.font-size-2 {
+  font-size: 2em;
+}
+.font-size-3 {
+  font-size: 3em;
+}
+.font-size-4 {
+  font-size: 4em;
+}
+.font-size-5 {
+  font-size: 5em;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.move-bottom-3 {
+  bottom: 3em;
+}
+
+.margin-left-1 {
+  margin-left: 1em;
+}
+
+.margin-left-2 {
+  margin-left: 2em;
+}
+
+.margin-left-3 {
+  margin-left: 3em;
+}
+
+.margin-left-4 {
+  margin-left: 4em;
+}
+
+.margin-right-1 {
+  margin-right: 1em;
+}
+
+.margin-right-2 {
+  margin-right: 2em;
+}
+
+.margin-right-3 {
+  margin-right: 3em;
+}
+
+.margin-right-4 {
+  margin-right: 4em;
+}
+
+.margin-left-right-1 {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.margin-left-right-2 {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.margin-left-right-3 {
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+.padding-top-1 {
+  padding-top: 1em;
+}
+
+.padding-top-2 {
+  padding-top: 2em;
+}
+
+.padding-top-3 {
+  padding-top: 3em;
+}
+
+.padding-bottom-1 {
+  padding-bottom: 1em;
+}
+
+.padding-bottom-2 {
+  padding-bottom: 2em;
+}
+
+.padding-bottom-3 {
+  padding-bottom: 3em;
+}
+
+.padding-right-1 {
+  padding-right: 1em;
+}
+
+.padding-right-2 {
+  padding-right: 2em;
+}
+
+.padding-right-3 {
+  padding-right: 3em;
+}
+
+.width-10 {
+  width: 10%;
+}
+.width-20 {
+  width: 20%;
+}
+.width-30 {
+  width: 30%;
+}
+.width-40 {
+  width: 40%;
+}
+.width-50 {
+  width: 50%;
+}

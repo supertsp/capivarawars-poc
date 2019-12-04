@@ -7,7 +7,7 @@ import Globals from '../../Globals';
 //Import Pages
 
 
-class Home extends Component {
+class Register extends Component {
 
     render() {
 
@@ -15,11 +15,11 @@ class Home extends Component {
 
         return (
             <div className="geral mainBackground">
-                Home
+                Register
             </div>
         );
     }
 }
 
 //export and allow redirect by "this.props.history"
-export default withRouter(Home);
+export default withRouter(Register);
