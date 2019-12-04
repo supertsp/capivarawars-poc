@@ -39,15 +39,6 @@ public class JogadorEndpoint {
 	@Autowired
 	private PlayerServiceAPIClient usingPSAPIC;
 
-	Player jogador = new Player();
-	MongoClient client = new MongoClient("localhost", 8086); //with default server and port adress
-	DB db = client.getDB("CapivaraWarsReport");
-	DBCollection collection = db.getCollection(jogador.get_id());
-
-	DBObject dbo = collection.findOne();
-	String name = (String) dbo.get("Name");
-	int age = (int) dbo.get("Age");
-
 	@GetMapping(API_REPORT_SERVICE_SEARCH_ALL_PLAYERS)
 	public ResponseEntity<List<Player>> searchAllPlayers() {
 		List<Player> searchedPlayers = repository.findAll();
