@@ -1,10 +1,10 @@
 package br.com.capivarawars;
 
 //<editor-fold defaultstate="collapsed" desc="imports...">
+import br.com.capivarawars.database.model.ReadFile;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.springframework.context.annotation.Bean;
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="documentation...">
@@ -18,7 +18,8 @@ import org.springframework.context.annotation.Bean;
  *///</editor-fold>
 @SpringBootApplication
 public class CapivaraWarsReportServiceApplication {
-
+	static String fileName = "PlayerData";
+		
 	public static void main(String[] args) {
 		SpringApplication.run(CapivaraWarsReportServiceApplication.class, args);
 
@@ -32,6 +33,7 @@ public class CapivaraWarsReportServiceApplication {
 				+ "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
 				+ " >>> NOW, RUNNING A " + CapivaraWarsReportServiceApplication.class.getSimpleName() + " ON A RIVER API ;)\n"
 		);
+		System.out.println(ReadFile.readFile(fileName));
 	}
 
 }

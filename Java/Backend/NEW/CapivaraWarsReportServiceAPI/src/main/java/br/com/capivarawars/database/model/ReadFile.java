@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class ReadFile {
 
-	public static void readFile(String fileName) {
+	public static BufferedReader readFile(String fileName) {
 		BufferedReader input = null;
 		String register;
 		String registerType;
@@ -117,6 +117,7 @@ public class ReadFile {
 			System.err.printf("Error trying to read the file: %s.\n", e.getMessage());
 		}
 
+		return input;
 	}
 
 	public static void main(String[] args) {
