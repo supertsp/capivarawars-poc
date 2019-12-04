@@ -2,6 +2,7 @@ package br.com.capivarawars.endpoint.handler;
 
 // <editor-fold defaultstate="collapsed" desc="imports...">
 import br.com.capivarawars.database.model.Player;
+import br.com.capivarawars.database.repository.PlayerRepository;
 import br.com.capivarawars.endpoint.client.PlayerServiceAPIClient;
 import static br.com.capivarawars.endpoint.config.EndpointsMapping.API_REPORT_SERVICE_SEARCH_ALL_PLAYERS;
 import java.util.List;
@@ -26,11 +27,14 @@ public class RecordEndpoint {
 	
 	@Autowired
 	private PlayerServiceAPIClient usingPSAPIC;
+	
+	@Autowired
+	private PlayerRepository repository;
 
 	@GetMapping(API_REPORT_SERVICE_SEARCH_ALL_PLAYERS)
 	public ResponseEntity<List<Player>> searchAllPlayersFromServiceAPICLient() {
-		List<Player> searchedPlayers = usingPSAPIC.findAll();
-		usingPSAPIC.saveAll(searchedPlayers);
+		List<Player> searchedPlayers = usingPSAPIC.searchAllPlayers();
+		repository.saveAll(searchedPlayers);
 
 		if (searchedPlayers != null) {
 			return ResponseEntity.ok(searchedPlayers);

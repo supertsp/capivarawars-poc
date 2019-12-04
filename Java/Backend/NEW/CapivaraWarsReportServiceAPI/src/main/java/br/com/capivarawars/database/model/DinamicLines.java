@@ -22,7 +22,7 @@ public class DinamicLines {
 	public int getDnmPlayerPlace() {
 		return dnmPlayerPlace++;
 	}
-
+	
 	public String getDnmPlayerName() {
 		return dnmPlayerName = "Player Name";
 	}
