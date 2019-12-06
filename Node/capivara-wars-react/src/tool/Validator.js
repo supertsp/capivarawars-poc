@@ -8,7 +8,7 @@
  * Last update: -
  */
 
-class Validator {
+export default class Validator {
 
 	static isString(variable) {
 		return typeof (variable) === 'string';
@@ -125,6 +125,8 @@ class Validator {
 		return typeof (variable) === 'undefined';
 	}
 
-}
+	static isAxiosResponseOk(variable) {
+		return variable.response.status === 200;
+	}
 
-module.exports = Validator;
+}

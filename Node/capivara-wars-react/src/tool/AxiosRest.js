@@ -2,6 +2,7 @@ import Validator from './Validator';
 import axios from 'axios';
 
 //https://www.npmjs.com/package/axios
+//JS Documentation: https://dev.to/paulasantamaria/document-your-javascript-code-with-jsdoc-2fbf
 
 export default class AxiosRest {
 
@@ -52,6 +53,13 @@ export default class AxiosRest {
         return null;
     }
 
+    /**
+     * Executes the GET method of the HTTP protocol
+     * @param {integer} indexOfConnection 
+     * @param {string} pathToEndpoint 
+     * @param {JSON} configs JSON of extra Axios settings
+     * @returns {Response|Error} A Promise containing an JSON with 'Response' or 'Error' format
+     */
     static async executeGET(indexOfConnection, pathToEndpoint, configs) {
         if (Validator.isIntegerBetweenInterval(indexOfConnection, 0, this.lengthOfConnections())
             && Validator.isString(pathToEndpoint)
@@ -70,22 +78,67 @@ export default class AxiosRest {
         return null;
     }
 
+    /**
+     * Executes the GET method of the HTTP protocol. 
+     * 
+     * @example const response = await AxiosRest.executeNamedGET('myApi', `products/${idProduct}`);
+     * if (response.status === 200 && response.data) {}
+     * 
+     * @param {string} nameOfConnection 
+     * @param {string} pathToEndpoint 
+     * @param {JSON} configs JSON of extra Axios settings
+     * @returns {Response|Error|null} A Promise containing an JSON with 'Response'/'Error' format or null
+     */
     static async executeNamedGET(nameOfConnection, pathToEndpoint, configs) {
         if (Validator.isString(nameOfConnection)
             && Validator.isString(pathToEndpoint)
             && Validator.isUndefined(configs)) {
 
-            return await this.getNamedApiConnection(nameOfConnection).get(pathToEndpoint);
+            let errorX;
+            this.getNamedApiConnection(nameOfConnection).get(pathToEndpoint)
+                .then((response) => {
+                    console.log("RESPONSE  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...");
+
+                    return response;
+                })
+                .catch((error) => {
+                    errorX = { ...error.response };
+                    // console.log("errorX: " + errorX);
+
+                    return errorX;
+                    // console.log("errorX: " + JSON.stringify(errorX));
+                    // console.log("errorX: " + JSON.parse(errorX));
+
+                    console.log("ERROR... xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...");
+                    // return error.response;
+
+                });
+
+            console.log("errorX: " + errorX);
+
+            return "oi";
+            // return errorX;
         }
 
         if (Validator.isString(nameOfConnection)
             && Validator.isString(pathToEndpoint)
             && !Validator.isUndefined(configs)) {
 
-            return await this.getNamedApiConnection(nameOfConnection).get(pathToEndpoint, configs);
+            // const response = await this.getNamedApiConnection(nameOfConnection).get(pathToEndpoint, configs);
+
+            // console.log("ixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...");
+            // if (response.data) {
+            //     console.log("if again...");
+            //     return response;
+            // }
+            // else {
+            //     console.log("else again...");
+            //     const subresponse = response.response;
+            //     return subresponse;
+            // }
         }
 
-        return null;
+        return 'oi :0';
     }
 
     static async executePOST(indexOfConnection, pathToEndpoint, data, configs) {

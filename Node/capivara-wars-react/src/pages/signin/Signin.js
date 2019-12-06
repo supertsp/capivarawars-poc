@@ -61,6 +61,7 @@ class Signin extends Component {
             this.setState({ player: response.data });
             this.setState({ loginError: false });
         }
+
         else {
             this.setState({ player: '' });
             this.setState({ loginError: true });
