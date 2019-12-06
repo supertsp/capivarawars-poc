@@ -75,6 +75,17 @@ export default class Jogador {
 		return this.pontos;
 	}
 
+	setPontos(novosPontos) {
+		if (Validator.isInteger(novosPontos)) {
+			this.pontos = novosPontos;
+		}
+		else {
+			this.id = 0;
+		}
+
+		return this;
+	}
+
 	incrementarPontos() {
 		this.pontos++;
 		return this;

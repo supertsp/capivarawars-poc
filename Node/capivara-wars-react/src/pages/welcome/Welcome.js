@@ -5,6 +5,8 @@ import { Link, withRouter } from "react-router-dom";
 import Globals from "../../Globals";
 
 //Import Pages
+import Validator from '../../tool/Validator';
+import AxiosRest from '../../tool/AxiosRest';
 
 class Welcome extends Component {
     render() {

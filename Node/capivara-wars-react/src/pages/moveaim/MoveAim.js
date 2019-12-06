@@ -44,7 +44,7 @@ class MoveAim extends Component {
 
                             <div className="aim-area">
 
-                                <input type="button" className="form-button-cancel" value="-" />
+                                <input type="button" className="form-button-back" value="-" />
 
                                 <span className="aim-area-all-pieces">
                                     <label className="aim-area-piece">
@@ -89,7 +89,7 @@ class MoveAim extends Component {
                                     </label>
                                 </span>
 
-                                <input type="button" className="form-button-confirm" value="+" />
+                                <input type="button" className="form-button-back" value="+" />
                             </div>
 
                             <div className="statistics-area">

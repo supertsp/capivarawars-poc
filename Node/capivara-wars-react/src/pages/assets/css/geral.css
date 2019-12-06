@@ -634,6 +634,9 @@ form {
   /*      top rigth bottom left */
   padding: 6px 18px 6px 18px;
 
+  /* margin: top right bottom left*/
+  margin: 0em 1em 0em 0.8em;
+
   background-color: #00aeff;
 
   border-radius: 1em;
@@ -671,19 +674,12 @@ form {
 }
 
 .boat-area .form-button-cancel,
-.boat-area .form-button-confirm {
+.boat-area .form-button-confirm,
+.boat-area .form-button-back {
   margin: 0px;
   padding: 0px;
 
   font-size: 1em;
-}
-
-.boat-area .form-button-cancel {
-  margin-right: 1em;
-}
-
-.boat-area .form-button-confirm {
-  margin-left: 1em;
 }
 
 /**
@@ -707,6 +703,9 @@ form {
 .aim-area-all-pieces {
   /*      top rigth bottom left */
   padding: 6px 18px 6px 18px;
+
+  /* margin: top right bottom left*/
+  margin: 0em 1em 0em 1em;
 
   border-radius: 1em;
 
@@ -759,19 +758,12 @@ form {
 }
 
 .aim-area .form-button-cancel,
-.aim-area .form-button-confirm {
+.aim-area .form-button-confirm,
+.aim-area .form-button-back {
   margin: 0px;
   padding: 0px;
 
   font-size: 1em;
-}
-
-.aim-area .form-button-cancel {
-  margin-right: 1em;
-}
-
-.aim-area .form-button-confirm {
-  margin-left: 1em;
 }
 
 /**

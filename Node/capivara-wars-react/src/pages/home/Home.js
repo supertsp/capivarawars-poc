@@ -5,9 +5,48 @@ import { Link, withRouter } from 'react-router-dom';
 import Globals from '../../Globals';
 
 //Import Pages
+import Jogador from '../../gamecore/Jogador';
 
 
 class Home extends Component {
+
+    state = {
+        jogador: '',
+        partidaIniciou: false
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.state.jogador = Globals.getJogadorLogado();
+    }
+
+    componentDidMount() {
+        //qdo renderizado no início
+        // this.setState({ nickJogadorLogado: Globals.getJogadorLogado().getNick() });
+        // this.setState({ nickJogadorLogado: Globals.getJogadorLogado() });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.state.partidaIniciou) {
+
+            Globals.addJogadorInimigo(new Jogador("Julia", "Feliceta", 10, 4).setId(777));
+
+            if (Globals.criarPartida()) {
+                this.props.history.push('/moveboat');
+            }
+        }
+
+    }
+
+    onSubmitHandler = (event) => {
+        event.preventDefault();
+    }
+
+    onClickPlay = (event) => {
+        this.setState({ partidaIniciou: true });
+    }
+
 
     render() {
 
@@ -39,15 +78,14 @@ class Home extends Component {
                         </div>
 
                         <div className="container-bamboo-border">
-                            <form className="container-bamboo-bg-color text-center padding-bottom-1">
+                            <form onSubmit={this.onSubmitHandler} className="container-bamboo-bg-color text-center padding-bottom-1">
 
                                 <p>Let the games begin!!</p>
 
-                                <Link to="/moveboat">
-                                    <button className="form-button-play">
-                                        <img src={require('../assets/images/buttonplay.svg')} alt="#" />
-                                    </button>
-                                </Link>
+
+                                <button onClick={this.onClickPlay} className="form-button-play">
+                                    <img src={require('../assets/images/buttonplay.svg')} alt="#" />
+                                </button>
 
                             </form>
                         </div>
@@ -61,7 +99,7 @@ class Home extends Component {
                         </div>
 
                         <div className="container-bamboo-border">
-                            <form className="container-bamboo-bg-color padding-bottom-1">
+                            <form onSubmit={this.onSubmitHandler} className="container-bamboo-bg-color padding-bottom-1">
 
                                 <table>
 

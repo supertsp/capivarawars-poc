@@ -45,7 +45,7 @@ class MoveBoat extends Component {
 
                             <div className="boat-area">
 
-                                <input type="button" className="form-button-cancel" value="-" />
+                                <input type="button" className="form-button-back" value="-" />
 
                                 <span className="boat-area-all-pieces">
                                     <label className="boat-area-piece">
@@ -90,7 +90,7 @@ class MoveBoat extends Component {
                                     </label>
                                 </span>
 
-                                <input type="button" className="form-button-confirm" value="+" />
+                                <input type="button" className="form-button-back" value="+" />
                             </div>
 
                             <div className="statistics-area">

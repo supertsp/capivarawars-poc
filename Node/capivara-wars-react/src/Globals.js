@@ -80,7 +80,11 @@ export default class Globals {
             }
 
             this.partida.iniciar();
+
+            return true;
         }
+
+        return false;
     }
 
     static getPartida() {
@@ -89,6 +93,10 @@ export default class Globals {
         }
 
         return null;
+    }
+
+    static getCanoaJogadorLogado() {
+
     }
 
     static moverCanoaDoJogadorAtual(posicaoNoRio) {
