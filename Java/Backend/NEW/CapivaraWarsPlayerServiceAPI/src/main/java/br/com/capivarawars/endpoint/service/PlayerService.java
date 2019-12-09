@@ -145,9 +145,32 @@ public class PlayerService {
 				} catch (Exception e) {
 					//Caso o email ou nick sejam duplicados é gerado esse erro				
 				}
-			}			
+			}
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
 		
+		return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
+	}
+	
+	public ResponseEntity<Player> patchOnePlayer(Long idPlayer, Player playerToBeCopiedFields) {
+		Player searchedPlayer = searchOnePlayerById(idPlayer).getBody();
+
+		if (searchedPlayer != null) {
+			try {
+				searchedPlayer.patchFields(playerToBeCopiedFields);
+				
+				if (searchedPlayer.isValidObject()) {
+					searchedPlayer = playerRepository.save(searchedPlayer);
+					return ResponseEntity.ok(searchedPlayer);
+				}
+				
+				return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
+			} catch (Exception e) {
+				//Caso o email ou nick sejam duplicados é gerado esse erro				
+			}
+		}
+
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
 	

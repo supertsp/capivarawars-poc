@@ -107,6 +107,15 @@ public class Player {
 
 	@Column(name = "PRIZES_EARNED")
 	private Integer prizesEarned;
+	
+	//REMOVE IN FUTURE
+	@Column(name = "CAPYBARA_NAME", length = 45)
+	private String capybaraName;
+	
+	@Column(name = "CAPYBARA_COLOR", length = 9)
+	private String capybaraColor;
+	
+	
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="Relationships fields...">
@@ -133,6 +142,9 @@ public class Player {
 
 	// <editor-fold defaultstate="collapsed" desc="auxiliary fields...">
 	private static Player playerError = new Player();
+	
+	@JsonIgnore
+	private String passwordNoCrypt;
 	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="constructors...">
@@ -167,6 +179,7 @@ public class Player {
 	public Player setPassword(String password) {
 		if (password != null) {
 			password = password.trim();
+			this.passwordNoCrypt = password;
 			this.password = Cryptography.getSHA256(password);
 		} else {
 			this.password = "";
@@ -377,6 +390,26 @@ public class Player {
 	}
 
 	public Integer getPrizesEarned() {
+		int contPrizes = 0;
+		
+		if (listOfMatchesPlayed != null) {
+			for (MatchPlayed matchPlayed : listOfMatchesPlayed) {
+				if (matchPlayed.getIdPrizeEarned() != null) {
+					contPrizes++;
+				}
+			}
+		}
+		
+		if (listOfChampionshipsPlayed != null) {
+			for (ChampionshipPlayed championshipPlayed : listOfChampionshipsPlayed) {
+				if (championshipPlayed.getIdPrizeEarned() != null) {
+					contPrizes++;
+				}
+			}
+		}
+		
+		this.prizesEarned = contPrizes;
+		
 		return prizesEarned;
 	}
 
@@ -396,6 +429,29 @@ public class Player {
 	public List<ChampionshipPlayed> getListOfChampionshipsPlayed(){
 		return listOfChampionshipsPlayed;
 	}
+	
+	
+	//REMOVE IN FUTURE
+	public String getCapybaraName() {
+		return capybaraName;
+	}
+
+	public Player setCapybaraName(String capybaraName) {
+		this.capybaraName = capybaraName;
+		return this;
+	}
+
+	public String getCapybaraColor() {
+		return capybaraColor;
+	}
+
+	public Player setCapybaraColor(String capybaraColor) {
+		this.capybaraColor = capybaraColor;
+		return this;
+	}
+	
+	
+	
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="override methods...">
@@ -514,6 +570,34 @@ public class Player {
                 && gender != null
                 && birthday != null;
     }
+	
+	public void patchFields(Player playerToBeCopiedFields){
+//		setIdPlayer(playerToBeCopiedFields.getIdPlayer()!= null ? playerToBeCopiedFields.getIdPlayer(): this.idPlayer);
+		setNick(playerToBeCopiedFields.getNick() != null ? playerToBeCopiedFields.getNick() : this.nick);
+		
+		if(playerToBeCopiedFields.getPassword() != null){
+			setPassword(playerToBeCopiedFields.passwordNoCrypt);
+		}
+		
+		setEmail(playerToBeCopiedFields.getEmail() != null ? playerToBeCopiedFields.getEmail() : this.email);
+		setAccountBirthday(playerToBeCopiedFields.getAccountBirthday() != null ? playerToBeCopiedFields.getAccountBirthday() : this.accountBirthday);
+		setAvatarUrl(playerToBeCopiedFields.getAvatarUrl() != null ? playerToBeCopiedFields.getAvatarUrl() : this.avatarUrl);
+		setFullName(playerToBeCopiedFields.getFullName() != null ? playerToBeCopiedFields.getFullName() : this.fullName);
+		setGender(playerToBeCopiedFields.getGender() != null ? playerToBeCopiedFields.getGender() : this.gender);
+		setBirthday(playerToBeCopiedFields.getBirthday() != null ? playerToBeCopiedFields.getBirthday() : this.birthday);
+		setOnline(playerToBeCopiedFields.isOnline() != null ? playerToBeCopiedFields.isOnline() : this.online);
+		setLastActivationCode(playerToBeCopiedFields.getLastActivationCode() != null ? playerToBeCopiedFields.getLastActivationCode() : this.lastActivationCode);
+		setCoins(playerToBeCopiedFields.getCoins() != null ? playerToBeCopiedFields.getCoins() : this.coins);
+		setScore(playerToBeCopiedFields.getScore() != null ? playerToBeCopiedFields.getScore() : this.score);
+		setWins(playerToBeCopiedFields.getWins() != null ? playerToBeCopiedFields.getWins() : this.wins);
+		setLosses(playerToBeCopiedFields.getLosses() != null ? playerToBeCopiedFields.getLosses() : this.losses);
+		setDraws(playerToBeCopiedFields.getDraws() != null ? playerToBeCopiedFields.getDraws() : this.draws);
+		setAccurateShots(playerToBeCopiedFields.getAccurateShots() != null ? playerToBeCopiedFields.getAccurateShots() : this.accurateShots);
+		setBadShots(playerToBeCopiedFields.getBadShots() != null ? playerToBeCopiedFields.getBadShots() : this.badShots);
+		setShotsReceived(playerToBeCopiedFields.getShotsReceived() != null ? playerToBeCopiedFields.getShotsReceived() : this.shotsReceived);
+		setMovements(playerToBeCopiedFields.getMovements() != null ? playerToBeCopiedFields.getMovements() : this.movements);
+	}
+
 	// </editor-fold>
 
 	// </editor-fold>	

@@ -26,7 +26,7 @@ public class EnableCORS implements WebMvcConfigurer{
 	/**
 	 * https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 	 * https://cursos.alura.com.br/forum/topico-cors-error-89874
-	 * http://andreybleme.com/2016-11-27/cors-spring/
+	 * http://andreybleme.com/2016-11-27/cors-spring/	 * 
 	 */
 	
 	@Override
@@ -34,7 +34,7 @@ public class EnableCORS implements WebMvcConfigurer{
 		registry
 			.addMapping("/**")
 			.allowedOrigins("*")
-			.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
+			.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT");
 	}
 	
 	

@@ -59,7 +59,7 @@ public class PlayerCheckEndpoints {
 		return playerService.checkOnePlayerOnline(idPlayer);
 	}
 	
-	@GetMapping(API_PLAYER_SERVICE_CHECK_ONE_PLAYER_CREDENTIALS)
+	@PostMapping(API_PLAYER_SERVICE_CHECK_ONE_PLAYER_CREDENTIALS)
 	@ApiResponses(value = { 
       @ApiResponse(code = 200, message = "Element Found"),
       @ApiResponse(code = 201, message = "-"),

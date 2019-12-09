@@ -383,9 +383,9 @@ partida
   .addJogador(new Jogador("joshua", "tres", 10, 4).setId(2))
   .addJogador(new Jogador("matheus", "miku", 10, 4).setId(3))
   .addJogador(new Jogador("leonardo", "nino", 10, 4).setId(4))
-  .addJogador(new Jogador("jonatas", "adão", 10, 4).setId(5))
+  .addJogador(new Jogador("Alex", "Mimi", 10, 4).setId(5))
   .addJogador(new Jogador("juliana", "harry", 10, 4).setId(5))
-  .addJogador(new Jogador("th", "jesus", 10, 4).setId(5));
+  .addJogador(new Jogador("kaline", "Fofi", 10, 4).setId(5));
 
 partida.iniciar();
 
@@ -471,5 +471,3 @@ if (partida.isEmpatou()) {
   console.log("\n TEVE 1 VENCEDOR :) >>> " + partida.getVencedor().getNick());
 }
 
-
-console.log("Teste estático: " + Console.teste);

@@ -28,6 +28,8 @@ public class EndpointsMapping {
 			API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_MATCH = "/player/{idPlayer}/match/{idMatch}",
 			API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_CHAMPIONSHIP = "/player/{idPlayer}/championship/{idChampionship}",
 			
+			//PATCH :: PATCH
+			API_PLAYER_SERVICE_PATCH_ONE_PLAYER = "/player/{idPlayer}",
 			
 			//DELETE :: DELETE
 			API_PLAYER_SERVICE_DELETE_ONE_PLAYER = "/player/{idPlayer}",

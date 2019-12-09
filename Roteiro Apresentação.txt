@@ -1,0 +1,49 @@
+1) Apresentação da empresa,
+2) Dos integrantes da empresa,
+3) Objetivo da empresa,
+4) Problematica trabalhada no projeto (Mercado Valor dado ao Projeto),
+5) Proto Personas,
+6) Solução desenvolvida + apresentação do Jogo,
+7) Beneficios Gerados, 
+8) Tecnologias Utilizadas,
+9) solução high e low level,
+10) Diagrama BD,
+11) Apresentação do power bi,
+12) Conclusão,
+13) Agradecimentos
+
+
+1) Apresentação da Empresa
+	"Somos a empresa Kings Of River, uma startup de games, e temos o prazer de apresentar nossso time..."
+	"games -> paixão"
+	"emprender -> missão"
+	"transformar -> combustível"
+	
+2) Apresentação do time e os papeis que cada um trabalhou
+
+3) Contexto de mercado de games
+	"Estávamos pensando em o que fazer e de repente vimos essa frase 'The Data is new Bacon'"
+	https://www.ibm.com/blogs/business-analytics/data-is-the-new-bacon/
+	"Se games podem ganham muito com microtransações então o ideal é analisar o jogador para vender coisas adequadas com altas taxas de conversão"
+	https://venturebeat.com/2019/01/09/sensor-tower-candy-crush-players-spent-an-average-of-4-2-million-a-day-in-2018/
+	https://venturebeat.com/2019/09/17/newzoo-global-game-revenues-will-hit-68-5-billion-in-2019/#:~:targetText=Mobile%20games%20revenue%20was%20at,spend%20money%20on%20mobile%20gaming.
+	https://www.flurry.com/blog/post/113370692935/mobile-freemium-games-gen-y-plays-but-gen-x-pays
+	https://knocknockgames.com/blog/what-mobile-game-genres-are-more-profitable-to-develop
+	
+4) Proto personas
+	"Analisamos o perfil de nossos clientes e investidores baseado em algo que conseguiríamos produzir"
+	
+5) E nasceu uma capivara...
+	"Agora vamos demonstrar nosso game... bom ache que a gente aprende jogando..."
+	
+6) Então, como foi possível nascer essa capivara???
+	Slides que demonstram: arquiterura do projeto (microserviços e diagrama disso), documentação (swagger) que ajudou no desenvolvimento, frontend (React), dados do jogador em Mongo DB
+		Azure para banco relacional
+		
+7) Cadê meu bacon?!
+	"Agora vamos demonstrar a receita do dia com Power Bi"
+
+8) Conclusão
+	"Games são legais e bacons são gostosos, porque não?"
+
+9) Agradecimentos

@@ -62,13 +62,28 @@ public class PlayerUpdateEndpoints {
 		return playerService.updateOnePlayer(idPlayer, playerToBeUpdated);
 	}
 	
+	@PatchMapping(API_PLAYER_SERVICE_PATCH_ONE_PLAYER)
+	@ApiResponses(value = { 
+      @ApiResponse(code = 200, message = "Element Updated"),
+      @ApiResponse(code = 201, message = "-"),
+      @ApiResponse(code = 401, message = "-"),
+      @ApiResponse(code = 403, message = "-"),
+      @ApiResponse(code = 404, message = "Not Found"),
+      @ApiResponse(code = 406, message = "Not Acceptable") })
+	public ResponseEntity<Player> patchOnePlayer(
+			@PathVariable("idPlayer") Long idPlayer,
+			@RequestBody Player playerToBeCopiedFields) {
+		
+		return playerService.patchOnePlayer(idPlayer, playerToBeCopiedFields);
+	}
+	
 	@PutMapping(API_PLAYER_SERVICE_UPDATE_ONE_PLAYER_ONLINE)
 	@ApiResponses(value = { 
       @ApiResponse(code = 200, message = "Element Updated"),
       @ApiResponse(code = 201, message = "-"),
       @ApiResponse(code = 401, message = "-"),
       @ApiResponse(code = 403, message = "-"),
-      @ApiResponse(code = 404, message = "Not Found")})
+      @ApiResponse(code = 404, message = "Not Found") })
 	public ResponseEntity<Player> updateOnePlayerOnline(
 			@PathVariable("idPlayer") Long idPlayer,
 			@PathVariable("online") Boolean online) {	
