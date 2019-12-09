@@ -81,11 +81,23 @@ form {
 */
 
 .user-area {
+  display: grid;
+  grid-template-columns: auto auto;
   position: fixed;
   top: 1em;
   right: 1em;
 
   text-align: center;
+}
+
+.user-area-nick {
+  grid-row: 1 / span 2;
+  padding: 2em 0em;
+  margin-right: 1em;
+
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #552200;
 }
 
 .user-area img {
@@ -179,7 +191,7 @@ form {
 .container-bamboo-register,
 .capii-animation-register {
   float: left;
-  margin-left: 13%;
+  /* margin-left: 13%; */
 }
 
 .container-bamboo,
@@ -189,7 +201,7 @@ form {
 .capii-sweating,
 .capii-animation {
   float: left;
-  margin-left: 23%;
+  /* margin-left: 23%; */
 }
 
 /**
@@ -213,87 +225,45 @@ form {
 *  +---------------------+                                                           
 */
 
-.container-bamboo-no-capii {
-  width: 50%;
+.capii-side-and-container-bamboo {
+  position: relative;
+  left: -4em;
+
+  width: 40em;
   margin: auto;
   margin-top: -1.5em;
-
-  /* border: 1px dotted green; */
 }
 
-.container-bamboo-home {
-  display: flex;
-  flex-direction: row;
-  flex-flow: row wrap;
-  width: 80%;
+.capii-side-and-container-bamboo-register {
+  position: relative;
+  left: -1em;
+
+  width: 55em;
   margin: auto;
-  margin-top: -1em;
-
-  overflow-wrap: unset;
-
-  /* border: 1px dotted green; */
+  margin-top: -1.5em;
 }
 
-.container-bamboo-home-item-game {
-  width: 30%;
-  margin: auto;
-}
-
-.container-bamboo-home-item-status {
-  width: 50%;
-  margin: auto;
-
-  font-weight: bold;
-  text-align: center;
-}
-
-.container-bamboo-home-item-status table {
-  /* display: block; */
-  width: 80%;
-
-  margin: auto;
-  margin-top: 1em;
-
-  color: #552200;
-
-  /* border: 1px dotted green; */
-}
-
-.container-bamboo-home-item-status td {
-  width: 60%;
-
-  font-size: 1.6em;
-  /* border: 1px dotted green; */
-}
-
-.container-bamboo-home-item-status .table-first-col {
-  width: 40%;
-
-  font-size: 1em;
-  color: #37483e;
-}
-
-.container-bamboo-home-item-status .user-capii-icon {
-  width: 4em;
-}
-
-.container-bamboo-home-item {
-  /* display: table-cell; */
-  width: 40%;
-  margin: auto;
-  /* margin-right: 5em; */
+.capii-side-and-container-bamboo::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 .container-bamboo {
-  width: 30%;
+  width: 27em;
   margin: auto;
-  margin-top: -1.5em;
 }
 
 .container-bamboo-register {
-  width: 50%;
+  width: 35em;
   margin: auto;
-  margin-top: -1.5em;
+}
+
+.container-bamboo-no-capii {
+  width: 20em;
+  margin: auto;
+
+  /* border: 1px dotted green; */
 }
 
 .container-bamboo-title {
@@ -355,6 +325,86 @@ form {
   /* border: 1px dotted red; */
 }
 
+.container-bamboo-home {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  width: 45em;
+  margin: auto;
+  margin-top: -1em;
+
+  overflow-wrap: unset;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-home-item-game {
+  width: 18em;
+  margin: auto;
+}
+
+.container-bamboo-home-item-status {
+  width: 23em;
+  margin: auto;
+
+  font-weight: bold;
+  text-align: center;
+}
+
+.container-bamboo-home-item-status table {
+  /* display: block; */
+  width: 80%;
+
+  margin: auto;
+  margin-top: 1em;
+
+  color: #552200;
+
+  border-collapse: collapse;
+
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-home-item-status td {
+  width: 60%;
+
+  font-size: 1.6em;
+  /* border: 1px dotted green; */
+}
+
+.container-bamboo-home-item-status .table-empty-row {
+  height: 3px;
+  font-size: 3px;
+  /* border: 1px dotted green; */
+  border-bottom: 2px dashed green;
+}
+
+.container-bamboo-home-item-status tr:hover {
+  background-color: #90b174b9;
+}
+
+.container-bamboo-home-item-status .tr-no-hover:hover {
+  background-color: transparent;
+}
+
+.container-bamboo-home-item-status .table-first-col {
+  width: 40%;
+
+  font-size: 1em;
+  color: #37483e;
+}
+
+.container-bamboo-home-item-status .user-capii-icon {
+  width: 4em;
+}
+
+.container-bamboo-home-item {
+  /* display: table-cell; */
+  width: 40%;
+  margin: auto;
+  /* margin-right: 5em; */
+}
+
 /**
 *  +---------------+                                                                     
 *  |  FORM TABLE   |                                                                  
@@ -376,36 +426,29 @@ form {
   /* border: 1px dotted red; */
 }
 
+.form-bottom-area {
+  display: inline-block;
+  width: 100%;
+}
+
 /**
 *  +-------------------------+                                                                     
 *  |  ALL INPUTS & BUTTONS   |                                                                  
 *  +-------------------------+                                                           
 */
 
+a:focus,
 .form-input-text-original:focus,
 .form-input-date-original:focus,
 .form-button:focus,
 .form-button-play:focus,
 .form-button-cancel:focus,
 .form-button-confirm:focus,
-.form-checkbox-square {
+.form-button-back:focus,
+.form-checkbox-square:focus,
+.form-select:focus {
   /* outline: outline-width outline-style outline-color|initial|inherit; */
   outline: none;
-}
-
-.form-button:hover,
-.form-button-play:hover,
-.form-button-cancel:hover,
-.form-button-confirm:hover,
-.form-button-back:hover,
-.form-checkbox-square:hover {
-  /* box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit; */
-  box-shadow: 0px 0px 1em 0.2em #55220099;
-  /* filter: blur(10px); */
-  /* outline: outline-width outline-style outline-color|initial|inherit; */
-  /* outline: 3px solid #55220099; */
-  /* outline-offset: length|initial|inherit; */
-  /* outline-offset: 5px; */
 }
 
 /**
@@ -448,15 +491,43 @@ form {
   line-height: 1.5em;
 }
 
+.form-input-text-original:hover,
+.form-input-text-original:focus,
+.form-input-date-original:hover,
+.form-input-date-original:focus {
+  border-bottom: 2px solid #833603;
+}
+
 .form-input-date-original {
   font-size: 1em;
 }
 
+.form-capybara-name {
+  max-width: 6.9em;
+  margin-left: 1.5em;
+}
+
 /**
-*  +--------------------------+                                                                     
-*  |  INPUT:BUTTON & BUTTON   |                                                                  
-*  +--------------------------+                                                           
+*  +-----------------+                                                                     
+*  |  INPUT:BUTTON   |                                                                  
+*  +-----------------+                                                           
 */
+
+.form-button:hover,
+.form-button-play:hover,
+.form-button-cancel:hover,
+.form-button-confirm:hover,
+.form-button-back:hover,
+.form-checkbox-square:hover,
+.form-select:hover {
+  /* box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit; */
+  box-shadow: 0px 0px 1em 0.2em #55220099;
+  /* filter: blur(10px); */
+  /* outline: outline-width outline-style outline-color|initial|inherit; */
+  /* outline: 3px solid #55220099; */
+  /* outline-offset: length|initial|inherit; */
+  /* outline-offset: 5px; */
+}
 
 .form-group-button {
   display: block;
@@ -528,6 +599,16 @@ form {
   color: #333333ff;
 }
 
+.form-buttons-back-save {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+/* .form-buttons-back-save button,
+.form-buttons-back-save input {
+  
+} */
+
 /**
 *  +------------+                                                                     
 *  |  CHECKBOX  |                                                                  
@@ -559,20 +640,20 @@ form {
   width: 15px;
   height: 15px;
 
-  background-color: #c08c69ff;
+  background-color: #96cf6550;
 
   border-radius: 4px;
-  border: 3px solid #552200ff;
+  border: 3px solid #0c3806;
 }
 
 /* Cor: Sobre */
 .form-checkbox-square:hover {
-  background-color: #ff6600ff;
+  background-color: #46b637cb;
 }
 
 /* Cor: Selecionado */
 .form-checkbox-field .form-checkbox-original:checked ~ .form-checkbox-square {
-  background-color: #ff6600ff;
+  background-color: #46b637cb;
 }
 
 /* Desenhando o "V" */
@@ -608,7 +689,76 @@ form {
 
   font-size: 0.9em;
   font-weight: bold;
-  color: #552200ff;
+  color: #0c3806;
+}
+
+/**
+*  +----------+                                                                     
+*  |  SELECT  |                                                                  
+*  +----------+                                                           
+* 
+*  https://css-tricks.com/styling-a-select-like-its-2019/
+*/
+
+.form-select {
+  display: block;
+  /* width: 100%;
+    max-width: 100%;  */
+  margin: auto;
+  margin-top: 0.4em;
+
+  font-weight: bold;
+  color: #552200;
+  /* line-height: 1.3; */
+  /*       top rigth bottom left */
+  padding: 0.2em 2em 0.2em 0.8em;
+  text-align: center;
+
+  box-sizing: border-box;
+  border: 2px solid #0c3806;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 0.3em;
+  appearance: none;
+
+  background-color: #91c96091;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+    linear-gradient(to bottom, #a7f08599 0%, #9bc57999 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+}
+
+.form-select::-ms-expand {
+  display: none;
+}
+
+/* .form-select:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+} */
+
+/**
+*  +----------------------+                                                                     
+*  |  FORM CAPII & SELECT |                                                                  
+*  +----------------------+                                                           
+*/
+
+.form-select-group .form-capii-icon,
+.form-select-group .form-select {
+  display: inline-block;
+}
+
+.form-select-group .form-select {
+  position: relative;
+  top: -0.8em;
+}
+
+.form-capii-icon img {
+  width: 3em;
+  margin-left: 1em;
 }
 
 /**
@@ -988,6 +1138,45 @@ form {
 .margin-left-right-3 {
   margin-left: 3em;
   margin-right: 3em;
+}
+
+.margin-top-1 {
+  margin-top: 1em;
+}
+
+.margin-top-2 {
+  margin-top: 2em;
+}
+
+.margin-top-3 {
+  margin-top: 3em;
+}
+
+.margin-bottom-1 {
+  margin-bottom: 1em;
+}
+
+.margin-bottom-2 {
+  margin-bottom: 2em;
+}
+
+.margin-bottom-3 {
+  margin-bottom: 3em;
+}
+
+.margin-top-bottom-1 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.margin-top-bottom-2 {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.margin-top-bottom-3 {
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
 
 .padding-top-1 {

@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PlayersList from '../components/PlayersList';
 
-//Import Globals
-import Globals from '../../Globals';
-
-//Import
+//Import Globlas & Tools
+import Globals from "../../Globals";
 import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
+
+//Import GameCore
 import Jogador from '../../gamecore/Jogador';
-import { async } from 'q';
+
+//Import Components
+import Header from '../components/Header';
+import SigninStepNick from './SigninStepNick';
+import SigninStepPass from './SigninStepPass';
 
 
 class Signin extends Component {
@@ -17,8 +21,11 @@ class Signin extends Component {
     state = {
         player: '',
         formNick: '',
-        nickJogadorLogado: '',
-        loginError: false
+        formPassword: '',
+        formNickError: false,
+        formPasswordError: false,
+        isNickChecked: false,
+        isLoginCompleted: false
     }
 
     constructor(props) {
@@ -31,96 +38,97 @@ class Signin extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.state.player !== '') {
+        if (this.isLoginCompleted) {
             //constructor(nick, nomeCapivara, tamanhoRio, tamanhoCanoa)
             let jogador = new Jogador(this.state.player.nick, 'Capii', 10, 4);
             jogador.setId(this.state.player.idPlayer);
             jogador.setPontos(this.state.player.score);
-
-            // console.log(`\n\n\n ${jogador} \n\n\n`)
-
             Globals.setJogadorLogado(jogador);
 
-            this.props.history.push('/signinpass');
+            // this.props.history.push('/signinpass');
         }
     }
 
-    handleChangeNick = (event) => {
+    onChangeFormNick = (valueFromChildComponent) => {
         //atribuição com this.setState() força um reload
-        this.setState({ formNick: event.target.value });
+        // this.setState({ formNick: valueFromChildComponent });
+        console.log(valueFromChildComponent);
+    }
+
+    onChangeFormPassword = (valueFromChildComponent) => {
+        //atribuição com this.setState() força um reload
+        this.setState({ formPassword: valueFromChildComponent });
     }
 
     onSubmitHandler = (event) => {
         event.preventDefault();
     }
 
-    searchPlayerOnApi = async (event) => {
-        const response = await AxiosRest.executeNamedGET('playerService', `player/nick/${this.state.formNick}`);
+    searchPlayerByNickOnApi = async (event) => {
+        const response = await AxiosRest.executeGET('playerService', `player/nick/${this.state.formNick}`);
 
-        if (response.status === 200 && response.data) {
+        if (Validator.isAxiosResponseOkAndHasData(response)) {
             this.setState({ player: response.data });
-            this.setState({ loginError: false });
+            this.setState({ formNickError: false });
+            this.setState({ isNickChecked: true });
         }
-
         else {
             this.setState({ player: '' });
-            this.setState({ loginError: true });
+            this.setState({ formNickError: true });
+            this.setState({ isNickChecked: false });
+        }
+    }
+
+    checkPlayerCredtentialsOnApi = async (event) => {
+        const response = await AxiosRest.executePOST('playerService', `/player/check/credentials`, {
+            nick: this.state.nickJogadorLogado,
+            password: this.state.formPassword
+        });
+
+        if (Validator.isAxiosResponseOkAndHasData(response)) {
+            this.setState({ isLoginCompleted: true });
+            this.setState({ formPasswordError: false });
+        }
+        else {
+            this.setState({ isLoginCompleted: false });
+            this.setState({ formPasswordError: true });
         }
     }
 
 
     render() {
-        //defaultValue={Globals.getJogador()}
-        //{require('../assets  .svg')}
-
-        Globals.criarPartida();
-
         return (
             <div>
 
-                <div id="logo-inicial">
-                    <img src={require('../assets/images/capivaralogo.svg')} alt="logo capivara wars" />
-                </div>
+                <Header />
 
-                <div className="capii-silence-hat move-bottom-3"></div>
+                <div className="capii-side-and-container-bamboo">
 
-                <div className="container-bamboo">
+                    <div className="capii-silence-hat move-bottom-3"></div>
 
-                    <div className="container-bamboo-title">
-                        <img src={require('../assets/images/borderbambootitle.svg')} alt="título da área de conteúdo" />
-                        <span>Sign in</span>
+                    <div className="container-bamboo">
+
+                        <div className="container-bamboo-title">
+                            <img src={require('../assets/images/borderbambootitle.svg')} alt="título da área de conteúdo" />
+                            <span>Sign in</span>
+                        </div>
+
+                        <div className="container-bamboo-border">
+                            <form onSubmit={this.onSubmitHandler} className="container-bamboo-bg-color text-center padding-bottom-1">
+
+                                {
+                                    !this.state.isNickChecked &&
+                                    <SigninStepNick parentAction={this.onChangeFormNick} nickErrorStatus={this.state.formNickError} /> ||
+                                    <SigninStepPass parentAciotn={this.onChangeFormPassword} passwordErrorStatus={this.state.formPasswordError} />
+                                }
+
+                            </form>
+                        </div>
                     </div>
 
-                    <div className="container-bamboo-border">
-                        <form onSubmit={this.onSubmitHandler} className="container-bamboo-bg-color text-center padding-bottom-1">
-
-                            <p>First enter your nick</p>
-
-                            <span className="form-input-text-field padding-bottom-1">
-                                <label className="form-input-text-title" htmlFor="nick">Nick</label>
-                                <input className="form-input-text-original" type="text" name="nick" value={this.state.formNick} onChange={this.handleChangeNick} />
-                            </span>
-
-                            {
-                                this.state.loginError === true &&
-                                <span className="error-message display-block">Unfortunately this Nick does not Exist :(</span>
-                            }
-
-                            <span className="form-group-button">
-
-                                <Link to="/">
-                                    <button className="form-button-back margin-left-right-3">back</button>
-                                </Link>
-
-                                <button onClick={this.searchPlayerOnApi} className="form-button margin-left-right-3" type="submit">next</button>
-
-                            </span>
-
-                        </form>
-                    </div>
                 </div>
 
-            </div>
+            </div >
         );
     }
 }

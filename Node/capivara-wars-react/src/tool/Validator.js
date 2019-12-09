@@ -14,6 +14,40 @@ export default class Validator {
 		return typeof (variable) === 'string';
 	}
 
+	static isStringEmpty(variable) {
+		return typeof (variable) === 'string' && (variable === "" || variable === null);
+	}
+
+	static isStrings(...variables) {
+		for (let index = 0; index < variables.length; index++) {
+			if (!this.isString(variables[index])) {
+				return false;
+			}
+		};
+
+		return true;
+
+	}
+	static isStringsEmpty(...variables) {
+		for (let index = 0; index < variables.length; index++) {
+			if (!this.isStringEmpty(variables[index])) {
+				return false;
+			}
+		};
+
+		return true;
+	}
+
+	static isThereAnyEmptyString(...variables) {
+		for (let index = 0; index < variables.length; index++) {
+			if (this.isStringEmpty(variables[index])) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	static isNumber(variable) {
 		return typeof (variable) === 'number';
 	}
@@ -125,8 +159,22 @@ export default class Validator {
 		return typeof (variable) === 'undefined';
 	}
 
-	static isAxiosResponseOk(variable) {
-		return variable.response.status === 200;
+	static isAxiosResponseOk(response) {
+		try {
+			return response.status === 200;
+		}
+		catch (error) {
+			return false;
+		}
+	}
+
+	static isAxiosResponseOkAndHasData(response) {
+		try {
+			return response.status === 200 && response.data;
+		}
+		catch (error) {
+			return false;
+		}
 	}
 
 }

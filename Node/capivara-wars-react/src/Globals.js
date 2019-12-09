@@ -207,4 +207,7 @@ export default class Globals {
  * USANDO CONTEXTO PARA PASSAR VARS
  *      https://pt-br.reactjs.org/docs/context.html
  *
+ * COMPONENTES PAIS E FILHOS: PASSANDO DADOS DE FORMA BI-DERECIONAL
+ *      https://blog.bitsrc.io/react-communication-between-components-c0cfccfa996a
+ *
  */

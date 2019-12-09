@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-//Import Globals
-import Globals from '../../Globals';
+//Import Globlas & Tools
+import Globals from "../../Globals";
+import Validator from '../../tool/Validator';
+import AxiosRest from '../../tool/AxiosRest';
+
+//Import GameCore
+import Jogador from '../../gamecore/Jogador';
 
 //Import Pages
+import Header from '../components/Header';
 
 
 class MoveAim extends Component {
@@ -16,19 +22,7 @@ class MoveAim extends Component {
         return (
             <div>
 
-                <div id="logo-inicial">
-                    <img src={require('../assets/images/capivaralogo.svg')} alt="logo capivara wars" />
-                </div>
-
-                <div className="user-area">
-                    <img src={require('../assets/images/usericon.svg')} alt="user foto" /><br />
-
-                    <Link to="/">
-                        <button className="form-button">logout</button>
-                    </Link>
-
-                </div>
-
+                <Header />
 
                 <div className="container-bamboo-no-capii">
 

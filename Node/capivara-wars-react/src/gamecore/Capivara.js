@@ -14,6 +14,7 @@ import BarraDeVida from './BarraDeVida';
 export default class Capivara {
 
 	nome;
+	cor;
 	corRGBA;
 	morta;
 	barraDeVida;
@@ -41,8 +42,21 @@ export default class Capivara {
 		return this.nome;
 	}
 
+	getCor() {
+		return this.cor;
+	}
+
 	getCorRGBA() {
 		return this.corRGBA;
+	}
+
+	setCor(novaCor) {
+		if (Validator.isString(novaCor)) {
+			this.cor = novaCor;
+		}
+		else {
+			this.cor = 'brown';
+		}
 	}
 
 	setCorRGBA(novaCorRGBA) {

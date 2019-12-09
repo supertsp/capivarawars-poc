@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-//Import Globals
-import Globals from '../../Globals';
+//Import Globlas & Tools
+import Globals from "../../Globals";
+import Validator from '../../tool/Validator';
+import AxiosRest from '../../tool/AxiosRest';
 
-//Import Pages
+//Import GameCore
 import Jogador from '../../gamecore/Jogador';
 
+//Import Pages
+import Header from '../components/Header';
 
 class Home extends Component {
 
@@ -18,7 +22,12 @@ class Home extends Component {
     constructor(props) {
         super(props);
 
-        this.state.jogador = Globals.getJogadorLogado();
+        if (Validator.isUndefined(Globals.getJogadorLogado())) {
+            // this.props.history.push('/');
+        }
+        else {
+            this.state.jogador = Globals.getJogadorLogado();
+        }
     }
 
     componentDidMount() {
@@ -54,19 +63,7 @@ class Home extends Component {
 
         return (
             <div>
-
-                <div id="logo-inicial">
-                    <img src={require('../assets/images/capivaralogo.svg')} alt="logo capivara wars" />
-                </div>
-
-                <div className="user-area">
-                    <img src={require('../assets/images/usericon.svg')} alt="user foto" /><br />
-
-                    <Link to="/">
-                        <button className="form-button">logout</button>
-                    </Link>
-
-                </div>
+                <Header />
 
                 <div className="container-bamboo-home">
 
@@ -103,9 +100,9 @@ class Home extends Component {
 
                                 <table>
 
-                                    <tr>
+                                    <tr className="tr-no-hover">
                                         <td className="table-first-col">
-                                            <img className="user-capii-icon" src={require('../assets/images/capiiiconbrown.svg')} alt="capivara foto" />
+                                            <img className="user-capii-icon" src={require('../assets/images/capii-icon-brown.svg')} alt="capivara foto" />
                                         </td>
                                         <td>
                                             Capii
@@ -129,13 +126,9 @@ class Home extends Component {
                                             100
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td className="table-first-col">
-                                            &nbsp;
-                                        </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
+                                    <tr className="table-empty-row">
+                                        <td></td>
+                                        <td></td>
                                     </tr>
 
                                     <tr>
