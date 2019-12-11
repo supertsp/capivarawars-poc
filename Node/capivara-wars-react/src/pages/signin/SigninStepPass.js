@@ -16,53 +16,18 @@ import Header from '../components/Header';
 class SigninStepPass extends Component {
 
     state = {
-        formPassword: '',
-        nickJogadorLogado: 'tsetes',
-        jogador: '',
-        loginCompleted: false,
-        loginError: false
+        formPassword: ''
     }
 
     constructor(props) {
         super(props);
-
-        if (Validator.isUndefined(Globals.getJogadorLogado())) {
-            this.props.history.push('/');
-        }
-        else {
-            this.state.nickJogadorLogado = Globals.getJogadorLogado().getNick();
-            this.state.jogador = Globals.getJogadorLogado();
-        }
-    }
-
-    componentDidMount() {
-        //qdo renderizado no início
-        // this.setState({ nickJogadorLogado: Globals.getJogadorLogado().getNick() });
-        // this.setState({ nickJogadorLogado: Globals.getJogadorLogado() });
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.state.loginCompleted) {
-            this.props.history.push('/home');
-        }
-    }
-
-    onSubmitHandler = (event) => {
-        event.preventDefault();
     }
 
     onChangeFormPassword = (event) => {
         this.setState({ formPassword: event.target.value });
     }
 
-    checkPlayerCredtentialsOnApi = async (event) => {
-
-    }
-
     render() {
-
-        Globals.criarPartida();
-
         return (
             <div>
                 <p>Now enter your password</p>
@@ -74,9 +39,24 @@ class SigninStepPass extends Component {
                 </span>
 
                 {
-                    this.state.loginError === true &&
+                    this.props.passwordErrorStatus &&
                     <span className="error-message display-block">Unfortunately your Password is Wrong: 0</span>
                 }
+
+                <span className="form-group-button">
+
+                    <Link to="/">
+                        <button className="form-button-back margin-left-right-3">back</button>
+                    </Link>
+
+                    <button
+                        onClick={() => this.props.parentAction(this.state.formPassword)}
+                        className="form-button margin-left-right-3"
+                        type="submit">
+                        enter
+                    </button>
+
+                </span>
             </div>
         );
     }

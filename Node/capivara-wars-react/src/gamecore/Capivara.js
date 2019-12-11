@@ -50,9 +50,9 @@ export default class Capivara {
 		return this.corRGBA;
 	}
 
-	setCor(novaCor) {
-		if (Validator.isString(novaCor)) {
-			this.cor = novaCor;
+	setCor(nomeDaCor) {
+		if (Validator.isString(nomeDaCor)) {
+			this.cor = nomeDaCor;
 		}
 		else {
 			this.cor = 'brown';

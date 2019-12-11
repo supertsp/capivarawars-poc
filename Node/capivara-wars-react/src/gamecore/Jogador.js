@@ -20,6 +20,9 @@ export default class Jogador {
 	pontos;
 	capivara;
 	rio;
+	vitorias;
+	derrotas;
+	empates
 
 	constructor(nick, nomeCapivara, tamanhoRio, tamanhoCanoa) {
 		if (Validator.isString(nick)
@@ -105,6 +108,18 @@ export default class Jogador {
 		return this.getCapivara().isMorta();
 	}
 
+	setCorCapivara(nomeDaCor) {
+		this.capivara.setCor(nomeDaCor);
+	}
+
+	getNomeCapivara() {
+		return this.capivara.getNome();
+	}
+
+	getCorCapivara() {
+		return this.capivara.getCor();
+	}
+
 	getVidaCapivara() {
 		return this.getCapivara().getVida();
 	}
@@ -125,6 +140,85 @@ export default class Jogador {
 		return this.rio.isVazio();
 	}
 
+
+	//VITÓRIAS
+	getVitorias() {
+		if (Validator.isUndefined(this.vitorias)) {
+			this.vitorias = 0;
+		}
+
+		return this.vitorias;
+	}
+
+	setVitorias(novoValor) {
+		if (Validator.isInteger(novoValor)) {
+			this.vitorias = novoValor;
+		}
+
+		return this;
+	}
+
+	incrementarVitorias() {
+		if (Validator.isUndefined(this.vitorias)) {
+			this.vitorias = 0;
+		}
+
+		this.vitorias++;
+	}
+
+	//DERROTAS
+	getDerrotas() {
+		if (Validator.isUndefined(this.derrotas)) {
+			this.derrotas = 0;
+		}
+
+		return this.derrotas;
+	}
+
+	setDerrotas(novoValor) {
+		if (Validator.isInteger(novoValor)) {
+			this.derrotas = novoValor;
+		}
+
+		return this;
+	}
+
+	incrementarDerrotas() {
+		if (Validator.isUndefined(this.derrotas)) {
+			this.derrotas = 0;
+		}
+
+		this.derrotas++;
+	}
+
+	//EMPATES
+	getEmpates() {
+		if (Validator.isUndefined(this.empates)) {
+			this.empates = 0;
+		}
+
+		return this.empates;
+	}
+
+	setEmpates(novoValor) {
+		if (Validator.isInteger(novoValor)) {
+			this.empates = novoValor;
+		}
+
+		return this;
+	}
+
+	incrementarEmpates() {
+		if (Validator.isUndefined(this.empates)) {
+			this.empates = 0;
+		}
+
+		this.empates++;
+	}
+
+
+
+	//RIO + CANOA
 	moverCanoa(posicaoNoRio) {
 		this.rio.moverCanoa(posicaoNoRio);
 	}

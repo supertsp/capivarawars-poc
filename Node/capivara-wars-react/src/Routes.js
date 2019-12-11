@@ -10,6 +10,7 @@ import Register from './pages/register/Register';
 import Signin from './pages/signin/Signin';
 import TurnStatus from './pages/turnstatus/TurnStatus';
 import Welcome from './pages/welcome/Welcome';
+import Loading from './pages/loading/Loading';
 
 export default class Routes extends Component {
     render() {
@@ -26,6 +27,7 @@ export default class Routes extends Component {
                     <Route path="/signin" component={Signin} />
                     <Route path="/turnstatus" component={TurnStatus} />
                     <Route path="/welcome" component={Welcome} />
+                    <Route path="/loading" component={Loading} />
 
                     <Route path="*" component={Welcome} />
                 </Switch>

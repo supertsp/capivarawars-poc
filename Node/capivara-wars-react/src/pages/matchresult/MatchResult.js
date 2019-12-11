@@ -23,35 +23,40 @@ class MatchResult extends Component {
 
                 <Header />
 
-                <div className="capii-sweating move-bottom-3"></div>
+                <div className="container-area-matchresult">
 
-                <div className="container-bamboo">
+                    <div className="capii-sweating"></div>
 
-                    <div className="container-bamboo-title">
-                        <img src={require('../assets/images/borderbambootitle.svg')} alt="título da área de conteúdo" />
-                        <span>Match Result</span>
-                    </div>
+                    <div className="container-bamboo-turnstatus">
 
-                    <div className="container-bamboo-border">
-                        <form className="container-bamboo-bg-color text-center padding-bottom-1">
+                        <div className="container-bamboo-title">
+                            <img src={require('../assets/images/borderbambootitle.svg')} alt="título da área de conteúdo" />
+                            <span>Match Result</span>
+                        </div>
 
-                            <p>And the Winner of this match was ...</p>
+                        <div className="container-bamboo-border">
+                            <form className="container-bamboo-bg-color text-center padding-bottom-1">
 
-                            <div className="match-result-winner-name">
-                                John
+                                <p>And the Winner of this match was ...</p>
+
+                                <div className="match-result-winner-name">
+                                    John
                             </div>
 
-                            <div>
+                                <div>
 
-                                <Link to="/home">
-                                    <button className="form-button">Finish</button>
-                                </Link>
+                                    <Link to="/home">
+                                        <button className="form-button">Finish</button>
+                                    </Link>
 
-                            </div>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
+
                 </div>
+
             </div>
         );
     }

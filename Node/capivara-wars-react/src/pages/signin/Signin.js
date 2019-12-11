@@ -38,60 +38,88 @@ class Signin extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.isLoginCompleted) {
+        if (this.state.isLoginCompleted) {
             //constructor(nick, nomeCapivara, tamanhoRio, tamanhoCanoa)
-            let jogador = new Jogador(this.state.player.nick, 'Capii', 10, 4);
+            let jogador = new Jogador(this.state.player.nick, this.state.player.capybaraName, 10, 4);
             jogador.setId(this.state.player.idPlayer);
             jogador.setPontos(this.state.player.score);
+            jogador.setCorCapivara(this.state.player.capybaraColor);
             Globals.setJogadorLogado(jogador);
 
-            // this.props.history.push('/signinpass');
+            //criando uma sessão
+            sessionStorage.setItem(Globals.getSessionKeyNick(), jogador.getNick());
+            // sessionStorage.setItem(Globals.getSessionKeyJogador(), { ...jogador });
+            sessionStorage.setItem(Globals.getSessionKeyJogador(), JSON.stringify(jogador));
+
+            this.props.history.push('/home');
         }
+    }
+
+    componentWillUnmount() {
+
     }
 
     onChangeFormNick = (valueFromChildComponent) => {
         //atribuição com this.setState() força um reload
-        // this.setState({ formNick: valueFromChildComponent });
-        console.log(valueFromChildComponent);
+        this.setState({ formNick: valueFromChildComponent });
     }
 
     onChangeFormPassword = (valueFromChildComponent) => {
-        //atribuição com this.setState() força um reload
         this.setState({ formPassword: valueFromChildComponent });
     }
 
     onSubmitHandler = (event) => {
         event.preventDefault();
+
+        if (!this.state.isLoginCompleted && !this.state.isNickChecked && !Validator.isStringEmpty(this.state.formNick)) {
+            this.searchPlayerByNickOnApi();
+        }
+
+        if (!this.state.isLoginCompleted && this.state.isNickChecked && !Validator.isStringEmpty(this.state.formNick) && !Validator.isStringEmpty(this.state.formPassword)) {
+            this.checkPlayerCredtentialsOnApi();
+        }
     }
 
     searchPlayerByNickOnApi = async (event) => {
         const response = await AxiosRest.executeGET('playerService', `player/nick/${this.state.formNick}`);
 
         if (Validator.isAxiosResponseOkAndHasData(response)) {
-            this.setState({ player: response.data });
-            this.setState({ formNickError: false });
-            this.setState({ isNickChecked: true });
+            //Dar vários SETs ocasiona vários UPDATEs de tela
+            //Boa prática dar apenas 1, pois ao mudar de tela
+            //a atualização dessa tela não estará em processo de
+            //update, fato esse que ocasiona erros no React
+            this.setState({
+                player: response.data,
+                formNickError: false,
+                isNickChecked: true
+            });
         }
         else {
-            this.setState({ player: '' });
-            this.setState({ formNickError: true });
-            this.setState({ isNickChecked: false });
+            this.setState({
+                player: '',
+                formNickError: true,
+                isNickChecked: false
+            });
         }
     }
 
     checkPlayerCredtentialsOnApi = async (event) => {
         const response = await AxiosRest.executePOST('playerService', `/player/check/credentials`, {
-            nick: this.state.nickJogadorLogado,
+            nick: this.state.formNick,
             password: this.state.formPassword
         });
 
         if (Validator.isAxiosResponseOkAndHasData(response)) {
-            this.setState({ isLoginCompleted: true });
-            this.setState({ formPasswordError: false });
+            this.setState({
+                isLoginCompleted: true,
+                formPasswordError: false
+            });
         }
         else {
-            this.setState({ isLoginCompleted: false });
-            this.setState({ formPasswordError: true });
+            this.setState({
+                isLoginCompleted: false,
+                formPasswordError: true
+            });
         }
     }
 
@@ -102,11 +130,11 @@ class Signin extends Component {
 
                 <Header />
 
-                <div className="capii-side-and-container-bamboo">
+                <div className="container-area-signin">
 
-                    <div className="capii-silence-hat move-bottom-3"></div>
+                    <div className="capii-silence-hat"></div>
 
-                    <div className="container-bamboo">
+                    <div className="container-bamboo-signin">
 
                         <div className="container-bamboo-title">
                             <img src={require('../assets/images/borderbambootitle.svg')} alt="título da área de conteúdo" />
@@ -119,7 +147,7 @@ class Signin extends Component {
                                 {
                                     !this.state.isNickChecked &&
                                     <SigninStepNick parentAction={this.onChangeFormNick} nickErrorStatus={this.state.formNickError} /> ||
-                                    <SigninStepPass parentAciotn={this.onChangeFormPassword} passwordErrorStatus={this.state.formPasswordError} />
+                                    <SigninStepPass parentAction={this.onChangeFormPassword} passwordErrorStatus={this.state.formPasswordError} />
                                 }
 
                             </form>

@@ -43,7 +43,7 @@ class SigninStepNick extends Component {
                 </span>
 
                 {
-                    this.props.nickErrorStatus === true &&
+                    this.props.nickErrorStatus &&
                     <span className="error-message display-block">Unfortunately this Nick does not Exist :(</span>
                 }
 
@@ -54,7 +54,9 @@ class SigninStepNick extends Component {
                     </Link>
 
                     <button
-                        onClick={this.searchPlayerByNickOnApi}
+                        //() => this.props.parentAction(this.state.formNick)
+                        //Desse jeito ao digitar no input não é enviado automaticamente
+                        onClick={() => this.props.parentAction(this.state.formNick)}
                         className="form-button margin-left-right-3"
                         type="submit">
                         next

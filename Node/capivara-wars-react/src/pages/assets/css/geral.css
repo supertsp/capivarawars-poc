@@ -34,7 +34,7 @@ p {
   text-align: center;
   font-size: 1.2em;
   font-weight: bold;
-  color: #552200;
+  color: #416651;
   line-height: 1.5em;
 }
 
@@ -187,36 +187,22 @@ form {
 *  |  CAPIVARA & CONTAINER BAMBOO   |                                                                  
 *  +--------------------------------+                                                           
 */
-
+.container-bamboo-welcome,
 .container-bamboo-register,
-.capii-animation-register {
-  float: left;
-  /* margin-left: 13%; */
-}
-
-.container-bamboo,
+.container-bamboo-signin,
+.container-bamboo-turnstatus,
 .capii-silence-hat,
 .capii-silence-coat,
 .capii-moustache,
 .capii-sweating,
-.capii-animation {
+.capii-animation,
+.capii-animation-register {
+  position: relative;
   float: left;
-  /* margin-left: 23%; */
 }
 
-/**
-*  +-----------------+                                                                     
-*  |  ERROR MESSAGE  |                                                                  
-*  +-----------------+                                                           
-*/
-.error-message {
-  margin-top: 1em;
-  margin-bottom: 1.5em;
-
-  font-size: 0.8em;
-  font-weight: bold;
-  font-style: italic;
-  color: #3b684d;
+.container-area-welcome .capii-animation {
+  top: -1.5em;
 }
 
 /**
@@ -225,45 +211,102 @@ form {
 *  +---------------------+                                                           
 */
 
-.capii-side-and-container-bamboo {
+.container-area-loading,
+.container-area-welcome,
+.container-area-register,
+.container-area-signin,
+.container-area-home,
+.container-area-moveboat,
+.container-area-moveaim,
+.container-area-turnstatus,
+.container-area-matchresult {
   position: relative;
-  left: -4em;
-
-  width: 40em;
   margin: auto;
-  margin-top: -1.5em;
+
+  text-align: center;
+
+  border: 1px dotted green;
 }
 
-.capii-side-and-container-bamboo-register {
-  position: relative;
-  left: -1em;
-
-  width: 55em;
-  margin: auto;
-  margin-top: -1.5em;
-}
-
-.capii-side-and-container-bamboo::after {
+.container-area-loading::after,
+.container-area-welcome::after,
+.container-area-register::after,
+.container-area-signin::after,
+.container-area-home::after,
+.container-area-moveboat::after,
+.container-area-moveaim::after,
+.container-area-turnstatus::after,
+.container-area-matchresult::after {
   content: "";
   clear: both;
   display: table;
 }
 
-.container-bamboo {
-  width: 27em;
-  margin: auto;
+.container-area-loading {
+  width: 10em;
+  /* Align Center-Center */
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
+.container-area-welcome {
+  width: 36em;
+  left: -0.5em;
+}
+
+.container-area-register {
+  width: 45.5em;
+  left: -1em;
+}
+
+.container-area-signin {
+  width: 33em;
+  left: -0.5em;
+}
+
+.container-area-home {
+  width: 43em;
+  left: -1em;
+}
+
+.container-area-moveboat {
+  width: 55em;
+  left: -1em;
+}
+
+.container-area-moveaim {
+  width: 55em;
+  left: -1em;
+}
+
+.container-area-turnstatus {
+  width: 55em;
+  left: -1em;
+}
+
+.container-area-matchresult {
+  width: 55em;
+  left: -1em;
+}
+
+/* ============================ */
+/*   SUB AREAS DOS CONTAINERS   */
 
 .container-bamboo-register {
-  width: 35em;
-  margin: auto;
+  width: 34em;
 }
 
-.container-bamboo-no-capii {
-  width: 20em;
-  margin: auto;
+.container-bamboo-welcome {
+  width: 24em;
+}
 
-  /* border: 1px dotted green; */
+/* ======================== */
+/*   ITENS DOS CONTAINERS   */
+
+.container-area-loading img {
+  width: 10em;
 }
 
 .container-bamboo-title {
@@ -325,7 +368,7 @@ form {
   /* border: 1px dotted red; */
 }
 
-.container-bamboo-home {
+/* .container-bamboo-home {
   display: flex;
   flex-direction: row;
   flex-flow: row wrap;
@@ -335,12 +378,17 @@ form {
 
   overflow-wrap: unset;
 
-  /* border: 1px dotted green; */
+  
+} */
+
+.container-bamboo-home-item-game,
+.container-bamboo-home-item-status {
+  float: left;
 }
 
 .container-bamboo-home-item-game {
   width: 18em;
-  margin: auto;
+  margin-right: 2em;
 }
 
 .container-bamboo-home-item-status {
@@ -403,6 +451,21 @@ form {
   width: 40%;
   margin: auto;
   /* margin-right: 5em; */
+}
+
+/**
+*  +-----------------+                                                                     
+*  |  ERROR MESSAGE  |                                                                  
+*  +-----------------+                                                           
+*/
+.error-message {
+  margin-top: 1em;
+  margin-bottom: 1.5em;
+
+  font-size: 0.8em;
+  font-weight: bold;
+  font-style: italic;
+  color: #3b684d;
 }
 
 /**
@@ -503,8 +566,12 @@ a:focus,
 }
 
 .form-capybara-name {
-  max-width: 6.9em;
-  margin-left: 1.5em;
+  max-width: 6.42em;
+  margin-left: 1.4em;
+}
+
+.form-capybara-name .form-input-text-original {
+  padding-left: 0.5em;
 }
 
 /**
@@ -1056,6 +1123,20 @@ a:focus,
 }
 
 /**
+*  +----------------+                                                                     
+*  |  LOADING AREA  |                                                                  
+*  +----------------+                                                           
+*/
+
+.loading-area {
+  position: relative;
+  left: -3em;
+  width: 15em;
+  margin: auto;
+  padding: 7em;
+}
+
+/**
 *  +----------------------------+                                                                     
 *  |  EXTRA FORMATTING STYLES   |                                                                  
 *  +----------------------------+                                                           
@@ -1063,6 +1144,11 @@ a:focus,
 
 .text-center {
   text-align: center;
+}
+
+.box-align-center {
+  width: 90%;
+  margin: auto;
 }
 
 .font-size-1 {

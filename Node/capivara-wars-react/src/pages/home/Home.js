@@ -11,6 +11,7 @@ import Jogador from '../../gamecore/Jogador';
 
 //Import Pages
 import Header from '../components/Header';
+import IconCapybara from '../components/IconCapybara';
 
 class Home extends Component {
 
@@ -22,7 +23,9 @@ class Home extends Component {
     constructor(props) {
         super(props);
 
-        if (Validator.isUndefined(Globals.getJogadorLogado())) {
+        this.persistirLogin();
+
+        if (Globals.hasJogadorLogado()) {
             // this.props.history.push('/');
         }
         else {
@@ -48,6 +51,14 @@ class Home extends Component {
 
     }
 
+    persistirLogin = () => {
+        if (!Globals.hasJogadorLogado()
+            && !Validator.isUndefined(sessionStorage.getItem(Globals.getSessionKeyJogador()))) {
+
+            Globals.setJogadorLogadoFromSession();
+        }
+    }
+
     onSubmitHandler = (event) => {
         event.preventDefault();
     }
@@ -58,14 +69,11 @@ class Home extends Component {
 
 
     render() {
-
-        Globals.criarPartida();
-
         return (
             <div>
                 <Header />
 
-                <div className="container-bamboo-home">
+                <div className="container-area-home">
 
                     <div className="container-bamboo-home-item-game">
 
@@ -99,65 +107,65 @@ class Home extends Component {
                             <form onSubmit={this.onSubmitHandler} className="container-bamboo-bg-color padding-bottom-1">
 
                                 <table>
+                                    <tbody>
+                                        <tr className="tr-no-hover">
+                                            <td className="table-first-col">
+                                                <IconCapybara color={Globals.getCorCapivaraJogadorLogado()} specialClass="user-capii-icon" />
+                                            </td>
+                                            <td>
+                                                {Globals.getNomeCapivaraJogadorLogado()}
+                                            </td>
+                                        </tr>
 
-                                    <tr className="tr-no-hover">
-                                        <td className="table-first-col">
-                                            <img className="user-capii-icon" src={require('../assets/images/capii-icon-brown.svg')} alt="capivara foto" />
+                                        <tr>
+                                            <td className="table-first-col">
+                                                Life
                                         </td>
-                                        <td>
-                                            Capii
-                                        </td>
-                                    </tr>
+                                            <td>
+                                                {Globals.getVidaCapivaraJogadorLogado()}
+                                            </td>
+                                        </tr>
 
-                                    <tr>
-                                        <td className="table-first-col">
-                                            Life
+                                        <tr>
+                                            <td className="table-first-col">
+                                                Score
                                         </td>
-                                        <td>
-                                            7
-                                        </td>
-                                    </tr>
+                                            <td>
+                                                {Globals.getPontosJogadorLogado()}
+                                            </td>
+                                        </tr>
+                                        <tr className="table-empty-row">
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
 
-                                    <tr>
-                                        <td className="table-first-col">
-                                            Score
+                                        <tr>
+                                            <td className="table-first-col">
+                                                Wins
                                         </td>
-                                        <td>
-                                            100
-                                        </td>
-                                    </tr>
-                                    <tr className="table-empty-row">
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                            <td>
+                                                {Globals.getVitoriasJogadorLogado()}
+                                            </td>
+                                        </tr>
 
-                                    <tr>
-                                        <td className="table-first-col">
-                                            Wins
+                                        <tr>
+                                            <td className="table-first-col">
+                                                Losses
                                         </td>
-                                        <td>
-                                            10
-                                        </td>
-                                    </tr>
+                                            <td>
+                                                {Globals.getDerrotasJogadorLogado()}
+                                            </td>
+                                        </tr>
 
-                                    <tr>
-                                        <td className="table-first-col">
-                                            Losses
+                                        <tr>
+                                            <td className="table-first-col">
+                                                Draws
                                         </td>
-                                        <td>
-                                            1
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td className="table-first-col">
-                                            Draws
-                                        </td>
-                                        <td>
-                                            5
-                                        </td>
-                                    </tr>
-
+                                            <td>
+                                                {Globals.getEmpatesJogadorLogado()}
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
 
                             </form>

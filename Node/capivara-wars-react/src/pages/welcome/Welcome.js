@@ -20,11 +20,11 @@ class Welcome extends Component {
 
                 <Header />
 
-                <div className="capii-side-and-container-bamboo">
+                <div className="container-area-welcome">
 
-                    <div className="capii-animation move-bottom-3"></div>
+                    <div className="capii-animation"></div>
 
-                    <div className="container-bamboo">
+                    <div className="container-bamboo-welcome">
                         <div className="container-bamboo-title">
                             <img src={require("../assets/images/borderbambootitle.svg")} alt="título da área de conteúdo" />
                             <span>Welcome</span>

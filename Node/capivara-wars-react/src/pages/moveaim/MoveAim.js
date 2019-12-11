@@ -24,7 +24,7 @@ class MoveAim extends Component {
 
                 <Header />
 
-                <div className="container-bamboo-no-capii">
+                <div className="container-area-moveaim">
 
                     <div className="container-bamboo-title">
                         <img src={require('../assets/images/borderbambootitle.svg')} alt="título da área de conteúdo" />

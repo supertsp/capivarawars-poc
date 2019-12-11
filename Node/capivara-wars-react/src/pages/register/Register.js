@@ -142,9 +142,9 @@ class Register extends Component {
 
                 <Header />
 
-                <div className="capii-side-and-container-bamboo-register">
+                <div className="container-area-register">
 
-                    <div className="capii-animation-register move-bottom-3"></div>
+                    <div className="capii-animation-register"></div>
 
                     <div className="container-bamboo-register">
 
