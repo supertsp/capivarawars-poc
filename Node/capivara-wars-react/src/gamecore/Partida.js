@@ -1,5 +1,5 @@
 import Validator from '../tool/Validator';
-import Jogador from './Jogador';
+import Player from './Jogador';
 
 /**
  * Objective: ...
@@ -108,7 +108,7 @@ export default class Partida {
 
 	addJogador(novoJogador) {
 		if (this.getQtdAtualDeJogadores() <= this.getLimiteDeJogadores()
-			&& novoJogador instanceof Jogador
+			&& novoJogador instanceof Player
 			&& !this.isIniciou() && !this.isTerminou()) {
 
 			this.jogadores.push(novoJogador);
@@ -147,7 +147,7 @@ export default class Partida {
 
 	atirarNoInimigoDoJogadorAtual(indicePosicaoDoTiro, jogadorInimigo) {
 		if (Validator.isInteger(indicePosicaoDoTiro)
-			&& jogadorInimigo instanceof Jogador
+			&& jogadorInimigo instanceof Player
 			&& this.isIniciou() && !this.isTerminou()) {
 
 			let tiroCerteiro = this.getJogadorAtual()

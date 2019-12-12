@@ -7,7 +7,7 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Jogador from '../../gamecore/Jogador';
+import Player from '../../gamecore/Jogador';
 
 //Import Pages
 import Header from '../components/Header';
@@ -16,7 +16,7 @@ import IconCapybara from '../components/IconCapybara';
 class Home extends Component {
 
     state = {
-        jogador: '',
+        jogadorLogado: '',
         partidaIniciou: false
     }
 
@@ -29,20 +29,14 @@ class Home extends Component {
             // this.props.history.push('/');
         }
         else {
-            this.state.jogador = Globals.getJogadorLogado();
+            this.state.jogadorLogado = Globals.getJogadorLogado();
         }
-    }
-
-    componentDidMount() {
-        //qdo renderizado no início
-        // this.setState({ nickJogadorLogado: Globals.getJogadorLogado().getNick() });
-        // this.setState({ nickJogadorLogado: Globals.getJogadorLogado() });
     }
 
     componentDidUpdate(prevProps) {
         if (this.state.partidaIniciou) {
 
-            Globals.addJogadorInimigo(new Jogador("Julia", "Feliceta", 10, 4).setId(777));
+            Globals.addJogadorInimigo(new Player("Julia", "Feliceta", 10, 4).setId(777));
 
             if (Globals.criarPartida()) {
                 this.props.history.push('/moveboat');
@@ -52,11 +46,9 @@ class Home extends Component {
     }
 
     persistirLogin = () => {
-        if (!Globals.hasJogadorLogado()
-            && !Validator.isUndefined(sessionStorage.getItem(Globals.getSessionKeyJogador()))) {
+        Globals.setJogadorLogadoFromSession();
 
-            Globals.setJogadorLogadoFromSession();
-        }
+        this.debugPartida();
     }
 
     onSubmitHandler = (event) => {
@@ -71,7 +63,8 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <Header />
+
+                <Header isLoginOk="true" userType={Globals.getJogadorLogado().getGenero()} />
 
                 <div className="container-area-home">
 
@@ -89,7 +82,7 @@ class Home extends Component {
 
 
                                 <button onClick={this.onClickPlay} className="form-button-play">
-                                    <img src={require('../assets/images/buttonplay.svg')} alt="#" />
+                                    <img src={require('../assets/images/buttonplay.svg')} alt="button play image" />
                                 </button>
 
                             </form>
@@ -177,6 +170,19 @@ class Home extends Component {
             </div>
         );
     }
+
+    debugPartida = () => {
+        //Debug Partida
+        console.log(`MoveBoat - Jogador Logado: >> ${this.state.jogadorLogado} <<`);
+
+        if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida())) {
+            console.log(`MoveBoat - Jogador Atual: ${Globals.getJogadorAtualNaPartida().getNick()}`);
+        }
+        if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida(Globals.getJogadorInimigo(0)))) {
+            console.log(`MoveBoat - Jogador Inimigo: ${Globals.getJogadorInimigo(0).getNick()}`);
+        }
+    }
+
 }
 
 //export and allow redirect by "this.props.history"

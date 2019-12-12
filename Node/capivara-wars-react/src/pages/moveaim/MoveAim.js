@@ -7,7 +7,7 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Jogador from '../../gamecore/Jogador';
+import Player from '../../gamecore/Jogador';
 
 //Import Pages
 import Header from '../components/Header';
@@ -22,7 +22,7 @@ class MoveAim extends Component {
         return (
             <div>
 
-                <Header />
+                <Header isLoginOk="true" userType={Globals.getJogadorLogado().getGenero()} />
 
                 <div className="container-area-moveaim">
 
@@ -87,6 +87,9 @@ class MoveAim extends Component {
                             </div>
 
                             <div className="statistics-area">
+
+                                <span>My Foto</span>
+
                                 <div className="statistics-area-title">John's Boat Status</div>
                                 <span className="current-boat-size">
                                     <span className="current-boat-size-piece"></span>

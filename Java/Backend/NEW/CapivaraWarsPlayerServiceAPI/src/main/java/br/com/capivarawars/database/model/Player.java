@@ -115,7 +115,8 @@ public class Player {
 	@Column(name = "CAPYBARA_COLOR", length = 9)
 	private String capybaraColor;
 	
-	
+	@Column(name = "CAPYBARA_LIFE")
+	private Integer capybaraLife;
 	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="Relationships fields...">
@@ -442,6 +443,9 @@ public class Player {
 	}
 
 	public String getCapybaraColor() {
+		if (capybaraColor == null) {
+			capybaraColor = "brown";
+		}
 		return capybaraColor;
 	}
 
@@ -449,8 +453,19 @@ public class Player {
 		this.capybaraColor = capybaraColor;
 		return this;
 	}
-	
-	
+
+	public Integer getCapybaraLife() {
+		if (capybaraLife == null) {
+			capybaraLife = 7;
+		}
+		return capybaraLife;
+	}
+
+	public void setCapybaraLife(Integer capybaraLife) {
+		if (capybaraLife >= 0 && capybaraLife <= 7) {
+			this.capybaraLife = capybaraLife;
+		}
+	}
 	
 	// </editor-fold>
 

@@ -7,7 +7,7 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Jogador from '../../gamecore/Jogador';
+import Player from '../../gamecore/Jogador';
 
 
 export default class Header extends Component {
@@ -27,13 +27,20 @@ export default class Header extends Component {
                 </div>
 
                 {
-                    this.props.login === true &&
+                    this.props.isLoginOk &&
                     <div className="user-area">
                         <div className="user-area-nick">
-                            tiago
-                    </div>
+                            {this.props.nick}
+                        </div>
                         <div>
-                            <img src={require('../assets/images/usericon.svg')} alt="user foto" />
+                            {
+                                this.props.userType === 'M' ?
+                                    <img src={require('../assets/images/user-male-icon.svg')} alt="user foto" /> :
+                                    this.props.userType === 'F' ?
+                                        <img src={require('../assets/images/user-female-icon.svg')} alt="user foto" /> :
+                                        <img src={require('../assets/images/user-enemy-icon.svg')} alt="user foto" />
+                            }
+
                         </div>
                         <div>
                             <Link to="/">

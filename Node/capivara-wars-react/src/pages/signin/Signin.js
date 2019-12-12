@@ -8,7 +8,7 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Jogador from '../../gamecore/Jogador';
+import Player from '../../gamecore/Jogador';
 
 //Import Components
 import Header from '../components/Header';
@@ -33,17 +33,28 @@ class Signin extends Component {
 
     }
 
+    //qdo renderizado no início
     componentDidMount() {
-        //qdo renderizado no início
+        //Debug Partida
+        console.log(`MoveBoat - Jogador Logado: >> ${this.state.jogadorLogado} <<`);
+
+        if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida())) {
+            console.log(`MoveBoat - Jogador Atual: ${Globals.getJogadorAtualNaPartida().getNick()}`);
+        }
+        if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida(Globals.getJogadorInimigo(0)))) {
+            console.log(`MoveBoat - Jogador Inimigo: ${Globals.getJogadorInimigo(0).getNick()}`);
+        }
     }
 
     componentDidUpdate(prevProps) {
         if (this.state.isLoginCompleted) {
             //constructor(nick, nomeCapivara, tamanhoRio, tamanhoCanoa)
-            let jogador = new Jogador(this.state.player.nick, this.state.player.capybaraName, 10, 4);
+            let jogador = new Player(this.state.player.nick, this.state.player.capybaraName, 10, 4);
             jogador.setId(this.state.player.idPlayer);
             jogador.setPontos(this.state.player.score);
             jogador.setCorCapivara(this.state.player.capybaraColor);
+            jogador.setGenero(this.state.player.gender);
+
             Globals.setJogadorLogado(jogador);
 
             //criando uma sessão

@@ -4,7 +4,7 @@ import AxiosRest from './tool/AxiosRest';
 // import Rio from './gamecore/Rio';
 // import Capivara from './gamecore/Capivara';
 // import BarraDeVida from './gamecore/BarraDeVida';
-import Jogador from './gamecore/Jogador';
+import Player from './gamecore/Jogador';
 import Partida from './gamecore/Partida';
 
 export default class Globals {
@@ -12,7 +12,7 @@ export default class Globals {
     static sessionKeyNick;
     static sessionKeyJogador;
     static jogadorLogado;
-    static jogadores;
+    static jogadoresInimigos;
     static partida;
 
     static getSessionKeyNick() {
@@ -34,14 +34,28 @@ export default class Globals {
 
     //JOGADOR LOGADO
     static setJogadorLogado(novoJogador) {
-        if (novoJogador instanceof Jogador) {
+        if (novoJogador instanceof Player) {
             this.jogadorLogado = novoJogador;
         }
         else if (novoJogador instanceof Object) {
-            this.jogadorLogado = new Jogador(novoJogador.nick, novoJogador.capybaraName, 10, 4);
+
+            let capivaraName = '';
+
+            //recebe do JSON da API
+            if (!Validator.isUndefined(novoJogador.capybaraName)) {
+                capivaraName = novoJogador.capybaraName;
+            }//recebe do JSON do sessionStorage
+            else {
+                capivaraName = novoJogador.capivara.nome;
+            }
+
+            this.jogadorLogado = new Player(novoJogador.nick, capivaraName, 10, 4);
             this.jogadorLogado.setId(novoJogador.idPlayer);
             this.jogadorLogado.setPontos(novoJogador.score);
             this.jogadorLogado.setCorCapivara(novoJogador.capybaraColor);
+            this.jogadorLogado.setGenero(novoJogador.genero);
+
+            console.log(this.jogadorLogado);
         }
     }
 
@@ -62,7 +76,7 @@ export default class Globals {
             const response = await AxiosRest.executeGET('playerService', `player/nick/${nickAtual}`);
 
             if (Validator.isAxiosResponseOkAndHasData(response)) {
-                let jogador = new Jogador(response.data.nick, response.data.capybaraName, 10, 4);
+                let jogador = new Player(response.data.nick, response.data.capybaraName, 10, 4);
                 jogador.setId(response.data.idPlayer);
                 jogador.setPontos(response.data.score);
                 jogador.setCorCapivara(response.data.capybaraColor);
@@ -158,24 +172,6 @@ export default class Globals {
     static getEmpatesJogadorLogado() {
         if (!Validator.isUndefined(this.jogadorLogado)) {
             return this.jogadorLogado.getEmpates();
-        }
-
-        return null;
-    }
-
-
-    //ARRAY JOGADORES
-    static lengthOfJogadores() {
-        return this.jogadores.length;
-    }
-
-    static getJogador(indiceJogador) {
-        if (!Validator.isUndefined(this.jogadores)
-            && this.jogadores.length >= 1
-            && indiceJogador >= 0
-            && indiceJogador < this.jogadores.length) {
-
-            return this.jogadores[indiceJogador];
         }
 
         return null;
@@ -278,7 +274,7 @@ export default class Globals {
 
     //JOGADOR ATUAL NA PARTIDA
     static getJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+        if (!Validator.isUndefined(this.partida) && !Validator.isUndefined(this.partida.getJogadorAtual())) {
             return this.partida.getJogadorAtual();
         }
 
@@ -366,31 +362,53 @@ export default class Globals {
     }
 
 
+    //JOGADORES INIMIGOS
+    static lengthOfJogadoresInimigos() {
+        return this.jogadoresInimigos.length;
+    }
 
-    //ADD JOGADOR INIMIGO
+    static getJogadorInimigo(indiceJogadorInimigo) {
+        if (!Validator.isUndefined(this.jogadoresInimigos)
+            && this.jogadoresInimigos.length >= 1
+            && indiceJogadorInimigo >= 0
+            && indiceJogadorInimigo < this.jogadoresInimigos.length) {
+
+            return this.jogadoresInimigos[indiceJogadorInimigo];
+        }
+
+        return null;
+    }
+
     static addJogadorInimigo(novoJogadorInimigo) {
-        if (novoJogadorInimigo instanceof Jogador) {
+        if (novoJogadorInimigo instanceof Player) {
 
-            if (Validator.isUndefined(this.jogadores)) {
-                this.jogadores = [];
+            if (Validator.isUndefined(this.jogadoresInimigos)) {
+                this.jogadoresInimigos = [];
             }
 
-            this.jogadores.push(novoJogadorInimigo);
+            this.jogadoresInimigos.push(novoJogadorInimigo);
+        }
+        else if (novoJogadorInimigo instanceof Object) {
+            const jogadorInimigo = new Player(novoJogadorInimigo.nick, novoJogadorInimigo.capybaraName, 10, 4);
+            jogadorInimigo.setId(novoJogadorInimigo.idPlayer);
+            jogadorInimigo.setPontos(novoJogadorInimigo.score);
+            jogadorInimigo.setCorCapivara(novoJogadorInimigo.capybaraColor);
+            jogadorInimigo.setGenero(novoJogadorInimigo.genero);
         }
     }
 
     static criarPartida() {
-        if (!Validator.isUndefined(this.jogadores)
-            && this.jogadorLogado instanceof Jogador
-            && this.jogadores.length >= 1) {
+        if (!Validator.isUndefined(this.jogadoresInimigos)
+            && this.jogadorLogado instanceof Player
+            && this.jogadoresInimigos.length >= 1) {
 
-            this.partida = new Partida(this.jogadores.length);
+            this.partida = new Partida(this.jogadoresInimigos.length);
 
             this.partida.addJogador(this.jogadorLogado);
 
-            for (let contJogador = 0; contJogador < this.jogadores.length; contJogador++) {
+            for (let contJogador = 0; contJogador < this.jogadoresInimigos.length; contJogador++) {
                 // this.getJogador(contJogador).setId(contJogador + 1);
-                this.partida.addJogador(this.getJogador(contJogador));
+                this.partida.addJogador(this.getJogadorInimigo(contJogador));
             }
 
             this.partida.iniciar();
@@ -407,6 +425,22 @@ export default class Globals {
         }
 
         return null;
+    }
+
+    static isIniciouPartida() {
+        if (!Validator.isUndefined(this.partida)) {
+            return this.partida.isIniciou();
+        }
+
+        return false;
+    }
+
+    static isTerminouPartida() {
+        if (!Validator.isUndefined(this.partida)) {
+            return this.partida.isTerminou();
+        }
+
+        return false;
     }
 
     static moverCanoaDoJogadorAtual(posicaoNoRio) {

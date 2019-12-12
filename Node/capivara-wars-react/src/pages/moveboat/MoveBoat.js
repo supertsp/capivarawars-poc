@@ -7,21 +7,51 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Jogador from '../../gamecore/Jogador';
+import Player from '../../gamecore/Jogador';
 
 //Import Pages
 import Header from '../components/Header';
 
 class MoveBoat extends Component {
 
+    state = {
+        jogadorLogado: '',
+        jogadorAtual: '',
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.persistirLogin();
+
+        if (Globals.hasJogadorLogado() && Globals.isIniciouPartida()) {
+            // this.props.history.push('/');
+
+        }
+        else {
+            this.state.jogadorLogado = Globals.getJogadorLogado();
+        }
+    }
+
+    persistirLogin = () => {
+        if (!Globals.hasJogadorLogado()
+            && !Validator.isUndefined(sessionStorage.getItem(Globals.getSessionKeyJogador()))) {
+
+            Globals.setJogadorLogadoFromSession();
+            this.state.jogadorLogado = Globals.getJogadorLogado();
+
+
+        }
+    }
+
     render() {
 
-        Globals.criarPartida();
+
 
         return (
             <div>
 
-                <Header />
+                <Header isLoginOk="true" userType={Globals.getJogadorLogado().getGenero()} />
 
                 <div className="container-area-moveboat">
 
@@ -87,6 +117,9 @@ class MoveBoat extends Component {
                             </div>
 
                             <div className="statistics-area">
+
+                                <span>My Foto</span>
+
                                 <div className="statistics-area-title">Your Boat Status</div>
                                 <span className="current-boat-size">
                                     <span className="current-boat-size-piece"></span>
@@ -116,6 +149,19 @@ class MoveBoat extends Component {
             </div>
         );
     }
+
+    debugPartida = () => {
+        //Debug Partida
+        console.log(`MoveBoat - Jogador Logado: >> ${this.state.jogadorLogado} <<`);
+
+        if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida())) {
+            console.log(`MoveBoat - Jogador Atual: ${Globals.getJogadorAtualNaPartida().getNick()}`);
+        }
+        if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida(Globals.getJogadorInimigo(0)))) {
+            console.log(`MoveBoat - Jogador Inimigo: ${Globals.getJogadorInimigo(0).getNick()}`);
+        }
+    }
+
 }
 
 //export and allow redirect by "this.props.history"

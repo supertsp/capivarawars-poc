@@ -10,6 +10,10 @@
 
 export default class Validator {
 
+	static isUndefined(variable) {
+		return typeof (variable) === 'undefined' || variable === null;
+	}
+
 	static isString(variable) {
 		return typeof (variable) === 'string';
 	}
@@ -153,10 +157,6 @@ export default class Validator {
 
 	static isObjectOf(type, variable) {
 		return variable instanceof type;
-	}
-
-	static isUndefined(variable) {
-		return typeof (variable) === 'undefined';
 	}
 
 	static isAxiosResponseOk(response) {

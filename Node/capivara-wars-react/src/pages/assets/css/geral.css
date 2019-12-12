@@ -225,7 +225,7 @@ form {
 
   text-align: center;
 
-  border: 1px dotted green;
+  /* border: 1px dotted green; */
 }
 
 .container-area-loading::after,
@@ -272,23 +272,23 @@ form {
 }
 
 .container-area-moveboat {
-  width: 55em;
+  width: 34em;
   left: -1em;
 }
 
 .container-area-moveaim {
-  width: 55em;
+  width: 36em;
   left: -1em;
 }
 
 .container-area-turnstatus {
-  width: 55em;
+  width: 35em;
   left: -1em;
 }
 
 .container-area-matchresult {
-  width: 55em;
-  left: -1em;
+  width: 37em;
+  left: -3em;
 }
 
 /* ============================ */
@@ -367,19 +367,6 @@ form {
   background-color: #bcdba1;
   /* border: 1px dotted red; */
 }
-
-/* .container-bamboo-home {
-  display: flex;
-  flex-direction: row;
-  flex-flow: row wrap;
-  width: 45em;
-  margin: auto;
-  margin-top: -1em;
-
-  overflow-wrap: unset;
-
-  
-} */
 
 .container-bamboo-home-item-game,
 .container-bamboo-home-item-status {
@@ -836,15 +823,13 @@ a:focus,
 
 .boat-area {
   display: block;
-  width: 76%;
-  margin: auto;
 
   /* top rigth bottom left */
   padding: 0px 10px 0px 10px;
 
   /* border: 1px dotted green; */
 
-  text-align: left;
+  text-align: center;
 }
 
 .boat-area-all-pieces {
@@ -907,8 +892,6 @@ a:focus,
 
 .aim-area {
   display: block;
-  width: 81%;
-  margin: auto;
   /*        top rigth bottom left */
   padding: 0px 10px 0px 10px;
 
@@ -1117,9 +1100,9 @@ a:focus,
   font-size: 4em;
   font-weight: bold;
   text-transform: uppercase;
-  color: #55b614;
+  color: #fc8907;
   /* text-shadow: h-shadow v-shadow blur-radius color|none|initial|inherit; */
-  text-shadow: 0px 0px 10px #86c028;
+  text-shadow: 0px 5px 10px #522004;
 }
 
 /**

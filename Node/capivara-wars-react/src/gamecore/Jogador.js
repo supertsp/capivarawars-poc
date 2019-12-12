@@ -13,18 +13,24 @@ import Capivara from './Capivara';
  * Last update: -
  */
 
-export default class Jogador {
+export default class Player {
 
 	id;
 	nick;
-	pontos;
-	capivara;
-	rio;
+	score;
+	capybara;
+	gender;
+	river;
 	vitorias;
 	derrotas;
 	empates
 
-	constructor(nick, nomeCapivara, tamanhoRio, tamanhoCanoa) {
+	constructor(id, nick, genero, pontos, nomeCapivara, tamanhoRio, tamanhoCanoa) {
+		console.log(nick);
+		console.log(nomeCapivara);
+		console.log(tamanhoRio);
+		console.log(tamanhoCanoa);
+
 		if (Validator.isString(nick)
 			&& Validator.isInteger(tamanhoRio)
 			&& Validator.isInteger(tamanhoCanoa)
@@ -32,9 +38,11 @@ export default class Jogador {
 
 			this.setId(0);
 			this.nick = nick;
-			this.pontos = 0;
-			this.capivara = new Capivara(nomeCapivara, 7);
-			this.rio = new Rio(tamanhoRio, new Canoa(tamanhoCanoa));
+			this.score = 0;
+			this.capybara = new Capivara(nomeCapivara, 7);
+			this.river = new Rio(tamanhoRio, new Canoa(tamanhoCanoa));
+
+
 		}
 
 		//Construtor sem parâmetros
@@ -45,14 +53,16 @@ export default class Jogador {
 
 			this.setId(0);
 			this.nick = 'nick' + parseInt(Math.random() * 1000);
-			this.pontos = 0;
-			this.capivara = new Capivara();
-			this.rio = new Rio(tamanhoRio, new Canoa());
+			this.score = 0;
+			this.capybara = new Capivara();
+			this.river = new Rio(tamanhoRio, new Canoa());
+
+
 		}
 	}
 
 	reiniciarCanoa() {
-		this.rio.reiniciar();
+		this.river.reiniciar();
 	}
 
 	getId() {
@@ -75,12 +85,12 @@ export default class Jogador {
 	}
 
 	getPontos() {
-		return this.pontos;
+		return this.score;
 	}
 
 	setPontos(novosPontos) {
 		if (Validator.isInteger(novosPontos)) {
-			this.pontos = novosPontos;
+			this.score = novosPontos;
 		}
 		else {
 			this.id = 0;
@@ -90,18 +100,18 @@ export default class Jogador {
 	}
 
 	incrementarPontos() {
-		this.pontos++;
+		this.score++;
 		return this;
 	}
 
 	decrementarPontos() {
-		this.pontos--;
-		this.pontos = this.pontos < 0 ? 0 : this.pontos;
+		this.score--;
+		this.score = this.score < 0 ? 0 : this.score;
 		return this;
 	}
 
 	getCapivara() {
-		return this.capivara;
+		return this.capybara;
 	}
 
 	isCapivaraMorta() {
@@ -109,15 +119,15 @@ export default class Jogador {
 	}
 
 	setCorCapivara(nomeDaCor) {
-		this.capivara.setCor(nomeDaCor);
+		this.capybara.setCor(nomeDaCor);
 	}
 
 	getNomeCapivara() {
-		return this.capivara.getNome();
+		return this.capybara.getNome();
 	}
 
 	getCorCapivara() {
-		return this.capivara.getCor();
+		return this.capybara.getCor();
 	}
 
 	getVidaCapivara() {
@@ -128,16 +138,24 @@ export default class Jogador {
 		this.getCapivara().receberDano();
 	}
 
+	setGenero(genero) {
+		this.gender = genero;
+	}
+
+	getGenero() {
+		return this.gender;
+	}
+
 	getRio() {
-		return this.rio;
+		return this.river;
 	}
 
 	getCanoa() {
-		return this.rio.getCanoa();
+		return this.river.getCanoa();
 	}
 
 	isCanoaDestruida() {
-		return this.rio.isVazio();
+		return this.river.isVazio();
 	}
 
 
@@ -220,11 +238,11 @@ export default class Jogador {
 
 	//RIO + CANOA
 	moverCanoa(posicaoNoRio) {
-		this.rio.moverCanoa(posicaoNoRio);
+		this.river.moverCanoa(posicaoNoRio);
 	}
 
 	atirarNoInimigo(posicaoDoTiro, jogadorInimigo) {
-		if (Validator.isInteger(posicaoDoTiro) && jogadorInimigo instanceof Jogador) {
+		if (Validator.isInteger(posicaoDoTiro) && jogadorInimigo instanceof Player) {
 			return jogadorInimigo.getRio().receberTiro(posicaoDoTiro);
 		}
 

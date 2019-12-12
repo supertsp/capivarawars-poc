@@ -7,7 +7,7 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Jogador from '../../gamecore/Jogador';
+import Player from '../../gamecore/Jogador';
 
 //Import Pages
 import Header from '../components/Header';
@@ -21,7 +21,7 @@ class MatchResult extends Component {
         return (
             <div>
 
-                <Header />
+                <Header isLoginOk="true" userType={Globals.getJogadorLogado().getGenero()} />
 
                 <div className="container-area-matchresult">
 
@@ -41,7 +41,7 @@ class MatchResult extends Component {
 
                                 <div className="match-result-winner-name">
                                     John
-                            </div>
+                                </div>
 
                                 <div>
 

@@ -7,7 +7,7 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Jogador from '../../gamecore/Jogador';
+import Player from '../../gamecore/Jogador';
 
 //Import Pages
 import Header from '../components/Header';
@@ -22,7 +22,7 @@ class TurnStatus extends Component {
         return (
             <div>
 
-                <Header />
+                <Header isLoginOk="true" userType={Globals.getJogadorLogado().getGenero()} />
 
                 <div className="container-area-turnstatus">
 
@@ -37,61 +37,62 @@ class TurnStatus extends Component {
                             <p>How is the game going?</p>
 
                             <table className="turn-status-table">
-                                <tr>
-                                    <td colspan="2" className="turn-status-table-title">
-                                        Michael' Status
-                                    </td>
-                                    <td className="turn-status-table-white-space">
-                                        &nbsp;
-                                    </td>
-                                    <td colspan="2" className="turn-status-table-title">
-                                        John's Status
-                                    </td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td colSpan="2" className="turn-status-table-title">
+                                            Michael' Status
+                                        </td>
+                                        <td className="turn-status-table-white-space">
+                                            &nbsp;
+                                        </td>
+                                        <td colSpan="2" className="turn-status-table-title">
+                                            John's Status
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td>
-                                        <img className="user-capii-icon" src={require('../assets/images/capii-icon-brown.svg')} alt="capivara foto" />
-                                    </td>
-                                    <td className="turn-status-table-capivara-nane">
-                                        Minerva
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            <img className="user-capii-icon" src={require('../assets/images/capii-icon-brown.svg')} alt="capivara foto" />
+                                        </td>
+                                        <td className="turn-status-table-capivara-nane">
+                                            Minerva
+                                        </td>
 
-                                    <td className="turn-status-table-white-space">
-                                        &nbsp;
-                                    </td>
+                                        <td className="turn-status-table-white-space">
+                                            &nbsp;
+                                        </td>
 
-                                    <td>
-                                        <img className="user-capii-icon" src={require('../assets/images/capii-icon-pink.svg')} alt="capivara foto" />
-                                    </td>
-                                    <td className="turn-status-table-capivara-nane">
-                                        Rose
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <img className="user-capii-icon" src={require('../assets/images/capii-icon-pink.svg')} alt="capivara foto" />
+                                        </td>
+                                        <td className="turn-status-table-capivara-nane">
+                                            Rose
+                                        </td>
+                                    </tr>
 
-                                <tr>
-                                    <td colspan="2">
-                                        <span className="current-boat-size">
-                                            <span className="current-boat-size-piece"></span>
-                                            <span className="current-boat-size-piece"></span>
-                                            <span className="current-boat-size-piece"></span>
-                                        </span>
-                                    </td>
+                                    <tr>
+                                        <td colSpan="2">
+                                            <span className="current-boat-size">
+                                                <span className="current-boat-size-piece"></span>
+                                                <span className="current-boat-size-piece"></span>
+                                                <span className="current-boat-size-piece"></span>
+                                            </span>
+                                        </td>
 
-                                    <td className="turn-status-table-white-space">
-                                        &nbsp;
-                                    </td>
+                                        <td className="turn-status-table-white-space">
+                                            &nbsp;
+                                        </td>
 
-                                    <td colspan="2">
-                                        <span className="current-boat-size">
-                                            <span className="current-boat-size-piece"></span>
-                                            <span className="current-boat-size-piece"></span>
-                                            <span className="current-boat-size-piece"></span>
-                                            <span className="current-boat-size-piece"></span>
-                                        </span>
-                                    </td>
-                                </tr>
-
+                                        <td colSpan="2">
+                                            <span className="current-boat-size">
+                                                <span className="current-boat-size-piece"></span>
+                                                <span className="current-boat-size-piece"></span>
+                                                <span className="current-boat-size-piece"></span>
+                                                <span className="current-boat-size-piece"></span>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
 
                             </table>
 
