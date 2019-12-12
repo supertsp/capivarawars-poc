@@ -1,4 +1,4 @@
-package br.com.capivarawars.database.model;
+package br.com.capivarareportservice.Capivara.Report.Models;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.capivarawars.security.Criptografia;
 
 @Document(collection = "Player")
 public class Player {
@@ -120,8 +119,8 @@ public class Player {
     }
 
     public void setPassword(String password) {
-        password = password.trim();
-        this.password = Criptografia.getSHA256(password);
+        this.password = password.trim();
+        
     }
     
     public void setPasswordSemSHA256(String password) {
