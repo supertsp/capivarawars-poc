@@ -8,7 +8,7 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Player from '../../gamecore/Jogador';
+import Player from '../../gamecore/Player';
 
 //Import Components
 import Header from '../components/Header';
@@ -50,10 +50,10 @@ class Signin extends Component {
         if (this.state.isLoginCompleted) {
             //constructor(nick, nomeCapivara, tamanhoRio, tamanhoCanoa)
             let jogador = new Player(this.state.player.nick, this.state.player.capybaraName, 10, 4);
-            jogador.setId(this.state.player.idPlayer);
-            jogador.setPontos(this.state.player.score);
-            jogador.setCorCapivara(this.state.player.capybaraColor);
-            jogador.setGenero(this.state.player.gender);
+            jogador.setIdPlayer(this.state.player.idPlayer);
+            jogador.setScore(this.state.player.score);
+            jogador.setCapybaraColor(this.state.player.capybaraColor);
+            jogador.setGender(this.state.player.gender);
 
             Globals.setJogadorLogado(jogador);
 

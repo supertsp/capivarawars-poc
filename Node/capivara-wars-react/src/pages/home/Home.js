@@ -7,7 +7,7 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Player from '../../gamecore/Jogador';
+import Player from '../../gamecore/Player';
 
 //Import Pages
 import Header from '../components/Header';
@@ -36,7 +36,7 @@ class Home extends Component {
     componentDidUpdate(prevProps) {
         if (this.state.partidaIniciou) {
 
-            Globals.addJogadorInimigo(new Player("Julia", "Feliceta", 10, 4).setId(777));
+            Globals.addJogadorInimigo(new Player("Julia", "Feliceta", 10, 4).setIdPlayer(777));
 
             if (Globals.criarPartida()) {
                 this.props.history.push('/moveboat');

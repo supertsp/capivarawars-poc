@@ -7,7 +7,7 @@ import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
 
 //Import GameCore
-import Player from '../../gamecore/Jogador';
+import Player from '../../gamecore/Player';
 
 
 export default class Header extends Component {

@@ -4,7 +4,7 @@ import AxiosRest from './tool/AxiosRest';
 // import Rio from './gamecore/Rio';
 // import Capivara from './gamecore/Capivara';
 // import BarraDeVida from './gamecore/BarraDeVida';
-import Player from './gamecore/Jogador';
+import Player from './gamecore/Player';
 import Partida from './gamecore/Partida';
 
 export default class Globals {
@@ -77,9 +77,9 @@ export default class Globals {
 
             if (Validator.isAxiosResponseOkAndHasData(response)) {
                 let jogador = new Player(response.data.nick, response.data.capybaraName, 10, 4);
-                jogador.setId(response.data.idPlayer);
-                jogador.setPontos(response.data.score);
-                jogador.setCorCapivara(response.data.capybaraColor);
+                jogador.setIdPlayer(response.data.idPlayer);
+                jogador.setScore(response.data.score);
+                jogador.setCapybaraColor(response.data.capybaraColor);
                 this.setJogadorLogado(jogador);
             }
         }
@@ -390,10 +390,10 @@ export default class Globals {
         }
         else if (novoJogadorInimigo instanceof Object) {
             const jogadorInimigo = new Player(novoJogadorInimigo.nick, novoJogadorInimigo.capybaraName, 10, 4);
-            jogadorInimigo.setId(novoJogadorInimigo.idPlayer);
-            jogadorInimigo.setPontos(novoJogadorInimigo.score);
-            jogadorInimigo.setCorCapivara(novoJogadorInimigo.capybaraColor);
-            jogadorInimigo.setGenero(novoJogadorInimigo.genero);
+            jogadorInimigo.setIdPlayer(novoJogadorInimigo.idPlayer);
+            jogadorInimigo.setScore(novoJogadorInimigo.score);
+            jogadorInimigo.setCapybaraColor(novoJogadorInimigo.capybaraColor);
+            jogadorInimigo.setGender(novoJogadorInimigo.genero);
         }
     }
 

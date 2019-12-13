@@ -34,6 +34,16 @@ export default class BarraDeVida {
 		return this.vida;
 	}
 
+	setVida(novoValor) {
+		if (Validator.isInteger(novoValor)) {
+			this.vida = novoValor;
+			this.vida = this.vida > this.getValorMaximo() ? this.getValorMaximo() : this.vida;
+			this.vida = this.vida < 0 ? 0 : this.vida;
+		}
+
+		return this;
+	}
+
 	getValorMaximo() {
 		return this.valorMaximo;
 	}

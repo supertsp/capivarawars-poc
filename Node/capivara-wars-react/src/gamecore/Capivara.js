@@ -42,6 +42,14 @@ export default class Capivara {
 		return this.nome;
 	}
 
+	setNome(novoNome) {
+		if (Validator.isString(novoNome)) {
+			this.nome = novoNome;
+		}
+
+		return this;
+	}
+
 	getCor() {
 		return this.cor;
 	}
@@ -70,6 +78,12 @@ export default class Capivara {
 
 	getVida() {
 		return this.barraDeVida.getVida();
+	}
+
+	setVida(novoValor) {
+		if (Validator.isInteger(novoValor)) {
+			this.barraDeVida.setVida(novoValor);
+		}
 	}
 
 	receberDano() {

@@ -1,5 +1,5 @@
 import Validator from '../tool/Validator';
-import Player from './Jogador';
+import Player from './Player';
 
 /**
  * Objective: ...
