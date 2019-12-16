@@ -35,10 +35,26 @@ class Home extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.state.partidaIniciou) {
+            Globals.limparArrayDeInimigos();
 
-            Globals.addJogadorInimigo(new Player("Julia", "Feliceta", 10, 4).setIdPlayer(777));
+            Globals.addJogadorInimigo(
+                new Player()
+                    .setIdPlayer(777)
+                    .setNick('RobotDog')
+                    .setGender('R')
+                    .setCapybaraName('HotDog')
+                    .setCapybaraLife(3)
+                    .setCapybaraColor('hotdog')
+                    .setScore(21)
+                    .setWins(10)
+                    .setLosses(0)
+                    .setDraws(1)
+            );
 
             if (Globals.criarPartida()) {
+                Globals.getPartida().reiniciarCampos();
+                Globals.getPartida().iniciar();
+                sessionStorage.setItem(Globals.getSessionKeyPartida(), JSON.stringify(Globals.getJogadorInimigo(0)));
                 this.props.history.push('/moveboat');
             }
         }
@@ -47,8 +63,8 @@ class Home extends Component {
 
     persistirLogin = () => {
         Globals.setJogadorLogadoFromSession();
-
-        this.debugPartida();
+        this.state.jogadorLogado = Globals.getJogadorLogado();
+        // this.debugPartida();
     }
 
     onSubmitHandler = (event) => {
@@ -64,7 +80,7 @@ class Home extends Component {
         return (
             <div>
 
-                <Header isLoginOk="true" userType={Globals.getJogadorLogado().getGenero()} />
+                <Header isLoginOk="true" userNick={Globals.getJogadorLogado().getNick()} userType={Globals.getJogadorLogado().getGender()} />
 
                 <div className="container-area-home">
 
@@ -103,10 +119,10 @@ class Home extends Component {
                                     <tbody>
                                         <tr className="tr-no-hover">
                                             <td className="table-first-col">
-                                                <IconCapybara color={Globals.getCorCapivaraJogadorLogado()} specialClass="user-capii-icon" />
+                                                <IconCapybara color={Globals.getJogadorLogado().getCapybaraColor()} specialClass="user-capii-icon" />
                                             </td>
                                             <td>
-                                                {Globals.getNomeCapivaraJogadorLogado()}
+                                                {Globals.getJogadorLogado().getCapybaraName()}
                                             </td>
                                         </tr>
 
@@ -115,7 +131,7 @@ class Home extends Component {
                                                 Life
                                         </td>
                                             <td>
-                                                {Globals.getVidaCapivaraJogadorLogado()}
+                                                {Globals.getJogadorLogado().getCapybaraLife()}
                                             </td>
                                         </tr>
 
@@ -124,7 +140,7 @@ class Home extends Component {
                                                 Score
                                         </td>
                                             <td>
-                                                {Globals.getPontosJogadorLogado()}
+                                                {Globals.getJogadorLogado().getScore()}
                                             </td>
                                         </tr>
                                         <tr className="table-empty-row">
@@ -137,7 +153,7 @@ class Home extends Component {
                                                 Wins
                                         </td>
                                             <td>
-                                                {Globals.getVitoriasJogadorLogado()}
+                                                {Globals.getJogadorLogado().getWins()}
                                             </td>
                                         </tr>
 
@@ -146,7 +162,7 @@ class Home extends Component {
                                                 Losses
                                         </td>
                                             <td>
-                                                {Globals.getDerrotasJogadorLogado()}
+                                                {Globals.getJogadorLogado().getLosses()}
                                             </td>
                                         </tr>
 
@@ -155,7 +171,7 @@ class Home extends Component {
                                                 Draws
                                         </td>
                                             <td>
-                                                {Globals.getEmpatesJogadorLogado()}
+                                                {Globals.getJogadorLogado().getDraws()}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -172,14 +188,15 @@ class Home extends Component {
     }
 
     debugPartida = () => {
-        //Debug Partida
-        console.log(`MoveBoat - Jogador Logado: >> ${this.state.jogadorLogado} <<`);
+        console.log(`[Home] JogadorLogado\n>>${this.state.jogadorLogado.getNick()}<<`);
+        console.log(`[Home] JogadorLogado\n>>${this.state.jogadorLogado}<<`);
+        console.log(`[Home] JogadorLogado (json)\n>>${JSON.stringify(this.state.jogadorLogado)}<<`);
 
         if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida())) {
-            console.log(`MoveBoat - Jogador Atual: ${Globals.getJogadorAtualNaPartida().getNick()}`);
+            console.log(`[Home] JogadorAtual\n>>${Globals.getJogadorAtualNaPartida().getNick()}<<`);
         }
         if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida(Globals.getJogadorInimigo(0)))) {
-            console.log(`MoveBoat - Jogador Inimigo: ${Globals.getJogadorInimigo(0).getNick()}`);
+            console.log(`[Home] JogadorInimigo\n>>${Globals.getJogadorInimigo(0).getNick()}<<`);
         }
     }
 

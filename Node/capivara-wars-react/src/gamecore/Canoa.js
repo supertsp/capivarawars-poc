@@ -68,6 +68,10 @@ export default class Canoa {
 		return this.destruida;
 	}
 
+	getPedacos() {
+		return this.pedacos;
+	}
+
 	getPedaco(indicePedaco) {
 		if (Validator.isInteger(indicePedaco)
 			&& indicePedaco >= 0

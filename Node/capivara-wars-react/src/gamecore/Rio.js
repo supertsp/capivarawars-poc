@@ -91,6 +91,10 @@ export default class Rio {
 		return this.posicaoAtualCanoa;
 	}
 
+	getPartes() {
+		return this.partes;
+	}
+
 	getParte(indiceParte) {
 		if (Validator.isInteger(indiceParte)
 			&& indiceParte >= 0

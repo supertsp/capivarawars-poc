@@ -14,9 +14,10 @@ export default class Globals {
     static jogadorLogado;
     static jogadoresInimigos;
     static partida;
+    static sessionKeyPartida;
 
     static getSessionKeyNick() {
-        if (Validator.isStringEmpty(this.sessionKeyNick) || Validator.isUndefined(this.sessionKeyNick)) {
+        if (Validator.isUndefined(this.sessionKeyNick)) {
             this.sessionKeyNick = 'capi-nick';
         }
 
@@ -24,13 +25,20 @@ export default class Globals {
     }
 
     static getSessionKeyJogador() {
-        if (Validator.isStringEmpty(this.sessionKeyJogador) || Validator.isUndefined(this.sessionKeyJogador)) {
+        if (Validator.isUndefined(this.sessionKeyJogador)) {
             this.sessionKeyJogador = 'capi-jogador';
         }
 
         return this.sessionKeyJogador;
     }
 
+    static getSessionKeyPartida() {
+        if (Validator.isUndefined(this.sessionKeyPartida)) {
+            this.sessionKeyPartida = 'capi-partida';
+        }
+
+        return this.sessionKeyPartida;
+    }
 
     //JOGADOR LOGADO
     static setJogadorLogado(novoJogador) {
@@ -38,24 +46,8 @@ export default class Globals {
             this.jogadorLogado = novoJogador;
         }
         else if (novoJogador instanceof Object) {
-
-            let capivaraName = '';
-
-            //recebe do JSON da API
-            if (!Validator.isUndefined(novoJogador.capybaraName)) {
-                capivaraName = novoJogador.capybaraName;
-            }//recebe do JSON do sessionStorage
-            else {
-                capivaraName = novoJogador.capivara.nome;
-            }
-
-            this.jogadorLogado = new Player(novoJogador.nick, capivaraName, 10, 4);
-            this.jogadorLogado.setId(novoJogador.idPlayer);
-            this.jogadorLogado.setPontos(novoJogador.score);
-            this.jogadorLogado.setCorCapivara(novoJogador.capybaraColor);
-            this.jogadorLogado.setGenero(novoJogador.genero);
-
-            console.log(this.jogadorLogado);
+            this.jogadorLogado = new Player();
+            this.jogadorLogado.setJsonFields(novoJogador);
         }
     }
 
@@ -76,11 +68,9 @@ export default class Globals {
             const response = await AxiosRest.executeGET('playerService', `player/nick/${nickAtual}`);
 
             if (Validator.isAxiosResponseOkAndHasData(response)) {
-                let jogador = new Player(response.data.nick, response.data.capybaraName, 10, 4);
-                jogador.setIdPlayer(response.data.idPlayer);
-                jogador.setScore(response.data.score);
-                jogador.setCapybaraColor(response.data.capybaraColor);
-                this.setJogadorLogado(jogador);
+                // const jsonPlayer = { ...response.data };
+                // this.setJogadorLogado(jsonPlayer);
+                this.setJogadorLogado(response.data);
             }
         }
     }
@@ -97,85 +87,85 @@ export default class Globals {
         return !Validator.isUndefined(this.jogadorLogado);
     }
 
-    static getNickJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getNick();
-        }
+    // static getNickJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getNick();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getCapivaraJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getCapivara();
-        }
+    // static getCapivaraJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getCorCapivaraJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getCorCapivara();
-        }
+    // static getCorCapivaraJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getCorCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getNomeCapivaraJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getNomeCapivara();
-        }
+    // static getNomeCapivaraJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getNomeCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getVidaCapivaraJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getVidaCapivara();
-        }
+    // static getVidaCapivaraJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getVidaCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getCanoaJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getCanoa();
-        }
+    // static getCanoaJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getCanoa();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getPontosJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getPontos();
-        }
+    // static getPontosJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getPontos();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getVitoriasJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getVitorias();
-        }
+    // static getVitoriasJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getVitorias();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getDerrotasJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getDerrotas();
-        }
+    // static getDerrotasJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getDerrotas();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getEmpatesJogadorLogado() {
-        if (!Validator.isUndefined(this.jogadorLogado)) {
-            return this.jogadorLogado.getEmpates();
-        }
+    // static getEmpatesJogadorLogado() {
+    //     if (!Validator.isUndefined(this.jogadorLogado)) {
+    //         return this.jogadorLogado.getEmpates();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
 
     //JOGADOR NA PARTIDA
@@ -191,85 +181,85 @@ export default class Globals {
         return null;
     }
 
-    static getNickJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getNick();
-        }
+    // static getNickJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getNick();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getCapivaraJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getCapivara();
-        }
+    // static getCapivaraJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getCorCapivaraJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getCorCapivara();
-        }
+    // static getCorCapivaraJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getCorCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getNomeCapivaraJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getNomeCapivara();
-        }
+    // static getNomeCapivaraJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getNomeCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getVidaCapivaraJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getVidaCapivara();
-        }
+    // static getVidaCapivaraJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getVidaCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getCanoaJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getCanoa();
-        }
+    // static getCanoaJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getCanoa();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getPontosJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getPontos();
-        }
+    // static getPontosJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getPontos();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getVitoriasJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getVitorias();
-        }
+    // static getVitoriasJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getVitorias();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getDerrotasJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getDerrotas();
-        }
+    // static getDerrotasJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getDerrotas();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getEmpatesJogadorNaPartida(indiceJogador) {
-        if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
-            return this.partida.getJogador(indiceJogador).getEmpates();
-        }
+    // static getEmpatesJogadorNaPartida(indiceJogador) {
+    //     if (!Validator.isUndefined(this.partida.getJogador(indiceJogador))) {
+    //         return this.partida.getJogador(indiceJogador).getEmpates();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
 
     //JOGADOR ATUAL NA PARTIDA
@@ -281,85 +271,85 @@ export default class Globals {
         return null;
     }
 
-    static getNickJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getNick();
-        }
+    // static getNickJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getNick();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getCapivaraJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getCapivara();
-        }
+    // static getCapivaraJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getCorCapivaraJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getCorCapivara();
-        }
+    // static getCorCapivaraJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getCorCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getNomeCapivaraJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getNomeCapivara();
-        }
+    // static getNomeCapivaraJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getNomeCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getVidaCapivaraJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getVidaCapivara();
-        }
+    // static getVidaCapivaraJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getVidaCapivara();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getCanoaJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getCanoa();
-        }
+    // static getCanoaJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getCanoa();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getPontosJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getPontos();
-        }
+    // static getPontosJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getPontos();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getVitoriasJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getVitorias();
-        }
+    // static getVitoriasJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getVitorias();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getDerrotasJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getDerrotas();
-        }
+    // static getDerrotasJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getDerrotas();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    static getEmpatesJogadorAtualNaPartida() {
-        if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
-            return this.partida.getJogadorAtual().getEmpates();
-        }
+    // static getEmpatesJogadorAtualNaPartida() {
+    //     if (!Validator.isUndefined(this.partida.getJogadorAtual())) {
+    //         return this.partida.getJogadorAtual().getEmpates();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
 
     //JOGADORES INIMIGOS
@@ -380,21 +370,36 @@ export default class Globals {
     }
 
     static addJogadorInimigo(novoJogadorInimigo) {
+        if (Validator.isUndefined(this.jogadoresInimigos)) {
+            this.jogadoresInimigos = [];
+        }
+
         if (novoJogadorInimigo instanceof Player) {
-
-            if (Validator.isUndefined(this.jogadoresInimigos)) {
-                this.jogadoresInimigos = [];
-            }
-
             this.jogadoresInimigos.push(novoJogadorInimigo);
         }
         else if (novoJogadorInimigo instanceof Object) {
-            const jogadorInimigo = new Player(novoJogadorInimigo.nick, novoJogadorInimigo.capybaraName, 10, 4);
-            jogadorInimigo.setIdPlayer(novoJogadorInimigo.idPlayer);
-            jogadorInimigo.setScore(novoJogadorInimigo.score);
-            jogadorInimigo.setCapybaraColor(novoJogadorInimigo.capybaraColor);
-            jogadorInimigo.setGender(novoJogadorInimigo.genero);
+            const inimigoTemp = new Player();
+            inimigoTemp.setJsonFields(novoJogadorInimigo);
+            this.jogadoresInimigos.push(inimigoTemp);
         }
+    }
+
+    static gerarIndiceJogadorInimigo() {
+        let indiceJogadorInimigoSorteado = 0;
+
+        do {
+            indiceJogadorInimigoSorteado = parseInt(
+                Math.random() * this.partida.getQtdAtualDeJogadores()
+            );
+        } while (indiceJogadorInimigoSorteado === this.partida.getIndiceJogadorAtual());
+
+        return indiceJogadorInimigoSorteado;
+    }
+
+
+    //PARTIDA
+    static limparArrayDeInimigos() {
+        this.jogadoresInimigos = [];
     }
 
     static criarPartida() {
@@ -407,7 +412,6 @@ export default class Globals {
             this.partida.addJogador(this.jogadorLogado);
 
             for (let contJogador = 0; contJogador < this.jogadoresInimigos.length; contJogador++) {
-                // this.getJogador(contJogador).setId(contJogador + 1);
                 this.partida.addJogador(this.getJogadorInimigo(contJogador));
             }
 
@@ -417,6 +421,20 @@ export default class Globals {
         }
 
         return false;
+    }
+
+    static hasPartidaAtiva() {
+        return !Validator.isUndefined(this.partida);
+    }
+
+    static setPartidaFromSession() {
+        if (!this.hasPartidaAtiva()
+            && !Validator.isUndefined(sessionStorage.getItem(this.getSessionKeyPartida()))) {
+
+            const inimigoPartida = JSON.parse(sessionStorage.getItem(this.getSessionKeyPartida()));
+            this.addJogadorInimigo(inimigoPartida);
+            this.criarPartida();
+        }
     }
 
     static getPartida() {
@@ -444,67 +462,27 @@ export default class Globals {
     }
 
     static moverCanoaDoJogadorAtual(posicaoNoRio) {
+        try {
+            posicaoNoRio = parseInt(posicaoNoRio);
+        } catch (error) { }
+        // console.log("    POSIÇÃO NO RIO: " + posicaoNoRio + " - TYPE: " + typeof (posicaoNoRio));
         if (this.partida instanceof Partida) {
             this.partida.moverCanoaDoJogadorAtual(posicaoNoRio);
         }
     }
 
-    static gerarIndiceJogadorInimigo() {
-        let indiceJogadorInimigoSorteado = 0;
-
-        do {
-            indiceJogadorInimigoSorteado = parseInt(
-                Math.random() * this.partida.getQtdAtualDeJogadores()
-            );
-        } while (indiceJogadorInimigoSorteado === this.partida.getIndiceJogadorAtual());
-
-        return indiceJogadorInimigoSorteado;
-    }
-
     static atirarNoInimigoDoJogadorAtual(posicaoDoTiro, indiceJogadorInimigo = 0) {
-        if (Validator.isInteger(posicaoDoTiro) && this.partida instanceof Partida) {
+        try {
+            posicaoDoTiro = parseInt(posicaoDoTiro);
+            indiceJogadorInimigo = parseInt(indiceJogadorInimigo);
+        } catch (error) { }
 
-            //Jogador atual é o Logado?
-            if (this.partida.getIndiceJogadorAtual() === 0) {
-
-                //Não foi passado indiceJogadorInimigo?
-                if (indiceJogadorInimigo === 0) {
-
-                    //A quantidade atual de jogadores é >= 3?
-                    if (this.partida.getQtdAtualDeJogadores() >= 3) {
-                        return this.partida.atirarNoInimigoDoJogadorAtual(
-                            posicaoDoTiro,
-                            this.partida.getJogador(this.gerarIndiceJogadorInimigo())
-                        );
-                    }
-
-                    return this.partida.atirarNoInimigoDoJogadorAtual(
-                        posicaoDoTiro,
-                        this.partida.getJogador(1)
-                    );
-                }
-
-                return this.partida.atirarNoInimigoDoJogadorAtual(
-                    posicaoDoTiro,
-                    this.partida.getJogador(indiceJogadorInimigo)
-                );
-            }
-
-            //Não foi passado indiceJogadorInimigo?
-            if (indiceJogadorInimigo === 0) {
-                return this.partida.atirarNoInimigoDoJogadorAtual(
-                    posicaoDoTiro,
-                    this.partida.getJogador(this.gerarIndiceJogadorInimigo())
-                );
-            }
-
-            return this.partida.atirarNoInimigoDoJogadorAtual(
+        if (this.partida instanceof Partida) {
+            this.partida.atirarNoInimigoDoJogadorAtual(
                 posicaoDoTiro,
-                this.partida.getJogador(indiceJogadorInimigo)
+                this.getJogadorNaPartida(indiceJogadorInimigo)
             );
         }
-
-        return false;
     }
 
     static isTerminouPartida() {

@@ -190,7 +190,7 @@ form {
 .container-bamboo-welcome,
 .container-bamboo-register,
 .container-bamboo-signin,
-.container-bamboo-turnstatus,
+.container-bamboo-matchresult,
 .capii-silence-hat,
 .capii-silence-coat,
 .capii-moustache,
@@ -253,7 +253,7 @@ form {
 
 .container-area-welcome {
   width: 36em;
-  left: -0.5em;
+  left: -2em;
 }
 
 .container-area-register {
@@ -263,7 +263,7 @@ form {
 
 .container-area-signin {
   width: 33em;
-  left: -0.5em;
+  left: -3em;
 }
 
 .container-area-home {
@@ -287,8 +287,8 @@ form {
 }
 
 .container-area-matchresult {
-  width: 37em;
-  left: -3em;
+  width: 45em;
+  left: 0em;
 }
 
 /* ============================ */
@@ -301,6 +301,17 @@ form {
 .container-bamboo-welcome {
   width: 24em;
 }
+
+/* .container-bamboo-matchresult { */
+/* position: relative;
+  left: 2em;
+  width: 20em; */
+
+/* width: 30em;
+  margin: auto; */
+
+/* border: 1px dotted green; */
+/* } */
 
 /* ======================== */
 /*   ITENS DOS CONTAINERS   */
@@ -833,8 +844,11 @@ a:focus,
 }
 
 .boat-area-all-pieces {
+  display: inline-block;
+  width: 18.5em;
+  height: 2.3em;
   /*      top rigth bottom left */
-  padding: 6px 18px 6px 18px;
+  padding: 6px 18px 7px 15px;
 
   /* margin: top right bottom left*/
   margin: 0em 1em 0em 0.8em;
@@ -863,6 +877,7 @@ a:focus,
 }
 
 .boat-area-piece-box:hover {
+  border: 2px dashed #7a4623;
   background-color: #772c09;
 }
 
@@ -872,6 +887,7 @@ a:focus,
 
 /* Cor: Selecionado */
 .boat-area-piece input:checked ~ .boat-area-piece-box {
+  border: 2px dashed #7a4623;
   background-color: #772c09;
 }
 
@@ -892,6 +908,9 @@ a:focus,
 
 .aim-area {
   display: block;
+  width: 24em;
+  height: 4em;
+  margin: auto;
   /*        top rigth bottom left */
   padding: 0px 10px 0px 10px;
 
@@ -901,8 +920,11 @@ a:focus,
 }
 
 .aim-area-all-pieces {
+  display: inline-block;
+  width: 20em;
+  height: 2.3em;
   /*      top rigth bottom left */
-  padding: 6px 18px 6px 18px;
+  padding: 6px 18px 7px 15px;
 
   /* margin: top right bottom left*/
   margin: 0em 1em 0em 1em;
@@ -975,12 +997,29 @@ a:focus,
 .statistics-area {
   margin-top: 2em;
   height: 1em;
+  width: 15em;
 
   content: "";
   clear: both;
   display: table;
 
   /* border: 1px dotted green; */
+}
+
+/* .statistics-area .current-player-icon,
+.statistics-area .current-area-boat {
+  display: inline-block;
+} */
+
+.statistics-area .current-player-icon {
+  position: relative;
+  top: 0.7em;
+  float: left;
+  margin-right: 1em;
+}
+
+.statistics-area .current-player-icon img {
+  width: 2.8em;
 }
 
 .statistics-area-title {
@@ -1062,11 +1101,20 @@ a:focus,
   padding: 0em 1.5em 0em 1.5em;
 
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1em;
   color: rgb(255, 255, 255);
 
   background-color: #0c3806;
 }
+
+.turn-status-table-title img {
+  width: 1.5em;
+}
+
+.turn-status-table-title-nick {
+  font-size: 1.6em;
+}
+
 .turn-status-table .user-capii-icon {
   width: 4em;
 }
@@ -1095,12 +1143,18 @@ a:focus,
 */
 
 .match-result-winner-name {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.9em;
+}
 
-  font-size: 4em;
+.match-result-winner-name p {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+
+  font-size: 2.5em;
   font-weight: bold;
   text-transform: uppercase;
   color: #fc8907;
+  line-height: 100%;
   /* text-shadow: h-shadow v-shadow blur-radius color|none|initial|inherit; */
   text-shadow: 0px 5px 10px #522004;
 }

@@ -35,32 +35,16 @@ class Signin extends Component {
 
     //qdo renderizado no início
     componentDidMount() {
-        //Debug Partida
-        console.log(`MoveBoat - Jogador Logado: >> ${this.state.jogadorLogado} <<`);
 
-        if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida())) {
-            console.log(`MoveBoat - Jogador Atual: ${Globals.getJogadorAtualNaPartida().getNick()}`);
-        }
-        if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida(Globals.getJogadorInimigo(0)))) {
-            console.log(`MoveBoat - Jogador Inimigo: ${Globals.getJogadorInimigo(0).getNick()}`);
-        }
     }
 
     componentDidUpdate(prevProps) {
         if (this.state.isLoginCompleted) {
-            //constructor(nick, nomeCapivara, tamanhoRio, tamanhoCanoa)
-            let jogador = new Player(this.state.player.nick, this.state.player.capybaraName, 10, 4);
-            jogador.setIdPlayer(this.state.player.idPlayer);
-            jogador.setScore(this.state.player.score);
-            jogador.setCapybaraColor(this.state.player.capybaraColor);
-            jogador.setGender(this.state.player.gender);
-
-            Globals.setJogadorLogado(jogador);
+            Globals.setJogadorLogado(this.state.player);
 
             //criando uma sessão
-            sessionStorage.setItem(Globals.getSessionKeyNick(), jogador.getNick());
-            // sessionStorage.setItem(Globals.getSessionKeyJogador(), { ...jogador });
-            sessionStorage.setItem(Globals.getSessionKeyJogador(), JSON.stringify(jogador));
+            sessionStorage.setItem(Globals.getSessionKeyNick(), this.state.player.nick);
+            sessionStorage.setItem(Globals.getSessionKeyJogador(), JSON.stringify(this.state.player));
 
             this.props.history.push('/home');
         }
@@ -170,6 +154,12 @@ class Signin extends Component {
             </div >
         );
     }
+
+    debugPartida = () => {
+        //Debug Partida
+        console.log(`[Signin] Jogador\n>>${this.state.player}<<`);
+    }
+
 }
 
 //onClick={(event) => this.searchPlayerOnApi(event)}

@@ -11,23 +11,71 @@ import Player from '../../gamecore/Player';
 
 //Import Pages
 import Header from '../components/Header';
+import IconCapybara from '../components/IconCapybara';
 
 class MatchResult extends Component {
 
+    state = {
+        xxxx: false
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.persistirLogin();
+
+        if (Globals.hasJogadorLogado() && Globals.isIniciouPartida()) {
+            // this.props.history.push('/');
+
+        }
+        else {
+            this.state.jogadorLogado = Globals.getJogadorLogado();
+        }
+
+        if (Globals.isTerminouPartida()) {
+        }
+    }
+
+    persistirLogin = () => {
+        if (!Globals.hasJogadorLogado()
+            && !Validator.isUndefined(sessionStorage.getItem(Globals.getSessionKeyJogador()))) {
+
+            Globals.setJogadorLogadoFromSession();
+        }
+
+        if (!Globals.hasPartidaAtiva()) {
+            Globals.setPartidaFromSession();
+        }
+
+        // this.debugPartida();
+    }
+
+    onSubmitHandler = async (event) => {
+        event.preventDefault();
+
+        // this.createPlayerOnApi(event);
+    }
+
+    onClickNext = () => {
+        this.setState({ contPedacoCanoa: 0 });
+
+        // console.log(`STATUS PARTIDA: ${Globals.getPartida()}\nTerminou? ${Globals.isTerminouPartida()}`);
+
+
+    }
+
+
     render() {
-
-        Globals.criarPartida();
-
         return (
             <div>
 
-                <Header isLoginOk="true" userType={Globals.getJogadorLogado().getGenero()} />
+                <Header isLoginOk="true" userNick={Globals.getJogadorLogado().getNick()} userType={Globals.getJogadorLogado().getGender()} />
 
                 <div className="container-area-matchresult">
 
                     <div className="capii-sweating"></div>
 
-                    <div className="container-bamboo-turnstatus">
+                    <div className="container-bamboo-matchresult">
 
                         <div className="container-bamboo-title">
                             <img src={require('../assets/images/borderbambootitle.svg')} alt="título da área de conteúdo" />
@@ -35,12 +83,25 @@ class MatchResult extends Component {
                         </div>
 
                         <div className="container-bamboo-border">
-                            <form className="container-bamboo-bg-color text-center padding-bottom-1">
+                            <form onSubmit={this.onSubmitHandler} className="container-bamboo-bg-color">
+                                {
+                                    Globals.isEmpatouPartida() &&
+                                    <p>Oh no!!! Unfortunately we had a draw this time :0</p>
+                                    ||
+                                    <p>And the Winner of this match was ...</p>
+                                }
 
-                                <p>And the Winner of this match was ...</p>
 
                                 <div className="match-result-winner-name">
-                                    John
+                                    {
+                                        Globals.isTerminouPartida() && Globals.isEmpatouPartida() ?
+                                            Globals.getEmpatantesDaPartida().map(
+                                                (jogador) =>
+                                                    <p>{jogador.getNick()}</p>
+                                            )
+                                            :
+                                            <p>{Globals.getJogadorVencedorDaPartida().getNick()}</p>
+                                    }
                                 </div>
 
                                 <div>

@@ -14,6 +14,22 @@ import Header from '../components/Header';
 
 
 class Welcome extends Component {
+
+    componentDidMount() {
+        Notification.requestPermission().then(function (result) {
+            console.log("Notification Permissons: " + result);
+        });
+    }
+
+    spawnNotification = (theBody, theIcon, theTitle) => {
+        var options = {
+            body: theBody,
+            icon: theIcon
+        }
+        var n = new Notification(theTitle, options);
+        setTimeout(n.close.bind(n), 4000);
+    }
+
     render() {
         return (
             <div>
@@ -29,6 +45,14 @@ class Welcome extends Component {
                             <img src={require("../assets/images/borderbambootitle.svg")} alt="título da área de conteúdo" />
                             <span>Welcome</span>
                         </div>
+
+                        {
+                            this.spawnNotification(
+                                "Capivara Wars presents: :)",
+                                "../ assets / images / borderbambootitle.svg",
+                                "Capivara Wars"
+                            )
+                        }
 
                         <div className="container-bamboo-border">
                             <form className="container-bamboo-bg-color text-center padding-bottom-1">

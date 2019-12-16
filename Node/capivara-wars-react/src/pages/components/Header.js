@@ -30,7 +30,7 @@ export default class Header extends Component {
                     this.props.isLoginOk &&
                     <div className="user-area">
                         <div className="user-area-nick">
-                            {this.props.nick}
+                            {this.props.userNick}
                         </div>
                         <div>
                             {

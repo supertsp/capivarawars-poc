@@ -51,11 +51,17 @@ export default class Player {
 
 			this.setIdPlayer(0);
 			this.nick = nick;
+			this.gender = gender;
+			this.online = online;
 			this.score = 0;
+			this.wins = wins;
+			this.losses = losses;
+			this.draws = draws;
 			this.capybara = new Capivara(capybaraName, 7);
+			this.setCapybaraName(capybaraName);
+			this.setCapybaraColor(capybaraColor);
+			this.setCapybaraLife(capybaraLife);
 			this.river = new Rio(riverSize, new Canoa(boatSize));
-
-
 		}
 
 		//Construtor sem parâmetros
@@ -64,13 +70,24 @@ export default class Player {
 			|| Validator.isUndefined(riverSize)
 			|| Validator.isUndefined(boatSize)) {
 
-			this.setIdPlayer(0);
-			this.nick = 'nick' + parseInt(Math.random() * 1000);
-			this.score = 0;
-			this.capybara = new Capivara();
-			this.river = new Rio(riverSize, new Canoa());
+			this.capybara = new Capivara('', 7);
+			this.river = new Rio(10, new Canoa(4));
+		}
+	}
 
-
+	setJsonFields(jsonPlayerObject) {
+		if (jsonPlayerObject instanceof Object) {
+			this.setIdPlayer(jsonPlayerObject.idPlayer);
+			this.setNick(jsonPlayerObject.nick);
+			this.setGender(jsonPlayerObject.gender);
+			this.setOnline(jsonPlayerObject.online);
+			this.setScore(jsonPlayerObject.score);
+			this.setWins(jsonPlayerObject.wins);
+			this.setLosses(jsonPlayerObject.losses);
+			this.setDraws(jsonPlayerObject.draws);
+			this.setCapybaraName(jsonPlayerObject.capybaraName);
+			this.setCapybaraColor(jsonPlayerObject.capybaraColor);
+			this.setCapybaraLife(jsonPlayerObject.capybaraLife);
 		}
 	}
 
@@ -105,6 +122,8 @@ export default class Player {
 		if (Validator.isString(newNick)) {
 			this.nick = newNick;
 		}
+
+		return this;
 	}
 
 
@@ -115,6 +134,8 @@ export default class Player {
 
 	setGender(newGender) {
 		this.gender = newGender;
+
+		return this;
 	}
 
 
@@ -148,14 +169,18 @@ export default class Player {
 		return this;
 	}
 
-	incrementScore() {
-		this.score++;
+	incrementScore(scorePoints = 0) {
+		if (Validator.isInteger(scorePoints)) {
+			this.score += scorePoints;
+		}
+
 		return this;
 	}
 
 	decrementScore() {
 		this.score--;
 		this.score = this.score < 0 ? 0 : this.score;
+
 		return this;
 	}
 
@@ -183,6 +208,8 @@ export default class Player {
 		}
 
 		this.wins++;
+
+		return this;
 	}
 
 
@@ -209,6 +236,8 @@ export default class Player {
 		}
 
 		this.losses++;
+
+		return this;
 	}
 
 
@@ -251,9 +280,9 @@ export default class Player {
 		return this;
 	}
 
-
 	getCapybaraName() {
-		return this.capybara.getNome();
+		this.capybaraName = this.capybara.getNome();
+		return this.capybaraName;
 	}
 
 	setCapybaraName(newName) {
@@ -261,10 +290,13 @@ export default class Player {
 			this.capybaraName = newName;
 			this.capybara.setNome(newName);
 		}
+
+		return this;
 	}
 
 	getCapybaraColor() {
-		return this.capybara.getCor();
+		this.capybaraColor = this.capybara.getCor();
+		return this.capybaraColor;
 	}
 
 	setCapybaraColor(colorName) {
@@ -277,75 +309,93 @@ export default class Player {
 	}
 
 	getCapybaraLife() {
-		return this.getCapybara().getVida();
+		this.capybaraLife = this.getCapybara().getVida();
+		return this.capybaraLife;
 	}
 
 	setCapybaraLife(newLife) {
 		if (Validator.isInteger(newLife)) {
 			this.capybaraLife = newLife;
-			this.getCapybara().setVida(newLife);
+			this.capybara.setVida(newLife);
 		}
+
+		return this;
 	}
 
+	setDamageToCapybara() {
+		this.capybara.receberDano();
 
+		//update field
+		this.getCapybaraLife();
 
-	reduzirVidaCapivara() {
-		this.getCapybara().receberDano();
+		return this;
 	}
 
+	isCapybaraDeath() {
+		return this.capybara.isMorta();
+	}
 
-	/**
-	 *
-		capybaraName;
-		capybaraColor;
-		capybaraLife;
-	 * 
-	 */
-
-
-
-
-
-
-	getRio() {
+	//RIVER
+	getRiver() {
 		return this.river;
 	}
 
-	getCanoa() {
+	getRiverParts() {
+		return this.river.getPartes();
+	}
+
+	getRiverLength() {
+		return this.getRiver().getTamanhoAtual();
+	}
+
+	getBoatPositionOnRiver() {
+		return this.getRiver().getPosicaoAtualCanoa();
+	}
+
+	//BOAT
+	getBoat() {
 		return this.river.getCanoa();
 	}
 
-	isCanoaDestruida() {
+	getBoatPieces() {
+		return this.getBoat().getPedacos();
+	}
+
+	getBoatLength() {
+		return this.getBoat().getTamanhoAtual();
+	}
+
+	isBoatDestroyed() {
 		return this.river.isVazio();
 	}
 
 
-
-
-
-
 	//RIO + CANOA
-	moverCanoa(posicaoNoRio) {
+	moveBoat(posicaoNoRio) {
 		this.river.moverCanoa(posicaoNoRio);
 	}
 
-	atirarNoInimigo(posicaoDoTiro, jogadorInimigo) {
+	shootAtEnemy(posicaoDoTiro, jogadorInimigo) {
 		if (Validator.isInteger(posicaoDoTiro) && jogadorInimigo instanceof Player) {
-			return jogadorInimigo.getRio().receberTiro(posicaoDoTiro);
+			return jogadorInimigo.getRiver().receberTiro(posicaoDoTiro);
 		}
 
 		return false;
 	}
 
 	toString() {
-		let jogadorTxt = `Jogador ${this.getIdPlayer()}: '${this.getNick()}'   -  Pontos: ${this.getScore()}\n`;
-		let capivaraTxt = `   Capivara '${this.getCapybara().getNome()}'  - Vida: ${this.getCapybaraLife()}  - Está morta? ${this.isCapybaraDeath()} \n`;
-		let rioTxt = `   Rio (${this.getRio().getTamanhoAtual()}): `;
-		let canoaTxt = `   Canoa (${this.getCanoa().getTamanhoAtual()}): `;
-		let canoaDestruidaTxt = `   -   Está Destruida? ${this.isCanoaDestruida()}`;
+		let jogadorTxt =
+			`       Player '${this.getNick()}'\n` +
+			` id: ${this.getIdPlayer()}   score: ${this.getScore()}\n`;
+		let capivaraTxt =
+			`\n       Capybara '${this.getCapybaraName()}'\n` +
+			` life: ${this.getCapybaraLife()}  death: ${this.isCapybaraDeath()} \n`;
+		let rioTxt = `\nRiver (${this.getRiver().getTamanhoAtual()}): `;
+		let canoaTxt = `Boat   (${this.getBoat().getTamanhoAtual()}): `;
+		let canoaDestruidaTxt = ` - destroyed: ${this.isBoatDestroyed()}`;
 
-		for (let cont = 0; cont < this.getRio().getTamanhoAtual(); cont++) {
-			if (this.getRio().getParte(cont)) {
+		for (let cont = 0; cont < this.getRiver().getTamanhoAtual(); cont++) {
+			if (this.getRiver().getParte(cont)) {
 				rioTxt += '[O]';
 			}
 			else {
@@ -354,8 +404,8 @@ export default class Player {
 		}
 		rioTxt += '\n';
 
-		for (let cont = 0; cont < this.getCanoa().getTamanhoAtual(); cont++) {
-			if (this.getCanoa().getPedaco(cont)) {
+		for (let cont = 0; cont < this.getBoat().getTamanhoAtual(); cont++) {
+			if (this.getBoat().getPedaco(cont)) {
 				canoaTxt += '[O]';
 			}
 			else {

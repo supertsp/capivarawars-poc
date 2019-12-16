@@ -1,6 +1,9 @@
 import Validator from '../tool/Validator';
 import Player from './Player';
 
+
+
+
 /**
  * Objective: ...
  * 
@@ -19,36 +22,66 @@ export default class Partida {
 	iniciou;
 	terminou;
 	indiceJogadorAtual;
-	jogadores;
+	ultimasPosicoesMovimento;
+	ultimasPosicoesTiro;
+
+	//jogadores na partida
+	jogadoresCadastradosNaPartida;
+	jogadoresAtuaisNaPartida;
+
+	//constantes
+	static get PONTOS_EMPATE() {
+		return 1;
+	}
+
+	static get PONTOS_VITORIA() {
+		return 2;
+	}
+
+	//auxs
+	empatou;
+	empatantes;
+	vencedor;
 
 	constructor(limiteDeJogadores) {
 		if (Validator.isInteger(limiteDeJogadores)) {
 			this.setLimiteDeJogadores(limiteDeJogadores);
-			this.jogadores = [];
-			this.reiniciar();
+			this.jogadoresCadastradosNaPartida = [];
+			this.reiniciarCampos();
 		}
 
 		//Construtor sem parâmetros
 		if (Validator.isUndefined(limiteDeJogadores)) {
 			this.setLimiteDeJogadores(2);
-			this.jogadores = [];
-			this.reiniciar();
+			this.jogadoresCadastradosNaPartida = [];
+			this.reiniciarCampos();
 		}
 	}
 
-	reiniciar() {
-		this.turnoAtual = 0;
+	reiniciarCampos() {
+		this.turnoAtual = 1;
 		this.iniciou = false;
 		this.terminou = false;
 		this.indiceJogadorAtual = 0;
 
+		this.jogadoresAtuaisNaPartida = [];
+
 		for (let cont = 0; cont < this.getQtdAtualDeJogadores(); cont++) {
-			console.log("qtdJogadores: " + this.getQtdAtualDeJogadores());
-			this.getJogador(cont).reiniciarCanoa();
+			this.getJogador(cont).restartBoat();
+			this.jogadoresAtuaisNaPartida.push(this.getJogador(cont));
 		}
 
 		//Atualizando atributo
 		this.getQtdAtualDeJogadores();
+
+
+
+		this.ultimasPosicoesMovimento = [];
+		this.ultimasPosicoesTiro = [];
+
+		this.empatou = false;
+		this.empatantes = [];
+		this.vencedor = null;
 	}
 
 	getLimiteDeJogadores() {
@@ -66,7 +99,7 @@ export default class Partida {
 	}
 
 	getQtdAtualDeJogadores() {
-		this.qtdAtualDeJogadores = this.jogadores.length;
+		this.qtdAtualDeJogadores = this.jogadoresCadastradosNaPartida.length;
 		return this.qtdAtualDeJogadores;
 	}
 
@@ -75,7 +108,7 @@ export default class Partida {
 	}
 
 	incrementarTurnoAtual() {
-		if (this.isIniciou() && !this.isTerminou()) {
+		if (this.iniciou && !this.terminou) {
 			this.turnoAtual++;
 		}
 	}
@@ -84,10 +117,14 @@ export default class Partida {
 		return this.iniciou;
 	}
 
+
+	//INICIAR
 	iniciar() {
-		if (!this.isIniciou() && !this.isTerminou()
+		if (!this.iniciou && !this.terminou
 			&& this.getQtdAtualDeJogadores() >= 2) {
 			this.iniciou = true;
+			this.ultimasPosicoesMovimento = new Array(this.getQtdAtualDeJogadores());
+			this.ultimasPosicoesTiro = new Array(this.getQtdAtualDeJogadores());
 		}
 	}
 
@@ -95,23 +132,61 @@ export default class Partida {
 		return this.terminou;
 	}
 
+
+	//TERMINAR
 	terminar() {
-		if (this.isIniciou() && !this.isTerminou()
-			&& this.getQtdAtualDeJogadores() >= 2) {
+		if (this.iniciou && !this.terminou) {
 			this.terminou = true;
 		}
 	}
 
 	getIndiceJogadorAtual() {
+		//procura um jogador que não tenha sido removido
+		let contJogador = 1; console.log("getIndiceJogadorAtual() - length: " + this.jogadoresAtuaisNaPartida.length);
+
+		if (this.jogadoresAtuaisNaPartida.length > 0) {
+			while (Validator.isUndefined(this.jogadoresAtuaisNaPartida[this.indiceJogadorAtual])) {
+				this.incrementarIndiceJogadorAtual();
+
+				//trava de seguranção para não rodar indefinidamente
+				contJogador++;
+
+				//chegou no limite de execução E todos jogadores foram removidos?
+				if (contJogador === this.jogadoresAtuaisNaPartida.length) {
+					return -1;
+				}
+			}
+		}
+
 		return this.indiceJogadorAtual;
+	}
+
+	getUltimoIndiceValidoParaJogadorAtual() {
+		let ultimoIndiceValido = -1;
+
+		//procura um jogador que não tenha sido removido		
+		for (let indiceJogador = 0; indiceJogador < this.jogadoresAtuaisNaPartida.length; indiceJogador++) {
+			if (!Validator.isUndefined(this.jogadoresAtuaisNaPartida[indiceJogador])) {
+				ultimoIndiceValido = indiceJogador;
+			}
+		}
+		console.log("aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii - length: " + this.jogadoresAtuaisNaPartida.length + "\n" + this.jogadoresAtuaisNaPartida.toString());
+		return ultimoIndiceValido;
+	}
+
+	incrementarIndiceJogadorAtual() {
+		this.indiceJogadorAtual++;
+		this.indiceJogadorAtual = this.indiceJogadorAtual % this.getQtdAtualDeJogadores();
+		// this.indiceJogadorAtual = this.indiceJogadorAtual >= this.getQtdAtualDeJogadores() ? 0 : this.indiceJogadorAtual;
 	}
 
 	addJogador(novoJogador) {
 		if (this.getQtdAtualDeJogadores() <= this.getLimiteDeJogadores()
 			&& novoJogador instanceof Player
-			&& !this.isIniciou() && !this.isTerminou()) {
+			&& !this.iniciou && !this.terminou) {
 
-			this.jogadores.push(novoJogador);
+			this.jogadoresCadastradosNaPartida.push(novoJogador);
+			this.jogadoresAtuaisNaPartida.push(novoJogador);
 		}
 
 		//Atualizando atributo
@@ -125,57 +200,72 @@ export default class Partida {
 			&& indiceJogador >= 0
 			&& indiceJogador < this.getQtdAtualDeJogadores()) {
 
-			return this.jogadores[indiceJogador];
+			return this.jogadoresCadastradosNaPartida[indiceJogador];
 		}
 
 		return null;
 	}
 
 	getJogadorAtual() {
-		return this.getJogador(this.getIndiceJogadorAtual());
+		const indiceTemp = this.getIndiceJogadorAtual();
+
+		if (indiceTemp === -1) {
+			return null;
+		}
+
+		return this.jogadoresAtuaisNaPartida[indiceTemp];
 	}
 
-	moverCanoaDoJogadorAtual(indicePosicaoNoRio) {
-		if (Validator.isInteger(indicePosicaoNoRio)
-			&& this.isIniciou() && !this.isTerminou()) {
 
-			this.getJogadorAtual().moverCanoa(indicePosicaoNoRio);
-			this.indiceJogadorAtual++;
-			this.indiceJogadorAtual = this.indiceJogadorAtual % this.getQtdAtualDeJogadores();
+	//ULTIMAS POSIÇÕES
+	getUltimasPosicoesMovimento() {
+		return this.ultimasPosicoesMovimento;
+	}
+
+	getUltimasPosicoesTiro() {
+		return this.ultimasPosicoesTiro;
+	}
+
+	//MOVER
+	moverCanoaDoJogadorAtual(indicePosicaoNoRio) {
+		//evita strings dos forms
+		try {
+			indicePosicaoNoRio = parseInt(indicePosicaoNoRio);
+		} catch (error) { }
+
+		if (Validator.isInteger(indicePosicaoNoRio)
+			&& this.iniciou && !this.terminou) {
+
+			this.getJogadorAtual().moveBoat(indicePosicaoNoRio);
+
+			this.ultimasPosicoesMovimento[this.getIndiceJogadorAtual()] = indicePosicaoNoRio;
+
+			this.incrementarIndiceJogadorAtual();
 		}
 	}
 
+
+	//ATIRAR
 	atirarNoInimigoDoJogadorAtual(indicePosicaoDoTiro, jogadorInimigo) {
+		//evita strings dos forms
+		try {
+			indicePosicaoDoTiro = parseInt(indicePosicaoDoTiro);
+		} catch (error) { }
+
 		if (Validator.isInteger(indicePosicaoDoTiro)
 			&& jogadorInimigo instanceof Player
-			&& this.isIniciou() && !this.isTerminou()) {
+			&& this.iniciou && !this.terminou) {
 
-			let tiroCerteiro = this.getJogadorAtual()
-				.atirarNoInimigo(indicePosicaoDoTiro, jogadorInimigo);
+			let tiroCerteiro = this.getJogadorAtual().shootAtEnemy(
+				indicePosicaoDoTiro,
+				jogadorInimigo
+			);
 
-			if (this.getIndiceJogadorAtual() === 0) {
-				this.incrementarTurnoAtual();
-			}
+			this.ultimasPosicoesTiro[this.indiceJogadorAtual] = indicePosicaoDoTiro;
 
-			//Descobrindo se o jogo pode terminar após o último jogar
-			if ((this.getIndiceJogadorAtual() + 1) === this.getQtdAtualDeJogadores()) {
-				let contCanoasDestruidas = 0;
+			this.validarFechamentoDeTurno();
 
-				for (let cont = 0; cont < this.getQtdAtualDeJogadores(); cont++) {
-					if (this.getJogador(cont).isCanoaDestruida()) {
-						contCanoasDestruidas++;
-					}
-				}
-
-				//houve empate ou sobrou apenas 1 jogador?
-				if (contCanoasDestruidas === this.getQtdAtualDeJogadores()
-					|| contCanoasDestruidas === (this.getQtdAtualDeJogadores() - 1)) {
-					this.terminar();
-				}
-			}
-
-			this.indiceJogadorAtual++;
-			this.indiceJogadorAtual = this.indiceJogadorAtual % this.getQtdAtualDeJogadores();
+			this.incrementarIndiceJogadorAtual();
 
 			return tiroCerteiro;
 		}
@@ -183,53 +273,104 @@ export default class Partida {
 		return false;
 	}
 
-	isEmpatou() {
-		if (this.isIniciou() && this.isTerminou()) {
-			let contVencedores = 0;
+	validarFechamentoDeTurno() {
+		const ultimoIndiceValido = this.getUltimoIndiceValidoParaJogadorAtual();
+		console.log(`ultimoIndiceValido: ${ultimoIndiceValido}`);
+		//é o último jogador?
+		if (ultimoIndiceValido !== -1 && ultimoIndiceValido === this.indiceJogadorAtual) {
+			this.incrementarTurnoAtual();
 
-			for (let cont = 0; cont < this.getQtdAtualDeJogadores(); cont++) {
-				if (!this.getJogador(cont).isCanoaDestruida()) {
-					contVencedores++;
+			//procurando baixas
+			this.empatantes = [];
+			let jogadoresRestantes = [];
+			let indiceJogadorVencedor = -1;
+
+			for (let indiceJogador = 0; indiceJogador < this.jogadoresAtuaisNaPartida.length; indiceJogador++) {
+				if (!Validator.isUndefined(this.jogadoresAtuaisNaPartida[indiceJogador])
+					&& this.jogadoresAtuaisNaPartida[indiceJogador].isBoatDestroyed()) {
+
+					delete this.jogadoresAtuaisNaPartida[indiceJogador];
+					this.jogadoresCadastradosNaPartida[indiceJogador].setDamageToCapybara();
+
+					//adiciona possíveis empatantes
+					this.empatantes.push(this.jogadoresCadastradosNaPartida[indiceJogador]);
+				}
+				else if (!Validator.isUndefined(this.jogadoresAtuaisNaPartida[indiceJogador])
+					&& !this.jogadoresAtuaisNaPartida[indiceJogador].isBoatDestroyed()) {
+
+					//adiciona possível vitorioso
+					jogadoresRestantes.push(this.jogadoresCadastradosNaPartida[indiceJogador]);
+					indiceJogadorVencedor = indiceJogador;
 				}
 			}
 
-			return contVencedores >= 2;
+			//houve empate?
+			if (jogadoresRestantes.length === 0) {
+				this.terminar();
+				this.empatou = true;
+				let acheiEmpatante = false;
+
+				for (let indiceJogador = 0; indiceJogador < this.jogadoresCadastradosNaPartida.length; indiceJogador++) {
+					for (let indiceJogadorEmpatante = 0; indiceJogadorEmpatante < this.empatantes.length; indiceJogadorEmpatante++) {
+
+						if (this.empatantes[indiceJogadorEmpatante].getNick() ===
+							this.jogadoresCadastradosNaPartida[indiceJogador].getNick()) {
+
+							acheiEmpatante = true;
+							break;
+						}
+						else {
+							acheiEmpatante = false;
+						}
+					}
+
+					if (acheiEmpatante) {
+						this.jogadoresCadastradosNaPartida[indiceJogador].incrementDraws();
+						this.jogadoresCadastradosNaPartida[indiceJogador].incrementScore(Partida.PONTOS_EMPATE);
+					}
+					else {
+						this.jogadoresCadastradosNaPartida[indiceJogador].incrementLosses();
+					}
+				}
+
+			}//houve 1 vencedor
+			else if (jogadoresRestantes.length === 1) {
+				this.terminar();
+				this.vencedor = jogadoresRestantes[0];
+
+				for (let indiceJogador = 0; indiceJogador < this.jogadoresCadastradosNaPartida.length; indiceJogador++) {
+					if (this.jogadoresCadastradosNaPartida[indiceJogador].getNick() ===
+						this.vencedor.getNick()) {
+						this.jogadoresCadastradosNaPartida[indiceJogador].incrementWins();
+						this.jogadoresCadastradosNaPartida[indiceJogador].incrementScore(Partida.PONTOS_VITORIA);
+					}
+					else {
+						this.jogadoresCadastradosNaPartida[indiceJogador].incrementLosses();
+					}
+				}
+			}
+		}
+	}
+
+	isEmpatou() {
+		if (this.iniciou && this.terminou && this.empatou) {
+			return true;
 		}
 
 		return false;
 	}
 
 	getEmpatantes() {
-		if (this.isIniciou() && this.isTerminou()) {
-			let vencedores = [];
-
-			for (let cont = 0; cont < this.getQtdAtualDeJogadores(); cont++) {
-				if (!this.getJogador(cont).isCanoaDestruida()) {
-					vencedores.push(this.getJogador(cont));
-				}
-				else {
-					this.getJogador(cont).reduzirVidaCapivara();
-				}
-			}
-
-			return vencedores;
+		if (this.iniciou && this.terminou && this.empatou) {
+			return this.empatantes;
 		}
 
 		return null;
 	}
 
 	getVencedor() {
-		if (this.isIniciou() && this.isTerminou() && !this.isEmpatou()) {
-			let vencedor = null;
-
-			for (let cont = 0; cont < this.getQtdAtualDeJogadores(); cont++) {
-				if (!this.getJogador(cont).isCanoaDestruida()) {
-					vencedor = this.getJogador(cont);
-					break;
-				}
-			}
-
-			return vencedor;
+		if (this.iniciou && this.terminou && !this.empatou) {
+			return this.vencedor;
 		}
 
 		return null;
@@ -237,10 +378,11 @@ export default class Partida {
 
 	toString() {
 		let text =
-			`` +
-			`\n====[PARTIDA]======[TURNO: ${this.getTurnoAtual()}]` +
-			`============[Iniciou? ${this.isIniciou()}]` +
-			`====[Terminou? ${this.isTerminou()}]================ \n`;
+			`\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n` +
+			`       PARTIDA\n` +
+			`   Turno: ${this.getTurnoAtual()}\n` +
+			`   Iniciou? ${this.isIniciou()}\n` +
+			`   Terminou? ${this.isTerminou()}\n`;
 
 		for (
 			let contJogador = 0;
@@ -249,9 +391,13 @@ export default class Partida {
 		) {
 			text +=
 				`` +
+				`\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n` +
 				`${this.getJogador(contJogador).toString()}\n` +
-				`  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n`;
+				`Mov.: ${this.ultimasPosicoesMovimento[contJogador]}\n` +
+				`Tiro: ${this.ultimasPosicoesTiro[contJogador]}\n`;
 		}
+
+		text += `\n`;
 
 		return text;
 	}

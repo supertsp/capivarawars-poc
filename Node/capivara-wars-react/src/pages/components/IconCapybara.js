@@ -39,7 +39,9 @@ export default class IconCapybara extends Component {
                                                     require('../assets/images/capii-icon-black.svg') :
                                                     this.props.color === 'white' ?
                                                         require('../assets/images/capii-icon-white.svg') :
-                                                        require('../assets/images/capii-icon-brown.svg')
+                                                        this.props.color === 'hotdog' ?
+                                                            require('../assets/images/capii-icon-hotdog.svg') :
+                                                            require('../assets/images/capii-icon-brown.svg')
                 }
                     className={this.props.specialClass} alt="capivara icon" />
 

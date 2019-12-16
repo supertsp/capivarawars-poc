@@ -11,18 +11,91 @@ import Player from '../../gamecore/Player';
 
 //Import Pages
 import Header from '../components/Header';
+import IconCapybara from '../components/IconCapybara';
 
 
 class TurnStatus extends Component {
 
+    state = {
+        contPedacoCanoa: 0
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.persistirLogin();
+
+        if (Globals.hasJogadorLogado() && Globals.isIniciouPartida()) {
+            // this.props.history.push('/');
+
+        }
+        else {
+            this.state.jogadorLogado = Globals.getJogadorLogado();
+        }
+
+        if (Globals.isTerminouPartida()) {
+            this.props.history.push('/matchresult');
+        }
+    }
+
+    componentDidMount() {
+        if (Globals.isTerminouPartida()) {
+            this.props.history.push('/matchresult');
+        }
+
+        console.log(`${Globals.getPartida()}\n`);
+    }
+
+    // componentDidUpdate(prevProps) {
+    //     if (Globals.isTerminouPartida()) {
+    //         this.props.history.push('/matchresult');
+    //     }
+    // }
+
+    persistirLogin = () => {
+        if (!Globals.hasJogadorLogado()
+            && !Validator.isUndefined(sessionStorage.getItem(Globals.getSessionKeyJogador()))) {
+
+            Globals.setJogadorLogadoFromSession();
+            this.state.jogadorLogado = Globals.getJogadorLogado();
+        }
+
+        if (!Globals.hasPartidaAtiva()) {
+            Globals.setPartidaFromSession();
+        }
+
+        // this.debugPartida();
+    }
+
+    onSubmitHandler = async (event) => {
+        event.preventDefault();
+
+        // this.createPlayerOnApi(event);
+    }
+
+    onClickNext = () => {
+        this.setState({ contPedacoCanoa: 0 });
+
+        // console.log(`STATUS PARTIDA: ${Globals.getPartida()}\nTerminou? ${Globals.isTerminouPartida()}`);
+        Globals.isTerminouPartida();
+
+        if (Globals.isTerminouPartida()) {
+            this.props.history.push('/matchresult');
+        }
+        else {
+            this.props.history.push('/moveboat');
+        }
+    }
+
+    onChangeRadio = (event) => {
+        this.setState({ posicaoEscolhida: event.target.value });
+    }
+
     render() {
-
-        Globals.criarPartida();
-
         return (
             <div>
 
-                <Header isLoginOk="true" userType={Globals.getJogadorLogado().getGenero()} />
+                <Header isLoginOk="true" userNick={Globals.getJogadorLogado().getNick()} userType={Globals.getJogadorLogado().getGender()} />
 
                 <div className="container-area-turnstatus">
 
@@ -32,7 +105,7 @@ class TurnStatus extends Component {
                     </div>
 
                     <div className="container-bamboo-border">
-                        <form className="container-bamboo-bg-color text-center padding-bottom-1">
+                        <form onSubmit={this.onSubmitHandler} className="container-bamboo-bg-color text-center padding-bottom-1">
 
                             <p>How is the game going?</p>
 
@@ -40,22 +113,44 @@ class TurnStatus extends Component {
                                 <tbody>
                                     <tr>
                                         <td colSpan="2" className="turn-status-table-title">
-                                            Michael' Status
+                                            {
+                                                Globals.getJogadorLogado().getGender() === 'M' ?
+                                                    <img src={require('../assets/images/user-male-icon.svg')} alt="user foto" /> :
+                                                    Globals.getJogadorLogado().getGender() === 'F' ?
+                                                        <img src={require('../assets/images/user-female-icon.svg')} alt="user foto" /> :
+                                                        <img src={require('../assets/images/user-enemy-icon.svg')} alt="user foto" />
+                                            }
+                                            &nbsp;
+                                            <span className="turn-status-table-title-nick">
+                                                {Globals.getJogadorLogado().getNick()}
+                                            </span>
+                                            ' Status
                                         </td>
                                         <td className="turn-status-table-white-space">
                                             &nbsp;
                                         </td>
                                         <td colSpan="2" className="turn-status-table-title">
-                                            John's Status
+                                            {
+                                                Globals.getJogadorInimigo(0).getGender() === 'M' ?
+                                                    <img src={require('../assets/images/user-male-icon.svg')} alt="user foto" /> :
+                                                    Globals.getJogadorInimigo(0).getGender() === 'F' ?
+                                                        <img src={require('../assets/images/user-female-icon.svg')} alt="user foto" /> :
+                                                        <img src={require('../assets/images/user-enemy-icon.svg')} alt="user foto" />
+                                            }
+                                            &nbsp;
+                                            <span className="turn-status-table-title-nick">
+                                                {Globals.getJogadorInimigo(0).getNick()}
+                                            </span>
+                                            ' Status
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td>
-                                            <img className="user-capii-icon" src={require('../assets/images/capii-icon-brown.svg')} alt="capivara foto" />
+                                            <IconCapybara color={Globals.getJogadorLogado().getCapybaraColor()} specialClass="user-capii-icon" />
                                         </td>
                                         <td className="turn-status-table-capivara-nane">
-                                            Minerva
+                                            {Globals.getJogadorLogado().getCapybaraName()}
                                         </td>
 
                                         <td className="turn-status-table-white-space">
@@ -63,19 +158,22 @@ class TurnStatus extends Component {
                                         </td>
 
                                         <td>
-                                            <img className="user-capii-icon" src={require('../assets/images/capii-icon-pink.svg')} alt="capivara foto" />
+                                            <IconCapybara color={Globals.getJogadorInimigo(0).getCapybaraColor()} specialClass="user-capii-icon" />
                                         </td>
                                         <td className="turn-status-table-capivara-nane">
-                                            Rose
+                                            {Globals.getJogadorInimigo(0).getCapybaraName()}
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td colSpan="2">
                                             <span className="current-boat-size">
-                                                <span className="current-boat-size-piece"></span>
-                                                <span className="current-boat-size-piece"></span>
-                                                <span className="current-boat-size-piece"></span>
+                                                {
+                                                    Globals.getJogadorLogado().getBoatPieces().map(
+                                                        (pedaco) =>
+                                                            <span key={this.getKeyPedacoAtual()} className="current-boat-size-piece"></span>
+                                                    )
+                                                }
                                             </span>
                                         </td>
 
@@ -85,10 +183,12 @@ class TurnStatus extends Component {
 
                                         <td colSpan="2">
                                             <span className="current-boat-size">
-                                                <span className="current-boat-size-piece"></span>
-                                                <span className="current-boat-size-piece"></span>
-                                                <span className="current-boat-size-piece"></span>
-                                                <span className="current-boat-size-piece"></span>
+                                                {
+                                                    Globals.getJogadorInimigo(0).getBoatPieces().map(
+                                                        (pedaco) =>
+                                                            <span key={this.getKeyPedacoAtual()} className="current-boat-size-piece"></span>
+                                                    )
+                                                }
                                             </span>
                                         </td>
                                     </tr>
@@ -98,9 +198,7 @@ class TurnStatus extends Component {
 
                             <div>
 
-                                <Link to="/matchresult">
-                                    <button className="form-button">Next</button>
-                                </Link>
+                                <button onClick={this.onClickNext} className="form-button" type="submit">Next</button>
 
                             </div>
 
@@ -112,6 +210,28 @@ class TurnStatus extends Component {
             </div>
         );
     }
+
+    debugPartida = () => {
+        // console.log(`[MoveBoat] JogadorLogado\n>>${Globals.getJogadorLogado().getNick()}<<`);
+        console.log(`[MoveBoat] JogadorLogado\n>>${Globals.getJogadorLogado()}<<`);
+        // console.log(`[MoveBoat] JogadorLogado (json)\n>>${JSON.stringify(Globals.getJogadorLogado())}<<`);
+        console.log(`[MoveBoat] Partida\n>>${Globals.getPartida()}<<`);
+
+        // if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida())) {
+        console.log(`[MoveBoat] JogadorAtual\n>>${Globals.getJogadorAtualNaPartida()}<<`);
+        // }
+        // if (!Validator.isUndefined(Globals.getJogadorAtualNaPartida(Globals.getJogadorInimigo(0)))) {
+        console.log(`[MoveBoat] JogadorInimigo\n>>${Globals.getJogadorInimigo(0)}<<`);
+        // }
+    }
+
+    getKeyPedacoAtual = () => {
+        let num = this.state.contPedacoCanoa;
+        num++;
+        this.state.contPedacoCanoa = num;
+        return num;
+    }
+
 }
 
 //export and allow redirect by "this.props.history"
