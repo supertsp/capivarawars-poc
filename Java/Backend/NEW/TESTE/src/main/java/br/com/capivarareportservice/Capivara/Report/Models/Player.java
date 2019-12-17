@@ -17,61 +17,61 @@ public class Player {
     @Id
     private ObjectId _id;
     
-    @Indexed(name = "NICK")
+//    @Indexed(name = "NICK")
     private String nick;
     
-    @Indexed(name = "PASSWORD")
+//    @Indexed(name = "PASSWORD")
     private String password;
     
-  @Indexed(name = "ACCOUNT_BIRTHDAY_DATETIME")
+//  @Indexed(name = "ACCOUNT_BIRTHDAY_DATETIME")
     private LocalDateTime accountBirthdayDateTime;
     
-   @Indexed(name = "URL_PHOTO")
+//   @Indexed(name = "URL_PHOTO")
     private String urlPhoto;
     
-  @Indexed(name = "FULLNAME")
+//  @Indexed(name = "FULLNAME")
     private String fullName;
     
-    @Indexed(name = "EMAIL")
+//    @Indexed(name = "EMAIL")
     private String email;
     
-    @Indexed(name = "GENDER")
+//    @Indexed(name = "GENDER")
     private Character gender;
 
-    @Indexed(name = "BIRTHDAY")
+//    @Indexed(name = "BIRTHDAY")
     private LocalDate birthday;
 
-    @Indexed(name = "ONLINE")
+//    @Indexed(name = "ONLINE")
     private Boolean online;
 
-   @Indexed(name = "LAST_ACTIVATION_CODE")
+//   @Indexed(name = "LAST_ACTIVATION_CODE")
     private String lastActivationCode;
 	
-   @Indexed(name = "COINS")
+//   @Indexed(name = "COINS")
     private Integer coins;
 	
-   @Indexed(name = "SCORE")
+//   @Indexed(name = "SCORE")
     private Integer score;	
 	
-   @Indexed(name = "WINS")
+//   @Indexed(name = "WINS")
     private Integer wins;
 
-   @Indexed(name = "DRAWS")
+//   @Indexed(name = "DRAWS")
     private Integer draws;
 
-   @Indexed(name = "LOSES")
+//   @Indexed(name = "LOSES")
     private Integer loses;
 
-   @Indexed(name = "ACCURATE_SHOTS")
+//   @Indexed(name = "ACCURATE_SHOTS")
     private Integer accurateShots;
 
-   @Indexed(name = "BAD_SHOTS")
+//   @Indexed(name = "BAD_SHOTS")
     private Integer badShots;
 
-   @Indexed(name = "SHOTS_RECEIVED")
+//   @Indexed(name = "SHOTS_RECEIVED")
     private Integer shotsReceived;
 
-   @Indexed(name = "MOVEMENTS")
+//   @Indexed(name = "MOVEMENTS")
     private Integer movements;
 
     //</editor-fold>
