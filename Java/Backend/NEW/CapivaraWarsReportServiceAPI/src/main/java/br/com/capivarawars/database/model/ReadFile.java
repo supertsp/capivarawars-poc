@@ -113,8 +113,8 @@ public class ReadFile {
 
 			//close file
 			input.close();
-		} catch (IOException e) {
-			System.err.printf("Error trying to read the file: %s.\n", e.getMessage());
+		} catch (Exception e) {
+//			Systemtem.err.printf("Error trying to read the file: %s.\n", e.getMessage());
 		}
 
 		return input;
