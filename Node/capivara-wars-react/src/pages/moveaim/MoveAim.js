@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Globals from "../../Globals";
 import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
+import PushNotification from "../../tool/PushNotification";
 
 //Import GameCore
 import Player from '../../gamecore/Player';
@@ -17,7 +18,10 @@ class MoveAim extends Component {
 
     state = {
         contPedacoCanoa: 0,
-        posicaoEscolhida: 0
+        posicaoEscolhida: 0,
+        posicaoEscolhidaDoInimigo: -1,
+        clickPosicaoEscolhidaDoInimigo: false,
+        tempCountIndex: -1
     }
 
     constructor(props) {
@@ -72,6 +76,23 @@ class MoveAim extends Component {
 
     onChangeRadio = (event) => {
         this.setState({ posicaoEscolhida: event.target.value });
+    }
+
+    onClickEnemyPice = (event) => {
+        if (this.state.clickPosicaoEscolhidaDoInimigo) {
+            console.log("true - Position: " + Globals.getJogadorNaPartida(1).getBoatPositionOnRiver());
+            this.setState({
+                posicaoEscolhidaDoInimigo: Globals.getJogadorNaPartida(1).getBoatPositionOnRiver(),
+                clickPosicaoEscolhidaDoInimigo: false
+            });
+        }
+        else {
+            console.log("false - Position: " + Globals.getJogadorNaPartida(1).getBoatPositionOnRiver());
+            this.setState({
+                posicaoEscolhidaDoInimigo: Globals.getJogadorNaPartida(1).getBoatPositionOnRiver(),
+                clickPosicaoEscolhidaDoInimigo: true
+            });
+        }
     }
 
     render() {
@@ -157,7 +178,15 @@ class MoveAim extends Component {
                                         {
                                             Globals.getJogadorInimigo(0).getBoatPieces().map(
                                                 (pedaco) =>
-                                                    <span key={this.getKeyPedacoAtual()} className="current-boat-size-piece"></span>
+                                                    <span
+                                                        key={this.getKeyPedacoAtual()}
+                                                        className="current-boat-size-piece"
+                                                        onClick={this.onClickEnemyPice}>
+                                                        {
+                                                            this.state.clickPosicaoEscolhidaDoInimigo &&
+                                                            this.getNextIndexOfPiece()
+                                                        }
+                                                    </span>
                                             )
                                         }
                                     </span>
@@ -201,6 +230,20 @@ class MoveAim extends Component {
         num++;
         this.state.contPedacoCanoa = num;
         return num;
+    }
+
+    getNextIndexOfPiece = () => {
+        let tempIndex = this.state.tempCountIndex;
+
+        if (tempIndex === -1) {
+            tempIndex = this.state.posicaoEscolhidaDoInimigo;
+            tempIndex--;
+        }
+
+        tempIndex++;
+        this.state.tempCountIndex = tempIndex;
+
+        return tempIndex;
     }
 
 }

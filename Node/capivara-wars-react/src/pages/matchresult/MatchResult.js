@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Globals from "../../Globals";
 import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
+import PushNotification from "../../tool/PushNotification";
 
 //Import GameCore
 import Player from '../../gamecore/Player';
@@ -33,6 +34,7 @@ class MatchResult extends Component {
         }
 
         if (Globals.isTerminouPartida()) {
+            this.updatePlayerStatusOnApi();
         }
     }
 
@@ -62,6 +64,24 @@ class MatchResult extends Component {
         // console.log(`STATUS PARTIDA: ${Globals.getPartida()}\nTerminou? ${Globals.isTerminouPartida()}`);
 
 
+    }
+
+    updatePlayerStatusOnApi = async (event) => {
+        const response = await AxiosRest.executePATCH('playerService',
+            `/player/${Globals.getJogadorLogado().getIdPlayer()}`, {
+            score: Globals.getJogadorLogado().getScore(),
+            wins: Globals.getJogadorLogado().getWins(),
+            losses: Globals.getJogadorLogado().getLosses(),
+            draws: Globals.getJogadorLogado().getDraws(),
+            capybaraLife: Globals.getJogadorLogado().getCapybaraLife()
+        });
+
+        if (Validator.isAxiosResponseOkAndHasData(response)) {
+            console.log(response);
+        }
+        else {
+            console.log("ERROR!!!\n" + response);
+        }
     }
 
 

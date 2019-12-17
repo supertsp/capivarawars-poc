@@ -5,6 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 import Globals from "../../Globals";
 import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
+import PushNotification from "../../tool/PushNotification";
 
 //Import GameCore
 import Player from '../../gamecore/Player';
@@ -13,21 +14,11 @@ import Player from '../../gamecore/Player';
 import Header from '../components/Header';
 
 
+
 class Welcome extends Component {
 
     componentDidMount() {
-        Notification.requestPermission().then(function (result) {
-            console.log("Notification Permissons: " + result);
-        });
-    }
-
-    spawnNotification = (theBody, theIcon, theTitle) => {
-        var options = {
-            body: theBody,
-            icon: theIcon
-        }
-        var n = new Notification(theTitle, options);
-        setTimeout(n.close.bind(n), 4000);
+        PushNotification.requestPermission();
     }
 
     render() {
@@ -45,14 +36,6 @@ class Welcome extends Component {
                             <img src={require("../assets/images/borderbambootitle.svg")} alt="título da área de conteúdo" />
                             <span>Welcome</span>
                         </div>
-
-                        {
-                            this.spawnNotification(
-                                "Capivara Wars presents: :)",
-                                "../ assets / images / borderbambootitle.svg",
-                                "Capivara Wars"
-                            )
-                        }
 
                         <div className="container-bamboo-border">
                             <form className="container-bamboo-bg-color text-center padding-bottom-1">

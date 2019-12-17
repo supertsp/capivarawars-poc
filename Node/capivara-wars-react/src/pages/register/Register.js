@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Globals from "../../Globals";
 import Validator from '../../tool/Validator';
 import AxiosRest from '../../tool/AxiosRest';
+import PushNotification from "../../tool/PushNotification";
 
 //Import GameCore
 import Player from '../../gamecore/Player';
@@ -45,6 +46,13 @@ class Register extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.state.registerCompleted) {
+            PushNotification.show(
+                'Registration successfully completed !!\nNow you can play with your Capybara :)',
+                'Capii says...',
+                require("../assets/images/capii-sweating.png"),
+                7.6
+            );
+
             this.props.history.push('/');
         }
     }
@@ -56,39 +64,84 @@ class Register extends Component {
     }
 
     onChangeFormNick = (event) => {
-        this.setState({ formNick: event.target.value });
+        this.setState({
+            formNick: event.target.value,
+            requestError: false,
+            formEmpty: false,
+            formPasswordsDontMatch: false
+        });
     }
 
     onChangeFormPassword = (event) => {
-        this.setState({ formPassword: event.target.value });
+        this.setState({
+            formPassword: event.target.value,
+            requestError: false,
+            formEmpty: false,
+            formPasswordsDontMatch: false
+        });
     }
 
     onChangeFormPasswordConfirm = (event) => {
-        this.setState({ formPasswordConfirm: event.target.value });
+        this.setState({
+            formPasswordConfirm: event.target.value,
+            requestError: false,
+            formEmpty: false,
+            formPasswordsDontMatch: false
+        });
     }
 
     onChangeFormEmail = (event) => {
-        this.setState({ formEmail: event.target.value });
+        this.setState({
+            formEmail: event.target.value,
+            requestError: false,
+            formEmpty: false,
+            formPasswordsDontMatch: false
+        });
     }
 
     onChangeFormFullname = (event) => {
-        this.setState({ formFullname: event.target.value });
+        this.setState({
+            formFullname: event.target.value,
+            requestError: false,
+            formEmpty: false,
+            formPasswordsDontMatch: false
+        });
     }
 
     onChangeFormGender = (event) => {
-        this.setState({ formGender: event.target.value });
+        this.setState({
+            formGender: event.target.value,
+            requestError: false,
+            formEmpty: false,
+            formPasswordsDontMatch: false
+        });
     }
 
     onChangeFormBirthday = (event) => {
-        this.setState({ formBirthday: event.target.value });
+        this.setState({
+            formBirthday: event.target.value,
+            requestError: false,
+            formEmpty: false,
+            formPasswordsDontMatch: false
+        });
     }
 
     onChangeFormCapybaraColor = (event) => {
-        this.setState({ formCapybaraColor: event.target.value });
+        this.setState({
+            formCapybaraColor: event.target.value,
+            requestError: false,
+            formEmpty: false,
+            formPasswordsDontMatch: false
+        });
     }
 
     onChangeFormCapybaraName = (event) => {
-        this.setState({ formCapybaraName: event.target.value });
+        this.setState({
+            formCapybaraName: event.target.value,
+            requestError: false,
+            formEmpty: false,
+            formPasswordsDontMatch: false
+        });
     }
 
     createPlayerOnApi = async (event) => {
@@ -107,9 +160,6 @@ class Register extends Component {
                 this.setState({ formPasswordsDontMatch: true });
             }
             else {
-                this.setState({ formPasswordsDontMatch: false });
-                this.setState({ formEmpty: false });
-
                 const response = await await AxiosRest.executePOST('playerService', `/player`, {
                     nick: this.state.formNick,
                     password: this.state.formPassword,
@@ -122,12 +172,20 @@ class Register extends Component {
                 });
 
                 if (response.status === 200 && response.data) {
-                    this.setState({ registerCompleted: true });
-                    this.setState({ requestError: false });
+                    this.setState({
+                        formPasswordsDontMatch: false,
+                        formEmpty: false,
+                        registerCompleted: true,
+                        requestError: false
+                    });
                 }
                 else {
-                    this.setState({ registerCompleted: false });
-                    this.setState({ requestError: true });
+                    this.setState({
+                        formPasswordsDontMatch: false,
+                        formEmpty: false,
+                        registerCompleted: false,
+                        requestError: true
+                    });
                 }
             }
         }

@@ -630,13 +630,14 @@ a:focus,
   background-color: transparent;
 
   border: none;
+  border-radius: 0.3em;
 }
 
 .form-button-play img {
   position: relative;
   width: 3em;
   top: -0.28em;
-  left: -0.35em;
+  left: -0.4em;
   /* height: 5em; */
 }
 
@@ -1055,6 +1056,11 @@ a:focus,
   border: 2px dashed #7a4623;
 
   background-color: #86320c;
+
+  font-size: 1em;
+  font-weight: bold;
+  font-style: italic;
+  color: #a56446;
 }
 
 .current-boat-size-number {

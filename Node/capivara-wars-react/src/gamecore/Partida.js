@@ -142,7 +142,7 @@ export default class Partida {
 
 	getIndiceJogadorAtual() {
 		//procura um jogador que não tenha sido removido
-		let contJogador = 1; console.log("getIndiceJogadorAtual() - length: " + this.jogadoresAtuaisNaPartida.length);
+		let contJogador = 1;
 
 		if (this.jogadoresAtuaisNaPartida.length > 0) {
 			while (Validator.isUndefined(this.jogadoresAtuaisNaPartida[this.indiceJogadorAtual])) {
@@ -170,7 +170,7 @@ export default class Partida {
 				ultimoIndiceValido = indiceJogador;
 			}
 		}
-		console.log("aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii - length: " + this.jogadoresAtuaisNaPartida.length + "\n" + this.jogadoresAtuaisNaPartida.toString());
+
 		return ultimoIndiceValido;
 	}
 
@@ -275,7 +275,7 @@ export default class Partida {
 
 	validarFechamentoDeTurno() {
 		const ultimoIndiceValido = this.getUltimoIndiceValidoParaJogadorAtual();
-		console.log(`ultimoIndiceValido: ${ultimoIndiceValido}`);
+
 		//é o último jogador?
 		if (ultimoIndiceValido !== -1 && ultimoIndiceValido === this.indiceJogadorAtual) {
 			this.incrementarTurnoAtual();

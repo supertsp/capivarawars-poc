@@ -34,11 +34,13 @@ export default class Header extends Component {
                         </div>
                         <div>
                             {
-                                this.props.userType === 'M' ?
-                                    <img src={require('../assets/images/user-male-icon.svg')} alt="user foto" /> :
-                                    this.props.userType === 'F' ?
-                                        <img src={require('../assets/images/user-female-icon.svg')} alt="user foto" /> :
-                                        <img src={require('../assets/images/user-enemy-icon.svg')} alt="user foto" />
+                                this.props.userNick === 'tiago' ?
+                                    <img src={require('../assets/images/user-yoshi-icon.svg')} alt="user foto" /> :
+                                    this.props.userType === 'M' ?
+                                        <img src={require('../assets/images/user-male-icon.svg')} alt="user foto" /> :
+                                        this.props.userType === 'F' ?
+                                            <img src={require('../assets/images/user-female-icon.svg')} alt="user foto" /> :
+                                            <img src={require('../assets/images/user-enemy-icon.svg')} alt="user foto" />
                             }
 
                         </div>
