@@ -11,13 +11,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CapivaraReportServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CapivaraReportServiceApplication.class, args);
-		String uri = "mongodb+srv://root:root123@capireport-sgqyr.mongodb.net/test";
-		MongoClientURI clientURI = new MongoClientURI(uri);
-		MongoClient mongoClient = new MongoClient(clientURI);
-		
-		MongoDatabase mongoDatabase = mongoClient.getDatabase("CapivaraWarsReport");
-		MongoCollection collection = mongoDatabase.getCollection("capivaraWarsReport");
+//		SpringApplication.run(CapivaraReportServiceApplication.class, args);;
+//		String uri = "mongodb+srv://root:root123@capireport-sgqyr.mongodb.net/test";
+//		MongoClientURI clientURI = new MongoClientURI(uri);
+//		MongoClient mongoClient = new MongoClient(clientURI);
+//		
+//		MongoDatabase mongoDatabase = mongoClient.getDatabase("CapivaraWarsReport");
+//		MongoCollection collection = mongoDatabase.getCollection("capivaraWarsReport");
 		
 		System.out.println("SUBIU!!!!!!!!!!!!!!!!!!");
 	}
